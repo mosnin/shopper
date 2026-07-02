@@ -24,14 +24,18 @@ routing and the four-gate synthesis order live in the imported engine above.
 
 ## What we're building
 
-**Shopper - the CRM your agents run.** A structured CRM with a real UI and built-in
-intelligence, operated by AI agents: they discover leads, enrich the database,
-track deals, and run email relationships - reading/writing every record over MCP.
-For anyone working with AI agents who wants lead intelligence + deal tracking that
-stays consistent. **Moat:** structure + UI + intelligence as one system - vs agent
-frameworks that dump everything into messy `.md` files. **Data:** a single source
-of truth you control (enrichment flows in; your data is owned, exportable, never
-resold). Full identity: `docs/foundation/product.md` + `valueprop.md`.
+**Shopper (shopper.sh) - the shopping engine your agents run.** A structured
+shopping platform with a real UI, operated by AI agents connected over MCP
+(Hermes, OpenClaw, Codex, Claude Code, any client): they hunt the whole web for
+items for sale (Exa, Firecrawl, Tavily), go deep with a real browser
+(Browserbase) on forums and marketplaces, keep the Wish List of items and
+sellers current, work Shopping Lists (groceries, moves, auto parts, business
+supplies) and check off purchases, run Radar standing scans for wanted items
+(paid plans), source manufacturers on Pro, and ground every hunt in the About
+You context. **Moat:** structure + UI + a real shopping engine as one system,
+an order of magnitude beyond the shopping MCPs bolted onto LLM providers.
+**Data:** a single source of truth you control (owned, exportable, never
+resold). Plans: Free (limited) / Plus $10/mo / Pro $20/mo.
 
 ## Foundation
 
@@ -40,7 +44,7 @@ resold). Full identity: `docs/foundation/product.md` + `valueprop.md`.
 - Value proposition / positioning - `docs/foundation/valueprop.md`
 - Value proposition (legacy) - `@docs/foundation/value-proposition.md`
 - PRD / build brief - `docs/foundation/prd.md`
-- Brand kit - not yet provided (colors set: white/charcoal + `#1E4D2B`; logo at `public/logo.svg`)
+- Brand kit - palette `#E1DCC9` cream / `#412D15` brown / `#1F150C` dark brown / `#000000` (logo at `public/logo.svg`, a shopping bag)
 - User experience - not yet provided
 
 Deep context and all decisions are indexed in `@docs/README.md`.
@@ -82,10 +86,11 @@ Deep context and all decisions are indexed in `@docs/README.md`.
   · **Lint:** `pnpm lint`.
 - **Conventions:** import alias `@/*` → `src/*`. Route groups: `(auth)`,
   `(dashboard)`, `(admin)`. Theme tokens live in `src/app/globals.css`
-  (**baby-blue + white, light by default**; legacy `orange`/`brand` Tailwind
-  utilities are aliased to baby blue - rename is a tracked debt). Logo: the `λ`
-  mark via `LogoMark` (theme-swapped PNGs: blue light / white dark). The agent is
-  named **Shopper** and uses the logo as its avatar/nav icon.
+  (**cream `#E1DCC9` + dark brown `#412D15`/`#1F150C`, light by default**;
+  legacy `orange`/`brand` Tailwind utilities are aliased to the brown scale -
+  rename is a tracked debt). Logo: a shopping-bag mark via `LogoMark`
+  (inline SVG, currentColor). The agent is named **Shopper** and uses the
+  logo as its avatar/nav icon.
 - **Copy hard rule:** NEVER use em dashes or en dashes anywhere (UI, code,
   comments, docs, commits). Use commas, periods, colons, or a plain hyphen `-`.
 - **Enrichment accuracy hard rule:** enrichment must NEVER attach data for the
@@ -99,7 +104,7 @@ Deep context and all decisions are indexed in `@docs/README.md`.
   `export const viewport`; file-convention `app/manifest.ts` / `app/apple-icon.tsx`).
   Verify APIs against the installed Next, not memory.
 - **Origin:** rebranded from the `mosnin/fortitudov4` agency scaffolding (forked
-  the orange/charcoal studio site, then diverged to baby-blue/white - do not
+  the orange/charcoal studio site, then diverged to cream/brown - do not
   reintroduce orange/charcoal as the brand).
 
 <!-- ritual:installed -->

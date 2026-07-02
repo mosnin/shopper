@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Shopper
 
-## Getting Started
+**The shopping engine your agents run.** [shopper.sh](https://shopper.sh)
 
-First, run the development server:
+Shopper connects your AI agents (Hermes, OpenClaw, Codex, Claude Code, or any
+MCP client) to a real shopping engine. Agents hunt the whole web for items for
+sale using Exa, Firecrawl, and Tavily, go deep with a real browser
+(Browserbase) on forums and marketplaces, keep your Wish List of items and
+sellers current, work your Shopping Lists (groceries, a move, auto parts,
+business supplies) and check off purchases, run Radar standing scans for the
+exact items you want (paid plans), and source manufacturers on Pro.
+
+## Surfaces
+
+- **Shop** (`/shop`) - the shopping tools: web-wide item hunts, local stores, seller extraction.
+- **Wish List** (`/wishlist`) - every find: items, sellers, stores, manufacturers, and the people behind them.
+- **Shopping Lists** (`/shopping-list`) - lists agents monitor and check off as things get bought.
+- **Radar** (`/radar`) - standing scans like "recently listed pre-owned GPUs at a good price" (Plus/Pro).
+- **About You** (`/about-you`) - sizes, tastes, budgets; agents read and update it over MCP.
+- **Agent** (`/agent`) - the built-in Shopper agent, if you don't bring your own.
+- **MCP** (`/api/mcp`) - the full engine for connected agents: hunts, wish list, lists, deep shopping, sourcing, self-serve billing over x402.
+
+## Plans
+
+Free (limited usage) / Plus $10/mo / Pro $20/mo (adds manufacturer & supplier sourcing).
+
+## Stack
+
+Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, Clerk auth,
+Prisma on Postgres, Stripe + x402 USDC billing, Inngest jobs.
+
+## Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
+cp .env.local.example .env.local   # fill keys
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Build with `pnpm build`, lint with `pnpm lint`, test with `pnpm vitest run`.
+See `CLAUDE.md`, `DESIGN.md`, and `AGENTS.md` for working rules.

@@ -6,7 +6,7 @@ pattern here, change it everywhere it's used — and update this file.
 
 > Companion to `AGENTS.md`. The icon rule there is part of this system.
 > ⚠️ We forked the orange/charcoal `fortitudov4` studio site and **deliberately
-> diverged**. Shopper is **baby blue + white, light-default**. Do not reintroduce
+> diverged**. Shopper is **cream + dark brown, light-default**. Do not reintroduce
 > orange/charcoal as the brand.
 
 ---
@@ -20,30 +20,32 @@ alive." Never "vibe-coded."
 
 ---
 
-## 2. Color — baby blue is the only accent
+## 2. Color - brand brown is the only accent
 
 Tokens live in `src/app/globals.css` (`:root` light / `.dark` dark, exposed via `@theme`):
 
 | Token | Light | Dark | Use |
 | --- | --- | --- | --- |
-| `--background` | `#ffffff` | `#0A0A0A` | Page background (light is the default) |
-| `--card` / `--popover` | `#ffffff` | `#141414` | Panels, cards |
-| `--foreground` | `#1C1C1C` | `#F5F5F5` | Text |
-| `--muted` / `--muted-foreground` | `#F5F5F5` / `#737373` | `#1C1C1C` / `#A3A3A3` | Subtle fills / secondary text |
-| **`--primary`** | **`#5AB0E8`** | **`#5AB0E8`** | The accent — buttons, eyebrows, highlights |
-| `--accent` | `#E6F3FC` | `#1C1C1C` | Tints |
-| `--border` / `--input` | `#E5E5E5` | `#2A2A2A` | Borders |
-| `--ring` | `#5AB0E8` | `#8FCCF2` | Focus rings |
-| `--destructive` / `--success` / `--warning` | `#DC2626` / `#16A34A` / `#EAB308` | — | Status only — not decoration |
+| `--background` | `#E1DCC9` | `#120C06` | Page background (light is the default) |
+| `--card` / `--popover` | `#EAE6D7` | `#1F150C` | Panels, cards |
+| `--foreground` | `#1F150C` | `#E1DCC9` | Text |
+| `--muted` / `--muted-foreground` | `#D8D2BF` / `#6B5D44` | `#2A1D10` / `#A99C82` | Subtle fills / secondary text |
+| **`--primary`** | **`#412D15`** | **`#E1DCC9`** | The accent - buttons, eyebrows, highlights |
+| `--accent` | `#D3CBB2` | `#332412` | Tints |
+| `--border` / `--input` | `#C6BEA4` | `#3A2B18` | Borders |
+| `--ring` | `#412D15` | `#E1DCC9` | Focus rings |
+| `--destructive` / `--success` / `--warning` | `#B3261E` / `#3F6D34` / `#A9761B` | - | Status only - not decoration |
 
 Rules:
-- **Baby blue (`#5AB0E8`) is the single brand accent.** Don't introduce new accent
-  hues unless asked. (The one sanctioned multi-hue is the ASCII gradient, §5.)
-- **Legacy alias:** the `orange` / `brand` Tailwind utilities are remapped to baby
-  blue — `--color-orange` `#8FCCF2` (light), `orange-dark` `#5AB0E8`, `--color-brand`
-  `#5AB0E8` / light `#8FCCF2` / dark `#3A8FCC`. So `bg-orange hover:bg-orange-dark`
-  = light-blue → primary. **Prefer `primary` in new code;** renaming `orange`→`brand`
-  is a tracked debt. Don't add new literal orange hexes.
+- **Brand brown (`#412D15`) is the single brand accent on the cream surface.**
+  Don't introduce new accent hues unless asked. (The one sanctioned multi-hue is
+  the ASCII gradient, §5.)
+- **Legacy alias:** the `orange` / `brand` Tailwind utilities are remapped to the
+  brown scale - `--color-orange` `#6B4E2A`, `orange-light` `#8A6B42`,
+  `orange-dark` `#412D15`, `--color-brand` `#412D15` / light `#6B4E2A` / dark
+  `#1F150C`. So `bg-orange hover:bg-orange-dark` = mid-brown -> primary.
+  **Prefer `primary` in new code;** renaming `orange`->`brand` is a tracked debt.
+  Don't add new literal hexes.
 - charcoal scale for dark surfaces: `--color-charcoal` `#1C1C1C` / light `#2A2A2A` / dark `#0A0A0A`.
 - Both light AND dark must read — never tune for one only. Default (unprefixed) = light; use `dark:` for per-theme surfaces.
 
@@ -56,7 +58,7 @@ Rules:
   (Was Bitcount Grid Single, a pixel-grid face; dropped - it read as retro/
   pixelated once the CSP allowed the webfont to actually load, clashing with the
   quiet-premium aesthetic.)
-- **Accent word:** wrap one word in `.text-gradient-orange` (a baby-blue gradient, bg-clip-text).
+- **Accent word:** wrap one word in `.text-gradient-orange` (a brown gradient, bg-clip-text).
 - **Body:** Inter (`font-sans`).
 - **Eyebrow:** `text-xs uppercase tracking-[0.3em] text-primary`.
 - **Logo:** `]s[` — `LogoMark` (`src/components/brand/logo-mark.tsx`) in `font-brand`,
@@ -107,7 +109,7 @@ field; background texture only. Ramp `" .·:-=+*≡#%@"`, ~30fps, honors
 - Props: `className, speed, cell, gradient`.
 - `gradient` paints a flowing **blue→purple** palette (`#5AB0E8 → #5B8DEF → #7C77F0
   → #A78BFA`) — used on the logged-out hero / CTA / mobile menu.
-- **Light mode needs higher container opacity** than feels intuitive (baby-blue on
+- **Light mode needs higher container opacity** than feels intuitive (brown on
   white is low-contrast): hero ≈ `opacity-30`, dark ≈ `opacity-25`; card accents lower.
 - Used behind: hero, CTA, dashboard hero, preloader, launchpad, sidebar.
 - If you add static hand-drawn ASCII illustrations: **box-drawing/geometric glyphs
@@ -148,12 +150,12 @@ Rules:
 
 ### 6c. Marketing effect kit (do not regress)
 
-Registry components adapted for the marketing site, all tuned to the baby-blue
+Registry components adapted for the marketing site, all tuned to the cream/brown
 system. In production use:
 
 | Effect | File | Where | Notes |
 |---|---|---|---|
-| **AgentCircuit** | `sections/agent-circuit.tsx` (wraps `ui/circuit-board.tsx`) | Homepage + `/product/how-it-works` | Shopper's real data flow as an animated circuit: agent, discover/radar, verify/enrich, CRM core, email/calls. Pulses in `#5AB0E8`. Scale-to-fit via `react-use-measure`. |
+| **AgentCircuit** | `sections/agent-circuit.tsx` (wraps `ui/circuit-board.tsx`) | Homepage + `/product/how-it-works` | Shopper's real data flow as an animated circuit: agent, discover/radar, verify/enrich, CRM core, email/calls. Pulses in `#412D15`. Scale-to-fit via `react-use-measure`. |
 | **DotGridSpotlight** | `dot-grid-spotlight.tsx` | Problem section background | Cursor-lit dot field in primary blue at whisper opacity. Content stays `z-10`. |
 | **ShimmeringText** | `shimmering-text.tsx` | CTA heading accent | Character shimmer from `--primary` to `--foreground`. Use on ONE phrase per page. |
 | **Footer reveal** | pattern in `app/page.tsx` | Homepage | Content (`z-10`, opaque bg) slides up over the sticky footer (`sticky bottom-0 z-0`). Pure CSS. |
@@ -165,7 +167,7 @@ system. In production use:
 A wider fleet (testimonials, logos carousel, metrics charts, text-flip,
 carousels, gradient/blur backgrounds, shark form primitives) is installed and
 compiling, staged for future waves - see the vendored ignore list in
-`eslint.config.mjs`. Chart colors are theme tokens (`--chart-1..5`, baby-blue
+`eslint.config.mjs`. Chart colors are theme tokens (`--chart-1..5`, brown
 ramp) - never orange.
 
 Honesty rule for marketing sections: no fabricated testimonials, customer names,
