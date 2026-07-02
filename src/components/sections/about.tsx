@@ -4,22 +4,23 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
+import { ImagePlaceholder } from "@/components/marketing/image-placeholder";
 
 const values = [
   {
-    title: "Owned data - never leaves your system",
+    title: "Owned data - yours to keep, yours to export",
     description:
-      "Every contact, enrichment, and email thread lives in your Shopper database. No third-party scraping your CRM. No shared pool. It is yours.",
+      "Every find, list, and About You fact lives in your Shopper account. No shared pool, no lock-in. Export it all whenever you like.",
   },
   {
-    title: "Radical transparency",
+    title: "Vetted before you spend",
     description:
-      "Every agent action is logged. Every write is reviewable. You always know exactly what the agents did - and you can roll it back.",
+      "Before a big purchase or a new supplier, sellers are checked against public registries: GLEIF, Companies House, SEC EDGAR. Trust is earned, then verified.",
   },
   {
-    title: "Deep product context",
+    title: "Deep personal context",
     description:
-      "Agents read your product knowledge base before they write a single word. Outreach is informed, not generic spray.",
+      "Agents read About You before every hunt: sizes, tastes, budgets, no-gos. Results fit your life, not a demographic bucket.",
   },
 ];
 
@@ -31,29 +32,31 @@ export function AboutSection() {
           <div>
             <p className="text-xs uppercase tracking-[0.25em] text-primary">About Shopper</p>
             <h2 className="font-brand mt-3 text-3xl text-foreground sm:text-4xl lg:text-5xl">
-              The CRM for teams building in the{" "}
-              <span className="text-gradient-orange">AI age</span>
+              Shopping for people whose agents{" "}
+              <span className="text-gradient-orange">do the work</span>
             </h2>
             <p className="mt-5 text-lg text-muted-foreground">
-              Shopper is a CRM whose operators are AI agents. They discover leads, enrich the
-              database, run email relationships, and read/write every record - on data that
-              never leaves the system.
+              Shopper is a shopping engine whose operators are AI agents. They
+              hunt the whole web for items, compare prices, read reviews, vet
+              sellers, and keep every find in lists you own.
             </p>
             <p className="mt-4 text-muted-foreground">
-              For agencies, founders, and lean teams running outbound. The world changed; how
-              you build relationships changed with it. Shopper gives your agents the context to
-              sell with understanding - not just spray.
+              For grocery runs, a whole-home refit, auto parts, business
+              supplies, or sourcing a manufacturer. The way we shop changed;
+              Shopper gives your agents the memory and the engine to shop with
+              understanding, not just search and forget.
             </p>
             <Link
               href="/sign-up"
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5"
             >
-              Get started
+              Start free
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
 
           <div className="space-y-4">
+            <ImagePlaceholder label="About visual: agents at work" aspect="aspect-[16/9]" />
             {values.map((value, index) => (
               <motion.div
                 key={value.title}

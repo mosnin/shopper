@@ -38,13 +38,13 @@ export function ManifestoRail() {
       >
         <div className="px-6 pb-8 pt-2 md:px-10">
           <p className="max-w-3xl font-brand text-xl leading-snug text-foreground sm:text-2xl">
-            We do not think memory is a feature you bolt on. It is the product.
+            We do not think shopping is a feature you bolt onto a chat app. It is the product.
           </p>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-            A structured place where every record is typed, deduped, and yours, with a
-            real interface a human can see and an agent can operate over the same
-            surface. So your data compounds instead of rotting, and the leverage stays
-            quiet: already working for you.
+            A structured place where every find is typed, priced, and yours, with a
+            real interface a human can browse and an agent can operate over the same
+            surface. So your lists compound instead of scrolling away, and the
+            leverage stays quiet: already hunting for you.
           </p>
           <Link
             href="/manifesto"

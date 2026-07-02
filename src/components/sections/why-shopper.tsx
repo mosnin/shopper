@@ -10,23 +10,23 @@ const easeOut = [0.16, 1, 0.3, 1] as const;
 const pillars = [
   {
     n: "01",
-    title: "Structured storage",
-    body: "Typed entities, contacts, deals, emails, and memory in Postgres, not free-text files. Deduped and validated on the way in.",
+    title: "Structured lists",
+    body: "Wish lists, shopping lists, and About You as typed records, not links lost in a chat scroll. Deduped and validated on the way in, exportable on the way out.",
   },
   {
     n: "02",
     title: "A real UI",
-    body: "Humans can see, trust, edit, and navigate exactly what the agent did. No black box, no markdown spelunking.",
+    body: "You can see, edit, and check off exactly what your agent found and saved. No black box, no scrolling back through a conversation.",
   },
   {
     n: "03",
-    title: "Built-in intelligence",
-    body: "Discovery, enrichment, intent, and deep research are first-class tools - best-in-class providers, orchestrated and refined into real, deduped companies.",
+    title: "A real shopping engine",
+    body: "Exa, Firecrawl, and Tavily powered search and scraping, plus a Browserbase browser for the hard sites. First-class tools, orchestrated into real listings from real sellers.",
   },
   {
     n: "04",
     title: "Agent-native by default",
-    body: "A secure MCP surface and per-user keys mean your agent operates the CRM directly, through the same ops layer the app uses.",
+    body: "A secure MCP surface and per-user keys mean your agent shops directly, through the same layer the app uses. Any client, one engine.",
   },
 ];
 
@@ -43,14 +43,15 @@ export function WhyShopperSection() {
               interval={1.9}
               className="text-gradient-orange"
             >
-              {["structure.", "the UI.", "intelligence.", "all four."]}
+              {["structure.", "the UI.", "the engine.", "all four."]}
             </TextFlip>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Enrichment tools aren&apos;t a CRM. Modern CRMs are pretty but you still
-            do the work. Legacy CRMs are heavy and agents can&apos;t drive them.
-            Agent frameworks dump to markdown. Shopper is structure, UI,
-            intelligence, and agent-native, as one system.
+            The shopping MCPs bolted onto LLM providers dump links and forget.
+            Deal sites only see their own inventory. Shopper is structure, UI,
+            a real shopping engine, and agent-native access, as one system, an
+            order of magnitude better than a bolt-on. Your data stays owned and
+            exportable.
           </p>
         </div>
 
