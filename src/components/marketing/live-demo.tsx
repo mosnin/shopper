@@ -5,15 +5,15 @@ import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { AsciiField } from "@/components/dashboard/ascii-field";
 
 /**
- * The hero centerpiece: a live, self-driving demo of the CRM building itself.
- * It types an ICP prompt, streams companies in one at a time, fills in
- * enrichment and fit, then senses intent, and cycles through a few prompts. The
- * visitor can click a preset to rebuild it themselves. This is "show, don't
- * tell": the product is working before they sign up. Reduced motion shows the
- * finished board with no animation.
+ * The hero centerpiece: a live, self-driving demo of an agent running a hunt.
+ * It types a shopping ask, streams finds in one at a time, fills in seller
+ * vetting and match scores, and cycles through a few asks. The visitor can
+ * click a preset to rebuild it themselves. This is "show, don't tell": the
+ * product is working before they sign up. Reduced motion shows the finished
+ * board with no animation.
  *
- * The data is generic demo data, plausible and clearly not real customers, so
- * the preview stays honest: this is what your CRM looks like once an agent runs.
+ * The data is generic demo data, plausible and clearly not real listings, so
+ * the preview stays honest: this is what a hunt looks like once an agent runs.
  */
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -37,33 +37,33 @@ type Build = {
 
 const builds: Build[] = [
   {
-    label: "Series B fintech",
-    prompt: "Series B fintech companies hiring SDRs",
+    label: "Pre-owned GPU",
+    prompt: "recently listed pre-owned RTX 4090s under $1,100",
     rows: [
-      { company: "Northwind Pay", domain: "northwindpay.com", chips: ["Payments", "180 emp", "Series B"], intent: "hot", fit: 94, contacts: 7 },
-      { company: "Ledgerline", domain: "ledgerline.io", chips: ["Fintech infra", "120 emp", "Series B"], intent: "warm", fit: 86, contacts: 5 },
-      { company: "Cedar Capital", domain: "cedarcapital.co", chips: ["Lending", "240 emp", "Series B"], intent: "hot", fit: 82, contacts: 6 },
-      { company: "Atlas Treasury", domain: "atlastreasury.com", chips: ["Treasury", "90 emp", "Series B"], intent: "cool", fit: 71, contacts: 4 },
+      { company: "RTX 4090 Founders Edition", domain: "listed 2h ago - marketplace", chips: ["$1,040", "Barely used", "Seller vetted"], intent: "hot", fit: 94, contacts: 3 },
+      { company: "RTX 4090 Gaming OC", domain: "listed today - forum classifieds", chips: ["$1,085", "Boxed", "Seller vetted"], intent: "warm", fit: 86, contacts: 2 },
+      { company: "RTX 4090 SUPRIM X", domain: "refurb outlet store", chips: ["$1,099", "Refurb, warranty", "Registry match"], intent: "hot", fit: 82, contacts: 3 },
+      { company: "RTX 4090 Trinity", domain: "auction, ends in 3 days", chips: ["$960 bid", "Untested", "Watch"], intent: "cool", fit: 71, contacts: 1 },
     ],
   },
   {
-    label: "AI infra in NYC",
-    prompt: "AI infrastructure startups based in New York",
+    label: "Gucci, size 10M",
+    prompt: "Gucci shoes size 10M under $400",
     rows: [
-      { company: "Meridian Compute", domain: "meridian.ai", chips: ["GPU cloud", "75 emp", "Series A"], intent: "hot", fit: 91, contacts: 5 },
-      { company: "Vector Foundry", domain: "vectorfoundry.com", chips: ["Vector DB", "60 emp", "Seed"], intent: "warm", fit: 84, contacts: 4 },
-      { company: "Halcyon Labs", domain: "halcyon.dev", chips: ["Inference", "130 emp", "Series B"], intent: "warm", fit: 78, contacts: 6 },
-      { company: "Probe AI", domain: "probe.ai", chips: ["Eval tooling", "30 emp", "Seed"], intent: "cool", fit: 69, contacts: 3 },
+      { company: "Gucci Jordaan loafer", domain: "resale marketplace", chips: ["$365", "10M", "Seller vetted"], intent: "hot", fit: 91, contacts: 3 },
+      { company: "Gucci Ace sneaker", domain: "consignment store", chips: ["$310", "10M", "Authenticated"], intent: "warm", fit: 84, contacts: 2 },
+      { company: "Gucci horsebit slipper", domain: "outlet storefront", chips: ["$398", "10M", "Registry match"], intent: "warm", fit: 78, contacts: 2 },
+      { company: "Gucci Brixton loafer", domain: "private seller listing", chips: ["$280", "9.5M runs big", "Watch"], intent: "cool", fit: 69, contacts: 1 },
     ],
   },
   {
-    label: "Healthtech, early",
-    prompt: "Healthtech companies from Seed to Series A",
+    label: "Workshop restock",
+    prompt: "restock the workshop shopping list: sandpaper, wood glue, clamps",
     rows: [
-      { company: "Cedar Health", domain: "cedarhealth.io", chips: ["Care nav", "85 emp", "Series A"], intent: "hot", fit: 89, contacts: 6 },
-      { company: "Vital Loop", domain: "vitalloop.com", chips: ["RPM", "40 emp", "Seed"], intent: "warm", fit: 80, contacts: 4 },
-      { company: "Praxis Bio", domain: "praxisbio.co", chips: ["Diagnostics", "55 emp", "Series A"], intent: "warm", fit: 76, contacts: 5 },
-      { company: "Northstar Mind", domain: "northstarmind.com", chips: ["Behavioral", "25 emp", "Seed"], intent: "cool", fit: 64, contacts: 2 },
+      { company: "Sandpaper, 120-400 grit box", domain: "hardware supplier", chips: ["$24", "In stock", "Seller vetted"], intent: "hot", fit: 89, contacts: 3 },
+      { company: "Wood glue, gallon", domain: "manufacturer direct", chips: ["$31", "Ships today", "Registry match"], intent: "warm", fit: 80, contacts: 2 },
+      { company: "Parallel clamps, 4-pack", domain: "marketplace listing", chips: ["$96", "Open box", "Seller vetted"], intent: "warm", fit: 76, contacts: 2 },
+      { company: "Bench vise, 6 inch", domain: "auction, used", chips: ["$42 bid", "Pickup only", "Watch"], intent: "cool", fit: 64, contacts: 1 },
     ],
   },
 ];
@@ -75,9 +75,9 @@ const intentDot: Record<Intent, string> = {
 };
 
 const intentLabel: Record<Intent, string> = {
-  hot: "In-market",
-  warm: "Researching",
-  cool: "Quiet",
+  hot: "Great deal",
+  warm: "Fair price",
+  cool: "Watching",
 };
 
 export function LiveDemo() {
@@ -86,7 +86,7 @@ export function LiveDemo() {
   const [typed, setTyped] = useState("");
   const [revealed, setRevealed] = useState(0);
   const [enriched, setEnriched] = useState(false);
-  const [status, setStatus] = useState("Reading your prompt");
+  const [status, setStatus] = useState("Reading your ask");
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   const clearTimers = useCallback(() => {
@@ -105,14 +105,14 @@ export function LiveDemo() {
       setTyped("");
       setRevealed(0);
       setEnriched(false);
-      setStatus("Reading your prompt");
+      setStatus("Reading your ask");
 
       // Reduced motion: skip straight to the finished board.
       if (reduce) {
         setTyped(build.prompt);
         setRevealed(build.rows.length);
         setEnriched(true);
-        setStatus(`Done. ${build.rows.length} companies, ${totalContacts(build)} contacts`);
+        setStatus(`Done. ${build.rows.length} finds saved, ${totalContacts(build)} sellers vetted`);
         return;
       }
 
@@ -125,7 +125,7 @@ export function LiveDemo() {
       let t = chars * typeStep + 360;
 
       // 2) Discover: stream rows one at a time.
-      at(t, () => setStatus("Discovering companies"));
+      at(t, () => setStatus("Hunting the web"));
       t += 320;
       build.rows.forEach((_, i) => {
         at(t, () => setRevealed(i + 1));
@@ -134,12 +134,12 @@ export function LiveDemo() {
 
       // 3) Enrich + sense intent.
       t += 200;
-      at(t, () => setStatus("Enriching records"));
+      at(t, () => setStatus("Vetting sellers"));
       at(t + 120, () => setEnriched(true));
       t += 900;
-      at(t, () => setStatus("Sensing intent"));
+      at(t, () => setStatus("Scoring the deals"));
       t += 850;
-      at(t, () => setStatus(`Done. ${build.rows.length} companies, ${totalContacts(build)} contacts`));
+      at(t, () => setStatus(`Done. ${build.rows.length} finds saved, ${totalContacts(build)} sellers vetted`));
 
       // 4) Hold, then move to the next prompt.
       if (autoAdvance) {
@@ -174,7 +174,7 @@ export function LiveDemo() {
           </div>
           <div className="mx-auto flex items-center gap-2 rounded-full border border-border bg-background/60 px-3 py-1 text-[11px] text-muted-foreground dark:border-white/10">
             <span className="h-1.5 w-1.5 rounded-full bg-success" />
-            app.shopper.sh / crm
+            app.shopper.sh / shop
           </div>
         </div>
 
@@ -218,10 +218,10 @@ export function LiveDemo() {
         {/* table */}
         <div className="px-2 py-2 sm:px-3 sm:py-3">
           <div className="grid grid-cols-12 gap-3 px-3 py-2 text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
-            <div className="col-span-6 sm:col-span-5">Company</div>
-            <div className="col-span-2 hidden sm:block">Signal</div>
-            <div className="col-span-4 hidden sm:block">Enrichment</div>
-            <div className="col-span-6 text-right sm:col-span-1">Fit</div>
+            <div className="col-span-6 sm:col-span-5">Find</div>
+            <div className="col-span-2 hidden sm:block">Deal</div>
+            <div className="col-span-4 hidden sm:block">Details</div>
+            <div className="col-span-6 text-right sm:col-span-1">Match</div>
           </div>
 
           {/* Fixed height so the board does not jump as rows stream in. */}
@@ -303,7 +303,7 @@ export function LiveDemo() {
 
       {/* Interactive preset prompts: click to rebuild the board yourself. */}
       <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
-        <span className="text-xs text-muted-foreground">Try a prompt:</span>
+        <span className="text-xs text-muted-foreground">Try a hunt:</span>
         {builds.map((b, i) => (
           <button
             key={b.label}

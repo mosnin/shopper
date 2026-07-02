@@ -16,26 +16,26 @@ const easeOut = [0.16, 1, 0.3, 1] as const;
 const story = [
   {
     eyebrow: "The problem",
-    title: "Agents are brilliant at doing. Terrible at remembering.",
+    title: "Shopping eats hours agents could be spending.",
     body: [
-      "An agent researches a company, drafts the outreach, finds the right person, and then forgets all of it. The output lands in scattered markdown files and loose notes: no schema, no dedup, no interface, no consistency.",
-      "So it re-researches the same company twice. It contradicts itself. And you can't browse, query, or trust any of the work it already did. Agents without a real database are goldfish with PhDs.",
+      "Finding the right thing at the right price from a seller you can trust means twenty tabs, three marketplaces, a forum thread, and a saved search you forget to check. It is exactly the kind of patient, wide, repetitive work AI agents are built for.",
+      "But the shopping tools bolted onto LLM providers search one partner catalog, forget everything between chats, and never ask who the seller actually is. Agents deserve a real shopping engine.",
     ],
   },
   {
     eyebrow: "The answer",
-    title: "Give the work a structured home.",
+    title: "A shopping engine built for agents.",
     body: [
-      "Shopper is the place agent work lands and stays consistent: typed companies, contacts, deals, and emails in a real database, deduped and validated on the way in.",
-      "And it comes with a real UI, so you can see, trust, edit, and navigate everything your agent did. Structure for the machine, an interface for the human, intelligence built into both.",
+      "Shopper hunts the whole web: Exa, Firecrawl, and Tavily for search and scraping, and a real Browserbase browser for deep shopping on forums, marketplaces, and js-heavy storefronts.",
+      "Every find lands as a structured record in your Wish List, with its seller, store, and manufacturer vetted against GLEIF, Companies House, and SEC EDGAR. Shopping Lists track the errands; Radar keeps standing scans running; About You keeps your sizes, tastes, and budgets in one durable place.",
     ],
   },
   {
     eyebrow: "Agent-first",
     title: "Built for agents to operate, over MCP.",
     body: [
-      "Shopper was built agent-first from day one. A secure MCP surface and per-user API keys mean your agent, whether that's Claude, OpenClaw, Hermes, or the built-in one, operates the CRM directly: discovering leads, enriching records, tracking deals, running email.",
-      "Agents and humans go through the same operations layer, so there is never drift between what the agent does and what you see.",
+      "Shopper was built agent-first from day one. Connect Hermes, OpenClaw, Codex, Claude Code, or any MCP client, or use the built-in agent, and it hunts, vets, and writes your lists directly.",
+      "Agents and humans go through the same operations layer, so there is never drift between what the agent found and what you see.",
     ],
   },
 ];

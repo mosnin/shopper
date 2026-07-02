@@ -6,20 +6,20 @@ import { DotGridSpotlight } from "@/components/dot-grid-spotlight";
 
 const easeOut = [0.16, 1, 0.3, 1] as const;
 
-// The two sides of the same coin: what an agent's work looks like without a real
-// home, and what it looks like with one. No icons-in-boxes (design rule); the
-// contrast carries the point.
+// The two sides of the same coin: what agent shopping looks like as a bolt-on
+// MCP inside a chat window, and what it looks like with a real engine behind
+// it. No icons-in-boxes (design rule); the contrast carries the point.
 const without = [
-  "Output rots in scattered .md files",
-  "No schema, no dedup, no UI",
-  "Re-researches the same company twice",
-  "Contradicts itself, and you can't trust it",
+  "Every hunt starts from zero: no sizes, no tastes, no budget",
+  "A dump of links in a chat that scrolls away",
+  "No wish list, no shopping lists, nothing to check off",
+  "Nothing keeps watching after the conversation ends",
 ];
 const withShopper = [
-  "Typed entities, contacts, deals, memory",
-  "Deduped and validated on the way in",
-  "A real interface you can see and trust",
-  "Every record compounds the next action",
+  "About You: durable context every hunt reads first",
+  "Finds land structured: item, price, seller, source",
+  "Wish lists and shopping lists your agents read and write",
+  "Radar keeps scanning long after you close the tab",
 ];
 
 export function ProblemSection() {
@@ -38,13 +38,13 @@ export function ProblemSection() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs uppercase tracking-[0.25em] text-primary">The problem</p>
           <h2 className="font-brand mt-3 text-3xl text-foreground sm:text-4xl lg:text-5xl">
-            Agents are brilliant at doing.{" "}
-            <span className="text-gradient-orange">Terrible at remembering.</span>
+            Chat can shop for a minute.{" "}
+            <span className="text-gradient-orange">Then it forgets.</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Your agent researches a company, then forgets it. The work ends up in
-            scattered files with no structure you can browse or trust. Agents
-            without a database are goldfish with PhDs.
+            The shopping MCPs bolted onto chat apps dump links and move on: no
+            lists, no memory, no watching. Shopper is the other half your agent
+            was missing - structure plus a real shopping engine.
           </p>
         </div>
 
@@ -57,7 +57,7 @@ export function ProblemSection() {
           >
             <SpotlightCard className="h-full p-7">
               <p className="font-brand text-sm uppercase tracking-[0.2em] text-muted-foreground">
-                Without a real CRM
+                Shopping in a chat window
               </p>
               <ul className="mt-5 space-y-3">
                 {without.map((line) => (
@@ -78,7 +78,7 @@ export function ProblemSection() {
           >
             <SpotlightCard className="h-full p-7">
               <p className="font-brand text-sm uppercase tracking-[0.2em] text-primary">
-                With Shopper
+                Shopping with Shopper
               </p>
               <ul className="mt-5 space-y-3">
                 {withShopper.map((line) => (

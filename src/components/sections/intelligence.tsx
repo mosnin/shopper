@@ -2,15 +2,16 @@
 
 import { motion } from "motion/react";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
+import { ImagePlaceholder } from "@/components/marketing/image-placeholder";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 /**
- * The depth the word "CRM" hides, as an Apple-style bento: a few feature tiles
- * with live mini-visuals (intent, web traffic, decision-makers, deep research)
- * sized larger than the rest, so breadth reads as depth, not a uniform grid.
- * Each visual animates once on view and respects reduced motion through the
- * shared whileInView pattern.
+ * The depth the words "wish list" hide, as an Apple-style bento: a few feature
+ * tiles with live mini-visuals (price watching, seller vetting, price history,
+ * sourced answers) sized larger than the rest, so breadth reads as depth, not
+ * a uniform grid. Each visual animates once on view and respects reduced
+ * motion through the shared whileInView pattern.
  */
 
 function Tile({
@@ -46,11 +47,11 @@ function TileHead({ label, body }: { label: string; body: string }) {
 
 /* ------------------------------- Visuals ---------------------------------- */
 
-function IntentMini() {
+function PriceWatchMini() {
   const bars = [
-    { name: "Northwind Pay", score: 94, tone: "bg-success", label: "In-market" },
-    { name: "Cedar Capital", score: 78, tone: "bg-primary", label: "Researching" },
-    { name: "Atlas Treasury", score: 41, tone: "bg-muted-foreground/40", label: "Quiet" },
+    { name: "RTX 4090, pre-owned", score: 88, tone: "bg-success", label: "$1,140, dropping" },
+    { name: "Walnut console table", score: 62, tone: "bg-primary", label: "$640, steady" },
+    { name: "Espresso grinder", score: 34, tone: "bg-muted-foreground/40", label: "$289, above target" },
   ];
   return (
     <div className="mt-5 space-y-2.5">
@@ -76,8 +77,8 @@ function IntentMini() {
 }
 
 function Sparkline() {
-  // A gently rising sparkline that draws itself once in view.
-  const d = "M0 38 L18 34 L36 36 L54 26 L72 28 L90 18 L108 20 L126 9 L144 11";
+  // A gently falling price line that draws itself once in view.
+  const d = "M0 9 L18 11 L36 10 L54 18 L72 16 L90 26 L108 24 L126 34 L144 32";
   return (
     <div className="mt-5">
       <svg viewBox="0 0 144 46" className="h-16 w-full" fill="none" preserveAspectRatio="none">
@@ -111,37 +112,38 @@ function Sparkline() {
   );
 }
 
-function ContactMini() {
+function SellerMini() {
   return (
     <div className="mt-5 rounded-xl border border-border bg-background/60 p-3 dark:border-white/10 dark:bg-white/[0.03]">
       <div className="flex items-center gap-2">
         <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-        <span className="font-brand text-sm text-foreground">Ava Chen</span>
-        <span className="text-xs text-muted-foreground">VP Sales</span>
+        <span className="font-brand text-sm text-foreground">Meridian Textiles Ltd</span>
+        <span className="text-xs text-muted-foreground">supplier</span>
       </div>
       <div className="mt-2.5 flex flex-wrap gap-1.5">
         <span className="rounded-md border border-border bg-card px-2 py-0.5 text-[11px] text-foreground/70 dark:border-white/10">
-          ava@northwindpay.com
+          GLEIF verified
         </span>
         <span className="rounded-md border border-border bg-card px-2 py-0.5 text-[11px] text-foreground/70 dark:border-white/10">
-          verified
+          registry match
         </span>
       </div>
     </div>
   );
 }
 
-function ResearchMini() {
+function AskMini() {
   return (
     <div className="mt-5 rounded-xl border border-border bg-background/60 p-3 dark:border-white/10 dark:bg-white/[0.03]">
       <p className="font-mono text-[11px] text-muted-foreground">
-        <span className="text-primary">? </span>Are they hiring SDRs right now?
+        <span className="text-primary">? </span>Is this grinder actually quieter than my old one?
       </p>
       <p className="mt-2 text-sm text-foreground/85">
-        Yes. Three open SDR roles posted in the last 14 days, plus a new VP Sales hire.
+        Yes. Owners consistently report it runs quieter, and the maker lists a
+        lower measured noise level than the model you have now.
       </p>
       <div className="mt-2.5 flex flex-wrap gap-1.5">
-        {["careers page", "press release", "LinkedIn"].map((s) => (
+        {["owner reviews", "spec sheet", "forum thread"].map((s) => (
           <span key={s} className="rounded-md border border-border bg-card px-2 py-0.5 text-[10px] text-muted-foreground dark:border-white/10">
             {s}
           </span>
@@ -156,63 +158,72 @@ export function IntelligenceSection() {
     <section id="intelligence" className="relative scroll-mt-24 bg-muted/30 py-24 dark:bg-background sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs uppercase tracking-[0.25em] text-primary">Intelligence and intent</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-primary">The living wish list</p>
           <h2 className="font-brand mt-3 text-3xl text-foreground sm:text-4xl lg:text-5xl">
-            Depth most teams never reach.{" "}
-            <span className="text-gradient-orange">In seconds.</span>
+            Your wish list <span className="text-gradient-orange">stays alive</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            A CRM stores what you type. Shopper&apos;s agents go get it: a full
-            picture of a company and the people who matter, plus who is ready to
-            buy, faster than you could open a new tab.
+            A bookmark folder rots. A Shopper wish list keeps working: prices
+            tracked, sellers vetted, registries checked, and better options
+            surfaced while you get on with your day.
           </p>
         </div>
 
         <div className="mt-14 grid auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {/* Buying intent: the accent, a wide feature tile */}
+          {/* Price watching: the accent, a wide feature tile */}
           <Tile className="lg:col-span-2" delay={0}>
-            <TileHead label="Buying intent" body="Who is actively looking for what you sell, scored and refreshed, so your agent reaches them while the window is open." />
-            <IntentMini />
+            <TileHead label="Prices tracked" body="Every saved find is re-checked on a schedule, so your agent moves the moment a price crosses your target instead of you refreshing tabs." />
+            <PriceWatchMini />
           </Tile>
 
-          {/* Decision-makers with a mini contact card */}
+          {/* Seller vetting with a mini card */}
           <Tile delay={0.06}>
-            <TileHead label="Decision-makers" body="The right people, with verified email and mobile." />
-            <ContactMini />
+            <TileHead label="Sellers vetted" body="Verified against public registries: GLEIF, Companies House, SEC EDGAR." />
+            <SellerMini />
           </Tile>
 
           {/* Three compact text tiles */}
           <Tile delay={0}>
-            <TileHead label="Firmographics" body="Size, industry, location, and the shape of the business." />
+            <TileHead label="Reviews read" body="Hundreds of reviews digested into the two things that matter for you." />
           </Tile>
           <Tile delay={0.06}>
-            <TileHead label="Funding" body="Rounds and timing, so you reach out when the budget lands." />
+            <TileHead label="Availability watched" body="Sold out, restocked, relisted: the list knows before you do." />
           </Tile>
           <Tile delay={0.12}>
-            <TileHead label="Tech stack" body="What they run, so your agent leads with relevance." />
+            <TileHead label="Alternatives surfaced" body="Better price, better seller, or better fit, offered alongside every find." />
           </Tile>
 
-          {/* Web traffic with a sparkline */}
+          {/* Price history with a sparkline */}
           <Tile className="lg:col-span-2" delay={0}>
-            <TileHead label="Web traffic" body="Growth and momentum, read at a glance instead of guessed." />
+            <TileHead label="Price history" body="Where a listing has been, so you know whether today's price is actually good." />
             <Sparkline />
           </Tile>
 
-          {/* Recent news, compact */}
+          {/* Provenance, compact */}
           <Tile delay={0.06}>
-            <TileHead label="Recent news" body="The triggers worth a first line." />
+            <TileHead label="Every find sourced" body="Item, price, seller, and where it came from, on every record." />
           </Tile>
 
-          {/* Deep research, full width, with a sourced answer */}
+          {/* Sourced answers, full width */}
           <Tile className="lg:col-span-3" delay={0}>
             <div className="grid gap-4 lg:grid-cols-2 lg:items-center">
               <div>
-                <TileHead label="Deep research" body="Sourced answers to the questions that actually close, not a wall of links. Ask anything about an account and get a cited, verifiable answer." />
+                <TileHead label="Ask about any find" body="Sourced answers to the questions that decide a purchase, not a wall of links. Ask anything about an item, a seller, or a supplier and get a cited, verifiable answer." />
               </div>
-              <ResearchMini />
+              <AskMini />
             </div>
           </Tile>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5, ease: EASE }}
+          className="mx-auto mt-10 max-w-4xl"
+        >
+          <ImagePlaceholder label="Wish list, in the app" aspect="aspect-[21/9]" />
+        </motion.div>
 
         <motion.p
           initial={{ opacity: 0 }}
@@ -221,8 +232,8 @@ export function IntelligenceSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mx-auto mt-10 max-w-2xl text-center text-sm text-muted-foreground"
         >
-          Noisy results are refined into real, deduped companies, never
-          aggregators, never the wrong person. Accuracy beats coverage, always.
+          Noisy results are refined into real listings from real sellers, never
+          ad farms, never the wrong variant. Accuracy beats coverage, always.
         </motion.p>
       </div>
     </section>

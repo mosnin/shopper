@@ -2,11 +2,11 @@
 
 /**
  * AgentCircuitSection - the system, wired. A CircuitBoard visualization
- * customized to Shopper's actual data flow: discovery and radar feed
- * verification and enrichment, everything lands in the CRM core, and the
- * CRM drives outreach over email and phone. Animated pulses trace the
- * paths agents actually take through the product (MCP in, records out).
- * Used on the homepage and /product/how-it-works.
+ * customized to Shopper's actual flow: your agent plugs in over MCP, hunts
+ * and Radar scans feed vetting and price comparison, every find lands in
+ * the wish list core, and the wish list drives your lists and alerts.
+ * Animated pulses trace the paths agents actually take through the product
+ * (MCP in, finds out). Used on the homepage and /product/how-it-works.
  */
 
 import { useEffect, useState } from "react";
@@ -16,28 +16,28 @@ import Border2 from "@/components/pixel-perfect/border2";
 
 const NODES = [
   { id: "agent", x: 70, y: 200, label: "Your agent", status: "active" as const, size: "md" as const },
-  { id: "discover", x: 240, y: 80, label: "Discover", status: "processing" as const },
+  { id: "hunt", x: 240, y: 80, label: "Hunt", status: "processing" as const },
   { id: "radar", x: 240, y: 320, label: "Radar", status: "active" as const },
-  { id: "verify", x: 420, y: 80, label: "Verify", status: "active" as const },
-  { id: "enrich", x: 420, y: 320, label: "Enrich", status: "processing" as const },
-  { id: "crm", x: 600, y: 200, label: "CRM", status: "active" as const, size: "lg" as const },
-  { id: "email", x: 780, y: 120, label: "Email", status: "active" as const },
-  { id: "calls", x: 780, y: 280, label: "Calls", status: "active" as const },
+  { id: "vet", x: 420, y: 80, label: "Vet", status: "active" as const },
+  { id: "compare", x: 420, y: 320, label: "Compare", status: "processing" as const },
+  { id: "wishlist", x: 600, y: 200, label: "Wish List", status: "active" as const, size: "lg" as const },
+  { id: "lists", x: 780, y: 120, label: "Lists", status: "active" as const },
+  { id: "alerts", x: 780, y: 280, label: "Alerts", status: "active" as const },
 ];
 
 const CONNECTIONS = [
-  { from: "agent", to: "discover", animated: true },
+  { from: "agent", to: "hunt", animated: true },
   { from: "agent", to: "radar", animated: true },
-  { from: "discover", to: "verify", animated: true },
-  { from: "radar", to: "enrich", animated: true },
-  { from: "verify", to: "crm", animated: true },
-  { from: "enrich", to: "crm", animated: true },
-  { from: "crm", to: "email", animated: true, bidirectional: true },
-  { from: "crm", to: "calls", animated: true, bidirectional: true },
+  { from: "hunt", to: "vet", animated: true },
+  { from: "radar", to: "compare", animated: true },
+  { from: "vet", to: "wishlist", animated: true },
+  { from: "compare", to: "wishlist", animated: true },
+  { from: "wishlist", to: "lists", animated: true, bidirectional: true },
+  { from: "wishlist", to: "alerts", animated: true, bidirectional: true },
 ];
 
-// Shopper baby blue for traces and pulses; grid stays whisper-quiet.
-const BLUE = {
+// Shopper brand brown for traces and pulses; grid stays whisper-quiet.
+const BROWN = {
   traceColor: "rgba(65, 45, 21, 0.30)",
   pulseColor: "#412D15",
   nodeColor: "rgba(65, 45, 21, 0.55)",
@@ -70,7 +70,7 @@ export function AgentCircuit({ className }: { className?: string }) {
             height={BOARD_H}
             pulseSpeed={2.6}
             traceWidth={2}
-            {...BLUE}
+            {...BROWN}
           />
         </div>
       )}
@@ -85,11 +85,12 @@ export function AgentCircuitSection() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs uppercase tracking-[0.25em] text-primary">The system</p>
           <h2 className="font-brand mt-3 text-3xl text-foreground sm:text-4xl lg:text-5xl">
-            One circuit from prompt to relationship
+            Your agents plug in over MCP
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Your agent speaks MCP. Discovery and radar feed verification and enrichment,
-            every record lands in the CRM, and the CRM drives the outreach.
+            Hermes, OpenClaw, Codex, Claude Code, or the built-in Shopper agent:
+            hunts and Radar feed vetting and comparison, every find lands in the
+            wish list, and the wish list drives your lists and alerts.
           </p>
         </div>
 

@@ -21,11 +21,11 @@ export function ProductDemo() {
         <div className="text-center">
           <p className="text-xs uppercase tracking-[0.3em] text-primary">See it in action</p>
           <h2 className="font-brand mt-4 text-3xl tracking-tight text-foreground sm:text-4xl">
-            Watch your agent set up a market scan
+            Watch an agent set up a Radar scan
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-            A real walkthrough: your agent configures an automated market scan with
-            Radar, no setup call required.
+            A real walkthrough: an agent turns &quot;recently listed pre-owned GPUs at a
+            good price&quot; into a standing scan that never stops looking.
           </p>
         </div>
 
@@ -41,7 +41,7 @@ export function ProductDemo() {
                     The two-minute walkthrough
                   </p>
                   <p className="mt-1.5 text-sm text-muted-foreground">
-                    Radar scan setup, from a plain-language prompt to a live monitor.
+                    Radar setup, from a plain-language ask to a live scan that reports its finds.
                   </p>
                 </div>
                 <span className="shrink-0 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-transform group-hover:scale-105">
@@ -60,7 +60,7 @@ export function ProductDemo() {
                 <div style={{ position: "relative", paddingBottom: "calc(49.26605504587156% + 41px)", height: 0, width: "100%" }}>
                   <iframe
                     src="https://demo.arcade.software/yzXGKtd6gmfShw2bUbEA?embed&embed_mobile=inline&embed_desktop=inline&show_copy_link=true"
-                    title="Set Up Automated Market Scans with Radar"
+                    title="Set Up a Standing Radar Scan"
                     frameBorder="0"
                     loading="lazy"
                     allowFullScreen

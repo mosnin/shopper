@@ -4,35 +4,35 @@ import { FeaturePage } from "@/components/marketing/feature-page";
 export const metadata: Metadata = {
   title: "Why Shopper | Shopper",
   description:
-    "Structure, a real UI, and built-in intelligence as one system your agents operate, versus dumping everything into messy markdown files.",
+    "Why a dedicated shopping engine beats the shopping MCPs bolted onto LLM providers: web-wide hunting, real browsers, seller vetting, and lists you own.",
 };
 
 export default function WhyShopperPage() {
   return (
     <FeaturePage
       eyebrow="Why Shopper"
-      title="Structure your agents"
-      accent="can't outgrow"
-      subtitle="Agent frameworks dump everything into messy markdown files. Shopper gives your agents a structured system: typed records, a real UI, and built-in intelligence, in one place."
+      title="An order of magnitude past"
+      accent="bolted-on shopping"
+      subtitle="LLM providers bolt shopping MCPs onto their assistants: one catalog, no memory, no vetting. Shopper is a shopping engine built for agents: web-wide hunting, real browsers, vetted sellers, and lists that persist."
       blocks={[
         {
-          title: "Structure, not scattered files",
-          body: "Every record is typed, deduped, and queryable, so your data compounds instead of rotting in a folder of notes no human would tolerate and no system can trust.",
+          title: "The whole web, not a partner catalog",
+          body: "Provider shopping tools search whoever signed the deal. Shopper hunts the open web with Exa, Firecrawl, and Tavily, and drops into a real Browserbase browser for forums, marketplaces, and js-heavy storefronts.",
         },
         {
-          title: "A UI a human can see",
-          body: "The same database your agent writes to, you can read, sort, and trust, on a real interface, not a wall of text you have to parse by hand.",
+          title: "Vetted sellers, not just links",
+          body: "Shopper checks sellers, stores, and manufacturers against GLEIF, Companies House, and SEC EDGAR, so 'found it cheaper' comes with 'and here is who is actually selling it'.",
         },
         {
-          title: "Data you own",
-          body: "A single source of truth you control: exportable any time, never resold, and never used to train someone else's model. Enrichment flows in; your data stays yours.",
+          title: "Memory that outlives the chat",
+          body: "Wish List, Shopping Lists, and About You are durable, structured, and yours. Every agent you connect reads and writes the same lists over MCP, so the hunt compounds instead of restarting.",
         },
         {
-          title: "Intelligence built in",
-          body: "Discovery, enrichment, and intent signals are part of the system, not a pile of integrations you wire together and babysit.",
+          title: "Radar keeps hunting",
+          body: "A chat tool stops when the chat ends. Radar runs standing scans, on paid plans, so the pre-owned GPU, the size 10M Gucci, or the right supplier finds you.",
         },
       ]}
-      ctaTitle="Give agent work a home it never forgets."
+      ctaTitle="Give your agents a real shopping engine."
     />
   );
 }

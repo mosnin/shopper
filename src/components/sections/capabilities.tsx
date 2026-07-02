@@ -23,28 +23,40 @@ type Cap = {
 
 const caps: Cap[] = [
   {
-    id: "discover",
-    label: "Discover",
-    title: "Find the right companies, from a sentence",
-    body: "Describe who you sell to. The agent searches, dedupes, and returns real companies as typed records, never aggregators or the wrong match.",
+    id: "hunt",
+    label: "Comprehensive hunts",
+    title: "The whole web, hunted from a sentence",
+    body: "Say what you want. The agent sweeps the web with Exa, Firecrawl, and Tavily powered search and scraping, compares prices, reads reviews, and returns real listings, not a page of ads.",
   },
   {
-    id: "enrich",
-    label: "Enrich",
-    title: "Every field filled, the moment it runs",
-    body: "Firmographics, funding, verified email and mobile, tech stack, and recent news land as real fields you can sort, filter, and trust, each tagged with where it came from.",
+    id: "deep",
+    label: "Deep shopping",
+    title: "When scraping is not enough, it gets a browser",
+    body: "Forums, marketplaces, and javascript-heavy storefronts need real clicks. The agent picks up a Browserbase browser and works them the way you would, only tirelessly.",
   },
   {
-    id: "intent",
-    label: "Sense intent",
-    title: "See who is in-market before anyone else",
-    body: "Buying signals are read continuously and scored, so your agent reaches the accounts that are looking right now, not the ones that went cold last quarter.",
+    id: "radar",
+    label: "Radar",
+    title: "Standing scans for exactly what you want",
+    body: "Recently listed pre-owned GPUs at a good price. Gucci shoes in 10M under $400. Cars, business suppliers, anything. Radar keeps scanning and reports every match. Paid plans.",
   },
   {
-    id: "connect",
-    label: "Connect",
-    title: "Bring your own agent over MCP",
-    body: "OpenClaw, Hermes, Claude, anything that speaks MCP connects in a click and gets a real database with typed tools, not a folder of markdown files.",
+    id: "lists",
+    label: "Wish list + lists",
+    title: "Every find lands somewhere structured",
+    body: "Items, sellers, stores, and manufacturers live in a wish list your agents read and write over MCP. Shopping lists cover grocery runs, home decor, auto parts, business supplies: hunted, monitored, checked off.",
+  },
+  {
+    id: "about",
+    label: "About You",
+    title: "Context that makes every hunt fit",
+    body: "Sizes, tastes, budgets, and no-gos live in About You. Agents read it before every hunt and update it as they learn, so results fit you instead of the average shopper.",
+  },
+  {
+    id: "sourcing",
+    label: "Sourcing",
+    title: "Go past retail to the source",
+    body: "On Pro, agents hunt manufacturers and suppliers directly and vet them against public registries like GLEIF, Companies House, and SEC EDGAR before you commit to a big purchase.",
   },
 ];
 
@@ -72,21 +84,21 @@ function PanelFrame({ children, reduce }: { children: React.ReactNode; reduce: b
   );
 }
 
-function DiscoverPanel({ reduce }: { reduce: boolean | null }) {
+function HuntPanel({ reduce }: { reduce: boolean | null }) {
   const found = [
-    { name: "Northwind Pay", domain: "northwindpay.com" },
-    { name: "Ledgerline", domain: "ledgerline.io" },
-    { name: "Cedar Capital", domain: "cedarcapital.co" },
-    { name: "Atlas Treasury", domain: "atlastreasury.com" },
+    { name: "RTX 4090, pre-owned", price: "$1,140" },
+    { name: "RTX 4090 FE, open box", price: "$1,289" },
+    { name: "RTX 4090, refurb + warranty", price: "$1,310" },
+    { name: "RTX 4090, local pickup", price: "$1,050" },
   ];
   return (
     <PanelFrame reduce={reduce}>
       <motion.div variants={panelItem} className="flex items-center gap-2 rounded-xl border border-border bg-background/60 px-3 py-2.5 font-mono text-xs text-foreground/80 dark:border-white/10 dark:bg-white/[0.03]">
-        <span className="text-muted-foreground">search</span>
-        Series B fintech in New York
+        <span className="text-muted-foreground">hunt</span>
+        pre-owned RTX 4090 under $1,400
       </motion.div>
       <motion.p variants={panelItem} className="px-1 text-[11px] text-muted-foreground">
-        6 companies found, 4 shown
+        23 listings found across 9 sites, best 4 shown
       </motion.p>
       <div className="space-y-1.5">
         {found.map((f) => (
@@ -99,7 +111,7 @@ function DiscoverPanel({ reduce }: { reduce: boolean | null }) {
               <span className="h-1.5 w-1.5 rounded-full bg-primary" />
               <span className="font-brand text-sm text-foreground">{f.name}</span>
             </div>
-            <span className="font-mono text-[11px] text-muted-foreground">{f.domain}</span>
+            <span className="font-mono text-[11px] text-muted-foreground">{f.price}</span>
           </motion.div>
         ))}
       </div>
@@ -107,72 +119,13 @@ function DiscoverPanel({ reduce }: { reduce: boolean | null }) {
   );
 }
 
-function EnrichPanel({ reduce }: { reduce: boolean | null }) {
-  const fields = [
-    { k: "Industry", v: "Payments", src: "Explorium" },
-    { k: "Size", v: "180 employees", src: "Explorium" },
-    { k: "Funding", v: "Series B, $40M", src: "Exa" },
-    { k: "Email", v: "ava@northwindpay.com", src: "Pipe0" },
-    { k: "Mobile", v: "+1 (212) 555 0142", src: "Pipe0" },
-  ];
-  return (
-    <PanelFrame reduce={reduce}>
-      <motion.div variants={panelItem} className="flex items-center justify-between rounded-xl border border-border bg-card px-3 py-2.5 dark:border-white/10">
-        <span className="font-brand text-sm text-foreground">Northwind Pay</span>
-        <span className="rounded-full bg-success/10 px-2 py-0.5 text-[10px] font-medium text-success">Enriched</span>
-      </motion.div>
-      <div className="space-y-1">
-        {fields.map((f) => (
-          <motion.div key={f.k} variants={panelItem} className="flex items-center justify-between gap-3 rounded-lg px-3 py-2 hover:bg-muted/50 dark:hover:bg-white/[0.03]">
-            <span className="w-20 shrink-0 text-xs text-muted-foreground">{f.k}</span>
-            <span className="flex-1 truncate text-sm text-foreground">{f.v}</span>
-            <span className="shrink-0 font-mono text-[10px] text-muted-foreground/70">via {f.src}</span>
-          </motion.div>
-        ))}
-      </div>
-    </PanelFrame>
-  );
-}
-
-function IntentPanel({ reduce }: { reduce: boolean | null }) {
-  const signals = [
-    { name: "Northwind Pay", score: 94, label: "In-market", tone: "bg-success" },
-    { name: "Cedar Capital", score: 82, label: "In-market", tone: "bg-success" },
-    { name: "Ledgerline", score: 67, label: "Researching", tone: "bg-primary" },
-    { name: "Atlas Treasury", score: 38, label: "Quiet", tone: "bg-muted-foreground/40" },
-  ];
-  return (
-    <PanelFrame reduce={reduce}>
-      {signals.map((s) => (
-        <motion.div key={s.name} variants={panelItem} className="rounded-xl border border-border bg-card px-3 py-3 dark:border-white/10">
-          <div className="flex items-center justify-between">
-            <span className="font-brand text-sm text-foreground">{s.name}</span>
-            <span className="text-[11px] text-muted-foreground">{s.label}</span>
-          </div>
-          <div className="mt-2 flex items-center gap-2">
-            <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-muted">
-              <motion.div
-                className={`h-full rounded-full ${s.tone}`}
-                initial={reduce ? false : { width: 0 }}
-                animate={{ width: `${s.score}%` }}
-                transition={{ duration: 0.9, ease: EASE, delay: 0.1 }}
-              />
-            </div>
-            <span className="w-6 text-right font-brand text-xs tabular-nums text-foreground">{s.score}</span>
-          </div>
-        </motion.div>
-      ))}
-    </PanelFrame>
-  );
-}
-
-function ConnectPanel({ reduce }: { reduce: boolean | null }) {
+function DeepPanel({ reduce }: { reduce: boolean | null }) {
   const lines = [
-    { t: "connecting agent over mcp", muted: true },
-    { t: "authenticated as you", muted: true },
-    { t: "12 typed tools available", muted: false },
+    { t: "scrape blocked: storefront needs javascript", muted: true },
+    { t: "launching browser session", muted: true },
+    { t: "logged marketplace, 3 pages of listings read", muted: false },
+    { t: "seller ratings and 41 reviews collected", muted: false },
   ];
-  const tools = ["list_entities", "create_contact", "enrich_entity", "search_intent", "add_note", "export_csv"];
   return (
     <PanelFrame reduce={reduce}>
       <div className="space-y-1 rounded-xl border border-border bg-background/60 p-3 font-mono text-xs dark:border-white/10 dark:bg-white/[0.03]">
@@ -184,17 +137,136 @@ function ConnectPanel({ reduce }: { reduce: boolean | null }) {
         ))}
         <motion.p variants={panelItem} className="flex items-center gap-1.5 pt-1 text-success">
           <span className="h-1.5 w-1.5 rounded-full bg-success" />
-          connected
+          2 finds saved to wish list
         </motion.p>
       </div>
       <motion.p variants={panelItem} className="px-1 pt-1 text-[11px] text-muted-foreground">
-        Your agent can now read and write every record
+        Real browser, real pages: forums, marketplaces, and stores scrapers cannot reach
       </motion.p>
-      <div className="grid grid-cols-2 gap-1.5">
-        {tools.map((t) => (
-          <motion.span key={t} variants={panelItem} className="rounded-lg border border-border bg-card px-2.5 py-1.5 font-mono text-[11px] text-foreground/75 dark:border-white/10">
-            {t}
-          </motion.span>
+    </PanelFrame>
+  );
+}
+
+function RadarPanel({ reduce }: { reduce: boolean | null }) {
+  const matches = [
+    { name: "Gucci loafers, 10M", note: "$342, listed 2h ago" },
+    { name: "Gucci Jordaan, 10M", note: "$389, listed today" },
+  ];
+  return (
+    <PanelFrame reduce={reduce}>
+      <motion.div variants={panelItem} className="flex items-center justify-between rounded-xl border border-border bg-card px-3 py-2.5 dark:border-white/10">
+        <span className="font-brand text-sm text-foreground">Gucci shoes, 10M, under $400</span>
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-success/10 px-2 py-0.5 text-[10px] font-medium text-success">
+          <span className="h-1.5 w-1.5 rounded-full bg-success" />
+          scanning
+        </span>
+      </motion.div>
+      <motion.p variants={panelItem} className="px-1 text-[11px] text-muted-foreground">
+        2 new matches since yesterday
+      </motion.p>
+      <div className="space-y-1.5">
+        {matches.map((m) => (
+          <motion.div
+            key={m.name}
+            variants={panelItem}
+            className="flex items-center justify-between rounded-xl border border-border bg-card px-3 py-2.5 dark:border-white/10"
+          >
+            <span className="font-brand text-sm text-foreground">{m.name}</span>
+            <span className="font-mono text-[11px] text-muted-foreground">{m.note}</span>
+          </motion.div>
+        ))}
+      </div>
+    </PanelFrame>
+  );
+}
+
+function ListsPanel({ reduce }: { reduce: boolean | null }) {
+  const items = [
+    { name: "Espresso grinder", state: "found, 3 options" },
+    { name: "Walnut console table", state: "hunting" },
+    { name: "Brake pads, 2019 Outback", state: "purchased" },
+    { name: "Office chairs x6", state: "found, quote saved" },
+  ];
+  return (
+    <PanelFrame reduce={reduce}>
+      <motion.p variants={panelItem} className="px-1 text-[11px] text-muted-foreground">
+        Shopping list: the move
+      </motion.p>
+      <div className="space-y-1.5">
+        {items.map((it) => (
+          <motion.div
+            key={it.name}
+            variants={panelItem}
+            className="flex items-center justify-between rounded-xl border border-border bg-card px-3 py-2.5 dark:border-white/10"
+          >
+            <div className="flex items-center gap-2">
+              <span className={"h-1.5 w-1.5 rounded-full " + (it.state === "purchased" ? "bg-success" : "bg-primary")} />
+              <span className={"font-brand text-sm " + (it.state === "purchased" ? "text-muted-foreground line-through" : "text-foreground")}>
+                {it.name}
+              </span>
+            </div>
+            <span className="font-mono text-[11px] text-muted-foreground">{it.state}</span>
+          </motion.div>
+        ))}
+      </div>
+    </PanelFrame>
+  );
+}
+
+function AboutYouPanel({ reduce }: { reduce: boolean | null }) {
+  const facts = [
+    { k: "Shoe size", v: "10M", src: "you" },
+    { k: "Style", v: "mid-century, walnut", src: "agent" },
+    { k: "GPU budget", v: "under $1,400", src: "you" },
+    { k: "Avoid", v: "drop-ship storefronts", src: "agent" },
+  ];
+  return (
+    <PanelFrame reduce={reduce}>
+      <motion.div variants={panelItem} className="flex items-center justify-between rounded-xl border border-border bg-card px-3 py-2.5 dark:border-white/10">
+        <span className="font-brand text-sm text-foreground">About You</span>
+        <span className="rounded-full bg-success/10 px-2 py-0.5 text-[10px] font-medium text-success">read on every hunt</span>
+      </motion.div>
+      <div className="space-y-1">
+        {facts.map((f) => (
+          <motion.div key={f.k} variants={panelItem} className="flex items-center justify-between gap-3 rounded-lg px-3 py-2 hover:bg-muted/50 dark:hover:bg-white/[0.03]">
+            <span className="w-24 shrink-0 text-xs text-muted-foreground">{f.k}</span>
+            <span className="flex-1 truncate text-sm text-foreground">{f.v}</span>
+            <span className="shrink-0 font-mono text-[10px] text-muted-foreground/70">via {f.src}</span>
+          </motion.div>
+        ))}
+      </div>
+    </PanelFrame>
+  );
+}
+
+function SourcingPanel({ reduce }: { reduce: boolean | null }) {
+  const rows = [
+    { name: "Meridian Textiles Ltd", check: "GLEIF verified" },
+    { name: "Hartwell Components", check: "Companies House" },
+    { name: "Corsa Auto Supply Co", check: "SEC EDGAR" },
+  ];
+  return (
+    <PanelFrame reduce={reduce}>
+      <motion.div variants={panelItem} className="flex items-center gap-2 rounded-xl border border-border bg-background/60 px-3 py-2.5 font-mono text-xs text-foreground/80 dark:border-white/10 dark:bg-white/[0.03]">
+        <span className="text-muted-foreground">source</span>
+        organic cotton canvas, 500 yd minimum
+      </motion.div>
+      <motion.p variants={panelItem} className="px-1 text-[11px] text-muted-foreground">
+        3 suppliers found and vetted against public registries
+      </motion.p>
+      <div className="space-y-1.5">
+        {rows.map((r) => (
+          <motion.div
+            key={r.name}
+            variants={panelItem}
+            className="flex items-center justify-between rounded-xl border border-border bg-card px-3 py-2.5 dark:border-white/10"
+          >
+            <div className="flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-success" />
+              <span className="font-brand text-sm text-foreground">{r.name}</span>
+            </div>
+            <span className="font-mono text-[11px] text-muted-foreground">{r.check}</span>
+          </motion.div>
         ))}
       </div>
     </PanelFrame>
@@ -202,10 +274,12 @@ function ConnectPanel({ reduce }: { reduce: boolean | null }) {
 }
 
 function Panel({ id, reduce }: { id: string; reduce: boolean | null }) {
-  if (id === "discover") return <DiscoverPanel reduce={reduce} />;
-  if (id === "enrich") return <EnrichPanel reduce={reduce} />;
-  if (id === "intent") return <IntentPanel reduce={reduce} />;
-  return <ConnectPanel reduce={reduce} />;
+  if (id === "hunt") return <HuntPanel reduce={reduce} />;
+  if (id === "deep") return <DeepPanel reduce={reduce} />;
+  if (id === "radar") return <RadarPanel reduce={reduce} />;
+  if (id === "lists") return <ListsPanel reduce={reduce} />;
+  if (id === "about") return <AboutYouPanel reduce={reduce} />;
+  return <SourcingPanel reduce={reduce} />;
 }
 
 /* ------------------------------- Section ---------------------------------- */
@@ -249,8 +323,9 @@ export function CapabilitiesSection() {
             What your agent <span className="text-gradient-orange">actually does</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Discovery, enrichment, intent, and memory as first-class tools.
-            Operated by your agent, observed by you, on data that stays yours.
+            Hunting, deep shopping, standing scans, lists, and sourcing as
+            first-class tools. Run by your agent, visible to you, on data that
+            stays yours.
           </p>
         </div>
 

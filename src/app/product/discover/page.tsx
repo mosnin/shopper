@@ -2,37 +2,37 @@ import type { Metadata } from "next";
 import { FeaturePage } from "@/components/marketing/feature-page";
 
 export const metadata: Metadata = {
-  title: "Discover | Shopper",
+  title: "Shop the web | Shopper",
   description:
-    "Find the right companies and people from a name, a domain, or a plain-English prompt, written straight into your CRM, deduped.",
+    "Your agents hunt the whole web for items for sale, from a plain-English ask, and save every find to a Wish List you own.",
 };
 
 export default function DiscoverPage() {
   return (
     <FeaturePage
-      eyebrow="Discover"
-      title="Find the right companies,"
-      accent="from a prompt"
-      subtitle="Point your agent at a name, a domain, or a plain-English description of your market. Shopper finds real companies and the people inside them and writes them into your CRM, deduped."
+      eyebrow="Shop the web"
+      title="Hunt the whole web,"
+      accent="from one ask"
+      subtitle="Tell your agent what you want: a pre-owned GPU at a good price, a discontinued lamp, a reliable parts supplier. Shopper hunts across the open web with Exa, Firecrawl, and Tavily and saves every find, with its seller, to your Wish List."
       blocks={[
         {
-          title: "Real companies, not articles",
-          body: "Discovery returns actual company homepages, never blog posts, listicles, or directories. Known aggregators are filtered out, so a 'top startups' article never lands in your CRM as a record.",
+          title: "The whole web, not one catalog",
+          body: "Shopper is not a storefront with a search box. Your agent hunts marketplaces, independent stores, manufacturer sites, and listings anywhere on the open web, so the best find wins, not the best-indexed one.",
         },
         {
-          title: "Local lead gen",
-          body: "For businesses with an address, restaurants, dentists, law firms, Shopper pulls them from Google Maps with phone and address attached, ready to work the moment they land.",
+          title: "Deep shopping with a real browser",
+          body: "Some of the best deals hide behind javascript, logins, and forum threads. Deep shopping gives your agent a real Browserbase browser, so it can work forums, marketplaces, and js-heavy storefronts like a person would.",
         },
         {
-          title: "Deduped by default",
-          body: "Every new record is checked against your CRM by domain, then name, so the same company is never added twice, no matter how many times you run discovery.",
+          title: "Finds you can trust",
+          body: "Every item lands in your Wish List as a structured record: the item, the price, the seller, the store, the manufacturer. Sellers are vetted against GLEIF, Companies House, and SEC EDGAR before you spend a cent.",
         },
         {
-          title: "People, not just logos",
-          body: "Discovery surfaces the decision makers inside each company, so you start a relationship with a named contact instead of a blank account.",
+          title: "Any agent can drive",
+          body: "Use the built-in agent, or connect Hermes, OpenClaw, Codex, Claude Code, or any MCP client. They all get the same hunting engines and write to the same Wish List.",
         },
       ]}
-      ctaTitle="Let your agent build the list."
+      ctaTitle="Let your agent do the hunting."
     />
   );
 }

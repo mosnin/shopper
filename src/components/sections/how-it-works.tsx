@@ -14,7 +14,7 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 function ConnectVisual() {
   return (
     <div className="flex items-center justify-between rounded-xl border border-border bg-background/60 px-3 py-2.5 dark:border-white/10 dark:bg-white/[0.03]">
-      <span className="font-mono text-xs text-foreground/80">yourcompany.com</span>
+      <span className="font-mono text-xs text-foreground/80">claude-code · mcp</span>
       <span className="inline-flex items-center gap-1.5 rounded-full bg-success/10 px-2 py-0.5 text-[11px] font-medium text-success">
         <span className="h-1.5 w-1.5 rounded-full bg-success" />
         connected
@@ -23,14 +23,14 @@ function ConnectVisual() {
   );
 }
 
-function DiscoverVisual() {
+function AskVisual() {
   return (
     <div className="space-y-1.5">
       <div className="rounded-xl border border-border bg-background/60 px-3 py-2 font-mono text-xs text-foreground/80 dark:border-white/10 dark:bg-white/[0.03]">
-        <span className="text-muted-foreground">find </span>fintech in NYC
+        <span className="text-muted-foreground">you </span>find me a mid-century walnut desk under $900
       </div>
       <div className="flex flex-wrap gap-1.5">
-        {["Northwind Pay", "Ledgerline", "Cedar Capital"].map((c) => (
+        {["reads About You", "desk width from notes", "budget saved"].map((c) => (
           <span key={c} className="rounded-md border border-border bg-card px-2 py-1 text-[11px] text-foreground/75 dark:border-white/10">
             {c}
           </span>
@@ -40,10 +40,10 @@ function DiscoverVisual() {
   );
 }
 
-function EnrichVisual() {
+function HuntVisual() {
   const fields = [
-    { k: "Email", v: "ava@northwindpay.com" },
-    { k: "Funding", v: "Series B, $40M" },
+    { k: "Find", v: "Walnut desk, 58 in, $740" },
+    { k: "Seller", v: "rated 4.9, ships freight" },
   ];
   return (
     <div className="space-y-1">
@@ -51,23 +51,23 @@ function EnrichVisual() {
         <div key={f.k} className="flex items-center justify-between gap-3 rounded-lg px-3 py-2 hover:bg-muted/50 dark:hover:bg-white/[0.03]">
           <span className="w-16 shrink-0 text-xs text-muted-foreground">{f.k}</span>
           <span className="flex-1 truncate text-sm text-foreground">{f.v}</span>
-          <span className="shrink-0 font-mono text-[10px] text-muted-foreground/70">verified</span>
+          <span className="shrink-0 font-mono text-[10px] text-muted-foreground/70">saved</span>
         </div>
       ))}
     </div>
   );
 }
 
-function OperateVisual() {
+function RadarVisual() {
   return (
     <div className="rounded-xl border border-border bg-background/60 px-3 py-2.5 dark:border-white/10 dark:bg-white/[0.03]">
       <p className="flex items-center gap-2 text-xs text-foreground/80">
         <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-        <span className="font-brand text-foreground">Shopper</span> enriched 12 companies
-        <span className="text-muted-foreground">. just now</span>
+        <span className="font-brand text-foreground">Radar</span> found 2 new matches
+        <span className="text-muted-foreground">. overnight</span>
       </p>
       <p className="mt-1.5 pl-3.5 text-[11px] text-muted-foreground">
-        Logged to the audit trail, reversible, replayed on every reply
+        Walnut desks under $900, freshly listed, already priced and vetted
       </p>
     </div>
   );
@@ -75,28 +75,28 @@ function OperateVisual() {
 
 const steps = [
   {
-    title: "Connect",
+    title: "Connect your agent",
     description:
-      "Sign up, connect your domain and AgentMail key, and point Shopper at your product context. The agents have everything they need in minutes.",
+      "Point Hermes, OpenClaw, Codex, Claude Code, or any MCP client at Shopper, or just use the built-in Shopper agent. One connection, a full set of shopping tools.",
     visual: <ConnectVisual />,
   },
   {
-    title: "Discover",
+    title: "Tell it what you want",
     description:
-      "Tell the agent what you want, a company, a role, a list of sites. It finds the matches, pulls verified contacts, and saves them straight into your CRM.",
-    visual: <DiscoverVisual />,
+      "An item, a whole shopping list, a standing brief. The agent reads About You first, your sizes, tastes, and budgets, so the hunt fits you from the first result.",
+    visual: <AskVisual />,
   },
   {
-    title: "Enrich",
+    title: "It hunts and saves finds",
     description:
-      "Every record stays alive. Agents fill the gaps, title, company, funding, socials, so your database compounds instead of rotting.",
-    visual: <EnrichVisual />,
+      "Search and scraping across the whole web, a real browser when a storefront fights back. Every find lands in your wish list: item, price, seller, source.",
+    visual: <HuntVisual />,
   },
   {
-    title: "Operate",
+    title: "Radar keeps watching",
     description:
-      "Email relationships run through AgentMail, context replays on every reply, and every agent action lands in the audit log. Trust by design.",
-    visual: <OperateVisual />,
+      "Standing scans keep hunting after you log off. New listings, price drops, and restocks arrive as matches, not as another tab you have to remember to open.",
+    visual: <RadarVisual />,
   },
 ];
 
@@ -115,7 +115,7 @@ export function HowItWorksSection() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs uppercase tracking-[0.25em] text-primary">How it works</p>
           <h2 className="font-brand mt-3 text-3xl text-foreground sm:text-4xl lg:text-5xl">
-            From a name to a <span className="text-gradient-orange">record you trust</span>
+            From a sentence to a <span className="text-gradient-orange">find you trust</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
             A calm, transparent process that keeps you in control the whole way through.

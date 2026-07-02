@@ -5,7 +5,7 @@ import { AgentCircuitSection } from "@/components/sections/agent-circuit";
 export const metadata: Metadata = {
   title: "How it works | Shopper",
   description:
-    "Three steps from empty to a CRM that fills itself: connect your agent, let it work, and watch it compound on data you own.",
+    "Three steps from an idle agent to a Wish List that fills itself: connect over MCP, ask for what you want, and let Radar keep watch.",
 };
 
 export default function HowItWorksPage() {
@@ -13,34 +13,34 @@ export default function HowItWorksPage() {
     <FeaturePage
       eyebrow="How it works"
       title="Connect your agent."
-      accent="It just works."
-      subtitle="Three steps from an empty database to a CRM that fills itself, on a single source of truth you own."
+      accent="It hunts."
+      subtitle="Three steps from an idle agent to a Wish List that fills itself, on lists and context you own."
       blocks={[
         {
-          title: "No migration, no setup call",
-          body: "Start from empty and let the work build the database. There is nothing to import before you see value, and nothing to configure before your agent can write.",
+          title: "No setup, no catalog to browse",
+          body: "There is nothing to import and no storefront to learn. Ask for what you want in plain language and the first hunt starts building your Wish List.",
         },
         {
-          title: "Works with what you use",
-          body: "Use the built-in agent, or connect Claude, OpenClaw, Hermes, Codex, or your own over MCP. Anything that speaks MCP gets the same database and tools.",
+          title: "Works with what you run",
+          body: "Use the built-in agent, or connect Hermes, OpenClaw, Codex, Claude Code, or your own over MCP. Anything that speaks MCP gets the same engines and lists.",
         },
       ]}
       steps={[
         {
           title: "Connect",
-          body: "Sign in and connect your agent over MCP, or use the built-in one. Read and write access takes minutes, not a procurement cycle.",
+          body: "Point your MCP client at Shopper, or use the built-in agent. Read and write access to your Wish List, Shopping Lists, and About You takes minutes.",
         },
         {
-          title: "Let it work",
-          body: "Ask in plain language: find companies, enrich them, track the deal, watch the market. Your agent writes every result straight into the CRM, deduped.",
+          title: "Ask, and it hunts",
+          body: "Describe the item, the budget, the constraints. Your agent hunts the whole web, drops into a real browser when it needs to, vets the sellers, and saves structured finds.",
         },
         {
-          title: "Watch it compound",
-          body: "Every run sharpens the next on a single source of truth you own, with provenance on every field so you always know what to trust.",
+          title: "Radar keeps watch",
+          body: "For the things not for sale at your price today, set a standing scan on a paid plan. New matches land in your Wish List the moment they appear.",
         },
       ]}
       extra={<AgentCircuitSection />}
-      ctaTitle="Start in minutes."
+      ctaTitle="Start hunting in minutes."
     />
   );
 }

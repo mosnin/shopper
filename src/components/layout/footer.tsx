@@ -39,8 +39,8 @@ export function Footer() {
                 <span className="font-brand text-lg font-bold text-foreground">Shopper</span>
               </Link>
               <p className="max-w-xs text-sm text-muted-foreground">
-                The CRM your agents run. Discover leads, enrich your database, and
-                run email relationships - on data that never leaves your system.
+                The shopping engine your agents run. They hunt the whole web,
+                vet the sellers, and keep your lists current - on data you own.
               </p>
             </div>
 

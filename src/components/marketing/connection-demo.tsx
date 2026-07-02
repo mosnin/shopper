@@ -20,61 +20,74 @@ type Client = {
   lang: string;
 };
 
-const ENDPOINT = "https://app.shopper.sh/api/mcp";
+const ENDPOINT = "https://shopper.sh/api/mcp";
 
 const clients: Client[] = [
   {
-    id: "claude",
-    label: "Claude",
+    id: "claude-code",
+    label: "Claude Code",
     lang: "json",
     snippet: `{
   "mcpServers": {
     "shopper": {
       "url": "${ENDPOINT}",
       "headers": {
-        "Authorization": "Bearer scl_your_key"
+        "Authorization": "Bearer shp_your_key"
       }
     }
   }
 }`,
   },
   {
-    id: "openclaw",
-    label: "OpenClaw",
+    id: "hermes",
+    label: "Hermes",
     lang: "toml",
     snippet: `[mcp.shopper]
 url = "${ENDPOINT}"
-auth = "Bearer scl_your_key"`,
+auth = "Bearer shp_your_key"`,
+  },
+  {
+    id: "openclaw",
+    label: "OpenClaw",
+    lang: "json",
+    snippet: `{
+  "mcp": {
+    "shopper": {
+      "url": "${ENDPOINT}",
+      "auth": "Bearer shp_your_key"
+    }
+  }
+}`,
   },
   {
     id: "curl",
-    label: "Any MCP / curl",
+    label: "Codex / any MCP",
     lang: "bash",
     snippet: `curl ${ENDPOINT} \\
-  -H "Authorization: Bearer scl_your_key"`,
+  -H "Authorization: Bearer shp_your_key"`,
   },
 ];
 
 const handshake = [
   { t: "connecting agent over mcp", tone: "muted" as const },
   { t: "authenticated as you", tone: "muted" as const },
-  { t: "scoped to your data only", tone: "muted" as const },
+  { t: "scoped to your lists only", tone: "muted" as const },
   { t: "12 typed tools available", tone: "plain" as const },
 ];
 
 const tools = [
-  "list_entities",
-  "get_entity",
-  "create_entity",
-  "update_entity",
-  "enrich_entity",
-  "list_contacts",
-  "create_contact",
-  "update_contact",
-  "search",
-  "create_segment",
-  "add_note",
-  "export_csv",
+  "search_items",
+  "deep_shop",
+  "vet_seller",
+  "list_wish_list",
+  "add_find",
+  "update_find",
+  "list_shopping_lists",
+  "add_list_item",
+  "check_off_item",
+  "get_about_you",
+  "update_about_you",
+  "create_radar_scan",
 ];
 
 export function ConnectionDemo() {

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
 import { AsciiField } from "@/components/dashboard/ascii-field";
 import { RotatingWord } from "@/components/ui/rotating-word";
-import { LiveDemo } from "@/components/marketing/live-demo";
+import { ImagePlaceholder } from "@/components/marketing/image-placeholder";
 import { ArrowRight } from "lucide-react";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -27,7 +27,7 @@ export function HeroSection() {
     offset: ["start start", "end start"],
   });
   // Gentle parallax: the ASCII drifts up as you scroll past. The content does not
-  // fade, so the interactive demo stays usable while it is on screen.
+  // fade, so the hero visual stays readable while it is on screen.
   const asciiY = useTransform(scrollYProgress, [0, 1], [0, 160]);
 
   return (
@@ -39,7 +39,7 @@ export function HeroSection() {
         <AsciiField className="absolute inset-0 h-full w-full opacity-30 dark:opacity-25" cell={14} speed={0.09} gradient />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(65,45,21,0.12),transparent_55%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(65,45,21,0.05),transparent_55%)]" />
-        {/* fade the field into the page so the demo below sits on clean ground */}
+        {/* fade the field into the page so the visual below sits on clean ground */}
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background" />
       </motion.div>
 
@@ -50,7 +50,7 @@ export function HeroSection() {
         className="relative z-10 flex max-w-3xl flex-col items-center gap-6 text-center"
       >
         <motion.p variants={item} className="text-xs uppercase tracking-[0.3em] text-primary">
-          The CRM your agents run
+          The shopping engine your agents run
         </motion.p>
 
         <motion.h1
@@ -58,15 +58,16 @@ export function HeroSection() {
           className="font-brand text-4xl leading-[1.05] tracking-tight text-foreground sm:text-6xl"
         >
           <span className="block">
-            <RotatingWord words={["Lead", "Company", "People", "Intent"]} className="text-gradient-orange" />
+            Your agents,{" "}
+            <RotatingWord words={["hunting", "comparing", "vetting", "watching"]} className="text-gradient-orange" />
           </span>
-          <span className="block">intelligence at agent speed</span>
+          <span className="block">the whole web for you</span>
         </motion.h1>
 
         <motion.p variants={item} className="max-w-2xl text-lg text-muted-foreground sm:text-xl">
-          Point your agent at a name, a domain, or a prompt. It finds the right
-          companies and people, surfaces who is in-market, and enriches every
-          record. It all lands structured, deduped, and yours.
+          Connect Hermes, OpenClaw, Codex, Claude Code, or any MCP agent and it
+          shops the whole web for you: hunting down items, comparing prices,
+          reading reviews, and saving every find to a wish list you own.
         </motion.p>
 
         <motion.div variants={item} className="mt-1 flex flex-col items-center gap-4 sm:flex-row">
@@ -74,26 +75,26 @@ export function HeroSection() {
             href="/sign-up"
             className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3.5 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:-translate-y-0.5 hover:shadow-primary/40"
           >
-            Get started
+            Start free
             <ArrowRight className="h-5 w-5" />
           </Link>
           <Link
-            href="/#how-it-works"
+            href="/pricing"
             className="inline-flex items-center gap-2 rounded-full border border-border px-8 py-3.5 text-base font-medium text-muted-foreground transition-colors hover:border-foreground/30 hover:text-foreground"
           >
-            See how it works
+            See pricing
           </Link>
         </motion.div>
       </motion.div>
 
-      {/* The live, interactive product demo: the CRM building itself. */}
+      {/* Hero visual: the wish list your agents keep alive. */}
       <motion.div
         initial={reduce ? { opacity: 0 } : { opacity: 0, y: 40, filter: "blur(8px)" }}
         animate={reduce ? { opacity: 1 } : { opacity: 1, y: 0, filter: "blur(0px)" }}
         transition={{ duration: 0.9, delay: 0.35, ease: EASE }}
-        className="relative z-10 mt-14 w-full"
+        className="relative z-10 mt-14 w-full max-w-5xl"
       >
-        <LiveDemo />
+        <ImagePlaceholder label="Hero visual: the wish list" aspect="aspect-[16/9]" />
       </motion.div>
     </section>
   );
