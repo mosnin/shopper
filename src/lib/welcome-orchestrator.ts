@@ -1,14 +1,14 @@
-// Orchestrator for "Moment 1 - The First Run."
+// Orchestrator for "Moment 1 - The First Hunt."
 //
-// A new user types one sentence describing who they sell to; this module
-// runs discover -> enrich -> news through the EXISTING pipeline and streams
+// A new user types one sentence describing what they want to buy; this module
+// runs hunt -> vet -> news through the EXISTING pipeline and streams
 // Server-Sent Events back to the /welcome page. The page renders a table
 // that fills row by row, live, before the user's eyes.
 //
 // Hard caps (once per user, ever):
-//   - 10 companies discovered
-//   - 3 enriched with firmographics
-//   - 1 news signal per enriched company
+//   - 10 finds hunted
+//   - 3 vetted with firmographics
+//   - 1 news signal per vetted seller
 //
 // Metering: the first-run performance is unmetered (free to the user) per the
 // product decision in 0006-the-four-moments.md. Provider calls that would
@@ -16,9 +16,9 @@
 // credit gate. If a provider is unconfigured, a clearly-labelled seed/sample
 // is returned instead - never fabricated as "real" data.
 //
-// ACCURACY RULE: we pass ICP query directly to exaFindCompanies, which
+// ACCURACY RULE: we pass the wish query directly to exaFindCompanies, which
 // already rejects unnamed/junk results. Domain uniqueness is checked before
-// saving. We never save a contact for the wrong company.
+// saving. We never attach details to the wrong seller.
 
 import { prisma } from "@/lib/prisma";
 import { exaFindCompanies, isExaConfigured } from "@/lib/exa";
@@ -33,9 +33,9 @@ import { Prisma } from "@prisma/client";
 
 export type WelcomeEventType =
   | "status"        // status line update
-  | "company"       // a new company row appeared in the table
-  | "enriched"      // a company row updated with enrichment
-  | "news"          // a company row updated with a news signal
+  | "company"       // a new find (seller/item) row appeared in the table
+  | "enriched"      // a row updated with vetting data
+  | "news"          // a row updated with a news signal
   | "done"          // the run completed (includes a summary)
   | "error";        // a non-fatal step error (the run continues)
 
@@ -75,31 +75,31 @@ const MAX_ENRICH    = 3;
 const SEED_COMPANIES: WelcomeCompanyRow[] = [
   {
     id: "seed-1",
-    name: "Acme Solutions (sample)",
+    name: "Acme Outfitters (sample)",
     domain: null,
-    industry: "Software",
+    industry: "Apparel",
     location: "San Francisco, CA",
-    description: "A sample B2B software company - configure EXA_API_KEY to discover real companies matching your ICP.",
+    description: "A sample clothing store - configure EXA_API_KEY to hunt real stores and listings that match what you want.",
     status: "sample",
     isSample: true,
   },
   {
     id: "seed-2",
-    name: "Brightwave Corp (sample)",
+    name: "Brightwave Electronics (sample)",
     domain: null,
-    industry: "Marketing",
+    industry: "Electronics",
     location: "Austin, TX",
-    description: "A sample marketing firm - configure EXA_API_KEY to discover real companies matching your ICP.",
+    description: "A sample electronics seller - configure EXA_API_KEY to hunt real stores and listings that match what you want.",
     status: "sample",
     isSample: true,
   },
   {
     id: "seed-3",
-    name: "Cascade Health (sample)",
+    name: "Cascade Home Goods (sample)",
     domain: null,
-    industry: "Healthcare",
+    industry: "Home & Furniture",
     location: "Chicago, IL",
-    description: "A sample healthcare services company - configure EXA_API_KEY to discover real companies.",
+    description: "A sample home goods store - configure EXA_API_KEY to hunt real stores and listings.",
     status: "sample",
     isSample: true,
   },
@@ -110,11 +110,11 @@ const SEED_COMPANIES: WelcomeCompanyRow[] = [
 // --------------------------------------------------------------------------
 
 /**
- * Run the first-run performance for a new user. Calls the callback for each
+ * Run the first-hunt performance for a new user. Calls the callback for each
  * event as they happen so the route handler can stream them.
  *
  * @param userId    The Prisma user id (already provisioned).
- * @param icp       The user's one-sentence ICP description.
+ * @param icp       The user's one-sentence description of what they want.
  * @param emit      Called for each event; must be non-throwing.
  */
 export async function runWelcomeOrchestration(
@@ -122,31 +122,31 @@ export async function runWelcomeOrchestration(
   icp: string,
   emit: (event: WelcomeEvent) => void,
 ): Promise<void> {
-  // Once per user, ever: if the first run already completed, do not run again.
-  // Guards against a double-submit or a second tab creating duplicate companies
+  // Once per user, ever: if the first hunt already completed, do not run again.
+  // Guards against a double-submit or a second tab creating duplicate finds
   // (the in-batch dedup is per-run and can't see a concurrent run's new rows).
   if (await hasCompletedFirstRun(userId)) {
-    emit({ type: "done", message: "Your CRM is already set up.", total: 0, enriched: 0, hasNews: 0 });
+    emit({ type: "done", message: "Your wish list is already set up.", total: 0, enriched: 0, hasNews: 0 });
     return;
   }
 
-  // Save the ICP as productContext - one sentence, two jobs.
+  // Save the wish as the About You context - one sentence, two jobs.
   await prisma.user.update({
     where: { id: userId },
     data: { productContext: icp },
   });
 
-  // Step 1: Discover companies
-  emit({ type: "status", message: "Finding companies that match your ICP..." });
+  // Step 1: Hunt for stores and listings
+  emit({ type: "status", message: "Hunting for stores and listings that match what you want..." });
 
   let rows: WelcomeCompanyRow[] = [];
   let usedSeed = false;
 
   if (!isExaConfigured()) {
-    // No discovery provider - use sample data and surface an honest note.
+    // No hunting provider - use sample data and surface an honest note.
     emit({
       type: "status",
-      message: "Discovery provider not configured. Showing sample data. Add EXA_API_KEY to discover real companies.",
+      message: "Hunting provider not configured. Showing sample data. Add EXA_API_KEY to hunt real stores and listings.",
     });
     rows = SEED_COMPANIES.map((s) => ({ ...s }));
     usedSeed = true;
@@ -157,7 +157,7 @@ export async function runWelcomeOrchestration(
       await delay(300);
     }
   } else {
-    // Real discovery via exaFindCompanies (already deduplicated and sanitized).
+    // Real hunting via exaFindCompanies (already deduplicated and sanitized).
     let found: Awaited<ReturnType<typeof exaFindCompanies>> = [];
     try {
       found = await exaFindCompanies(icp, MAX_DISCOVER);
@@ -165,15 +165,15 @@ export async function runWelcomeOrchestration(
       console.error("[welcome-orchestrator] exaFindCompanies failed", err);
       emit({
         type: "error",
-        message: "Discovery ran into a problem. Showing partial results.",
+        message: "The hunt ran into a problem. Showing partial results.",
       });
     }
 
     if (found.length === 0) {
-      // Discovery returned nothing - fall back to seed so the page is not blank.
+      // The hunt returned nothing - fall back to seed so the page is not blank.
       emit({
         type: "status",
-        message: "No companies found for that description. Showing sample data so you can see how Shopper works.",
+        message: "No stores or listings found for that description. Showing sample data so you can see how Shopper works.",
       });
       rows = SEED_COMPANIES.map((s) => ({ ...s }));
       usedSeed = true;
@@ -182,9 +182,9 @@ export async function runWelcomeOrchestration(
         await delay(300);
       }
     } else {
-      emit({ type: "status", message: `Found ${found.length} compan${found.length === 1 ? "y" : "ies"}. Building your CRM...` });
+      emit({ type: "status", message: `Found ${found.length} match${found.length === 1 ? "" : "es"}. Building your wish list...` });
 
-      // Deduplicate by domain/name against existing CRM rows + within this batch.
+      // Deduplicate by domain/name against existing wish list rows + within this batch.
       const existing = await prisma.entity.findMany({
         where: { userId },
         select: { domain: true, name: true },
@@ -244,13 +244,13 @@ export async function runWelcomeOrchestration(
   }
 
   if (rows.length === 0) {
-    emit({ type: "done", message: "Nothing to show right now. Your agent will find companies when providers are configured.", total: 0, enriched: 0, hasNews: 0 });
+    emit({ type: "done", message: "Nothing to show right now. Your agent will find matches when providers are configured.", total: 0, enriched: 0, hasNews: 0 });
     return;
   }
 
-  emit({ type: "status", message: `Found ${rows.length} compan${rows.length === 1 ? "y" : "ies"}. Enriching the top ${Math.min(MAX_ENRICH, rows.length)}...` });
+  emit({ type: "status", message: `Found ${rows.length} match${rows.length === 1 ? "" : "es"}. Vetting the top ${Math.min(MAX_ENRICH, rows.length)}...` });
 
-  // Step 2: Enrich the top companies (those with a real domain, no samples).
+  // Step 2: Vet the top finds (those with a real domain, no samples).
   const toEnrich = rows
     .filter((r) => !r.isSample && r.domain)
     .slice(0, MAX_ENRICH);
@@ -264,7 +264,7 @@ export async function runWelcomeOrchestration(
     // Signal "enriching" state to the UI.
     emit({
       type: "status",
-      message: `Enriching ${row.name}...`,
+      message: `Vetting ${row.name}...`,
     });
     emit({ type: "company", company: { ...row, status: "enriching" } });
 
@@ -337,7 +337,7 @@ export async function runWelcomeOrchestration(
       }
     }
 
-    // Step 3: Attach one news signal per enriched company.
+    // Step 3: Attach one news signal per vetted seller.
     if (!isPipe0Configured()) {
       // No news provider - skip silently.
     } else {
@@ -383,11 +383,11 @@ export async function runWelcomeOrchestration(
 
   // Done.
   const sampleNote = usedSeed
-    ? " (sample data - configure providers to discover real companies)"
+    ? " (sample data - configure providers to hunt real stores and listings)"
     : "";
   emit({
     type: "done",
-    message: `Your CRM is already working${sampleNote}.`,
+    message: `Your agent is already shopping for you${sampleNote}.`,
     total: rows.length,
     enriched: enrichedCount,
     hasNews: newsCount,
@@ -442,9 +442,9 @@ function pickStr(obj: Record<string, unknown>, key: string): string | undefined 
 }
 
 // --------------------------------------------------------------------------
-// Guard: check if a user has already completed the first run.
-// A "completed" first run means they have a productContext saved OR they
-// already have entities in their CRM.
+// Guard: check if a user has already completed the first hunt.
+// A "completed" first hunt means they have an About You context saved OR they
+// already have records in their wish list.
 // --------------------------------------------------------------------------
 
 export async function hasCompletedFirstRun(userId: string): Promise<boolean> {
