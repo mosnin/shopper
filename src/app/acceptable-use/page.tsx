@@ -23,7 +23,7 @@ export default function AcceptableUsePage() {
         {
           heading: "Use the platform lawfully",
           body: [
-            "You must comply with all laws that apply to you, including privacy, data protection, anti-spam, and marketing laws (for example GDPR, CCPA, and CAN-SPAM where relevant). You are responsible for having a lawful basis to store and contact the people in your CRM.",
+            "You must comply with all laws that apply to you, including privacy, data protection, anti-spam, and marketing laws (for example GDPR, CCPA, and CAN-SPAM where relevant). You are responsible for having a lawful basis to store and contact the sellers and suppliers in your wish list.",
           ],
         },
         {

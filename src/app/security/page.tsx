@@ -23,7 +23,7 @@ const pillars = [
   {
     eyebrow: "Ownership",
     title: "You own it, and you can take it with you.",
-    body: "Your CRM is a single source of truth you control. Enrichment flows in; your data does not leak out. We never sell it, and we never use it to train models for other customers. Export your full database whenever you want, and deleting a record or your account removes it.",
+    body: "Your wish list is a single source of truth you control. Finds flow in; your data does not leak out. We never sell it, and we never use it to train models for other customers. Export your full database whenever you want, and deleting a record or your account removes it.",
   },
   {
     eyebrow: "Accuracy",
@@ -132,7 +132,7 @@ export default function SecurityPage() {
         <section className="py-24 sm:py-32">
           <div className="mx-auto max-w-3xl px-4 text-center">
             <h2 className="font-brand text-3xl text-foreground sm:text-4xl">
-              A CRM you can trust is the only kind worth having.
+              A shopping engine you can trust is the only kind worth having.
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
               Read how we handle data, or start building your database today.

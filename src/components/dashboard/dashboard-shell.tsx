@@ -688,7 +688,7 @@ function Launchpad({
             <div className="pointer-events-auto flex shrink-0 items-center justify-between px-5 pt-7 sm:px-10">
               <div>
                 <p className="text-xs uppercase tracking-[0.25em] text-primary/80">
-                  Shopper // CRM
+                  Shopper // Wish List
                 </p>
                 <h2 className="font-brand mt-1 text-3xl text-foreground sm:text-4xl">
                   Everything

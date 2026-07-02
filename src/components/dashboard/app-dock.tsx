@@ -251,7 +251,7 @@ export function AppDock({ isStaff = false }: { isStaff?: boolean }) {
               <div className="pointer-events-auto flex items-center justify-between px-5 pt-7 sm:px-10">
                 <div>
                   <p className="text-xs uppercase tracking-[0.25em] text-orange/80">
-                    Shopper // CRM
+                    Shopper // Wish List
                   </p>
                   <h2 className="font-brand mt-1 text-3xl text-white sm:text-4xl">Everything</h2>
                 </div>

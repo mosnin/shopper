@@ -25,7 +25,7 @@ export default function SubprocessorsPage() {
           heading: "Infrastructure",
           bullets: [
             "Vercel: application hosting and serverless compute.",
-            "Supabase: managed Postgres database and vector memory (pgvector) where your CRM is stored.",
+            "Supabase: managed Postgres database and vector memory (pgvector) where your wish list is stored.",
             "Upstash: rate limiting and ephemeral queues.",
             "Inngest: scheduled and background jobs (intent monitors and research runs).",
             "Uploadthing: file uploads.",
@@ -41,10 +41,10 @@ export default function SubprocessorsPage() {
         {
           heading: "Intelligence and data providers",
           body: [
-            "These power discovery, enrichment, and research. Shopper orchestrates them, applies its accuracy rule, and writes only verified results into your CRM. We orchestrate providers; we do not sell data.",
+            "These power item hunts, seller vetting, and research. Shopper orchestrates them, applies its accuracy rule, and writes only verified results into your wish list. We orchestrate providers; we do not sell data.",
           ],
           bullets: [
-            "Exa: prospecting and intent discovery.",
+            "Exa: web-wide item hunts and Radar scans.",
             "Explorium: company firmographics and people data.",
             "Pipe0: contact enrichment (work email and phone).",
             "Bright Data: web search and structured extraction.",

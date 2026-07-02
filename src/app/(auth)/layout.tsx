@@ -6,8 +6,8 @@ import { AsciiField } from "@/components/dashboard/ascii-field";
 // The proof points on the brand panel. No client counts, no invented stats:
 // just what the product is, stated plainly. Kept to three so the panel breathes.
 const proofPoints = [
-  "Structured storage, a real UI, and built-in intelligence in one system.",
-  "Your agent operates it directly over MCP. Discover, enrich, track, email.",
+  "A wish list, shopping lists, and a real shopping engine in one system.",
+  "Your agent operates it directly over MCP. Hunt, compare, watch, buy.",
   "Your data stays yours. Isolated per account, never resold, never used to train.",
 ];
 
@@ -47,10 +47,10 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
 
           <div className="max-w-md">
             <p className="text-xs uppercase tracking-[0.3em] text-orange/80">
-              The CRM your agents run
+              The shopping engine your agents run
             </p>
             <h2 className="font-brand mt-4 text-3xl leading-tight text-foreground xl:text-4xl">
-              Give agent work a home it{" "}
+              Send an agent shopping and it{" "}
               <span className="text-gradient-orange">never forgets</span>.
             </h2>
             <ul className="mt-8 space-y-4">
