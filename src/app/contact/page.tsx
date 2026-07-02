@@ -17,7 +17,7 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 const topics = [
   { value: "", label: "What's this about?" },
   { value: "general", label: "General question" },
-  { value: "bringing_agent", label: "Bringing my own agent (MCP)" },
+  { value: "bringing_agent", label: "Connecting my agents (MCP)" },
   { value: "sales", label: "Plans and pricing" },
   { value: "billing", label: "Billing or account" },
   { value: "partnership", label: "Partnership" },
@@ -63,8 +63,8 @@ export default function ContactPage() {
               Talk to <span className="text-gradient-orange">the team</span>
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground">
-              Questions about Shopper, connecting your agent, or what it can do for
-              your team? Send a note and we will get back to you within a day.
+              Questions about Shopper, connecting your agents, or what a hunt can
+              find for you? Send a note and we will get back to you within a day.
             </p>
           </div>
         </section>
@@ -228,7 +228,7 @@ export default function ContactPage() {
                 <div className="rounded-2xl border border-border bg-card p-6">
                   <h3 className="font-brand text-base text-foreground">Prefer to skip the form?</h3>
                   <p className="mt-1.5 text-sm text-muted-foreground">
-                    Create your account and let your agent start building the CRM.
+                    Create your account and let your agent start filling the Wish List.
                   </p>
                   <Button className="mt-4 w-full rounded-full" asChild>
                     <Link href="/sign-up">Get started</Link>

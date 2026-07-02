@@ -6,6 +6,7 @@ import { ArrowRight } from "lucide-react";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { AsciiField } from "@/components/dashboard/ascii-field";
+import { ImagePlaceholder } from "@/components/marketing/image-placeholder";
 
 // A shared template for the in-depth feature pages reached from the mega menu.
 // Same visual language as the landing page (ASCII signature hero, baby-blue
@@ -85,6 +86,11 @@ export function FeaturePage({
                 See all capabilities
               </Link>
             </div>
+            <ImagePlaceholder
+              label={`${eyebrow} visual`}
+              aspect="aspect-[16/7]"
+              className="mx-auto mt-14 max-w-3xl"
+            />
           </motion.div>
         </section>
 
