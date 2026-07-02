@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,18 +11,35 @@ import { Textarea } from "@/components/ui/textarea";
 import { FloatIn } from "@/components/ui/float-in";
 
 const FIELDS = [
-  { name: "name", label: "Business name", type: "text", required: true },
-  { name: "domain", label: "Domain", type: "text" },
+  { name: "name", label: "Name", type: "text" },
+  { name: "email", label: "Email", type: "email" },
+  { name: "company", label: "Company", type: "text" },
+  { name: "title", label: "Title", type: "text" },
+  { name: "phone", label: "Phone", type: "text" },
   { name: "website", label: "Website", type: "text" },
-  { name: "industry", label: "Industry", type: "text" },
+  { name: "linkedin", label: "LinkedIn", type: "text" },
   { name: "location", label: "Location", type: "text" },
-  { name: "size", label: "Size", type: "text" },
 ] as const;
 
-export default function NewEntityPage() {
+type EntityOption = { id: string; name: string };
+
+export default function NewContactPage() {
   const router = useRouter();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [entities, setEntities] = useState<EntityOption[]>([]);
+  const [entityId, setEntityId] = useState(() =>
+    typeof window !== "undefined"
+      ? new URLSearchParams(window.location.search).get("entityId") ?? ""
+      : ""
+  );
+
+  useEffect(() => {
+    fetch("/api/entities")
+      .then((r) => (r.ok ? r.json() : { entities: [] }))
+      .then((d) => setEntities(d.entities ?? []))
+      .catch(() => setEntities([]));
+  }, []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -35,27 +52,28 @@ export default function NewEntityPage() {
       const val = String(v).trim();
       if (val) payload[k] = val;
     }
-    if (!payload.name) {
-      setError("A business name is required.");
+
+    if (Object.keys(payload).length === 0) {
+      setError("Add at least one field.");
       setBusy(false);
       return;
     }
     payload.source = "manual";
 
     try {
-      const res = await fetch("/api/entities", {
+      const res = await fetch("/api/contacts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        setError(data.error || "Failed to create entity.");
+        setError(data.error || "Failed to create contact.");
         setBusy(false);
         return;
       }
-      const { entity } = await res.json();
-      router.push(`/crm/entity/${entity.id}`);
+      const { contact } = await res.json();
+      router.push(`/wishlist/${contact.id}`);
     } catch {
       setError("Something went wrong.");
       setBusy(false);
@@ -66,18 +84,18 @@ export default function NewEntityPage() {
     <div className="mx-auto max-w-2xl space-y-6">
       <FloatIn delay={0}>
         <Link
-          href="/crm?tab=entities"
+          href="/wishlist"
           className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to entities
+          Back to Wish List
         </Link>
       </FloatIn>
 
       <FloatIn delay={0.06}>
         <Card>
           <CardHeader>
-            <CardTitle className="font-brand text-xl">Add an entity</CardTitle>
+            <CardTitle className="font-brand text-xl">Add a seller contact</CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={onSubmit} className="space-y-4">
@@ -89,9 +107,6 @@ export default function NewEntityPage() {
                       className="text-sm font-medium text-muted-foreground"
                     >
                       {f.label}
-                      {"required" in f && f.required && (
-                        <span className="text-destructive"> *</span>
-                      )}
                     </label>
                     <Input id={f.name} name={f.name} type={f.type} />
                   </div>
@@ -99,22 +114,44 @@ export default function NewEntityPage() {
               </div>
               <div className="space-y-1.5">
                 <label
-                  htmlFor="description"
+                  htmlFor="entityId"
                   className="text-sm font-medium text-muted-foreground"
                 >
-                  Description
+                  Seller or source
                 </label>
-                <Textarea id="description" name="description" rows={3} />
+                <select
+                  id="entityId"
+                  name="entityId"
+                  value={entityId}
+                  onChange={(e) => setEntityId(e.target.value)}
+                  className="flex h-10 w-full rounded-lg border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <option value="">Independent (no seller)</option>
+                  {entities.map((e) => (
+                    <option key={e.id} value={e.id}>
+                      {e.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="space-y-1.5">
+                <label
+                  htmlFor="notes"
+                  className="text-sm font-medium text-muted-foreground"
+                >
+                  Notes
+                </label>
+                <Textarea id="notes" name="notes" rows={3} />
               </div>
 
               {error && <p className="text-sm text-destructive">{error}</p>}
 
               <div className="flex justify-end gap-2">
                 <Button variant="outline" asChild>
-                  <Link href="/crm?tab=entities">Cancel</Link>
+                  <Link href="/wishlist">Cancel</Link>
                 </Button>
                 <Button type="submit" variant="glow" disabled={busy}>
-                  {busy ? "Saving…" : "Save entity"}
+                  {busy ? "Saving…" : "Save contact"}
                 </Button>
               </div>
             </form>

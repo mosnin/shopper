@@ -61,6 +61,13 @@ import {
   type PaidPlanName,
 } from "@/lib/credits";
 import { storeMemory, recallMemory } from "@/lib/memory";
+import { prisma } from "@/lib/prisma";
+import { planFor } from "@/lib/credits";
+import {
+  isBrowserbaseConfigured,
+  createBrowserSession,
+  sessionDebugUrl,
+} from "@/lib/browserbase";
 import { verifyEntity } from "@/lib/enrich/verified-entity";
 import { detectEntityTech } from "@/lib/enrich/technographics";
 import {
@@ -247,23 +254,23 @@ const handler = createMcpHandler(
   (server) => {
     /* -------------------------- Entities -------------------------- */
     server.tool(
-      "list_entities",
-      "List businesses (entities) in the CRM, newest first. Optional search query over name/domain/industry.",
+      "list_sources",
+      "List sellers and sources (stores, marketplaces, brands, manufacturers) saved in the wish list, newest first. Optional search query over name/domain/category.",
       { query: z.string().optional() },
       async ({ query }, extra) =>
         run(() => listEntities(userIdFrom(extra), query)),
     );
 
     server.tool(
-      "get_entity",
-      "Get one business by id, including its contacts.",
+      "get_source",
+      "Get one seller or source by id, including its saved seller contacts.",
       { id: z.string() },
       async ({ id }, extra) => run(() => getEntity(userIdFrom(extra), id)),
     );
 
     server.tool(
-      "create_entity",
-      "Create a business (entity) in the CRM.",
+      "create_source",
+      "Save a seller, store, marketplace, or manufacturer into the wish list. Also how a found item is saved: name is the item or listing title, website is the listing URL, notes carry price and condition.",
       {
         name: z.string(),
         domain: z.string().optional(),
@@ -282,8 +289,8 @@ const handler = createMcpHandler(
     );
 
     server.tool(
-      "update_entity",
-      "Update fields on a business.",
+      "update_source",
+      "Update fields on a saved seller, source, or item record (price changes, status, notes).",
       {
         id: z.string(),
         name: z.string().optional(),
@@ -302,16 +309,16 @@ const handler = createMcpHandler(
     );
 
     server.tool(
-      "enrich_entity",
-      "Enrich a business via Explorium using its domain (pulls company data + firmographics). Stores the result on the entity.",
+      "enrich_source",
+      "Enrich a seller or manufacturer via Explorium using its domain (company data + firmographics). Useful before buying from an unknown store or supplier; stores the result on the record.",
       { id: z.string() },
       { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: true },
       async ({ id }, extra) => gated(extra, "enrich", 20, (userId) => enrichEntity(userId, id)),
     );
 
     server.tool(
-      "delete_entity",
-      "Permanently delete a business (entity) from the CRM by id. Its contacts are kept (unlinked from the company). Use to clean up junk or duplicate records.",
+      "delete_source",
+      "Permanently delete a seller, source, or item record from the wish list by id. Its seller contacts are kept (unlinked). Use to clean up junk or duplicates.",
       { id: z.string() },
       { readOnlyHint: false, destructiveHint: true, idempotentHint: true, openWorldHint: false },
       async ({ id }, extra) => run(() => deleteEntity(userIdFrom(extra), id)),
@@ -319,8 +326,8 @@ const handler = createMcpHandler(
 
     /* -------------------------- Contacts -------------------------- */
     server.tool(
-      "list_contacts",
-      "List people (contacts), newest first. Optional search query and status filter.",
+      "list_seller_contacts",
+      "List seller contacts (people at stores, marketplaces, and manufacturers), newest first. Optional search query and status filter.",
       {
         query: z.string().optional(),
         status: z.string().optional(),
@@ -330,15 +337,15 @@ const handler = createMcpHandler(
     );
 
     server.tool(
-      "get_contact",
-      "Get one contact by id, including linked entity and saved email context.",
+      "get_seller_contact",
+      "Get one seller contact by id, including the linked seller and saved email context.",
       { id: z.string() },
       async ({ id }, extra) => run(() => getContact(userIdFrom(extra), id)),
     );
 
     server.tool(
-      "create_contact",
-      "Create a person (contact). Optionally assign to an entity by entityId.",
+      "create_seller_contact",
+      "Save a seller contact (a person at a store, marketplace, or manufacturer). Optionally assign to a seller by entityId.",
       {
         name: z.string().optional(),
         email: z.string().optional(),
@@ -359,8 +366,8 @@ const handler = createMcpHandler(
     );
 
     server.tool(
-      "update_contact",
-      "Update fields on a contact (including status and entity assignment).",
+      "update_seller_contact",
+      "Update fields on a seller contact (including status and seller assignment).",
       {
         id: z.string(),
         name: z.string().nullable().optional(),
@@ -389,16 +396,16 @@ const handler = createMcpHandler(
     );
 
     server.tool(
-      "delete_contact",
-      "Permanently delete a person (contact) from the CRM by id. Use to clean up junk or duplicate records.",
+      "delete_seller_contact",
+      "Permanently delete a seller contact from the wish list by id. Use to clean up junk or duplicates.",
       { id: z.string() },
       { readOnlyHint: false, destructiveHint: true, idempotentHint: true, openWorldHint: false },
       async ({ id }, extra) => run(() => deleteContact(userIdFrom(extra), id)),
     );
 
     server.tool(
-      "enrich_contact",
-      "Find and save a contact's missing LinkedIn, work email, or phone. Verified against the contact's name AND company so a same-name stranger is never attached (accuracy over coverage); needs the contact linked to a company or to have a website/work email so the company domain is known. Pass the contact id and which field to enrich.",
+      "enrich_seller_contact",
+      "Find and save a seller contact's missing LinkedIn, work email, or phone (key for supplier sourcing). Verified against the person's name AND company so a same-name stranger is never attached; needs the contact linked to a seller or to have a website/work email so the domain is known. Pass the contact id and which field to enrich.",
       { id: z.string(), field: z.enum(["linkedin", "email", "phone"]) },
       { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: true },
       async ({ id, field }, extra) =>
@@ -408,7 +415,7 @@ const handler = createMcpHandler(
     /* ------------------------ Email context ----------------------- */
     server.tool(
       "save_email_context",
-      "Save an email exchanged with a contact onto their record as reusable context.",
+      "Save an email exchanged with a seller contact (quotes, availability, order threads) onto their record as reusable context.",
       {
         contactId: z.string(),
         direction: z.enum(["INBOUND", "OUTBOUND"]),
@@ -427,10 +434,10 @@ const handler = createMcpHandler(
         ),
     );
 
-    /* -------------------------- Discovery ------------------------- */
+    /* ----------------------- Shopping tools ----------------------- */
     server.tool(
-      "search_crm",
-      "Search across both entities and contacts in the CRM.",
+      "search_wishlist",
+      "Search across saved items, sellers, and seller contacts in the wish list.",
       { query: z.string() },
       async ({ query }, extra) =>
         run(() => searchCrm(userIdFrom(extra), query)),
@@ -438,7 +445,7 @@ const handler = createMcpHandler(
 
     server.tool(
       "search_web",
-      "Search the web (Tavily) to discover businesses, e.g. 'nail salons in Miami'. Returns titles, URLs, and snippets to turn into entities.",
+      "Search the web (Tavily) for items, listings, prices, and reviews, e.g. 'pre-owned RTX 4090 for sale under $900'. Returns titles, URLs, and snippets to review and save with create_source.",
       {
         query: z.string(),
         maxResults: z.number().int().min(1).max(20).optional(),
@@ -457,8 +464,8 @@ const handler = createMcpHandler(
     );
 
     server.tool(
-      "find_companies",
-      "Discover CRM-ready companies from a prompt (e.g. 'B2B fintech startups in NYC' or 'nail salons in Miami') via Exa deep research, deduped against the CRM by domain then name, and add the new ones as entities. This is the prospecting tool - prefer it over search_web for finding companies to add.",
+      "find_items",
+      "Comprehensive shopping hunt from a prompt (e.g. 'recently listed pre-owned GPUs at a good price' or 'Gucci loafers size 10M under $400') via Exa deep research across stores, marketplaces, and listings. Results are deduped against the wish list by domain then name and the new ones are saved. This is the main shopping tool - prefer it over search_web when the goal is to find and save items or sellers.",
       { query: z.string(), count: z.number().int().min(1).max(25).optional() },
       { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: true },
       async ({ query, count }, extra) =>
@@ -466,8 +473,8 @@ const handler = createMcpHandler(
     );
 
     server.tool(
-      "maps_leads",
-      "Discover local businesses on Google Maps (via Apify) and add the new ones to the CRM as entities, deduped by domain then name. The tool for local lead gen: query is what to find ('dentists'), location narrows it ('Austin, TX'). Captures name, website, phone, and address. Costs 15 credits per run that returns leads (a dry run is free).",
+      "find_local_stores",
+      "Discover local stores and sellers on Google Maps (via Apify) and save the new ones to the wish list, deduped by domain then name. The tool for shopping nearby: query is what to find ('used furniture stores'), location narrows it ('Austin, TX'). Captures name, website, phone, and address. Costs 15 credits per run that returns results (a dry run is free).",
       {
         query: z.string(),
         location: z.string().optional(),
@@ -479,8 +486,8 @@ const handler = createMcpHandler(
     );
 
     server.tool(
-      "extract_contact_details",
-      "Extract a company site's public contact details (emails, phones, social links) via Apify, deduped and tied to the site host (a strong, accurate company link). Returns the data for you to review and save selectively with create_contact - it does NOT auto-create contacts, so it never makes junk records from unnamed emails. Costs 8 credits when details are found (nothing on a miss).",
+      "extract_seller_details",
+      "Extract a store or seller site's public contact details (emails, phones, social links) via Firecrawl-grade scraping (Apify), deduped and tied to the site host. Returns the data for you to review and save selectively with create_seller_contact - it does NOT auto-create records. Costs 8 credits when details are found (nothing on a miss).",
       { url: z.string() },
       { readOnlyHint: true, destructiveHint: false, idempotentHint: false, openWorldHint: true },
       async ({ url }, extra) =>
@@ -489,7 +496,7 @@ const handler = createMcpHandler(
 
     server.tool(
       "google_search",
-      "Run a Google web search via Apify and get organic results (title, URL, snippet) to turn into entities. For finding AND adding companies in one step, prefer find_companies or maps_leads. Costs 4 credits per search that returns results.",
+      "Run a Google web search via Apify and get organic results (title, URL, snippet) - good for price checks and availability. For finding AND saving items or stores in one step, prefer find_items or find_local_stores. Costs 4 credits per search that returns results.",
       {
         query: z.string(),
         limit: z.number().int().min(1).max(20).optional(),
@@ -499,67 +506,67 @@ const handler = createMcpHandler(
         gated(extra, "serp_search", 30, (userId) => searchGoogle(userId, { query, limit })),
     );
 
-    /* -------------------------- Segments -------------------------- */
+    /* ------------------------- Collections ------------------------ */
     server.tool(
-      "list_segments",
-      "List customer segments with member counts.",
+      "list_collections",
+      "List wish list collections (grouped seller contacts) with member counts.",
       {},
       async (_args, extra) => run(() => listSegments(userIdFrom(extra))),
     );
 
     server.tool(
-      "get_segment",
-      "Get a segment and its member contacts.",
+      "get_collection",
+      "Get a collection and its member seller contacts.",
       { id: z.string() },
       async ({ id }, extra) => run(() => getSegment(userIdFrom(extra), id)),
     );
 
     server.tool(
-      "create_segment",
-      "Create a customer segment manually, optionally with member contact ids.",
+      "create_collection",
+      "Create a collection manually, optionally with member seller-contact ids.",
       { name: z.string().max(200), goal: z.string().max(2000).optional(), contactIds: z.array(z.string()).max(1000).optional() },
       async (args, extra) => run(() => createSegment(userIdFrom(extra), args)),
     );
 
     server.tool(
-      "build_smart_segment",
-      "Build a segment from a goal: vector-matches the closest ELIGIBLE prospects (enriched, not yet contacted, not already in a pipeline). Use this to auto-create a targeted segment.",
+      "build_smart_collection",
+      "Build a collection from a goal: vector-matches the closest eligible seller contacts (enriched, not yet contacted, not already on a shopping list). Use this to auto-group suppliers to approach.",
       { goal: z.string(), quantity: z.number().int().min(1).max(100).optional(), name: z.string().optional() },
       async (args, extra) => run(() => buildSmartSegment(userIdFrom(extra), args)),
     );
 
-    /* -------------------------- Pipelines ------------------------- */
+    /* ------------------------ Shopping lists ---------------------- */
     server.tool(
-      "list_pipelines",
-      "List pipelines with entry counts.",
+      "list_shopping_lists",
+      "List shopping lists with item counts. Lists are anything that needs buying: groceries, home decor for a move, auto parts, business supplies.",
       {},
       async (_args, extra) => run(() => listPipelines(userIdFrom(extra))),
     );
 
     server.tool(
-      "get_pipeline",
-      "Get a pipeline with its entries (stage, deal score, conversation status) and contacts.",
+      "get_shopping_list",
+      "Get a shopping list with its items (stage, priority score, conversation status) and linked seller contacts.",
       { id: z.string() },
       async ({ id }, extra) => run(() => getPipeline(userIdFrom(extra), id)),
     );
 
     server.tool(
-      "create_pipeline",
-      "Create a pipeline with an objective, optionally seeded from a segment (recommended).",
+      "create_shopping_list",
+      "Create a shopping list with a goal (e.g. 'restock the office' or 'furnish the new apartment'), optionally seeded from a collection.",
       { name: z.string(), goal: z.string().optional(), segmentId: z.string().optional() },
       async (args, extra) => run(() => createPipeline(userIdFrom(extra), args)),
     );
 
     server.tool(
-      "add_to_pipeline",
-      "Add contacts (by ids and/or a whole segment) to a pipeline as new entries.",
+      "add_to_shopping_list",
+      "Add items or seller contacts (by ids and/or a whole collection) to a shopping list as new entries.",
       { pipelineId: z.string(), contactIds: z.array(z.string()).max(1000).optional(), segmentId: z.string().optional() },
       async ({ pipelineId, ...rest }, extra) => run(() => addToPipeline(userIdFrom(extra), pipelineId, rest)),
     );
 
     server.tool(
-      "update_pipeline_entry",
-      "Update a pipeline entry: move its stage, set a 0-100 deal score, or set conversation status. Set conversationStatus to CLOSED when a conversation is over so the agent stops following up.",
+      "check_off_list_item",
+      "Update a shopping list entry: move its stage (WON means purchased - this is how you check off a bought item), set a 0-100 priority score, or set conversation status. Set conversationStatus to CLOSED when a thread with a seller is done.",
       {
         pipelineId: z.string(),
         entryId: z.string(),
@@ -572,23 +579,90 @@ const handler = createMcpHandler(
     );
 
     server.tool(
-      "pipeline_metrics",
-      "Progress metrics for a pipeline: counts by stage and conversation status, won/lost, average deal score, and open conversations.",
+      "shopping_list_progress",
+      "Progress for a shopping list: counts by stage (purchased vs still hunting), conversation status, and open seller threads.",
       { pipelineId: z.string() },
       async ({ pipelineId }, extra) => run(() => pipelineMetrics(userIdFrom(extra), pipelineId)),
+    );
+
+    /* ------------------------- About You -------------------------- */
+    server.tool(
+      "get_user_context",
+      "Read the About You context: the durable profile that grounds every hunt - sizes, styles and brands loved or avoided, budgets, home and vehicle details, dietary needs, business supply requirements. Free and read-only. Call it before shopping so results actually fit the user.",
+      {},
+      { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
+      async (_args, extra) =>
+        run(async () => {
+          const user = await prisma.user.findUnique({
+            where: { id: userIdFrom(extra) },
+            select: { productContext: true },
+          });
+          return { aboutYou: user?.productContext ?? "" };
+        }),
+    );
+    server.tool(
+      "update_user_context",
+      "Write the About You context. Pass the FULL replacement text (fetch it with get_user_context first, then merge in what you learned - a size, a brand preference, a budget). This is how connected agents keep the user profile current so every future hunt fits.",
+      { content: z.string().max(20000) },
+      { readOnlyHint: false, destructiveHint: false, idempotentHint: true, openWorldHint: false },
+      async ({ content }, extra) =>
+        gated(extra, "user_context", 30, async (userId) => {
+          await prisma.user.update({ where: { id: userId }, data: { productContext: content } });
+          return { updated: true, length: content.length };
+        }),
+    );
+
+    /* ------------------------ Deep shopping ----------------------- */
+    server.tool(
+      "deep_shopping_session",
+      "Start a deep-shopping browser session (Browserbase): a real headless browser for hunts that scraping cannot cover - forums, marketplaces, listings that only render in a browser. Returns a CDP connectUrl your agent drives directly (Playwright/Puppeteer connect over CDP) plus a live debug URL a human can watch. Costs 30 credits per session. Available on paid plans.",
+      {},
+      { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: true },
+      async (_args, extra) =>
+        gated(extra, "deep_shopping", 10, async (userId) => {
+          if (!isBrowserbaseConfigured())
+            throw new OpError("Deep shopping is not configured (BROWSERBASE_API_KEY / BROWSERBASE_PROJECT_ID missing).", 501);
+          const user = await prisma.user.findUnique({ where: { id: userId }, select: { plan: true } });
+          if ((user?.plan ?? "free") === "free")
+            throw new OpError("Deep shopping browser sessions are a paid feature. Upgrade to Plus or Pro (see buy_plan or /pricing).", 403);
+          await ensureCredits(userId, "deep_shopping");
+          const session = await createBrowserSession();
+          await spendCredits(userId, "deep_shopping");
+          const debugUrl = await sessionDebugUrl(session.id);
+          return { ...session, debugUrl };
+        }),
+    );
+
+    /* -------------------- Manufacturer sourcing ------------------- */
+    server.tool(
+      "source_manufacturers",
+      "Source manufacturers and suppliers for a product from a prompt (e.g. 'OEM manufacturers of anodized aluminum water bottles' or 'US wholesale suppliers of oak flooring') via Exa deep research, deduped against the wish list, and save the new ones as sources. Pair with enrich_seller_contact and verify_seller to reach and vet them. Pro plan only. Costs 12 credits per run.",
+      { query: z.string(), count: z.number().int().min(1).max(25).optional() },
+      { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: true },
+      async ({ query, count }, extra) =>
+        gated(extra, "source_manufacturers", 10, async (userId) => {
+          const user = await prisma.user.findUnique({ where: { id: userId }, select: { plan: true } });
+          const plan = user?.plan ?? "free";
+          if (plan !== "pro" && plan !== "beta")
+            throw new OpError("Manufacturer sourcing is a Pro feature. Upgrade to Pro (see buy_plan or /pricing).", 403);
+          return findCompanies(userId, {
+            query: `manufacturers, factories, or wholesale suppliers: ${query}`,
+            count,
+          });
+        }),
     );
 
     /* --------------------------- Memory --------------------------- */
     server.tool(
       "recall",
-      "Recall relevant past context (earlier work and CRM notes) by similarity. Each MCP session is stateless, so call this before assuming you do not know something.",
+      "Recall relevant past context (earlier hunts, saved preferences, wish list notes) by similarity. Each MCP session is stateless, so call this before assuming you do not know something.",
       { query: z.string(), k: z.number().int().min(1).max(20).optional() },
       { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
       async ({ query, k }, extra) => run(() => recallMemory(userIdFrom(extra), query, k)),
     );
     server.tool(
       "remember",
-      "Persist a durable note or fact to long-term memory so a future session can recall it. Use for decisions, preferences, and outreach context worth keeping.",
+      "Persist a durable note or fact to long-term memory so a future session can recall it. Use for purchase decisions, user preferences, and seller context worth keeping.",
       { content: z.string().max(8000), refId: z.string().optional() },
       { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false },
       async ({ content, refId }, extra) =>
@@ -644,23 +718,23 @@ const handler = createMcpHandler(
     );
     server.tool(
       "buy_plan",
-      "Buy a Shopper plan for 30 days with USDC over x402 (starter, pro, or business; cheaper per credit than top-ups for sustained work). TWO STEPS: (1) call with { plan } and NO xPayment for a quote; (2) sign the USDC payment with your x402 client and call again with the same { plan } plus xPayment (base64 X-PAYMENT). Activates the plan and refills credits to its allotment. Idempotent on the on-chain nonce; not recurring (re-buy after 30 days).",
-      { plan: z.enum(["starter", "pro", "business"]), xPayment: z.string().optional() },
+      "Buy a Shopper plan for 30 days with USDC over x402 (plus or pro; cheaper per credit than top-ups for sustained work). TWO STEPS: (1) call with { plan } and NO xPayment for a quote; (2) sign the USDC payment with your x402 client and call again with the same { plan } plus xPayment (base64 X-PAYMENT). Activates the plan and refills credits to its allotment. Idempotent on the on-chain nonce; not recurring (re-buy after 30 days).",
+      { plan: z.enum(["plus", "pro"]), xPayment: z.string().optional() },
       { readOnlyHint: false, destructiveHint: false, idempotentHint: true, openWorldHint: true },
       async ({ plan, xPayment }, extra) =>
         gated(extra, "x402_buy", 20, (userId) => buyPlanViaMcp(userId, plan, xPayment)),
     );
 
     server.tool(
-      "verify_entity",
-      "Verify and enrich a company against authoritative public registries: GLEIF (global LEI), UK Companies House, and SEC EDGAR (US public companies). Adds legal name, LEI, jurisdiction, registration status, officers, and firmographics, with provenance. Free (open/public data, no credits). Matches strictly by legal name, never a same-name stranger; returns 'no record found' rather than guessing.",
+      "verify_seller",
+      "Verify a seller or manufacturer against authoritative public registries: GLEIF (global LEI), UK Companies House, and SEC EDGAR (US public companies). Adds legal name, LEI, jurisdiction, registration status, and officers, with provenance - the scam check before a big purchase or a new supplier. Free (open/public data, no credits). Matches strictly by legal name; returns 'no record found' rather than guessing.",
       { id: z.string() },
       { readOnlyHint: false, destructiveHint: false, idempotentHint: true, openWorldHint: true },
       async ({ id }, extra) => gated(extra, "verify_entity", 20, (userId) => verifyEntity(userId, id)),
     );
     server.tool(
-      "detect_tech",
-      "Detect the technologies a company's website uses (ecommerce platform, CMS, analytics, marketing/CRM/support tools, payments, frameworks, hosting) by fingerprinting its homepage. Free (derived from the public page, no third-party data). Great for technographic targeting. The entity needs a website or domain.",
+      "detect_store_tech",
+      "Detect the technologies a store's website uses (ecommerce platform, CMS, payments, support tools, hosting) by fingerprinting its homepage. Free (derived from the public page). Useful for judging how established a seller is. The record needs a website or domain.",
       { id: z.string() },
       { readOnlyHint: false, destructiveHint: false, idempotentHint: true, openWorldHint: true },
       async ({ id }, extra) => gated(extra, "detect_tech", 20, (userId) => detectEntityTech(userId, id)),
@@ -669,7 +743,7 @@ const handler = createMcpHandler(
     /* ------------------------- Phone calls ------------------------ */
     server.tool(
       "place_call",
-      "Call a contact via the user's connected AgentPhone account: the AI phone agent dials the number and follows your systemPrompt (what to say / the goal). Logs the call on the contact and marks them CONTACTED. Uses the contact's phone unless you pass toNumber (E.164, e.g. +14155551234). Requires AgentPhone connected in Settings.",
+      "Call a seller via the user's connected AgentPhone account: the AI phone agent dials the number and follows your systemPrompt (ask about stock, condition, price, pickup). Logs the call on the seller contact and marks them CONTACTED. Uses the contact's phone unless you pass toNumber (E.164, e.g. +14155551234). Requires AgentPhone connected in Settings.",
       {
         contactId: z.string(),
         systemPrompt: z.string().min(1).max(8000),
@@ -683,7 +757,7 @@ const handler = createMcpHandler(
     );
     server.tool(
       "list_contact_calls",
-      "Get the phone-call history with a contact (direction, numbers, status, duration, transcript, recording), newest first.",
+      "Get the phone-call history with a seller contact (direction, numbers, status, duration, transcript, recording), newest first.",
       { contactId: z.string() },
       { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
       async ({ contactId }, extra) => run(() => listContactCalls(userIdFrom(extra), contactId)),
@@ -697,7 +771,7 @@ const handler = createMcpHandler(
     );
     server.tool(
       "log_call",
-      "Record a phone call on a contact that happened outside Shopper (for context). Does not place a call.",
+      "Record a phone call with a seller that happened outside Shopper (for context). Does not place a call.",
       {
         contactId: z.string(),
         direction: z.enum(["INBOUND", "OUTBOUND"]),
@@ -716,7 +790,7 @@ const handler = createMcpHandler(
     /* ----------------------- Outreach tracking -------------------- */
     server.tool(
       "log_outreach",
-      "Record that you reached out to a contact: stamps when, advances status (defaults to CONTACTED), and logs what you said as an activity. Call this after every outbound message so follow-ups stay reliable.",
+      "Record that you reached out to a seller or supplier: stamps when, advances status (defaults to CONTACTED), and logs what you said as an activity. Call this after every outbound message so follow-ups stay reliable.",
       {
         contactId: z.string(),
         summary: z.string().max(5000),
@@ -730,7 +804,7 @@ const handler = createMcpHandler(
     );
     server.tool(
       "list_due_followups",
-      "List contacts that need a follow-up: in a given status (default CONTACTED) and not contacted in the last N days (default 7), oldest first. This is how you find who to chase next.",
+      "List seller contacts that need a follow-up (quotes you are waiting on, suppliers who have not replied): in a given status (default CONTACTED) and not contacted in the last N days (default 7), oldest first.",
       {
         status: z
           .enum(["NEW", "ENRICHED", "CONTACTED", "REPLIED", "QUALIFIED", "WON", "LOST", "ARCHIVED"])
@@ -743,7 +817,7 @@ const handler = createMcpHandler(
     );
     server.tool(
       "add_activity",
-      "Log a timestamped note, call, or reply on a contact or company without overwriting its notes field.",
+      "Log a timestamped note, call, or reply on a seller contact or seller without overwriting its notes field.",
       {
         contactId: z.string().optional(),
         entityId: z.string().optional(),
@@ -756,7 +830,7 @@ const handler = createMcpHandler(
     );
     server.tool(
       "list_activities",
-      "Get the activity trail (outreach, notes, calls, replies) for a contact or company, newest first.",
+      "Get the activity trail (outreach, notes, calls, replies) for a seller contact or seller, newest first.",
       {
         contactId: z.string().optional(),
         entityId: z.string().optional(),
@@ -768,21 +842,22 @@ const handler = createMcpHandler(
   },
   {
     serverInfo: { name: "shopper", version: "0.1.0" },
-    instructions: `Shopper is a CRM that you, an AI agent, operate end to end with no human. You discover leads, enrich them accurately, organize them, track outreach, and you pay for your own usage when credits run low. Reads and writes to the CRM are free; only actions that pull real data from the outside world (discovery, enrichment, web search) cost credits.
+    instructions: `Shopper is a shopping engine that you, an AI agent, operate end to end for your user. You hunt the web for items they want, watch for new listings, keep their wish list and shopping lists current, source manufacturers (Pro), and pay for your own usage when credits run low. Reads and writes to the wish list are free; only actions that go out to the real web (hunts, scraping, enrichment, browser sessions) cost credits.
 
-THE OPERATING LOOP
-1. Orient. Call get_balance to know your runway, and recall to retrieve relevant past context (this session is stateless). Call search_crm or list_entities / list_contacts before discovering, so you build on existing records instead of duplicating them.
-2. Discover. Add companies with find_companies (research-grade prospecting from a prompt) or maps_leads (local businesses by query plus location). Both dedupe against the CRM and add only new entities. Use google_search or search_web only to read raw web results, never to populate the CRM, and never present a search result as a company.
-3. Enrich. For a promising entity with a domain, call enrich_entity (firmographics; idempotent, so re-enriching is free). For a contact missing linkedin / email / phone, call enrich_contact. Enrich what you will act on, not the whole database; every enrichment costs credits.
-4. Organize. Group not-yet-contacted prospects with build_smart_segment, then create_pipeline to track them through stages.
-5. Track outreach. This is the memory that makes you reliable. When you email a contact, call save_email_context, then log_outreach to stamp when you reached out and advance status. Use list_due_followups to find who to chase next (contacts not touched in N days). Move pipeline entries with update_pipeline_entry, and set conversationStatus to CLOSED when a thread is done so you stop following up. remember any decision or context worth keeping.
-6. Measure and repeat. Use pipeline_metrics to see what is working, then loop back to discovery.
+THE SHOPPING LOOP
+1. Orient. Call get_balance to know your runway, get_user_context to load the user's sizes, tastes, and budgets, and recall for past context (this session is stateless). Call search_wishlist before hunting so you build on saved records instead of duplicating them.
+2. Hunt. Use find_items for comprehensive shopping from a prompt (it searches across stores, marketplaces, and listings via Exa deep research and saves new finds). Use find_local_stores for shopping nearby via Google Maps. Use search_web (Tavily) and google_search to read raw results, check prices, and read reviews - review-and-save with create_source rather than presenting a raw search hit as a vetted find.
+3. Go deep when scraping is not enough. deep_shopping_session gives you a real browser (Browserbase) for forums, marketplaces, and javascript-heavy storefronts - connect over CDP, browse like a person, then save what you find. Paid plans.
+4. Vet before buying. enrich_source for firmographics on an unknown store, verify_seller against public registries (GLEIF, Companies House, SEC EDGAR) before a big purchase or new supplier, detect_store_tech to judge how established a shop is. Prefer a null over a wrong value - never attach data to the wrong seller.
+5. Keep the lists. Wish list: save items and sellers with create_source. Shopping lists: create_shopping_list for anything that needs buying (groceries, a move, auto parts, business supplies), add_to_shopping_list to grow it, check_off_list_item (stage WON) when something is purchased, shopping_list_progress to report status.
+6. Work seller relationships (sourcing). source_manufacturers (Pro) finds factories and wholesale suppliers. extract_seller_details pulls public contact info from a seller site; enrich_seller_contact completes a person's email or phone; place_call has the AI phone agent call a seller about stock or price; save_email_context and log_outreach keep every thread on the record; list_due_followups finds quotes worth chasing.
+7. Learn the user. When you discover a durable fact (a size, a brand they love, a budget ceiling), merge it into update_user_context and remember the decision - every future hunt gets sharper.
 
-ACCURACY IS NON-NEGOTIABLE. Never attach data to the wrong person or company. Enrichment is verified against the contact's name AND their company/domain, so a same-name stranger is never saved; prefer a null over a wrong value. extract_contact_details returns raw site contacts for you to review; save only the ones you can attribute to a real person.
+ACCURACY IS NON-NEGOTIABLE. Never present a listing you did not verify exists, never attach details to the wrong seller, and always carry the price, condition, and URL with a saved item. Prefer "couldn't find it" over a guess.
 
-WHEN YOU RUN OUT OF CREDITS, PAY AND RETRY. Metered tools return a JSON error with "error":"insufficient_credits" carrying a remedy. Do not stall or ask the human. Instead: (1) call buy_credits with no xPayment to get a quote, (2) sign the USDC payment with your x402 client and call buy_credits again with xPayment set, (3) retry the exact call that failed. Top-ups are idempotent, so a retried payment never double-charges. For sustained work, buy_plan is cheaper per credit. Only escalate to the human if buy_credits reports that agent payments are not configured.
+WHEN YOU RUN OUT OF CREDITS, PAY AND RETRY. Metered tools return a JSON error with "error":"insufficient_credits" carrying a remedy. Do not stall or ask the human. Instead: (1) call buy_credits with no xPayment to get a quote, (2) sign the USDC payment with your x402 client and call buy_credits again with xPayment set, (3) retry the exact call that failed. Top-ups are idempotent, so a retried payment never double-charges. For sustained work, buy_plan (plus or pro) is cheaper per credit. Only escalate to the human if buy_credits reports that agent payments are not configured.
 
-Be economical: every external call spends real money. Orient before you discover, dedupe by reading first, enrich only what you will act on, and always advance the record's state so your next session resumes cleanly.`,
+Be economical: every external call spends real money. Orient before you hunt, dedupe by reading first, go deep only when scraping falls short, and always advance the record's state so your next session resumes cleanly.`,
   },
   { basePath: "/api/mcp" },
 );

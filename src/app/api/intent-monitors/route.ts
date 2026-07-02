@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
     const existingCount = await prisma.intentMonitor.count({ where: { userId: user.id } });
     if (existingCount >= allowed) {
       return NextResponse.json(
-        { error: `Your plan allows ${allowed} scheduled monitor${allowed === 1 ? "" : "s"}.` },
+        { error: `Your plan allows ${allowed} Radar scan${allowed === Number(1) ? "" : "s"}. Radar is available on Plus and Pro.` },
         { status: 402 },
       );
     }

@@ -225,7 +225,7 @@ function MessageBubble({
                     id={carousel.id}
                     title={carousel.title}
                     items={carousel.items}
-                    onItemClick={(itemId) => router.push(`/crm/entity/${itemId}`)}
+                    onItemClick={(itemId) => router.push(`/wishlist/entity/${itemId}`)}
                   />
                 ) : null}
                 {citations ? (
@@ -281,8 +281,9 @@ function EmptyState() {
           Hi, I&apos;m Shopper
         </h2>
         <p className="max-w-xs text-sm text-muted-foreground">
-          I search the web, enrich your contacts, and write straight into your
-          CRM. Ask me anything.
+          I hunt products, compare prices, and keep your lists moving. Try
+          &ldquo;Find a pre-owned RTX 4090 under $900&rdquo;, &ldquo;Track Gucci
+          loafers size 10M&rdquo;, or &ldquo;Restock my office supplies list&rdquo;.
         </p>
       </div>
     </motion.div>
@@ -481,7 +482,7 @@ export default function AgentPage() {
               onChange={setInput}
               onSubmit={() => submit(input)}
               disabled={busy}
-              placeholder="Ask Shopper to find, enrich, or update…"
+              placeholder="Ask Shopper to find, track, or restock…"
             />
           </div>
 

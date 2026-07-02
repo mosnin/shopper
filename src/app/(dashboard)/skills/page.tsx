@@ -19,9 +19,10 @@ export default function SkillsPage() {
             </p>
             <h1 className="font-brand mt-2 text-3xl text-foreground sm:text-4xl">Skills</h1>
             <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
-              Ready-made playbooks for operating Shopper. Copy one into your agent or
+              Ready-made playbooks for shopping agents. Copy one into your agent or
               download it as a `.md` file, drop it into your skills folder, and your
-              agent knows exactly how to discover, enrich, and run the CRM.
+              agent knows exactly how to hunt an item, watch a market, source a
+              manufacturer, or work a shopping list.
             </p>
           </div>
         </div>

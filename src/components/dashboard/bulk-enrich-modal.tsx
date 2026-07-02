@@ -9,7 +9,7 @@ import { AsciiField } from "@/components/dashboard/ascii-field";
 type State = "confirm" | "running" | "done";
 
 // Usage-aware confirmation modal with the signature ASCII aesthetic. Warns that
-// bulk enrichment may consume more usage before it runs.
+// filling in details in bulk may consume more usage before it runs.
 export function BulkEnrichModal({
   open,
   count,
@@ -66,7 +66,7 @@ export function BulkEnrichModal({
             <div className="relative z-10 p-6 sm:p-7">
               <div className="flex items-start justify-between">
                 <p className="font-brand text-xs uppercase tracking-[0.25em] text-primary/80">
-                  Shopper // Bulk enrich
+                  Shopper // Fill in details
                 </p>
                 {state !== "running" && (
                   <button
@@ -87,7 +87,7 @@ export function BulkEnrichModal({
                     Done
                   </h2>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    {resultText ?? "Enrichment complete."}
+                    {resultText ?? "Details filled in."}
                   </p>
                   <div className="mt-6 flex justify-end">
                     <Button onClick={onClose}>Close</Button>
@@ -96,7 +96,7 @@ export function BulkEnrichModal({
               ) : (
                 <>
                   <h2 className="font-brand mt-3 text-xl text-foreground">
-                    Enrich {count} {count === 1 ? noun : `${noun}s`}?
+                    Fill in details for {count} {count === 1 ? noun : `${noun}s`}?
                   </h2>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                     This runs live data providers for every selected record and
@@ -111,12 +111,12 @@ export function BulkEnrichModal({
                       {state === "running" ? (
                         <>
                           <Loader2 className="mr-1.5 h-4 w-4 animate-spin" />
-                          Enriching…
+                          Filling in…
                         </>
                       ) : (
                         <>
                           <Sparkles className="mr-1.5 h-4 w-4" />
-                          Enrich {count}
+                          Fill in {count}
                         </>
                       )}
                     </Button>

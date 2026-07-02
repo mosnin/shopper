@@ -56,8 +56,8 @@ export default async function EntityDetailPage({
     { label: "Size", value: entity.size },
   ];
 
-  // Enrichment payloads attached by the Enrich dropdown (firmographics, tech
-  // stack, funding, ...), keyed by aspect. Rendered below so they're visible.
+  // Detail payloads attached when the agent fills in details (store info,
+  // catalog, reviews, ...), keyed by aspect. Rendered below so they're visible.
   const enrichment =
     entity.enrichment && typeof entity.enrichment === "object" && !Array.isArray(entity.enrichment)
       ? (entity.enrichment as Record<string, unknown>)
@@ -66,7 +66,7 @@ export default async function EntityDetailPage({
     ? Object.entries(enrichment).filter(([, v]) => v != null)
     : [];
 
-  // ICP verdict from the deep report, if it has run.
+  // Fit verdict from the deep report, if it has run.
   const deepReport = enrichment?.deepReport as { icpFit?: { isIcp: boolean; score: number; reasoning: string } } | undefined;
   const icp = deepReport?.icpFit;
 
@@ -74,11 +74,11 @@ export default async function EntityDetailPage({
     <div className="space-y-6">
       <FloatIn delay={0}>
         <Link
-          href="/crm?tab=entities"
+          href="/wishlist?tab=entities"
           className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to entities
+          Back to sellers & sources
         </Link>
       </FloatIn>
 
@@ -113,9 +113,9 @@ export default async function EntityDetailPage({
           {icp && (
             <div className={`rounded-2xl border p-4 shadow-sm ${icp.isIcp ? "border-green-500/30 bg-green-500/5" : "border-border bg-card"}`}>
               <div className="flex items-center justify-between">
-                <p className="text-xs uppercase tracking-wide text-muted-foreground">ICP fit</p>
+                <p className="text-xs uppercase tracking-wide text-muted-foreground">Seller fit</p>
                 <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${icp.isIcp ? "bg-green-500/15 text-green-600 dark:text-green-400" : "bg-muted text-muted-foreground"}`}>
-                  {icp.isIcp ? `ICP match · ${icp.score}` : `Not ICP · ${icp.score}`}
+                  {icp.isIcp ? `Good fit · ${icp.score}` : `Weak fit · ${icp.score}`}
                 </span>
               </div>
               <p className="mt-2 text-xs text-muted-foreground">{icp.reasoning}</p>
@@ -176,9 +176,9 @@ export default async function EntityDetailPage({
         <FloatIn delay={0.14} className="lg:col-span-2">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between">
-              <CardTitle className="text-base">Contacts</CardTitle>
+              <CardTitle className="text-base">Seller contacts</CardTitle>
               <Button variant="outline" size="sm" asChild>
-                <Link href={`/crm/new?entityId=${entity.id}`}>
+                <Link href={`/wishlist/new?entityId=${entity.id}`}>
                   <Plus className="mr-1 h-4 w-4" />
                   Add
                 </Link>
@@ -188,15 +188,15 @@ export default async function EntityDetailPage({
               {contacts.length === 0 ? (
                 <EmptyState
                   icon={UsersIcon}
-                  title="No contacts on this entity"
-                  description="Enrich the business to pull its contacts, or add people manually and assign them here."
+                  title="No contacts at this seller"
+                  description="Ask your agent to fill in details to find contacts here, or add people manually and assign them."
                 />
               ) : (
                 <div className="divide-y divide-border">
                   {contacts.map((c) => (
                     <Link
                       key={c.id}
-                      href={`/crm/${c.id}`}
+                      href={`/wishlist/${c.id}`}
                       className="flex items-center justify-between gap-3 py-3 transition-colors hover:bg-muted/40 rounded-lg px-2"
                     >
                       <div className="min-w-0">
@@ -221,13 +221,13 @@ export default async function EntityDetailPage({
         </FloatIn>
       </div>
 
-      {/* Enrichment aspects as a visual bento grid (firmographics, funding,
-          tech stack, traffic, news) - each rendered as real cards/stats, not a
-          raw JSON blob. The deepReport key is surfaced via the ICP card above. */}
+      {/* Filled-in detail aspects as a visual bento grid (store info, catalog,
+          reviews, news) - each rendered as real cards/stats, not a raw JSON
+          blob. The deepReport key is surfaced via the Seller fit card above. */}
       {enrichmentEntries.filter(([k]) => k !== "deepReport").length > 0 && (
         <FloatIn delay={0.18}>
           <div>
-            <h2 className="font-brand text-lg text-foreground">Intelligence</h2>
+            <h2 className="font-brand text-lg text-foreground">Seller details</h2>
             <div className="mt-3 grid gap-4 sm:grid-cols-2">
               {enrichmentEntries
                 .filter(([k]) => k !== "deepReport")

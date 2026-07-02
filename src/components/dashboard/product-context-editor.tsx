@@ -5,15 +5,16 @@ import { motion, AnimatePresence } from "motion/react";
 import { Check, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const PLACEHOLDER = `What you sell, who it's for, and why it wins. The more Shopper knows, the sharper its outreach.
+const PLACEHOLDER = `Who you are and how you like to shop. The more Shopper knows, the sharper its finds.
 
 Example:
-• Product: <what it is, in a sentence>
-• Who it's for (ICP): <industries, company size, roles>
-• The problem you solve: <pain you remove>
-• Why you win: <differentiators vs. alternatives>
-• Proof: <results, customers, metrics>
-• Tone: <how outreach should sound>`;
+• Sizes: <clothing, shoe, ring>
+• Style and brands: <what you love, what to avoid>
+• Budgets: <spend comfort by category>
+• Home: <rooms, dimensions, finishes>
+• Vehicle: <make, model, year, trim>
+• Dietary: <allergies, preferences>
+• Business: <supplies you restock, quantities>`;
 
 export function ProductContextEditor({ initial }: { initial: string }) {
   const [value, setValue] = useState(initial);
@@ -57,7 +58,7 @@ export function ProductContextEditor({ initial }: { initial: string }) {
       />
       <div className="relative">
         <div className="mb-3">
-          <p className="text-sm font-semibold text-foreground">Your product context</p>
+          <p className="text-sm font-semibold text-foreground">About you</p>
         </div>
         <textarea
           value={value}
@@ -68,7 +69,7 @@ export function ProductContextEditor({ initial }: { initial: string }) {
         />
         <div className="mt-4 flex items-center justify-between gap-3">
           <p className="text-xs text-muted-foreground">
-            Shopper reads this before every action - saved to your workspace.
+            Agents read this before every action and can update it over MCP - saved to your workspace.
           </p>
           <div className="flex items-center gap-2">
             <AnimatePresence mode="wait">

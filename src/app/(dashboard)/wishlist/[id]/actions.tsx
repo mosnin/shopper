@@ -39,7 +39,7 @@ export function ContactActions({
       const res = await fetch(`/api/contacts/${contactId}`, {
         method: "DELETE",
       });
-      if (res.ok) router.push("/crm");
+      if (res.ok) router.push("/wishlist");
     } finally {
       setBusy(false);
     }

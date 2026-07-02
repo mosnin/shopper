@@ -1,7 +1,7 @@
 "use client";
 
-// The client component for /welcome. Handles the ICP input form, the SSE
-// stream from /api/welcome, and the live table that fills row by row.
+// The client component for /welcome. Handles the shopping-prompt input form,
+// the SSE stream from /api/welcome, and the live table that fills row by row.
 // No decorative icons. Baby-blue + white brand. Calm typography.
 
 import { useState, useRef, useCallback } from "react";
@@ -20,9 +20,9 @@ type Phase = "idle" | "running" | "done";
 
 // One-tap example prompts so the first run never starts from a blank page.
 const EXAMPLES = [
-  { label: "Series A SaaS, US", value: "Series A SaaS startups with 20 to 100 employees in the US that use Salesforce" },
-  { label: "Fintech hiring SDRs", value: "Series B fintech companies hiring SDRs" },
-  { label: "AI infra startups", value: "AI infrastructure startups that raised funding in the last year" },
+  { label: "Pre-owned GPUs", value: "recently listed pre-owned RTX 4090s in good condition under $1200" },
+  { label: "Designer shoes", value: "Gucci loafers in size 10M under $400" },
+  { label: "Office chairs", value: "ergonomic office chairs for a 10-person office, under $300 each" },
 ];
 
 // --------------------------------------------------------------------------
@@ -100,7 +100,7 @@ export function WelcomeClient({ firstName }: { firstName?: string }) {
     } catch (err) {
       if (err instanceof Error && err.name === "AbortError") return;
       console.error("[welcome] stream error", err);
-      setStatusLine("Something went wrong. You can still use your CRM.");
+      setStatusLine("Something went wrong. You can still use your wish list.");
       setPhase("done");
     }
 
@@ -179,7 +179,7 @@ export function WelcomeClient({ firstName }: { firstName?: string }) {
             {firstName ? `Hello, ${firstName}.` : "Hello."}
           </h1>
           <p className="mt-4 text-base text-muted-foreground sm:text-lg">
-            Tell Shopper who you sell to. In one sentence, it will build your CRM live.
+            Tell Shopper what you&apos;re shopping for. In one sentence, your agent starts the hunt live.
           </p>
         </div>
       </FloatIn>
@@ -193,13 +193,13 @@ export function WelcomeClient({ firstName }: { firstName?: string }) {
                 htmlFor="icp-input"
                 className="mb-3 block text-sm font-medium text-foreground"
               >
-                Describe who you sell to
+                Describe what you&apos;re looking for
               </label>
               <textarea
                 id="icp-input"
                 rows={3}
                 className="w-full resize-none rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring disabled:opacity-50"
-                placeholder="e.g. Series A SaaS startups with 20-100 employees in the US that use Salesforce"
+                placeholder="e.g. recently listed pre-owned RTX 4090s in good condition under $1200"
                 value={icp}
                 onChange={(e) => setIcp(e.target.value)}
                 onKeyDown={handleKeyDown}
@@ -236,7 +236,7 @@ export function WelcomeClient({ firstName }: { firstName?: string }) {
                   disabled={!icp.trim() || phase === "running"}
                   size="lg"
                 >
-                  {phase === "running" ? "Building your CRM..." : "Build my CRM"}
+                  {phase === "running" ? "Shopping..." : "Start shopping"}
                 </Button>
               </div>
             </div>
@@ -267,7 +267,7 @@ export function WelcomeClient({ firstName }: { firstName?: string }) {
       {/* Sample data notice */}
       {hasSamples && companies.length > 0 && (
         <p className="mt-3 text-center text-xs text-muted-foreground">
-          Sample data shown. Configure EXA_API_KEY to discover real companies.
+          Sample data shown. Configure EXA_API_KEY to find real listings.
         </p>
       )}
 
@@ -278,10 +278,10 @@ export function WelcomeClient({ firstName }: { firstName?: string }) {
             <thead>
               <tr className="border-b border-border">
                 <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                  Company
+                  Find
                 </th>
                 <th className="hidden px-4 py-3 text-left text-xs font-medium uppercase tracking-wide text-muted-foreground sm:table-cell">
-                  Industry
+                  Category
                 </th>
                 <th className="hidden px-4 py-3 text-left text-xs font-medium uppercase tracking-wide text-muted-foreground md:table-cell">
                   Location
@@ -318,12 +318,12 @@ export function WelcomeClient({ firstName }: { firstName?: string }) {
             Ready
           </p>
           <h2 className="font-brand text-3xl text-foreground">
-            Your CRM is already{" "}
-            <span className="text-gradient-orange">working</span>.
+            Your agent is already{" "}
+            <span className="text-gradient-orange">shopping</span>.
           </h2>
           {summary.total > 0 && (
             <p className="mt-3 text-sm text-muted-foreground">
-              {summary.total} compan{summary.total === 1 ? "y" : "ies"} found
+              {summary.total} find{summary.total === 1 ? "" : "s"}
               {summary.enriched > 0
                 ? `, ${summary.enriched} enriched`
                 : ""}
@@ -335,7 +335,7 @@ export function WelcomeClient({ firstName }: { firstName?: string }) {
           )}
           <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <Button size="lg" onClick={goToDashboard}>
-              See your CRM
+              See your wish list
             </Button>
             <Link
               href="/integrations"
@@ -345,7 +345,7 @@ export function WelcomeClient({ firstName }: { firstName?: string }) {
             </Link>
           </div>
           <p className="mt-4 text-xs text-muted-foreground">
-            Next: connect an agent over MCP and it keeps your database growing.
+            Next: connect your agent over MCP - it shops the web, keeps your wish list fresh, monitors your shopping lists, and runs radar scans on paid plans.
           </p>
         </motion.div>
       )}
@@ -368,7 +368,7 @@ function CompanyRow({
     found: "Found",
     enriching: "Enriching...",
     enriched: "Enriched",
-    news: "Signal",
+    news: "Fresh news",
     sample: "Sample",
   };
 

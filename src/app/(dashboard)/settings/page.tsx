@@ -77,8 +77,8 @@ export default async function SettingsPage() {
             <CardTitle className="text-base">Billing</CardTitle>
             <CardDescription>
               Your plan and credit meter. Credits are spent only when an agent
-              pulls real data from the outside world; CRM reads and writes are
-              free, and a miss is never charged.
+              pulls real data from the outside world; reading and updating your
+              lists is free, and a miss is never charged.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -109,7 +109,7 @@ export default async function SettingsPage() {
             {billing && !PAID_PLANS.includes(billing.plan) && (
               <div className="mt-4 border-t border-border pt-4">
                 <p className="mb-3 text-sm text-muted-foreground">
-                  Upgrade for a bigger monthly allotment and scheduled monitors.
+                  Upgrade to Plus ($10/mo) or Pro ($20/mo) for a bigger monthly allotment and Radar scans.
                 </p>
                 <BillingUpgrade />
               </div>
@@ -146,7 +146,7 @@ export default async function SettingsPage() {
           <CardHeader>
             <CardTitle className="text-base">AgentMail</CardTitle>
             <CardDescription>
-              Connect your AgentMail account to send and sync email onto contacts.
+              Connect your AgentMail account to send and sync email with sellers.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -161,7 +161,7 @@ export default async function SettingsPage() {
           <CardHeader>
             <CardTitle className="text-base">AgentPhone</CardTitle>
             <CardDescription>
-              Connect your AgentPhone account so agents can call leads and track every call on the contact.
+              Connect your AgentPhone account so agents can call sellers and log every call on the seller record.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -176,9 +176,9 @@ export default async function SettingsPage() {
           <CardHeader>
             <CardTitle className="text-base">Agent notifications webhook</CardTitle>
             <CardDescription>
-              When a scheduled task finishes (intent monitor or background
+              When a scheduled task finishes (a Radar scan or background
               research), Shopper POSTs the new results to this URL so your agent
-              (e.g. openclaw or Hermes) can wake up and act on them.
+              (e.g. OpenClaw or Hermes) can wake up and act on them.
             </CardDescription>
           </CardHeader>
           <CardContent>

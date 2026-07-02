@@ -109,7 +109,7 @@ export function GlobalSearch() {
                       <button
                         key={e.id}
                         type="button"
-                        onClick={() => go(`/crm/entity/${e.id}`)}
+                        onClick={() => go(`/wishlist/entity/${e.id}`)}
                         className="flex w-full flex-col rounded-xl px-3 py-2 text-left transition-colors hover:bg-muted"
                       >
                         <span className="text-sm font-medium text-foreground">{e.name}</span>
@@ -129,7 +129,7 @@ export function GlobalSearch() {
                       <button
                         key={c.id}
                         type="button"
-                        onClick={() => go(`/crm/${c.id}`)}
+                        onClick={() => go(`/wishlist/${c.id}`)}
                         className="flex w-full flex-col rounded-xl px-3 py-2 text-left transition-colors hover:bg-muted"
                       >
                         <span className="text-sm font-medium text-foreground">

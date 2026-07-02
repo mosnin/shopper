@@ -39,6 +39,9 @@ export const CREDIT_COSTS = {
   company_aspect: 30,
   deep_research: 18,
   monitor_run: 10,
+  price_check: 3,
+  deep_shopping: 30,
+  source_manufacturers: 12,
 } as const;
 
 export type CreditAction = keyof typeof CREDIT_COSTS;

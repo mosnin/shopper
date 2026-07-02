@@ -47,7 +47,7 @@ export default function EntityMapPage() {
     return () => { cancelled = true; };
   }, [loadGeo]);
 
-  // Entities inside the current viewport (Airbnb-style list).
+  // Stores inside the current viewport (Airbnb-style list).
   const visible = useMemo(() => {
     if (!viewport) return entities;
     const { south, west, north, east } = viewport;
@@ -65,7 +65,7 @@ export default function EntityMapPage() {
         body: JSON.stringify({ query, lat: viewport?.centerLat, lng: viewport?.centerLng }),
       });
       const d = await res.json().catch(() => ({}));
-      setStatus(res.ok ? `Added ${d.added} ${d.added === 1 ? "company" : "companies"}.` : (d.error ?? "Find failed."));
+      setStatus(res.ok ? `Added ${d.added} ${d.added === 1 ? "store" : "stores"}.` : (d.error ?? "Find failed."));
       if (res.ok) { setQuery(""); await loadGeo(); }
     } finally { setFinding(false); }
   }
@@ -73,8 +73,8 @@ export default function EntityMapPage() {
   return (
     <div className="space-y-5">
       <div className="flex items-center justify-between gap-3">
-        <Link href="/crm?tab=entities" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
-          <ArrowLeft className="h-4 w-4" /> Back to CRM
+        <Link href="/wishlist?tab=entities" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
+          <ArrowLeft className="h-4 w-4" /> Back to Wish List
         </Link>
         {status && <span className="text-xs text-muted-foreground">{status}</span>}
       </div>
@@ -85,14 +85,14 @@ export default function EntityMapPage() {
         </div>
       </FloatIn>
 
-      {/* Find entities here */}
+      {/* Find local stores here */}
       <div className="relative">
         <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
         <Input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={(e) => { if (e.key === "Enter") findHere(); }}
-          placeholder="Find entities here, describe who you want, then Enter…"
+          placeholder="Find stores here, describe what you're looking for, then Enter…"
           className="pl-9 pr-28"
         />
         <Button size="sm" onClick={findHere} disabled={finding || !query.trim()} className="absolute right-1.5 top-1/2 -translate-y-1/2">
@@ -103,11 +103,11 @@ export default function EntityMapPage() {
       {/* Viewport list */}
       <div>
         <p className="mb-2 text-sm text-muted-foreground">
-          {visible.length} {visible.length === 1 ? "company" : "companies"} in view
+          {visible.length} {visible.length === 1 ? "store" : "stores"} in view
         </p>
         <div className="grid gap-2.5 sm:grid-cols-2">
           {visible.map((e) => (
-            <Link key={e.id} href={`/crm/entity/${e.id}`}
+            <Link key={e.id} href={`/wishlist/entity/${e.id}`}
               className="rounded-2xl border border-border bg-card px-4 py-3 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/30">
               <p className="font-medium text-foreground">{e.name}</p>
               <p className="text-sm text-muted-foreground">{[e.industry, e.location].filter(Boolean).join(" · ") || e.domain}</p>
@@ -116,8 +116,8 @@ export default function EntityMapPage() {
         </div>
         {entities.length === 0 && !status && (
           <div className="rounded-2xl border border-dashed border-border bg-card/50 p-10 text-center">
-            <p className="font-brand text-base">No mapped companies yet</p>
-            <p className="mt-1 text-sm text-muted-foreground">Entities with an address appear here once geocoded, or use Find here to add some.</p>
+            <p className="font-brand text-base">No mapped stores yet</p>
+            <p className="mt-1 text-sm text-muted-foreground">Sellers with an address appear here once geocoded, or use Find here to add some.</p>
           </div>
         )}
       </div>

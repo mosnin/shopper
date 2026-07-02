@@ -65,7 +65,7 @@ export default function EntityMap({
           <Popup>
             <div className="text-sm font-medium">{e.name}</div>
             {e.location && <div className="text-xs text-neutral-500">{e.location}</div>}
-            <a href={`/crm/entity/${e.id}`} className="text-xs text-[#412D15] underline">Open</a>
+            <a href={`/wishlist/entity/${e.id}`} className="text-xs text-[#412D15] underline">Open</a>
           </Popup>
         </CircleMarker>
       ))}

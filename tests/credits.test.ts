@@ -17,7 +17,7 @@ describe("credit constants", () => {
   });
 
   it("free is the leanest paid-feature plan; beta covers existing users", () => {
-    expect(PLANS.free.credits).toBeLessThan(PLANS.starter.credits);
+    expect(PLANS.free.credits).toBeLessThan(PLANS.plus.credits);
     expect(PLANS.free.monitors).toBe(0);
     expect(PLANS.beta.credits).toBeGreaterThanOrEqual(PLANS.pro.credits / 2);
   });
@@ -26,7 +26,7 @@ describe("credit constants", () => {
 describe("planFor", () => {
   it("resolves a known plan", () => {
     expect(planFor("pro")).toBe(PLANS.pro);
-    expect(planFor("business")).toBe(PLANS.business);
+    expect(planFor("plus")).toBe(PLANS.plus);
   });
 
   it("falls back to free for null, undefined, or unknown plans", () => {

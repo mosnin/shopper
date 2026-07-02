@@ -499,7 +499,7 @@ export function ContactRows({ contacts }: { contacts: CrmContact[] }) {
       searchPlaceholder="Smart search, describe who you want, then Enter…"
       searchText={(c) => [c.name, c.email, c.title, c.entity?.name, statusLabel(c.status)].filter(Boolean).join(" ")}
       sortOptions={sortOptions}
-      hrefFor={(c) => `/crm/${c.id}`}
+      hrefFor={(c) => `/wishlist/${c.id}`}
       renderRow={(c, score) => (
         <>
           <CrmAvatar src={c.imageUrl} label={c.name || c.email} shape="circle" size={40} />
@@ -544,7 +544,7 @@ export function EntityRows({ entities }: { entities: CrmEntity[] }) {
       searchPlaceholder="Smart search, describe the companies you want, then Enter…"
       searchText={(e) => [e.name, e.industry, e.domain, statusLabel(e.status)].filter(Boolean).join(" ")}
       sortOptions={sortOptions}
-      hrefFor={(e) => `/crm/entity/${e.id}`}
+      hrefFor={(e) => `/wishlist/entity/${e.id}`}
       renderRow={(e, score) => (
         <>
           <CrmAvatar src={e.logoUrl} label={e.name} shape="square" size={40} />

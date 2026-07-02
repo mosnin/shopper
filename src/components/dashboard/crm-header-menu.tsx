@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { MoreVertical, Map, Download, Trash2, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
-// Three-dots menu on the CRM entities tab. Hosts the optional Map view, CSV
+// Three-dots menu on the Wish List sellers & sources tab. Hosts the optional Map view, CSV
 // exports, and a one-tap cleanup for auto-imported (Synthoz webhook) junk records.
 export function CrmHeaderMenu() {
   const [open, setOpen] = useState(false);
@@ -22,7 +22,7 @@ export function CrmHeaderMenu() {
   async function cleanup() {
     if (
       !confirm(
-        "Delete all auto-imported records (from the Synthoz webhook)? This removes the junk companies and contacts that were imported automatically. Records you added or discovered are kept.",
+        "Delete all auto-imported records (from the Synthoz webhook)? This removes the junk sellers and contacts that were imported automatically. Records you added or your agents found are kept.",
       )
     )
       return;
@@ -35,7 +35,7 @@ export function CrmHeaderMenu() {
       });
       const d = await res.json().catch(() => ({}));
       if (res.ok) {
-        alert(`Removed ${d.deletedEntities ?? 0} companies and ${d.deletedContacts ?? 0} contacts.`);
+        alert(`Removed ${d.deletedEntities ?? 0} sellers and ${d.deletedContacts ?? 0} contacts.`);
         setOpen(false);
         router.refresh();
       } else {
@@ -68,7 +68,7 @@ export function CrmHeaderMenu() {
               className="absolute right-0 z-50 mt-1.5 w-56 overflow-hidden rounded-xl border border-border bg-card p-1 shadow-xl"
             >
               <Link
-                href="/crm/map"
+                href="/wishlist/map"
                 onClick={() => setOpen(false)}
                 className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-foreground transition-colors hover:bg-muted"
               >
@@ -89,7 +89,7 @@ export function CrmHeaderMenu() {
                 className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm text-foreground transition-colors hover:bg-muted"
               >
                 <Download className="h-4 w-4 text-muted-foreground" />
-                Export companies (CSV)
+                Export sellers (CSV)
               </button>
               <button
                 type="button"

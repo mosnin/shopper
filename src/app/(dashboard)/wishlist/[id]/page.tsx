@@ -42,7 +42,7 @@ export default async function ContactDetailPage({
     orderBy: { sentAt: "desc" },
   });
 
-  // Recent activity trail (notes, outreach, calls) - fed by the QuickNote
+  // Recent activity trail (notes, messages, calls) - fed by the QuickNote
   // morph surface and the agent's log_outreach/add_activity tools.
   const activities = await prisma.activity.findMany({
     where: { contactId: id },
@@ -52,7 +52,7 @@ export default async function ContactDetailPage({
 
   const provenance = await getProvenanceMap("contact", id);
 
-  // Which core fields are still missing (drives both the prominent Enrich
+  // Which core fields are still missing (drives both the prominent fill-in
   // button on the status card and the per-field Find buttons in Details).
   const missing = [
     !contact.linkedin ? ("linkedin" as const) : null,
@@ -60,7 +60,7 @@ export default async function ContactDetailPage({
     !contact.phone ? ("phone" as const) : null,
   ].filter((f): f is "linkedin" | "email" | "phone" => f !== null);
 
-  // Fields with optional provenance metadata. Only enriched fields carry
+  // Fields with optional provenance metadata. Only auto-filled fields carry
   // provenance (title, company, location are usually manually entered).
   const fields: { label: string; value: string | null; href?: string; provenanceField?: string }[] = [
     { label: "Title", value: contact.title },
@@ -93,11 +93,11 @@ export default async function ContactDetailPage({
     <div className="space-y-6">
       <FloatIn delay={0}>
         <Link
-          href="/crm"
+          href="/wishlist"
           className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to CRM
+          Back to Wish List
         </Link>
       </FloatIn>
 
@@ -117,7 +117,7 @@ export default async function ContactDetailPage({
               <div className="mt-1 flex flex-wrap items-center gap-x-3 text-sm text-muted-foreground">
                 {contact.entity && (
                   <Link
-                    href={`/crm/entity/${contact.entity.id}`}
+                    href={`/wishlist/entity/${contact.entity.id}`}
                     className="text-primary underline-offset-4 hover:underline"
                   >
                     {contact.entity.name}
@@ -154,7 +154,7 @@ export default async function ContactDetailPage({
               ))}
               {fields.every((f) => !f.value && !f.provenanceField) && (
                 <p className="text-sm text-muted-foreground">
-                  No details yet. Enrich this contact to fill them in.
+                  No details yet. Ask your agent to fill in details for this contact.
                 </p>
               )}
               <ContactEnrich contactId={contact.id} missing={missing} />

@@ -32,28 +32,28 @@ type DockItem = { label: string; href: string; icon: LucideIcon; accent?: boolea
 
 const dockItems: DockItem[] = [
   { label: "Home", href: "/dashboard", icon: Home },
-  { label: "Discover", href: "/discover", icon: Radar },
-  { label: "CRM", href: "/crm", icon: Users },
+  { label: "Shop", href: "/shop", icon: Radar },
+  { label: "Wish List", href: "/wishlist", icon: Users },
   { label: "Agent", href: "/agent", icon: Bot, accent: true },
-  { label: "Context", href: "/product-context", icon: BookOpen },
+  { label: "About You", href: "/about-you", icon: BookOpen },
 ];
 
 // ── Launchpad tiles ─────────────────────────────────────────────────────────
 type Tile = { label: string; href: string; description: string; highlight?: boolean };
 
 const launchpadTiles: Tile[] = [
-  { label: "Dashboard", href: "/dashboard", description: "Your CRM at a glance - pipeline health, recent activity, and agent status." },
-  { label: "Discover", href: "/discover", description: "AI-powered lead discovery - find the right people before they find you." },
-  { label: "CRM", href: "/crm", description: "Your contact and entity database - enriched, organised, and always current." },
-  { label: "Agent", href: "/agent", description: "Talk to your agent - search, enrich, and orchestrate your pipeline in plain language.", highlight: true },
-  { label: "Radar", href: "/radar", description: "Scheduled scans that watch for new prospects and intent signals while you sleep." },
-  { label: "Field", href: "/field", description: "Build segments and run outreach pipelines - track every deal from new to won." },
-  { label: "Skills", href: "/skills", description: "Ready-made agent playbooks - discover, enrich, clean, and monitor on demand." },
-  { label: "Product Context", href: "/product-context", description: "Ground your agents in your product - positioning, ICP, and message fit." },
+  { label: "Dashboard", href: "/dashboard", description: "Your shopping at a glance - active hunts, recent finds, and agent status." },
+  { label: "Shop", href: "/shop", description: "AI-powered shopping - send agents to hunt the web for exactly what you want." },
+  { label: "Wish List", href: "/wishlist", description: "Every item you want in one place - listings, prices, and sellers, always current." },
+  { label: "Agent", href: "/agent", description: "Talk to your agent - hunt items, compare prices, and manage your lists in plain language.", highlight: true },
+  { label: "Radar", href: "/radar", description: "Standing scans that watch for the exact items you want while you sleep. Paid plans." },
+  { label: "Shopping Lists", href: "/shopping-list", description: "Groceries, moves, auto parts, supplies - agents monitor the list and check off purchases." },
+  { label: "Skills", href: "/skills", description: "Ready-made agent playbooks - hunt, compare, source, and monitor on demand." },
+  { label: "About You", href: "/about-you", description: "Ground your agents in you - sizes, tastes, budgets, and standing preferences." },
   { label: "Settings", href: "/settings", description: "Account, API keys, workspace, and integration preferences." },
 ];
 
-const capabilities = ["Discover", "Enrich", "Converse", "Close"];
+const capabilities = ["Hunt", "Compare", "Watch", "Buy"];
 
 function isActivePath(pathname: string, href: string) {
   if (href === "/dashboard") return pathname === "/dashboard";

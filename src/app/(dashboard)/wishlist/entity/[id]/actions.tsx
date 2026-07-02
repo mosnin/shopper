@@ -131,7 +131,7 @@ export function EntityActions({
     setBusy(true);
     try {
       const res = await fetch(`/api/entities/${entityId}`, { method: "DELETE" });
-      if (res.ok) router.push("/crm?tab=entities");
+      if (res.ok) router.push("/wishlist?tab=entities");
     } finally {
       setBusy(false);
     }

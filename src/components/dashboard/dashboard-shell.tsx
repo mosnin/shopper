@@ -90,12 +90,12 @@ const ShopperLogoIcon: NavIcon = ({ className }) => <LogoMark className={classNa
 
 export const NAV_ITEMS: NavItem[] = [
   { label: "Home", href: "/dashboard", icon: Home },
-  { label: "Discover", href: "/discover", icon: Telescope },
+  { label: "Shop", href: "/shop", icon: Telescope },
   { label: "Radar", href: "/radar", icon: Radar },
-  { label: "CRM", href: "/crm", icon: Users },
-  { label: "Field", href: "/field", icon: Crosshair },
+  { label: "Wish List", href: "/wishlist", icon: Users },
+  { label: "Shopping Lists", href: "/shopping-list", icon: Crosshair },
   { label: "Shopper", href: "/agent", icon: ShopperLogoIcon },
-  { label: "Context", href: "/product-context", icon: BookOpen },
+  { label: "About You", href: "/about-you", icon: BookOpen },
   { label: "Settings", href: "/settings", icon: Settings },
 ];
 
@@ -113,44 +113,44 @@ const LAUNCHPAD_TILES: Tile[] = [
     label: "Dashboard",
     href: "/dashboard",
     description:
-      "Your CRM at a glance - pipeline health, recent activity, and agent status.",
+      "Your shopping at a glance - active hunts, recent finds, and agent status.",
   },
   {
-    label: "Discover",
-    href: "/discover",
+    label: "Shop",
+    href: "/shop",
     description:
-      "AI-powered lead discovery - find the right people before they find you.",
+      "AI-powered shopping - send agents to hunt the web for exactly what you want.",
   },
   {
-    label: "CRM",
-    href: "/crm",
+    label: "Wish List",
+    href: "/wishlist",
     description:
-      "Your contact and entity database - enriched, organised, and always current.",
+      "Every item you want in one place - listings, prices, and sellers, always current.",
   },
   {
     label: "Shopper",
     href: "/agent",
     description:
-      "Talk to Shopper, your agent. Search, enrich, and orchestrate your pipeline in plain language.",
+      "Talk to Shopper, your agent. Hunt items, compare prices, and manage your lists in plain language.",
     highlight: true,
   },
   {
-    label: "Product Context",
-    href: "/product-context",
+    label: "About You",
+    href: "/about-you",
     description:
-      "Ground your agents in your product - positioning, ICP, and message fit.",
+      "Ground your agents in you - sizes, tastes, budgets, and standing preferences.",
   },
   {
     label: "Radar",
     href: "/radar",
     description:
-      "Scheduled scans for in-market signals. Auto-add new records, or review run history.",
+      "Standing scans for the items you are hunting - fresh listings found while you sleep. Paid plans.",
   },
   {
-    label: "Field",
-    href: "/field",
+    label: "Shopping Lists",
+    href: "/shopping-list",
     description:
-      "Customer segments + agentic pipelines. Build a segment from a prompt, then work the deals.",
+      "Groceries, a move, auto parts, business supplies - your agent monitors the list and checks off what is bought.",
   },
   {
     label: "Skills",

@@ -5,19 +5,19 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { AsciiField } from "@/components/dashboard/ascii-field";
 
 const WORDS = [
-  "Digging",
-  "Pulling",
+  "Hunting",
   "Searching",
-  "Enriching",
+  "Scanning listings",
+  "Comparing prices",
   "Cross-referencing",
-  "Verifying",
-  "Mapping",
+  "Verifying sellers",
+  "Bargain-spotting",
 ];
 
 const spring = [0.16, 1, 0.3, 1] as const;
 
 /**
- * DiscoverWorking - the premium "Shopper is thinking" loader shown while
+ * DiscoverWorking - the premium "Shopper is hunting" loader shown while
  * /api/discover is in flight. Cycles action words with a blur+rise morph,
  * over a soft ASCII field backdrop. Respects prefers-reduced-motion.
  */

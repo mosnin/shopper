@@ -94,7 +94,7 @@ type Action =
 const CATEGORIES: Category[] = [
   {
     id: "web",
-    label: "Web intelligence",
+    label: "Web shopping",
     tools: [
       {
         id: "web-search",
@@ -104,7 +104,7 @@ const CATEGORIES: Category[] = [
         saveAs: "link",
         badge: "Default",
         fields: [
-          { key: "query", label: "Query", placeholder: "nail salons in Miami" },
+          { key: "query", label: "Query", placeholder: "vintage leather sofas for sale near Miami" },
         ],
       },
       {
@@ -114,7 +114,7 @@ const CATEGORIES: Category[] = [
         body: "Pull structured Google search results via Bright Data.",
         saveAs: "link",
         fields: [
-          { key: "query", label: "Query", placeholder: "CRM software alternatives" },
+          { key: "query", label: "Query", placeholder: "best price on Dyson V15" },
           { key: "country", label: "Country code", placeholder: "us", optional: true },
         ],
       },
@@ -122,59 +122,59 @@ const CATEGORIES: Category[] = [
         id: "scrape-url",
         icon: BookOpen,
         title: "Scrape URL",
-        body: "Extract clean markdown from any URL, bypassing anti-bot protection.",
+        body: "Extract clean listings, prices, and details from any URL, bypassing anti-bot protection.",
         saveAs: "raw",
         fields: [
-          { key: "url", label: "URL", placeholder: "https://acme.com/about" },
+          { key: "url", label: "URL", placeholder: "https://store.com/product/123" },
         ],
       },
       {
         id: "crawl-site",
         icon: Network,
-        title: "Crawl site",
-        body: "Crawl an entire site and extract content from every page.",
+        title: "Crawl store",
+        body: "Crawl an entire store and extract listings from every page.",
         saveAs: "raw",
         fields: [
-          { key: "url", label: "Site URL", placeholder: "https://acme.com" },
+          { key: "url", label: "Store URL", placeholder: "https://store.com" },
         ],
       },
       {
         id: "analyze-site",
         icon: ScanSearch,
-        title: "Analyze website",
-        body: "Firecrawl deep-reads a company site and pulls the people on it as contacts.",
+        title: "Analyze store site",
+        body: "Firecrawl deep-reads a store's site and pulls the sellers behind it as contacts.",
         saveAs: "contact",
         badge: "Firecrawl",
         fields: [
-          { key: "url", label: "Company website", placeholder: "https://acme.com" },
+          { key: "url", label: "Store website", placeholder: "https://store.com" },
         ],
       },
       {
         id: "apify-serp",
         icon: Globe,
         title: "Google search",
-        body: "Pull organic Google results via Apify and refine them into companies.",
+        body: "Pull organic Google results via Apify and refine them into stores.",
         saveAs: "link",
         badge: "Apify",
         fields: [
-          { key: "query", label: "Query", placeholder: "boutique marketing agencies in Chicago" },
+          { key: "query", label: "Query", placeholder: "boutique furniture stores in Chicago" },
         ],
       },
     ],
   },
   {
     id: "company",
-    label: "Company intelligence",
+    label: "Store & seller intelligence",
     tools: [
       {
         id: "maps-leads",
         icon: MapPin,
-        title: "Local business leads",
-        body: "Find local businesses on Google Maps via Apify - name, website, phone, and address, straight into your CRM.",
+        title: "Find local stores",
+        body: "Find local stores on Google Maps via Apify - name, website, phone, and address, straight into your wish list.",
         saveAs: "entity",
         badge: "Apify",
         fields: [
-          { key: "query", label: "What to find", placeholder: "dentists" },
+          { key: "query", label: "What to find", placeholder: "furniture stores" },
           { key: "location", label: "Location", placeholder: "Austin, TX" },
           {
             key: "numResults",
@@ -192,12 +192,12 @@ const CATEGORIES: Category[] = [
       {
         id: "search-companies",
         icon: Building2,
-        title: "Search companies",
-        body: "Filter Explorium's database by country, industry, and size.",
+        title: "Search suppliers",
+        body: "Filter Explorium's business database by country, industry, and size to find suppliers and manufacturers.",
         saveAs: "entity",
         fields: [
           { key: "country", label: "Country code", placeholder: "us", optional: true },
-          { key: "industry", label: "Industry", placeholder: "SaaS", optional: true },
+          { key: "industry", label: "Industry", placeholder: "furniture", optional: true },
           { key: "size", label: "Company size", placeholder: "1-50", optional: true },
         ],
       },
@@ -205,79 +205,79 @@ const CATEGORIES: Category[] = [
         id: "enrich-domain",
         icon: BarChart2,
         title: "Enrich by domain",
-        body: "Give a company domain, get a full firmographic profile from Explorium.",
+        body: "Give a store's domain, get a full business profile from Explorium.",
         saveAs: "entity",
         fields: [
-          { key: "domain", label: "Company domain", placeholder: "acme.com" },
+          { key: "domain", label: "Store domain", placeholder: "store.com" },
         ],
       },
       {
         id: "company-funding",
         icon: TrendingUp,
         title: "Funding & acquisition",
-        body: "Funding rounds, investors, and acquisition history for any company.",
+        body: "Funding rounds, investors, and acquisition history for any brand or seller.",
         saveAs: "entity",
         fields: [
-          { key: "domain", label: "Company domain", placeholder: "acme.com" },
+          { key: "domain", label: "Store domain", placeholder: "store.com" },
         ],
       },
       {
         id: "tech-stack",
         icon: Cpu,
         title: "Tech stack",
-        body: "Discover the technologies a company runs, sourced by Explorium.",
+        body: "Discover the technologies a store runs, sourced by Explorium.",
         saveAs: "entity",
         fields: [
-          { key: "domain", label: "Company domain", placeholder: "acme.com" },
+          { key: "domain", label: "Store domain", placeholder: "store.com" },
         ],
       },
       {
         id: "company-news",
         icon: Zap,
-        title: "Company news",
-        body: "Recent news and signals for a company via Pipe0.",
+        title: "Store news",
+        body: "Recent news and signals for a store or brand via Pipe0.",
         saveAs: "link",
         fields: [
-          { key: "domain", label: "Company domain", placeholder: "acme.com" },
-          { key: "companyName", label: "Company name", placeholder: "Acme Inc.", optional: true },
+          { key: "domain", label: "Store domain", placeholder: "store.com" },
+          { key: "companyName", label: "Store name", placeholder: "Acme Home Goods", optional: true },
         ],
       },
       {
         id: "company-lookalikes",
         icon: ScanSearch,
-        title: "Similar companies",
-        body: "Find companies that look like your best customers, via Explorium.",
+        title: "Similar stores",
+        body: "Find stores like the ones you already love, via Explorium.",
         saveAs: "entity",
         fields: [
-          { key: "domain", label: "Company domain", placeholder: "acme.com" },
+          { key: "domain", label: "Store domain", placeholder: "store.com" },
         ],
       },
     ],
   },
   {
     id: "people",
-    label: "People & contacts",
+    label: "Sellers & contacts",
     tools: [
       {
         id: "contact-info",
         icon: Mail,
-        title: "Extract contact details",
-        body: "Apify scrapes a company site for emails, phones, and socials, deduped and saved as contacts.",
+        title: "Extract seller contacts",
+        body: "Apify scrapes a store's site for emails, phones, and socials, deduped and saved as contacts.",
         saveAs: "contact",
         badge: "Apify",
         fields: [
-          { key: "url", label: "Company website", placeholder: "https://acme.com" },
+          { key: "url", label: "Store website", placeholder: "https://store.com" },
         ],
       },
       {
         id: "find-people",
         icon: UserSearch,
-        title: "Find people at company",
-        body: "Explorium prospect search - filter by title, department, or seniority.",
+        title: "Find people at a seller",
+        body: "Explorium people search - filter by title, department, or seniority to reach the right person.",
         saveAs: "contact",
         fields: [
-          { key: "domain", label: "Company domain", placeholder: "acme.com" },
-          { key: "jobTitle", label: "Job title", placeholder: "VP of Sales", optional: true },
+          { key: "domain", label: "Store domain", placeholder: "store.com" },
+          { key: "jobTitle", label: "Job title", placeholder: "Sales Manager", optional: true },
           { key: "department", label: "Department", placeholder: "Sales", optional: true },
           { key: "level", label: "Level", placeholder: "vp", optional: true },
         ],
@@ -286,43 +286,43 @@ const CATEGORIES: Category[] = [
         id: "find-email",
         icon: Mail,
         title: "Find work email",
-        body: "Pipe0's 50-provider waterfall - give a name and domain, get a verified email.",
+        body: "Pipe0's 50-provider waterfall - give a name and domain, get a verified email for a seller or supplier.",
         saveAs: "contact",
         fields: [
           { key: "firstName", label: "First name", placeholder: "Jane" },
           { key: "lastName", label: "Last name", placeholder: "Doe" },
-          { key: "domain", label: "Company domain", placeholder: "acme.com" },
-          { key: "companyName", label: "Company name", placeholder: "Acme Inc.", optional: true },
+          { key: "domain", label: "Store domain", placeholder: "store.com" },
+          { key: "companyName", label: "Store name", placeholder: "Acme Home Goods", optional: true },
         ],
       },
       {
         id: "find-mobile",
         icon: Phone,
         title: "Find mobile number",
-        body: "Look up a direct mobile number for any professional via Pipe0.",
+        body: "Look up a direct mobile number for a seller or supplier rep via Pipe0.",
         saveAs: "contact",
         fields: [
           { key: "firstName", label: "First name", placeholder: "Jane" },
           { key: "lastName", label: "Last name", placeholder: "Doe" },
-          { key: "domain", label: "Company domain", placeholder: "acme.com" },
-          { key: "companyName", label: "Company name", placeholder: "Acme Inc.", optional: true },
+          { key: "domain", label: "Store domain", placeholder: "store.com" },
+          { key: "companyName", label: "Store name", placeholder: "Acme Home Goods", optional: true },
         ],
       },
     ],
   },
   {
     id: "prospecting",
-    label: "Prospecting",
+    label: "Item hunting",
     tools: [
       {
         id: "find-entities",
         icon: Radar,
-        title: "Find companies",
-        body: "Describe your ideal customer; Exa deep-researches a list of matching companies with full details. Add them one-by-one or all at once.",
+        title: "Find items",
+        body: "Describe what you want to buy; Exa deep-researches matching listings and sellers with full details. Add them one-by-one or all at once.",
         saveAs: "entity",
         badge: "Exa",
         fields: [
-          { key: "query", label: "Describe the companies you want", placeholder: "Series A fintech startups in NYC using Stripe" },
+          { key: "query", label: "Describe the items you want", placeholder: "pre-owned RTX 4090s in good condition under $1200" },
           {
             key: "numResults",
             label: "How many to find",
@@ -341,17 +341,17 @@ const CATEGORIES: Category[] = [
   },
   {
     id: "intent",
-    label: "Intent intelligence",
+    label: "Fresh listings",
     tools: [
       {
         id: "intent-scan",
         icon: Radar,
-        title: "Intent scanner",
-        body: "Exa neural search - find companies and people actively looking for a product like yours.",
+        title: "Listing scanner",
+        body: "Exa neural search - find fresh listings and sellers matching exactly what you want.",
         saveAs: "entity",
         badge: "Exa",
         fields: [
-          { key: "query", label: "What are you selling?", placeholder: "CRM software for sales teams" },
+          { key: "query", label: "What are you looking for?", placeholder: "Gucci loafers size 10M under $400" },
           {
             key: "category",
             label: "Result type",
@@ -360,7 +360,7 @@ const CATEGORIES: Category[] = [
             type: "select",
             options: [
               { value: "", label: "Any" },
-              { value: "company", label: "Companies" },
+              { value: "company", label: "Stores" },
               { value: "news", label: "News" },
               { value: "personal site", label: "Personal sites" },
               { value: "linkedin profile", label: "LinkedIn" },
@@ -378,21 +378,21 @@ const CATEGORIES: Category[] = [
         id: "deep-research",
         icon: BookOpen,
         title: "Deep research",
-        body: "Linkup exhaustive research - get a sourced answer on any topic, person, or company.",
+        body: "Linkup exhaustive research - get a sourced answer on any product, brand, or seller.",
         saveAs: "link",
         badge: "Linkup",
         fields: [
-          { key: "query", label: "Research query", placeholder: "Who are the key decision makers at Stripe?" },
+          { key: "query", label: "Research query", placeholder: "Best marketplaces for used camera lenses?" },
         ],
       },
       {
         id: "quick-research",
         icon: Search,
         title: "Quick research",
-        body: "Fast Linkup search - standard depth, good for recent news or overview.",
+        body: "Fast Linkup search - standard depth, good for price checks or a quick overview.",
         saveAs: "link",
         fields: [
-          { key: "query", label: "Search query", placeholder: "Latest funding news at OpenAI" },
+          { key: "query", label: "Search query", placeholder: "Latest price drops on OLED TVs" },
         ],
       },
     ],
@@ -651,7 +651,7 @@ function RecentResults() {
           const sub = item.kind === "contact"
             ? [item.title, item.company].filter(Boolean).join(" · ")
             : item.domain ?? item.location ?? "";
-          const href = item.kind === "contact" ? `/crm/${item.id}` : `/crm/entity/${item.id}`;
+          const href = item.kind === "contact" ? `/wishlist/${item.id}` : `/wishlist/entity/${item.id}`;
           return (
             <motion.div
               key={item.id}
@@ -664,7 +664,7 @@ function RecentResults() {
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">{item.kind}</span>
                   {(item.source === "intent-monitor" || item.source === "exa-webhook") && (
-                    <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-medium text-primary">intent</span>
+                    <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-medium text-primary">radar</span>
                   )}
                   {item.source === "research-schedule" && (
                     <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium text-muted-foreground">research</span>
@@ -725,12 +725,12 @@ function ScheduleMonitorPanel({ query, toolId, onClose }: { query: string; toolI
         <div>
           <p className="font-brand text-sm text-foreground flex items-center gap-1.5">
             <CalendarClock className="h-4 w-4 text-primary" />
-            {isIntent ? "Schedule intent monitor" : "Schedule research"}
+            {isIntent ? "Schedule a radar scan" : "Schedule research"}
           </p>
           <p className="text-xs text-muted-foreground mt-0.5">
             {isIntent
-              ? "Exa will run this search on a schedule and add new results to your CRM automatically."
-              : "Linkup will run deep research on a schedule and update your CRM."}
+              ? "Exa will run this search on a schedule and add new finds to your wish list automatically."
+              : "Linkup will run deep research on a schedule and update your wish list."}
           </p>
         </div>
         <button type="button" onClick={onClose} className="text-muted-foreground hover:text-foreground">
@@ -740,12 +740,12 @@ function ScheduleMonitorPanel({ query, toolId, onClose }: { query: string; toolI
 
       {done ? (
         <p className="text-sm text-primary flex items-center gap-1.5">
-          <Check className="h-4 w-4" /> Scheduled - results will appear in your CRM automatically.
+          <Check className="h-4 w-4" /> Scheduled - new finds will appear in your wish list automatically.
         </p>
       ) : (
         <div className="space-y-3">
           <div>
-            <label className="text-xs text-muted-foreground mb-1 block">Monitor name (optional)</label>
+            <label className="text-xs text-muted-foreground mb-1 block">Scan name (optional)</label>
             <Input value={name} onChange={(e) => setName(e.target.value)} placeholder={query.slice(0, 50)} />
           </div>
           <div>
@@ -769,7 +769,7 @@ function ScheduleMonitorPanel({ query, toolId, onClose }: { query: string; toolI
   );
 }
 
-// ─── CRM picker (select an existing entity/contact to enrich) ────────────────
+// ─── wish list picker (select an existing store/seller to enrich) ────────────
 
 type PickEntity = { id: string; name?: string | null; domain?: string | null; website?: string | null };
 type PickContact = { id: string; name?: string | null; email?: string | null; company?: string | null; website?: string | null };
@@ -828,7 +828,7 @@ function CrmPicker({
         className="inline-flex items-center gap-1.5 text-sm text-primary hover:text-primary/80 transition-colors"
       >
         <Building2 className="h-3.5 w-3.5" />
-        {type === "entity" ? "Select a company from your CRM" : "Select a contact from your CRM"}
+        {type === "entity" ? "Select a store from your wish list" : "Select a seller from your wish list"}
         <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", open && "rotate-180")} />
       </button>
 
@@ -845,7 +845,7 @@ function CrmPicker({
               <Input
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
-                placeholder={`Search ${type === "entity" ? "companies" : "contacts"}…`}
+                placeholder={`Search ${type === "entity" ? "stores" : "sellers"}…`}
                 className="mb-2"
               />
               <div className="max-h-56 overflow-y-auto">
@@ -853,7 +853,7 @@ function CrmPicker({
                   <p className="px-2 py-3 text-sm text-muted-foreground">Loading…</p>
                 ) : filtered.length === 0 ? (
                   <p className="px-2 py-3 text-sm text-muted-foreground">
-                    {items.length === 0 ? `No ${type === "entity" ? "companies" : "contacts"} yet.` : "No matches."}
+                    {items.length === 0 ? `No ${type === "entity" ? "stores" : "sellers"} yet.` : "No matches."}
                   </p>
                 ) : (
                   filtered.map((it) => (
@@ -902,7 +902,7 @@ export default function DiscoverPage() {
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        dispatch({ type: "FAIL", error: data?.error ?? "Discovery failed. Please try again." });
+        dispatch({ type: "FAIL", error: data?.error ?? "Search failed. Please try again." });
         return;
       }
       if (data?.queued) { dispatch({ type: "QUEUED" }); return; }
@@ -928,9 +928,9 @@ export default function DiscoverPage() {
 
   const canSchedule = active && (active.id === "intent-scan" || active.id === "deep-research" || active.id === "quick-research");
 
-  // Which CRM record (if any) this tool can be pre-filled from. Any tool scoped
-  // to a company (domain or url field) can attach an entity; people tools attach
-  // a contact.
+  // Which wish list record (if any) this tool can be pre-filled from. Any tool
+  // scoped to a store (domain or url field) can attach an entity; seller tools
+  // attach a contact.
   const hasField = (k: string) => active?.fields.some((f) => f.key === k) ?? false;
   const pickType: "entity" | "contact" | null = !active
     ? null
@@ -965,13 +965,13 @@ export default function DiscoverPage() {
       <FloatIn>
         <div className="flex items-center justify-between gap-4">
           <div>
-            <h1 className="font-brand text-2xl sm:text-3xl">Discover</h1>
+            <h1 className="font-brand text-2xl sm:text-3xl">Shop</h1>
             <p className="text-muted-foreground mt-0.5 text-sm">
-              Pull real company &amp; contact data, then drop it straight into your CRM.
+              Find items, stores &amp; sellers across the web, then drop them straight into your wish list.
             </p>
           </div>
           <Button variant="outline" asChild>
-            <Link href="/crm/new">
+            <Link href="/wishlist/new">
               <Plus className="mr-1 h-4 w-4" />
               Add manually
             </Link>
@@ -1177,7 +1177,7 @@ export default function DiscoverPage() {
               </motion.div>
               <p className="font-brand text-lg text-foreground">Processing</p>
               <p className="text-muted-foreground mt-1 text-sm">
-                Your request is queued. Results will appear in your CRM automatically once ready.
+                Your request is queued. Finds will appear in your wish list automatically once ready.
               </p>
               <Button variant="outline" className="mt-5 rounded-full" onClick={() => dispatch({ type: "OPEN_TOOL", tool: active })}>
                 Run another
@@ -1350,7 +1350,7 @@ function EnrichmentResult({ env }: { env: Record<string, unknown> }) {
       });
       const d = await res.json().catch(() => ({}));
       if (!res.ok) { setMsg(d?.error ?? "Failed to attach."); setState("error"); return; }
-      setMsg(d.created ? "Created entity & enriched" : "Enriched existing entity");
+      setMsg(d.created ? "Added to wish list & enriched" : "Enriched existing record");
       setState("done");
     } catch {
       setMsg("Network error.");
@@ -1383,7 +1383,7 @@ function EnrichmentResult({ env }: { env: Record<string, unknown> }) {
               ) : (
                 <>
                   <Plus className="mr-1 h-3.5 w-3.5" />
-                  Add &amp; enrich entity
+                  Add &amp; enrich store
                 </>
               )}
             </Button>
@@ -1492,7 +1492,7 @@ function EntityFinderResults({ companies }: { companies: Record<string, unknown>
   if (list.length === 0) {
     return (
       <div className="rounded-2xl border border-border bg-card p-10 text-center">
-        <p className="font-brand text-lg">No companies found</p>
+        <p className="font-brand text-lg">Nothing found</p>
         <p className="text-muted-foreground mt-1 text-sm">Try a more specific description.</p>
       </div>
     );
@@ -1569,7 +1569,7 @@ function EntityFinderResults({ companies }: { companies: Record<string, unknown>
 
               <div className="shrink-0">
                 {state === "incrm" ? (
-                  <Button size="sm" variant="outline" disabled>In CRM</Button>
+                  <Button size="sm" variant="outline" disabled>On wish list</Button>
                 ) : state === "added" ? (
                   <Button size="sm" variant="outline" disabled>
                     <Check className="mr-1 h-3.5 w-3.5 text-green-500" />Added
@@ -1845,7 +1845,7 @@ function AddAction({
         )}
         {!isDone && (
           <motion.div key="action" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }} className="flex flex-col items-end gap-1.5">
-            {isUpdate && actionState === "idle" && <p className="text-muted-foreground max-w-[140px] text-right text-xs leading-tight">Already in CRM</p>}
+            {isUpdate && actionState === "idle" && <p className="text-muted-foreground max-w-[140px] text-right text-xs leading-tight">Already on wish list</p>}
             <Button size="sm" variant={isUpdate ? "outline" : "default"} onClick={handleAction} disabled={isSaving}
               className={cn(isSaving && "opacity-70", isUpdate && "border-primary/40 text-primary hover:bg-primary/10")}
             >
@@ -1854,7 +1854,7 @@ function AddAction({
               ) : isUpdate ? (
                 <><RefreshCw className="mr-1 h-3.5 w-3.5" />Update</>
               ) : (
-                <><Plus className="mr-1 h-3.5 w-3.5" />Add to CRM</>
+                <><Plus className="mr-1 h-3.5 w-3.5" />Add to wish list</>
               )}
             </Button>
           </motion.div>

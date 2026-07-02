@@ -34,7 +34,7 @@ export default async function CrmPage({
   if (!user) {
     return (
       <div className="space-y-2">
-        <h1 className="font-brand text-2xl sm:text-3xl text-foreground">CRM</h1>
+        <h1 className="font-brand text-2xl sm:text-3xl text-foreground">Wish List</h1>
         <p className="text-muted-foreground">
           Your account is being set up. Refresh in a moment.
         </p>
@@ -52,22 +52,22 @@ export default async function CrmPage({
       {/* Header */}
       <FloatIn delay={0} className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="font-brand text-2xl sm:text-3xl text-foreground">CRM</h1>
+          <h1 className="font-brand text-2xl sm:text-3xl text-foreground">Wish List</h1>
           <p className="text-muted-foreground mt-1">
-            Your context engine - businesses and the people inside them, owned and
-            enriched.
+            Everything your agents find - sellers, stores, and the items worth
+            keeping.
           </p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline" asChild>
-            <Link href="/discover">
+            <Link href="/shop">
               Discover
             </Link>
           </Button>
           <Button variant="glow" asChild>
-            <Link href={tab === "entities" ? "/crm/entity/new" : "/crm/new"}>
+            <Link href={tab === "entities" ? "/wishlist/entity/new" : "/wishlist/new"}>
               <Plus className="mr-1 h-4 w-4" />
-              {tab === "entities" ? "Add entity" : "Add contact"}
+              {tab === "entities" ? "Add seller" : "Add contact"}
             </Link>
           </Button>
           {tab === "entities" && <CrmHeaderMenu />}
@@ -77,12 +77,12 @@ export default async function CrmPage({
       {/* Tabs */}
       <FloatIn delay={0.06}>
         <div className="flex gap-1 border-b border-border">
-          <TabLink href="/crm?tab=contacts" active={tab === "contacts"}>
-            Contacts
+          <TabLink href="/wishlist?tab=contacts" active={tab === "contacts"}>
+            Seller contacts
             <span className="text-muted-foreground">{contactCount}</span>
           </TabLink>
-          <TabLink href="/crm?tab=entities" active={tab === "entities"}>
-            Entities
+          <TabLink href="/wishlist?tab=entities" active={tab === "entities"}>
+            Sellers & sources
             <span className="text-muted-foreground">{entityCount}</span>
           </TabLink>
         </div>
@@ -118,7 +118,7 @@ function Pager({ tab, page, count }: { tab: Tab; page: number; count: number }) 
       <div className="flex gap-2">
         <Button variant="outline" size="sm" asChild>
           <Link
-            href={`/crm?tab=${tab}&page=${Math.max(1, page - 1)}`}
+            href={`/wishlist?tab=${tab}&page=${Math.max(1, page - 1)}`}
             aria-disabled={page <= 1}
             className={page <= 1 ? "pointer-events-none opacity-50" : undefined}
           >
@@ -127,7 +127,7 @@ function Pager({ tab, page, count }: { tab: Tab; page: number; count: number }) 
         </Button>
         <Button variant="outline" size="sm" asChild>
           <Link
-            href={`/crm?tab=${tab}&page=${Math.min(totalPages, page + 1)}`}
+            href={`/wishlist?tab=${tab}&page=${Math.min(totalPages, page + 1)}`}
             aria-disabled={page >= totalPages}
             className={page >= totalPages ? "pointer-events-none opacity-50" : undefined}
           >
@@ -179,11 +179,11 @@ async function ContactsList({ userId, page }: { userId: string; page: number }) 
       <Card>
         <EmptyState
           icon={Users}
-          title="No contacts yet"
-          description="Use Discover or the agent to find and save people, or add one manually."
+          title="No seller contacts yet"
+          description="Your agents save useful contacts at stores and manufacturers here, or add one manually."
           action={
             <Button variant="glow" asChild>
-              <Link href="/crm/new">
+              <Link href="/wishlist/new">
                 <Plus className="mr-1 h-4 w-4" />
                 Add contact
               </Link>
@@ -225,13 +225,13 @@ async function EntitiesList({ userId, page }: { userId: string; page: number }) 
       <Card>
         <EmptyState
           icon={Building2}
-          title="No entities yet"
-          description="Entities are the businesses in your pipeline. Ask the agent to find some, or add one manually."
+          title="No sellers yet"
+          description="Sellers & sources are the stores, marketplaces, and manufacturers behind your saved items. Ask your agent to find some, or add one manually."
           action={
             <Button variant="glow" asChild>
-              <Link href="/crm/entity/new">
+              <Link href="/wishlist/entity/new">
                 <Plus className="mr-1 h-4 w-4" />
-                Add entity
+                Add seller
               </Link>
             </Button>
           }

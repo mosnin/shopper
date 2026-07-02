@@ -15,13 +15,13 @@ import { cn } from "@/lib/utils";
 import type { PulseData } from "@/lib/pulse";
 
 // "While you were away, your agent ..." - built only from the non-zero parts,
-// so it never reads "added 0 companies". Comma-joined with an "and" before the
+// so it never reads "added 0 finds". Comma-joined with an "and" before the
 // last clause.
 function pulseSentence(p: PulseData): string {
   const parts: string[] = [];
-  if (p.companies > 0) parts.push(`added ${p.companies} ${p.companies === 1 ? "company" : "companies"}`);
+  if (p.companies > 0) parts.push(`added ${p.companies} ${p.companies === 1 ? "find" : "finds"}`);
   if (p.enriched > 0) parts.push(`enriched ${p.enriched} ${p.enriched === 1 ? "record" : "records"}`);
-  if (p.inMarket > 0) parts.push(`flagged ${p.inMarket} in-market`);
+  if (p.inMarket > 0) parts.push(`flagged ${p.inMarket} fresh ${p.inMarket === 1 ? "listing" : "listings"}`);
   const joined =
     parts.length <= 1
       ? parts[0]
@@ -233,7 +233,7 @@ export function DashboardOverview({
         <div className="relative z-10 flex h-full flex-col justify-between p-6 sm:p-8 lg:p-10">
           {/* Eyebrow */}
           <p className="font-brand text-xs uppercase tracking-[0.3em] text-primary">
-            SHOPPER // RESEARCH
+            SHOPPER // SHOPPING
           </p>
 
           {/* Main content */}
@@ -265,7 +265,7 @@ export function DashboardOverview({
                     ) : null}
                   </>
                 ) : (
-                  <>Your research platform - contacts discovered, enriched, and in conversation.</>
+                  <>Your shopping agent - items found across the web, saved to your wish list, checked off your lists.</>
                 )}
               </motion.p>
 
@@ -282,15 +282,15 @@ export function DashboardOverview({
                 <span className="font-brand text-7xl tabular-nums text-foreground sm:text-8xl">
                   <CountUp value={totalContacts} duration={1.6} />
                 </span>
-                <span className="text-lg text-muted-foreground">contacts</span>
+                <span className="text-lg text-muted-foreground">finds</span>
               </motion.div>
             </motion.div>
 
             {/* CTA */}
             <div className="flex shrink-0 flex-col gap-3 sm:flex-row lg:flex-col lg:items-end">
               <Button variant="glow" size="lg" asChild>
-                <Link href="/discover">
-                  Discover contacts
+                <Link href="/shop">
+                  Start shopping
                 </Link>
               </Button>
               <Button variant="outline" size="lg" asChild>
@@ -305,9 +305,9 @@ export function DashboardOverview({
 
       {/* ── Middle row: stat cards + agent accent ────────────────────────── */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {/* Companies */}
+        {/* Stores */}
         <StatCard
-          label="Companies"
+          label="Stores"
           value={totalCompanies}
           delay={0}
         />
@@ -320,9 +320,9 @@ export function DashboardOverview({
           delay={1}
         />
 
-        {/* In conversation */}
+        {/* Watching */}
         <StatCard
-          label="In conversation"
+          label="Watching"
           value={inConversation}
           delay={2}
         />
@@ -377,7 +377,7 @@ export function DashboardOverview({
                 <div>
                   <p className="font-brand text-xl text-white">Ask Shopper</p>
                   <p className="mt-1 text-sm text-white/75">
-                    Your agent, ready to enrich and discover.
+                    Your agent, ready to hunt and compare.
                   </p>
                 </div>
               </div>
@@ -410,24 +410,25 @@ export function DashboardOverview({
                   Explore Shopper
                 </p>
                 <h2 className="font-brand mt-2 text-2xl text-foreground sm:text-3xl">
-                  Discover · Enrich · Converse · Context
+                  Shop · Wish List · Agent · About You
                 </h2>
                 <p className="mt-3 max-w-sm text-sm text-muted-foreground">
-                  Everything your research workflow needs, in one place.
+                  Everything your shopping agent needs, in one place.
                 </p>
               </div>
 
               <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
                 {[
-                  // Focused on the one flow: discover -> enrich into your CRM ->
-                  // your agent works it, grounded in your product context. The
-                  // secondary surfaces (Radar, Field, Skills) are intentionally
-                  // not surfaced here yet; their routes still exist and are
-                  // reachable directly until the core moment is proven and felt.
-                  { label: "Discover", href: "/discover", body: "Find + enrich the right people" },
-                  { label: "CRM", href: "/crm", body: "Records you can trust" },
-                  { label: "Shopper", href: "/agent", body: "Your agent runs the pipeline" },
-                  { label: "Context", href: "/product-context", body: "Ground your agent in your product" },
+                  // Focused on the one flow: shop -> save finds to your wish
+                  // list -> your agent works it, grounded in what you're after.
+                  // The secondary surfaces (Radar, Shopping Lists, Skills) are
+                  // intentionally not surfaced here yet; their routes still
+                  // exist and are reachable directly until the core moment is
+                  // proven and felt.
+                  { label: "Shop", href: "/shop", body: "Find items for sale across the web" },
+                  { label: "Wish List", href: "/wishlist", body: "Items and sellers you're tracking" },
+                  { label: "Shopper", href: "/agent", body: "Your agent runs the hunt" },
+                  { label: "About You", href: "/about-you", body: "Ground your agent in what you want" },
                 ].map((item) => {
                   return (
                     <motion.div
@@ -462,11 +463,11 @@ export function DashboardOverview({
                     <span>
                       {radarActive} {radarActive === 1 ? "scan" : "scans"} active
                       {radarSignals > 0
-                        ? ` · ${radarSignals} new ${radarSignals === 1 ? "signal" : "signals"} this week`
+                        ? ` · ${radarSignals} new ${radarSignals === 1 ? "find" : "finds"} this week`
                         : ""}
                     </span>
                   ) : (
-                    <span>Set up a scan to watch for new prospects while you sleep</span>
+                    <span>Set up a scan to watch for newly listed items while you sleep - paid plans</span>
                   )}
                 </span>
                 <ArrowRight className="h-3.5 w-3.5 text-muted-foreground opacity-0 transition-all duration-150 group-hover:translate-x-0.5 group-hover:opacity-100" />
@@ -512,21 +513,21 @@ export function DashboardOverview({
 
                 <p className="text-sm font-medium text-foreground">Nothing yet</p>
                 <p className="mt-1.5 text-xs text-muted-foreground">
-                  Start discovering contacts and activity will appear here.
+                  Start hunting for items and activity will appear here.
                 </p>
                 <Link
-                  href="/discover"
+                  href="/shop"
                   className="mt-5 inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline"
                 >
-                  Discover now
+                  Shop now
                   <ArrowRight className="h-3 w-3" />
                 </Link>
               </div>
             ) : (
-              /* Has data - show a mini pipeline summary */
+              /* Has data - show a mini summary */
               <div className="px-6 pb-8">
                 {[
-                  { label: "Total contacts", value: totalContacts, color: "bg-primary" },
+                  { label: "Total finds", value: totalContacts, color: "bg-primary" },
                   {
                     label: "Enriched",
                     value: enriched,
@@ -534,7 +535,7 @@ export function DashboardOverview({
                     pct: totalContacts > 0 ? (enriched / totalContacts) * 100 : 0,
                   },
                   {
-                    label: "In conversation",
+                    label: "Watching",
                     value: inConversation,
                     color: "bg-primary/35",
                     pct:
@@ -565,10 +566,10 @@ export function DashboardOverview({
                 ))}
 
                 <Link
-                  href="/crm"
+                  href="/wishlist"
                   className="mt-2 inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline"
                 >
-                  Open CRM
+                  Open wish list
                   <ArrowRight className="h-3 w-3" />
                 </Link>
               </div>

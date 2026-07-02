@@ -63,9 +63,13 @@ export default function RadarPage() {
             <p className="font-brand text-xs uppercase tracking-[0.25em] text-primary/80">Shopper // Radar</p>
             <h1 className="font-brand mt-2 text-3xl text-foreground sm:text-4xl">Radar</h1>
             <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
-              Standing scans that watch for in-market signals on a schedule. Describe
-              what you&apos;re looking for; Shopper pulls it and, if you let it, adds
-              new records with context, automatically.
+              Standing scans that watch the web for the items you want, on a schedule.
+              Describe it once - recently listed pre-owned GPUs at a good price, Gucci
+              shoes in size 10M under $400, a rust-free project car - and Shopper pulls
+              new listings and, if you let it, adds them to your wish list automatically.
+            </p>
+            <p className="mt-2 text-xs text-muted-foreground">
+              Radar is included on Plus and Pro plans - upgrade to run standing scans.
             </p>
             <Button className="mt-5" size="sm" onClick={() => setOpen((o) => !o)} variant={open ? "glow" : "default"}>
               New radar
@@ -82,7 +86,7 @@ export default function RadarPage() {
                 <label className="mb-1 block text-xs text-muted-foreground">What are you looking for?</label>
                 <textarea
                   value={query} onChange={(e) => setQuery(e.target.value)} rows={3}
-                  placeholder="e.g. companies hiring SDRs and raising a Series A in climate tech"
+                  placeholder="e.g. recently listed pre-owned RTX 4090s under $1200"
                   className="w-full resize-y rounded-2xl border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
                 />
               </div>
@@ -103,7 +107,7 @@ export default function RadarPage() {
                 <span className={cn("flex h-5 w-9 items-center rounded-full p-0.5 transition-colors", autoAdd ? "bg-primary" : "bg-muted")}>
                   <span className={cn("h-4 w-4 rounded-full bg-background transition-transform", autoAdd && "translate-x-4")} />
                 </span>
-                <span className="text-muted-foreground">Automatically add new records to the CRM</span>
+                <span className="text-muted-foreground">Automatically add new finds to your wish list</span>
               </button>
               {err && <p className="text-xs text-destructive">{err}</p>}
               <Button size="sm" onClick={create} disabled={busy || !query.trim()}>
@@ -117,7 +121,7 @@ export default function RadarPage() {
       {loading ? null : items.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-border bg-card/50 p-10 text-center">
           <p className="font-brand text-base">No radars yet</p>
-          <p className="mt-1 text-sm text-muted-foreground">Create one to start watching for in-market signals.</p>
+          <p className="mt-1 text-sm text-muted-foreground">Create one to start watching for newly listed items. Available on Plus and Pro plans.</p>
         </div>
       ) : (
         <div className="space-y-3">
@@ -221,7 +225,7 @@ function RunRow({ run, onChanged }: { run: Run; onChanged: () => void }) {
     try {
       const res = await fetch(`/api/monitor-runs/${run.id}/add-to-crm`, { method: "POST" });
       const d = await res.json().catch(() => ({}));
-      setMsg(res.ok ? `Added ${d.entitiesAdded} companies, ${d.contactsAdded} people.` : (d.error ?? "Failed."));
+      setMsg(res.ok ? `Added ${d.entitiesAdded} finds, ${d.contactsAdded} sellers.` : (d.error ?? "Failed."));
       if (res.ok) onChanged();
     } finally { setAdding(false); }
   }
@@ -236,10 +240,10 @@ function RunRow({ run, onChanged }: { run: Run; onChanged: () => void }) {
         </button>
         {!run.addedToCrm && items.length > 0 && (
           <Button size="sm" variant="outline" onClick={addToCrm} disabled={adding}>
-            {adding ? <Loader2 className="mr-1.5 h-3.5 w-3.5 animate-spin" /> : null} Add to CRM
+            {adding ? <Loader2 className="mr-1.5 h-3.5 w-3.5 animate-spin" /> : null} Add to wish list
           </Button>
         )}
-        {run.addedToCrm && <span className="text-[11px] text-primary">in CRM</span>}
+        {run.addedToCrm && <span className="text-[11px] text-primary">on wish list</span>}
       </div>
       {msg && <p className="mt-1 pl-5 text-xs text-muted-foreground">{msg}</p>}
       <AnimatePresence>
