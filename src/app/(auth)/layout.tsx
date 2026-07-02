@@ -42,7 +42,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         <div className="hidden flex-col justify-between border-r border-border bg-card/40 p-12 backdrop-blur-sm lg:flex xl:p-16">
           <Link href="/" className="flex items-center gap-2">
             <LogoMark className="h-8 w-8" />
-            <span className="font-brand text-xl font-bold text-foreground">Scalar</span>
+            <span className="font-brand text-xl font-bold text-foreground">Shopper</span>
           </Link>
 
           <div className="max-w-md">
@@ -64,7 +64,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           </div>
 
           <p className="text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} Scalar. A single source of truth you control.
+            &copy; {new Date().getFullYear()} Shopper. A single source of truth you control.
           </p>
         </div>
 
@@ -73,7 +73,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           {/* Mobile wordmark (the brand panel is hidden below lg) */}
           <Link href="/" className="mb-8 flex items-center gap-2 lg:hidden">
             <LogoMark className="h-8 w-8" />
-            <span className="font-brand text-xl font-bold text-foreground">Scalar</span>
+            <span className="font-brand text-xl font-bold text-foreground">Shopper</span>
           </Link>
           <div className="mx-auto w-full max-w-md">{children}</div>
         </div>

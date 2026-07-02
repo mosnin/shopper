@@ -49,7 +49,7 @@ const groups: NavGroup[] = [
   {
     label: "Solutions",
     links: [
-      { label: "Why Scalar", href: "/product/why", description: "Structure, UI, and intelligence as one system, not messy files." },
+      { label: "Why Shopper", href: "/product/why", description: "Structure, UI, and intelligence as one system, not messy files." },
       { label: "For agent builders", href: "/integrations", description: "Bring your own agent over MCP and give it a real database." },
       { label: "Data you own", href: "/security", description: "A single source of truth you control, exportable, never resold." },
       { label: "Pricing", href: "/pricing", description: "A seat plus usage credits. Pay for what your agents do." },
@@ -72,7 +72,7 @@ const groups: NavGroup[] = [
     ],
     featured: {
       eyebrow: "Read",
-      title: "The Scalar manifesto",
+      title: "The Shopper manifesto",
       body: "Why a structured, observed system beats agents dumping everything into files.",
       href: "/manifesto",
       cta: "Read the manifesto",
@@ -210,9 +210,9 @@ export function Header() {
         >
           <div className="flex h-14 items-center justify-between pl-4 pr-3 sm:pl-5">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2" aria-label="Scalar home">
+            <Link href="/" className="flex items-center gap-2" aria-label="Shopper home">
               <LogoMark className="h-7 w-7" priority />
-              <span className="hidden font-brand text-base font-bold text-foreground sm:inline">Scalar</span>
+              <span className="hidden font-brand text-base font-bold text-foreground sm:inline">Shopper</span>
             </Link>
 
             {/* Desktop nav */}
@@ -341,7 +341,7 @@ export function Header() {
               <div className="flex items-center justify-between px-5 pt-6">
                 <Link href="/" className="flex items-center gap-2" onClick={() => setMobileOpen(false)}>
                   <LogoMark className="h-7 w-7" />
-                  <span className="font-brand font-bold text-foreground">Scalar</span>
+                  <span className="font-brand font-bold text-foreground">Shopper</span>
                 </Link>
                 <div className="flex items-center gap-2">
                   <ThemeToggle />

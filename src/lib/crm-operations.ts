@@ -626,7 +626,7 @@ export interface CallInput {
   startedAt?: Date | null;
 }
 
-/** Log a phone call onto a contact (e.g. a call made outside Scalar, for context). */
+/** Log a phone call onto a contact (e.g. a call made outside Shopper, for context). */
 export async function saveCall(userId: string, input: CallInput) {
   const contact = await prisma.contact.findUnique({ where: { id: input.contactId } });
   if (!contact || contact.userId !== userId) throw new OpError("Contact not found", 404);

@@ -36,7 +36,7 @@ export function Footer() {
             <div className="col-span-2 space-y-4 md:col-span-1">
               <Link href="/" className="flex items-center gap-2">
                 <LogoMark className="h-7 w-7" />
-                <span className="font-brand text-lg font-bold text-foreground">Scalar</span>
+                <span className="font-brand text-lg font-bold text-foreground">Shopper</span>
               </Link>
               <p className="max-w-xs text-sm text-muted-foreground">
                 The CRM your agents run. Discover leads, enrich your database, and
@@ -96,9 +96,9 @@ export function Footer() {
 
         <div className="flex flex-col items-center gap-2 border-t border-border px-6 py-4 sm:flex-row sm:justify-between sm:px-8 lg:px-12">
           <p className="text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} Scalar. All rights reserved.
+            &copy; {new Date().getFullYear()} Shopper. All rights reserved.
           </p>
-          <p className="text-xs text-muted-foreground">tryscalar.xyz</p>
+          <p className="text-xs text-muted-foreground">shopper.sh</p>
         </div>
       </div>
     </footer>

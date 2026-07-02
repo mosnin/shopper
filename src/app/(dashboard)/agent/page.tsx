@@ -12,7 +12,7 @@ import {
 import { motion, useReducedMotion, AnimatePresence } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ScalarAvatar } from "@/components/dashboard/scalar-avatar";
+import { ShopperAvatar } from "@/components/dashboard/shopper-avatar";
 import { ThinkingIndicator } from "@/components/dashboard/thinking-indicator";
 import { useMobileNav } from "@/components/dashboard/dashboard-shell";
 import { useRouter } from "next/navigation";
@@ -172,7 +172,7 @@ function MessageBubble({
       {isUser ? (
         <div className="mt-0.5 h-7 w-7 shrink-0 rounded-full bg-secondary shadow-sm" />
       ) : (
-        <ScalarAvatar active={isStreaming} />
+        <ShopperAvatar active={isStreaming} />
       )}
 
       {/* Content */}
@@ -271,14 +271,14 @@ function EmptyState() {
           animate={reduce ? {} : { y: [0, -4, 0] }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
         >
-          <Image src="/icon-512.png" alt="Scalar" width={64} height={64} className="h-full w-full object-cover" priority />
+          <Image src="/icon-512.png" alt="Shopper" width={64} height={64} className="h-full w-full object-cover" priority />
         </motion.div>
       </div>
 
       {/* Greeting */}
       <div className="space-y-2">
         <h2 className="font-brand text-2xl text-foreground tracking-tight">
-          Hi, I&apos;m Scalar
+          Hi, I&apos;m Shopper
         </h2>
         <p className="max-w-xs text-sm text-muted-foreground">
           I search the web, enrich your contacts, and write straight into your
@@ -481,7 +481,7 @@ export default function AgentPage() {
               onChange={setInput}
               onSubmit={() => submit(input)}
               disabled={busy}
-              placeholder="Ask Scalar to find, enrich, or update…"
+              placeholder="Ask Shopper to find, enrich, or update…"
             />
           </div>
 
@@ -528,7 +528,7 @@ export default function AgentPage() {
         </motion.div>
 
         <p className="mt-1.5 text-center text-[11px] text-muted-foreground/60">
-          Scalar can make mistakes. Verify important information.
+          Shopper can make mistakes. Verify important information.
         </p>
       </motion.div>
     </div>

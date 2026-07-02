@@ -9,7 +9,7 @@ const values = [
   {
     title: "Owned data - never leaves your system",
     description:
-      "Every contact, enrichment, and email thread lives in your Scalar database. No third-party scraping your CRM. No shared pool. It is yours.",
+      "Every contact, enrichment, and email thread lives in your Shopper database. No third-party scraping your CRM. No shared pool. It is yours.",
   },
   {
     title: "Radical transparency",
@@ -29,19 +29,19 @@ export function AboutSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:items-center">
           <div>
-            <p className="text-xs uppercase tracking-[0.25em] text-primary">About Scalar</p>
+            <p className="text-xs uppercase tracking-[0.25em] text-primary">About Shopper</p>
             <h2 className="font-brand mt-3 text-3xl text-foreground sm:text-4xl lg:text-5xl">
               The CRM for teams building in the{" "}
               <span className="text-gradient-orange">AI age</span>
             </h2>
             <p className="mt-5 text-lg text-muted-foreground">
-              Scalar is a CRM whose operators are AI agents. They discover leads, enrich the
+              Shopper is a CRM whose operators are AI agents. They discover leads, enrich the
               database, run email relationships, and read/write every record - on data that
               never leaves the system.
             </p>
             <p className="mt-4 text-muted-foreground">
               For agencies, founders, and lean teams running outbound. The world changed; how
-              you build relationships changed with it. Scalar gives your agents the context to
+              you build relationships changed with it. Shopper gives your agents the context to
               sell with understanding - not just spray.
             </p>
             <Link

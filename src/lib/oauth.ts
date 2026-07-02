@@ -1,4 +1,4 @@
-// OAuth 2.1 token + PKCE helpers for Scalar's MCP authorization server.
+// OAuth 2.1 token + PKCE helpers for Shopper's MCP authorization server.
 // Tokens are stateless signed JWTs (HS256 via jose), so no token table is
 // needed; the MCP route verifies an access token straight back to a userId.
 // Identity comes from Clerk at /authorize; codes/tokens are bound to that user.

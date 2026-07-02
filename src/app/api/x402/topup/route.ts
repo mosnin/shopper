@@ -76,7 +76,7 @@ export async function POST(req: NextRequest) {
     const requirements = buildRequirements({
       priceUsd,
       resource,
-      description: `Top up ${requested} Scalar credits`,
+      description: `Top up ${requested} Shopper credits`,
     });
 
     const payload = readPayment(req);

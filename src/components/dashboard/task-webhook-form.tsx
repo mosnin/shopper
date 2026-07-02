@@ -6,7 +6,7 @@ import { Check, Loader2, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-// Where Scalar POSTs results when a scheduled task (intent monitor / research)
+// Where Shopper POSTs results when a scheduled task (intent monitor / research)
 // completes, so an external agent (e.g. openclaw, Hermes) can be woken up.
 export function TaskWebhookForm({ initialUrl }: { initialUrl: string | null }) {
   const [url, setUrl] = useState(initialUrl ?? "");

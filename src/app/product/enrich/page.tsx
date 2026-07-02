@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { FeaturePage } from "@/components/marketing/feature-page";
 
 export const metadata: Metadata = {
-  title: "Enrich | Scalar",
+  title: "Enrich | Shopper",
   description:
     "Turn a name and a domain into a complete record: firmographics, verified email, direct phone, LinkedIn, with provenance on every field.",
 };
@@ -17,7 +17,7 @@ export default function EnrichPage() {
       blocks={[
         {
           title: "Accuracy over coverage",
-          body: "Scalar never attaches data for the wrong person or company. It verifies the name and the company or domain before saving, and prefers an honest blank over a confident guess about a same-name stranger.",
+          body: "Shopper never attaches data for the wrong person or company. It verifies the name and the company or domain before saving, and prefers an honest blank over a confident guess about a same-name stranger.",
         },
         {
           title: "Provenance on every field",

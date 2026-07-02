@@ -90,7 +90,7 @@ export async function detectSiteTech(url: string): Promise<DetectedTech[]> {
   try {
     res = await fetchWithTimeout(
       target,
-      { headers: { "User-Agent": "Mozilla/5.0 (compatible; ScalarBot/1.0; +https://tryscalar.xyz)" } },
+      { headers: { "User-Agent": "Mozilla/5.0 (compatible; ShopperBot/1.0; +https://shopper.sh)" } },
       15_000,
     );
   } catch {

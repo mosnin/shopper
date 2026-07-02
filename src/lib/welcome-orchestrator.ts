@@ -173,7 +173,7 @@ export async function runWelcomeOrchestration(
       // Discovery returned nothing - fall back to seed so the page is not blank.
       emit({
         type: "status",
-        message: "No companies found for that description. Showing sample data so you can see how Scalar works.",
+        message: "No companies found for that description. Showing sample data so you can see how Shopper works.",
       });
       rows = SEED_COMPANIES.map((s) => ({ ...s }));
       usedSeed = true;

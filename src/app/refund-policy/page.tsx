@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { LegalDoc, L } from "@/components/legal/legal-doc";
 
 export const metadata: Metadata = {
-  title: "Refund Policy | Scalar",
+  title: "Refund Policy | Shopper",
   description: "Refunds, cancellation, and how credits are billed.",
 };
 
@@ -42,14 +42,14 @@ export default function RefundPolicyPage() {
         {
           heading: "Credits and the no-charge-for-misses rule",
           body: [
-            "Credits are a prepaid entitlement to run paid operations. They have no cash value and are not redeemable for money. You are only charged credits when a lookup returns verified data: if Scalar cannot confirm a match, it returns nothing and no credits are spent. Unused monthly credits expire at the end of the period unless your plan states otherwise; separately purchased top-up credits follow the terms shown at purchase.",
+            "Credits are a prepaid entitlement to run paid operations. They have no cash value and are not redeemable for money. You are only charged credits when a lookup returns verified data: if Shopper cannot confirm a match, it returns nothing and no credits are spent. Unused monthly credits expire at the end of the period unless your plan states otherwise; separately purchased top-up credits follow the terms shown at purchase.",
           ],
         },
         {
           heading: "How to request a refund",
           body: [
             <>
-              Email <L href="mailto:hello@tryscalar.xyz">hello@tryscalar.xyz</L>{" "}
+              Email <L href="mailto:hello@shopper.sh">hello@shopper.sh</L>{" "}
               from the address on your account with your workspace and the
               charge in question. We aim to respond within a few business days.
             </>,

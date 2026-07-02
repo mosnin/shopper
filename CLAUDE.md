@@ -1,4 +1,4 @@
-# Scalar - Project Memory
+# Shopper - Project Memory
 
 @.ritual/methods/README.md
 @docs/README.md
@@ -24,7 +24,7 @@ routing and the four-gate synthesis order live in the imported engine above.
 
 ## What we're building
 
-**Scalar - the CRM your agents run.** A structured CRM with a real UI and built-in
+**Shopper - the CRM your agents run.** A structured CRM with a real UI and built-in
 intelligence, operated by AI agents: they discover leads, enrich the database,
 track deals, and run email relationships - reading/writing every record over MCP.
 For anyone working with AI agents who wants lead intelligence + deal tracking that
@@ -85,7 +85,7 @@ Deep context and all decisions are indexed in `@docs/README.md`.
   (**baby-blue + white, light by default**; legacy `orange`/`brand` Tailwind
   utilities are aliased to baby blue - rename is a tracked debt). Logo: the `λ`
   mark via `LogoMark` (theme-swapped PNGs: blue light / white dark). The agent is
-  named **Scalar** and uses the logo as its avatar/nav icon.
+  named **Shopper** and uses the logo as its avatar/nav icon.
 - **Copy hard rule:** NEVER use em dashes or en dashes anywhere (UI, code,
   comments, docs, commits). Use commas, periods, colons, or a plain hyphen `-`.
 - **Enrichment accuracy hard rule:** enrichment must NEVER attach data for the

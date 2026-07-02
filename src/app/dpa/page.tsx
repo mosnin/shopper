@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { LegalDoc, L } from "@/components/legal/legal-doc";
 
 export const metadata: Metadata = {
-  title: "Data Processing Addendum | Scalar",
-  description: "How Scalar processes personal data on your behalf.",
+  title: "Data Processing Addendum | Shopper",
+  description: "How Shopper processes personal data on your behalf.",
 };
 
 export default function DpaPage() {
@@ -14,10 +14,10 @@ export default function DpaPage() {
       intro={
         <>
           This Data Processing Addendum (the &ldquo;DPA&rdquo;) describes how
-          Scalar processes personal data on your behalf and forms part of our
+          Shopper processes personal data on your behalf and forms part of our
           Terms of Service. When you store data about your contacts and
-          companies in Scalar, you are the controller of that personal data and
-          Scalar is your processor. If you need a countersigned copy for your
+          companies in Shopper, you are the controller of that personal data and
+          Shopper is your processor. If you need a countersigned copy for your
           compliance records, email us.
         </>
       }
@@ -25,7 +25,7 @@ export default function DpaPage() {
         {
           heading: "Roles",
           body: [
-            "You determine the purposes and means of processing the personal data you put into Scalar (the “Customer Data”), so you are the controller. Scalar processes that data only to provide the service and on your instructions, so we are the processor. For account and billing data we collect about you directly, we act as controller, as described in the Privacy Policy.",
+            "You determine the purposes and means of processing the personal data you put into Shopper (the “Customer Data”), so you are the controller. Shopper processes that data only to provide the service and on your instructions, so we are the processor. For account and billing data we collect about you directly, we act as controller, as described in the Privacy Policy.",
           ],
         },
         {
@@ -49,7 +49,7 @@ export default function DpaPage() {
           heading: "Subprocessors",
           body: [
             <>
-              You authorize Scalar to use the subprocessors listed on our{" "}
+              You authorize Shopper to use the subprocessors listed on our{" "}
               <L href="/subprocessors">Subprocessors page</L>. We remain
               responsible for their performance of data-protection obligations.
               We will update that page when the list changes.

@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { LegalDoc } from "@/components/legal/legal-doc";
 
 export const metadata: Metadata = {
-  title: "Acceptable Use Policy | Scalar",
-  description: "The rules for using Scalar responsibly.",
+  title: "Acceptable Use Policy | Shopper",
+  description: "The rules for using Shopper responsibly.",
 };
 
 export default function AcceptableUsePage() {
@@ -13,7 +13,7 @@ export default function AcceptableUsePage() {
       updated="June 9, 2026"
       intro={
         <>
-          Scalar gives you and your agents real power over data about real
+          Shopper gives you and your agents real power over data about real
           people and companies. This policy sets the boundaries that keep that
           power responsible. It is part of our Terms of Service, and it applies
           to everything you and the agents you connect do on the platform.
@@ -30,7 +30,7 @@ export default function AcceptableUsePage() {
           heading: "Do not misuse data",
           bullets: [
             "Do not upload or enrich data you have no right to use.",
-            "Do not store special-category personal data (such as health, biometric, or government-ID data) in Scalar.",
+            "Do not store special-category personal data (such as health, biometric, or government-ID data) in Shopper.",
             "Do not use enriched contact data to harass, defraud, discriminate against, or endanger anyone.",
             "Honor opt-outs and deletion requests from the people in your database.",
           ],
@@ -38,7 +38,7 @@ export default function AcceptableUsePage() {
         {
           heading: "No spam or abusive outreach",
           body: [
-            "Scalar is for relationship intelligence and tracking, not bulk unsolicited email. Do not use the platform or its email features to send spam, chain messages, or deceptive outreach. Sending must comply with applicable anti-spam law and the policies of the underlying email provider.",
+            "Shopper is for relationship intelligence and tracking, not bulk unsolicited email. Do not use the platform or its email features to send spam, chain messages, or deceptive outreach. Sending must comply with applicable anti-spam law and the policies of the underlying email provider.",
           ],
         },
         {
@@ -47,13 +47,13 @@ export default function AcceptableUsePage() {
             "Do not probe, scan, or test the vulnerability of the service without our written permission.",
             "Do not attempt to access another account's data or bypass ownership and authentication controls.",
             "Do not overload, rate-limit-evade, scrape, or reverse-engineer the service or its APIs.",
-            "Do not share or resell your API keys, or use Scalar to build a competing data-resale product.",
+            "Do not share or resell your API keys, or use Shopper to build a competing data-resale product.",
           ],
         },
         {
           heading: "Agent behavior is your responsibility",
           body: [
-            "When you connect an agent over MCP or run the built-in one, the actions it takes are attributed to your account. You are responsible for configuring and supervising it so it stays within this policy. Scalar applies guardrails (ownership scoping, validation, rate limits, and confirmation on high-stakes actions like sending email), but you remain accountable for the outcome.",
+            "When you connect an agent over MCP or run the built-in one, the actions it takes are attributed to your account. You are responsible for configuring and supervising it so it stays within this policy. Shopper applies guardrails (ownership scoping, validation, rate limits, and confirmation on high-stakes actions like sending email), but you remain accountable for the outcome.",
           ],
         },
         {

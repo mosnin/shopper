@@ -15,7 +15,7 @@ const without = [
   "Re-researches the same company twice",
   "Contradicts itself, and you can't trust it",
 ];
-const withScalar = [
+const withShopper = [
   "Typed entities, contacts, deals, memory",
   "Deduped and validated on the way in",
   "A real interface you can see and trust",
@@ -78,10 +78,10 @@ export function ProblemSection() {
           >
             <SpotlightCard className="h-full p-7">
               <p className="font-brand text-sm uppercase tracking-[0.2em] text-primary">
-                With Scalar
+                With Shopper
               </p>
               <ul className="mt-5 space-y-3">
-                {withScalar.map((line) => (
+                {withShopper.map((line) => (
                   <li key={line} className="flex items-start gap-3 text-sm text-foreground/80">
                     <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-primary" />
                     {line}

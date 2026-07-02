@@ -14,7 +14,7 @@
   --color-4: 195 100% 63%;
   --color-5: 90 100% 63%;
 
-  /* Scalar - Charcoal & Green Palette */
+  /* Shopper - Charcoal & Green Palette */
   --background: #ffffff;
   --foreground: #1C1C1C;
   --card: #ffffff;
@@ -309,7 +309,7 @@ body {
   }
 }
 
-/* Scalar brand type - Space Grotesk, a clean geometric grotesk. Used for
+/* Shopper brand type - Space Grotesk, a clean geometric grotesk. Used for
    headings and the wordmark in the app shell. Pairs with Inter body copy and
    the ASCII signature in the dock. */
 h1,

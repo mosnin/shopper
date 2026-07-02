@@ -1,8 +1,8 @@
-// Scalar service worker — conservative PWA caching.
+// Shopper service worker — conservative PWA caching.
 // Precaches the offline page; caches immutable static assets
 // (stale-while-revalidate); never caches API or auth responses; navigations are
 // network-first with an offline fallback.
-const CACHE = "scalar-v1";
+const CACHE = "shopper-v1";
 const STATIC = /\/_next\/static\/|\/icon|\.svg$|\.woff2?$|\.png$/;
 
 self.addEventListener("install", (event) => {

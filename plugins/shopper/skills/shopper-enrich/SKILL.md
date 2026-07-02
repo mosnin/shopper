@@ -1,6 +1,6 @@
 ---
-name: scalar-enrich
-description: Enrich companies and people in Scalar without ever attaching the wrong record.
+name: shopper-enrich
+description: Enrich companies and people in Shopper without ever attaching the wrong record.
 ---
 
 # Enrich entities and contacts

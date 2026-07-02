@@ -29,7 +29,7 @@ export async function notifyTaskWebhook(url: string | null | undefined, payload:
   try {
     const res = await fetch(safe.toString(), {
       method: "POST",
-      headers: { "Content-Type": "application/json", "User-Agent": "Scalar-Webhook/1" },
+      headers: { "Content-Type": "application/json", "User-Agent": "Shopper-Webhook/1" },
       body: JSON.stringify(payload),
       signal: AbortSignal.timeout(10_000),
     });

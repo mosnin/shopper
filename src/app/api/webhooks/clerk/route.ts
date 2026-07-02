@@ -91,7 +91,7 @@ export async function POST(req: Request) {
 
     if (type === "user.deleted") {
       // Entity/Contact/ApiKey/Conversation/MemoryChunk/IntentMonitor/
-      // ResearchSchedule cascade via FK. Segment + Pipeline use a scalar userId
+      // ResearchSchedule cascade via FK. Segment + Pipeline use a shopper userId
       // with NO FK cascade, so they'd orphan (the user's deal data surviving
       // account deletion). Delete them explicitly; PipelineEntry/ContactSegment
       // cascade from their parent.

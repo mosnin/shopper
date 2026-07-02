@@ -60,11 +60,11 @@ export default function RadarPage() {
           <AsciiField className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.12] dark:opacity-30" />
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_0%,rgba(90,176,232,0.10),transparent_60%)]" />
           <div className="relative z-10 px-6 py-9 sm:px-10 sm:py-12">
-            <p className="font-brand text-xs uppercase tracking-[0.25em] text-primary/80">Scalar // Radar</p>
+            <p className="font-brand text-xs uppercase tracking-[0.25em] text-primary/80">Shopper // Radar</p>
             <h1 className="font-brand mt-2 text-3xl text-foreground sm:text-4xl">Radar</h1>
             <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
               Standing scans that watch for in-market signals on a schedule. Describe
-              what you&apos;re looking for; Scalar pulls it and, if you let it, adds
+              what you&apos;re looking for; Shopper pulls it and, if you let it, adds
               new records with context, automatically.
             </p>
             <Button className="mt-5" size="sm" onClick={() => setOpen((o) => !o)} variant={open ? "glow" : "default"}>

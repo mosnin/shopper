@@ -30,7 +30,7 @@ export default function FieldPage() {
           <AsciiField className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.12] dark:opacity-30" />
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_0%,rgba(90,176,232,0.10),transparent_60%)]" />
           <div className="relative z-10 px-6 py-9 sm:px-10 sm:py-12">
-            <p className="font-brand text-xs uppercase tracking-[0.25em] text-primary/80">Scalar // Field</p>
+            <p className="font-brand text-xs uppercase tracking-[0.25em] text-primary/80">Shopper // Field</p>
             <h1 className="font-brand mt-2 text-3xl text-foreground sm:text-4xl">Field</h1>
             <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
               Build customer segments from a prompt, then run them as agentic
@@ -148,7 +148,7 @@ function SegmentsPanel() {
           <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="overflow-hidden">
             <div className="rounded-2xl border border-border bg-card p-4 space-y-3">
               <p className="text-sm text-muted-foreground">
-                Describe who you want. Scalar matches your closest <span className="text-foreground">not-yet-worked</span> prospects.
+                Describe who you want. Shopper matches your closest <span className="text-foreground">not-yet-worked</span> prospects.
               </p>
               <textarea
                 value={goal} onChange={(e) => setGoal(e.target.value)} rows={3}

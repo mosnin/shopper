@@ -7,7 +7,7 @@
 // manual re-enrich).
 //
 // Designed to be called by Inngest, a Vercel cron, or manually by staff.
-// Authentication: requires a valid Scalar API key (Bearer token in header)
+// Authentication: requires a valid Shopper API key (Bearer token in header)
 // OR the internal CRON_SECRET env var.
 //
 // Body (optional):

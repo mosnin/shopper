@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { FeaturePage } from "@/components/marketing/feature-page";
 
 export const metadata: Metadata = {
-  title: "Intent signals | Scalar",
+  title: "Intent signals | Shopper",
   description:
     "Scheduled monitors watch the web for buying signals and surface in-market companies before anyone else reaches out.",
 };
@@ -18,7 +18,7 @@ export default function SignalsPage() {
       blocks={[
         {
           title: "Always-on monitors",
-          body: "Set a watch once and Scalar checks on a schedule, adding new in-market companies to your CRM as it finds them. No tab to keep open, no search to re-run.",
+          body: "Set a watch once and Shopper checks on a schedule, adding new in-market companies to your CRM as it finds them. No tab to keep open, no search to re-run.",
         },
         {
           title: "The pulse",

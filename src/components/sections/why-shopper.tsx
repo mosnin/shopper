@@ -6,7 +6,7 @@ import { TextFlip } from "@/components/text-flip";
 
 const easeOut = [0.16, 1, 0.3, 1] as const;
 
-// The moat: everyone else owns one of these. Scalar is all four as one system.
+// The moat: everyone else owns one of these. Shopper is all four as one system.
 const pillars = [
   {
     n: "01",
@@ -30,14 +30,14 @@ const pillars = [
   },
 ];
 
-export function WhyScalarSection() {
+export function WhyShopperSection() {
   return (
     <section id="why" className="relative scroll-mt-24 bg-background py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs uppercase tracking-[0.25em] text-primary">Why Scalar</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-primary">Why Shopper</p>
           <h2 className="font-brand mt-3 flex flex-wrap items-baseline justify-center gap-x-2 text-3xl text-foreground sm:text-4xl lg:text-5xl">
-            <span>Scalar owns</span>
+            <span>Shopper owns</span>
             <TextFlip
               as={motion.span}
               interval={1.9}
@@ -49,7 +49,7 @@ export function WhyScalarSection() {
           <p className="mt-4 text-lg text-muted-foreground">
             Enrichment tools aren&apos;t a CRM. Modern CRMs are pretty but you still
             do the work. Legacy CRMs are heavy and agents can&apos;t drive them.
-            Agent frameworks dump to markdown. Scalar is structure, UI,
+            Agent frameworks dump to markdown. Shopper is structure, UI,
             intelligence, and agent-native, as one system.
           </p>
         </div>

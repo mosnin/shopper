@@ -17,7 +17,7 @@ const line = {
   show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.7, ease: easeOut } },
 };
 
-// The Scalar manifesto: an on-brand editorial statement of why the product
+// The Shopper manifesto: an on-brand editorial statement of why the product
 // exists. Replaces the inherited agency page (red, wrong logo, stock copy) with
 // the baby-blue ASCII signature and our own conviction.
 const beliefs = [
@@ -80,7 +80,7 @@ export function ManifestoContent() {
           variants={line}
           className="font-brand mt-14 text-2xl text-foreground sm:text-3xl"
         >
-          This is Scalar.
+          This is Shopper.
         </motion.p>
 
         <motion.div variants={line} className="mt-10 flex flex-col items-center gap-4 sm:flex-row">

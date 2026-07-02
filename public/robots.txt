@@ -10,4 +10,4 @@ Disallow: /skills
 Disallow: /product-context
 Disallow: /settings
 Disallow: /api/
-Sitemap: https://www.tryscalar.xyz/sitemap.xml
+Sitemap: https://www.shopper.sh/sitemap.xml

@@ -13,7 +13,7 @@ const easeOut = [0.16, 1, 0.3, 1] as const;
 
 // Known MCP clients. The CRM is the substrate; the agent is interchangeable.
 const agents = [
-  { name: "OpenClaw", body: "Point an OpenClaw agent at Scalar and it operates your CRM through MCP tools and skills." },
+  { name: "OpenClaw", body: "Point an OpenClaw agent at Shopper and it operates your CRM through MCP tools and skills." },
   { name: "Hermes", body: "Hermes connects over the same surface, reading and writing the records you can see." },
   { name: "Claude Cowork", body: "Bring Claude to your CRM: it discovers, enriches, and tracks on data that stays yours." },
   { name: "Any MCP client", body: "If it speaks MCP, it connects. No bespoke integration, no exported copy of your data." },
@@ -39,7 +39,7 @@ const steps = [
   {
     n: "02",
     title: "Point your agent",
-    body: "Connect your MCP client to the Scalar endpoint with that key. The tools appear automatically.",
+    body: "Connect your MCP client to the Shopper endpoint with that key. The tools appear automatically.",
   },
   {
     n: "03",
@@ -68,7 +68,7 @@ export default function IntegrationsPage() {
               Bring your <span className="text-gradient-orange">own agent</span>
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground">
-              Scalar is open by connection. Plug any MCP agent into the same
+              Shopper is open by connection. Plug any MCP agent into the same
               structured CRM over a secure endpoint and per-user keys. The CRM is
               the substrate; agents are interchangeable.
             </p>

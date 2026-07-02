@@ -1,4 +1,4 @@
--- Scalar — complete Supabase/Postgres schema
+-- Shopper — complete Supabase/Postgres schema
 -- Mirrors prisma/schema.prisma. Run this once in the Supabase SQL Editor
 -- against a fresh database. Safe to re-run (guards with IF NOT EXISTS where possible).
 --
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS "users" (
 );
 CREATE UNIQUE INDEX IF NOT EXISTS "users_clerkId_key" ON "users" ("clerkId");
 
--- conversations — a chat with the Scalar agent (fresh one per page load)
+-- conversations — a chat with the Shopper agent (fresh one per page load)
 CREATE TABLE IF NOT EXISTS "conversations" (
   "id"        TEXT NOT NULL,
   "userId"    TEXT NOT NULL,

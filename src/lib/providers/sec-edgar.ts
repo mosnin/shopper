@@ -15,7 +15,7 @@ export function isSecEdgarConfigured(): boolean {
 function userAgent(): string {
   return (
     process.env.SEC_EDGAR_USER_AGENT?.trim() ||
-    "Scalar CRM enrichment (contact@tryscalar.xyz)"
+    "Shopper CRM enrichment (contact@shopper.sh)"
   );
 }
 

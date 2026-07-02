@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { LegalDoc } from "@/components/legal/legal-doc";
 
 export const metadata: Metadata = {
-  title: "Cookie Policy | Scalar",
-  description: "How and why Scalar uses cookies.",
+  title: "Cookie Policy | Shopper",
+  description: "How and why Shopper uses cookies.",
 };
 
 export default function CookiesPage() {
@@ -13,7 +13,7 @@ export default function CookiesPage() {
       updated="June 9, 2026"
       intro={
         <>
-          Scalar uses a small, deliberate set of cookies. We do not run
+          Shopper uses a small, deliberate set of cookies. We do not run
           advertising trackers or sell your browsing activity. This policy
           explains what we set and why, and complements our Privacy Policy.
         </>

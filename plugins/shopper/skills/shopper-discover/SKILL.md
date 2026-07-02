@@ -1,11 +1,11 @@
 ---
-name: scalar-discover
-description: Find companies and people with Scalar and add them to the CRM.
+name: shopper-discover
+description: Find companies and people with Shopper and add them to the CRM.
 ---
 
-# Discover leads with Scalar
+# Discover leads with Shopper
 
-Use Scalar's Discover tools to turn a goal into real, CRM-ready records.
+Use Shopper's Discover tools to turn a goal into real, CRM-ready records.
 
 ## When to use
 - You need new accounts or contacts for outbound.
@@ -13,7 +13,7 @@ Use Scalar's Discover tools to turn a goal into real, CRM-ready records.
 
 ## How to work
 1. Start broad with "Find companies": describe the ideal customer and pick a
-   count. Scalar returns named companies with industry, location, phone, website,
+   count. Shopper returns named companies with industry, location, phone, website,
    and key decision makers.
 2. Review the results. Add the strong ones individually, or "Add all" to bulk-add.
    Duplicates (by domain) are skipped automatically.

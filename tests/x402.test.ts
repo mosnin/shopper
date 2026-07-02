@@ -69,7 +69,7 @@ describe("buildRequirements", () => {
     const req = buildRequirements({
       priceUsd: 10,
       resource: "https://app.example/api/x402/topup",
-      description: "Top up 1000 Scalar credits",
+      description: "Top up 1000 Shopper credits",
     });
     expect(req.scheme).toBe("exact");
     expect(req.network).toBe("base-sepolia");

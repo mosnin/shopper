@@ -173,7 +173,7 @@ async function buyCreditsViaMcp(
   const requirements = buildRequirements({
     priceUsd,
     resource: resourceUrl("/api/x402/topup"),
-    description: `Top up ${credits} Scalar credits`,
+    description: `Top up ${credits} Shopper credits`,
   });
   if (!xPayment) {
     return {
@@ -212,7 +212,7 @@ async function buyPlanViaMcp(
   const requirements = buildRequirements({
     priceUsd: PLAN_USD[plan],
     resource: resourceUrl("/api/x402/subscribe"),
-    description: `Scalar ${plan} plan, 30 days`,
+    description: `Shopper ${plan} plan, 30 days`,
   });
   if (!xPayment) {
     return {
@@ -601,7 +601,7 @@ const handler = createMcpHandler(
     /* --------------------------- Billing -------------------------- */
     server.tool(
       "get_balance",
-      "Your current Scalar usage balance: credits remaining, plan, and when the meter next resets. Free and read-only. Call it at the start of a session and after an insufficient_credits error.",
+      "Your current Shopper usage balance: credits remaining, plan, and when the meter next resets. Free and read-only. Call it at the start of a session and after an insufficient_credits error.",
       {},
       { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
       async (_args, extra) =>
@@ -612,7 +612,7 @@ const handler = createMcpHandler(
     );
     server.tool(
       "get_usage",
-      "The Scalar price list: how many credits each metered action costs, the plans you can buy, top-up limits, and your current balance. Free and read-only. Use it to plan spend and pick what to buy when low.",
+      "The Shopper price list: how many credits each metered action costs, the plans you can buy, top-up limits, and your current balance. Free and read-only. Use it to plan spend and pick what to buy when low.",
       {},
       { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
       async (_args, extra) =>
@@ -636,7 +636,7 @@ const handler = createMcpHandler(
     );
     server.tool(
       "buy_credits",
-      "Buy more Scalar usage credits with USDC over x402 (pay as you go, $0.01 per credit). TWO STEPS: (1) call with { credits } and NO xPayment to get a quote (the payment requirements); (2) have your x402 client sign a USDC payment for those requirements and call again with the same { credits } plus xPayment set to the base64 X-PAYMENT header. Returns the new balance. Call this when a tool returns insufficient_credits, then retry the failed call. Safe to retry: a settled payment is never charged twice (idempotent on the on-chain nonce).",
+      "Buy more Shopper usage credits with USDC over x402 (pay as you go, $0.01 per credit). TWO STEPS: (1) call with { credits } and NO xPayment to get a quote (the payment requirements); (2) have your x402 client sign a USDC payment for those requirements and call again with the same { credits } plus xPayment set to the base64 X-PAYMENT header. Returns the new balance. Call this when a tool returns insufficient_credits, then retry the failed call. Safe to retry: a settled payment is never charged twice (idempotent on the on-chain nonce).",
       { credits: z.number().int().min(100).max(100000).default(1000), xPayment: z.string().optional() },
       { readOnlyHint: false, destructiveHint: false, idempotentHint: true, openWorldHint: true },
       async ({ credits, xPayment }, extra) =>
@@ -644,7 +644,7 @@ const handler = createMcpHandler(
     );
     server.tool(
       "buy_plan",
-      "Buy a Scalar plan for 30 days with USDC over x402 (starter, pro, or business; cheaper per credit than top-ups for sustained work). TWO STEPS: (1) call with { plan } and NO xPayment for a quote; (2) sign the USDC payment with your x402 client and call again with the same { plan } plus xPayment (base64 X-PAYMENT). Activates the plan and refills credits to its allotment. Idempotent on the on-chain nonce; not recurring (re-buy after 30 days).",
+      "Buy a Shopper plan for 30 days with USDC over x402 (starter, pro, or business; cheaper per credit than top-ups for sustained work). TWO STEPS: (1) call with { plan } and NO xPayment for a quote; (2) sign the USDC payment with your x402 client and call again with the same { plan } plus xPayment (base64 X-PAYMENT). Activates the plan and refills credits to its allotment. Idempotent on the on-chain nonce; not recurring (re-buy after 30 days).",
       { plan: z.enum(["starter", "pro", "business"]), xPayment: z.string().optional() },
       { readOnlyHint: false, destructiveHint: false, idempotentHint: true, openWorldHint: true },
       async ({ plan, xPayment }, extra) =>
@@ -697,7 +697,7 @@ const handler = createMcpHandler(
     );
     server.tool(
       "log_call",
-      "Record a phone call on a contact that happened outside Scalar (for context). Does not place a call.",
+      "Record a phone call on a contact that happened outside Shopper (for context). Does not place a call.",
       {
         contactId: z.string(),
         direction: z.enum(["INBOUND", "OUTBOUND"]),
@@ -767,8 +767,8 @@ const handler = createMcpHandler(
     );
   },
   {
-    serverInfo: { name: "scalar", version: "0.1.0" },
-    instructions: `Scalar is a CRM that you, an AI agent, operate end to end with no human. You discover leads, enrich them accurately, organize them, track outreach, and you pay for your own usage when credits run low. Reads and writes to the CRM are free; only actions that pull real data from the outside world (discovery, enrichment, web search) cost credits.
+    serverInfo: { name: "shopper", version: "0.1.0" },
+    instructions: `Shopper is a CRM that you, an AI agent, operate end to end with no human. You discover leads, enrich them accurately, organize them, track outreach, and you pay for your own usage when credits run low. Reads and writes to the CRM are free; only actions that pull real data from the outside world (discovery, enrichment, web search) cost credits.
 
 THE OPERATING LOOP
 1. Orient. Call get_balance to know your runway, and recall to retrieve relevant past context (this session is stateless). Call search_crm or list_entities / list_contacts before discovering, so you build on existing records instead of duplicating them.
@@ -787,7 +787,7 @@ Be economical: every external call spends real money. Orient before you discover
   { basePath: "/api/mcp" },
 );
 
-// Per-user API key auth: resolve the bearer token to a Scalar user and inject
+// Per-user API key auth: resolve the bearer token to a Shopper user and inject
 // the userId into authInfo.extra for the tools to scope on.
 const authHandler = withMcpAuth(
   handler,

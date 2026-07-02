@@ -162,7 +162,7 @@ export function IntelligenceSection() {
             <span className="text-gradient-orange">In seconds.</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            A CRM stores what you type. Scalar&apos;s agents go get it: a full
+            A CRM stores what you type. Shopper&apos;s agents go get it: a full
             picture of a company and the people who matter, plus who is ready to
             buy, faster than you could open a new tab.
           </p>

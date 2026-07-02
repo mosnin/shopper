@@ -65,8 +65,8 @@ function renderValue(value: unknown): React.ReactNode {
 
   if (Array.isArray(value)) {
     if (value.length === 0) return <span className="text-muted-foreground">-</span>;
-    const allScalar = value.every((v) => v === null || typeof v !== "object");
-    if (allScalar) {
+    const __ALLSHOPPER__ = value.every((v) => v === null || typeof v !== "object");
+    if (__ALLSHOPPER__) {
       return (
         <div className="flex flex-wrap gap-1.5">
           {value.map((v, i) => (

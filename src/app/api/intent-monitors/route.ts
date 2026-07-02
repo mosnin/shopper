@@ -66,7 +66,7 @@ export async function POST(req: NextRequest) {
     // that isn't a monitor we registered (the callback writes into the CRM).
     let exaMonitorId: string | undefined;
     try {
-      const base = process.env.NEXT_PUBLIC_APP_URL ?? "https://tryscalar.xyz";
+      const base = process.env.NEXT_PUBLIC_APP_URL ?? "https://shopper.sh";
       const token = exaWebhookToken();
       const webhookUrl = `${base}/api/webhooks/exa${token ? `?t=${token}` : ""}`;
       const exaMon = await createExaMonitor({

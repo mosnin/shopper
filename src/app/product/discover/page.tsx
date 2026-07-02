@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { FeaturePage } from "@/components/marketing/feature-page";
 
 export const metadata: Metadata = {
-  title: "Discover | Scalar",
+  title: "Discover | Shopper",
   description:
     "Find the right companies and people from a name, a domain, or a plain-English prompt, written straight into your CRM, deduped.",
 };
@@ -13,7 +13,7 @@ export default function DiscoverPage() {
       eyebrow="Discover"
       title="Find the right companies,"
       accent="from a prompt"
-      subtitle="Point your agent at a name, a domain, or a plain-English description of your market. Scalar finds real companies and the people inside them and writes them into your CRM, deduped."
+      subtitle="Point your agent at a name, a domain, or a plain-English description of your market. Shopper finds real companies and the people inside them and writes them into your CRM, deduped."
       blocks={[
         {
           title: "Real companies, not articles",
@@ -21,7 +21,7 @@ export default function DiscoverPage() {
         },
         {
           title: "Local lead gen",
-          body: "For businesses with an address, restaurants, dentists, law firms, Scalar pulls them from Google Maps with phone and address attached, ready to work the moment they land.",
+          body: "For businesses with an address, restaurants, dentists, law firms, Shopper pulls them from Google Maps with phone and address attached, ready to work the moment they land.",
         },
         {
           title: "Deduped by default",

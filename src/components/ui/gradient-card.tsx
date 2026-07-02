@@ -26,7 +26,7 @@ export type GradientCardProps = {
 };
 
 /**
- * Premium 3D-tilt gradient card in the Scalar palette (charcoal + green
+ * Premium 3D-tilt gradient card in the Shopper palette (charcoal + green
  * glow) with the studio&apos;s ASCII signature. Reserved for the marketing
  * site&apos;s main features.
  */

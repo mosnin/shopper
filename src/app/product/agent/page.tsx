@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { FeaturePage } from "@/components/marketing/feature-page";
 
 export const metadata: Metadata = {
-  title: "The agent | Scalar",
+  title: "The agent | Shopper",
   description:
     "A built-in agent that discovers, enriches, tracks deals, and writes to the same CRM you see, or bring your own over MCP.",
 };
@@ -13,7 +13,7 @@ export default function AgentPage() {
       eyebrow="The agent"
       title="A teammate that"
       accent="operates your CRM"
-      subtitle="Scalar has a built-in agent that discovers, enriches, tracks deals, and writes to the same records you see, in plain conversation. Or bring your own."
+      subtitle="Shopper has a built-in agent that discovers, enriches, tracks deals, and writes to the same records you see, in plain conversation. Or bring your own."
       blocks={[
         {
           title: "One surface, two operators",

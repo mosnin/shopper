@@ -46,7 +46,7 @@ export async function geocode(address: string): Promise<GeoResult | null> {
     const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(q)}`;
     const res = await fetch(url, {
       headers: {
-        "User-Agent": "Scalar CRM (https://www.tryscalar.xyz)",
+        "User-Agent": "Shopper CRM (https://www.shopper.sh)",
         "Accept-Language": "en",
       },
       signal: AbortSignal.timeout(8000),
@@ -69,7 +69,7 @@ export async function reverseGeocode(lat: number, lng: number): Promise<string |
   try {
     const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=10`;
     const res = await fetch(url, {
-      headers: { "User-Agent": "Scalar CRM (https://www.tryscalar.xyz)", "Accept-Language": "en" },
+      headers: { "User-Agent": "Shopper CRM (https://www.shopper.sh)", "Accept-Language": "en" },
       signal: AbortSignal.timeout(8000),
     });
     if (!res.ok) return null;

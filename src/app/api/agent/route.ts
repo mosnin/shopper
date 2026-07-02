@@ -36,8 +36,8 @@ export const maxDuration = 60;
 
 const MODEL = process.env.OPENAI_AGENT_MODEL ?? "gpt-4o";
 
-const SYSTEM = `You are Scalar, the research and context agent built into this CRM. \
-Your name is Scalar and you should refer to yourself as Scalar when introducing \
+const SYSTEM = `You are Shopper, the research and context agent built into this CRM. \
+Your name is Shopper and you should refer to yourself as Shopper when introducing \
 yourself or when context makes it natural. You discover businesses, enrich them, \
 and manage entities (businesses) and contacts (people) on behalf of the operator.
 
@@ -320,7 +320,7 @@ export async function POST(req: Request) {
       await prisma.message.create({
         data: { conversationId: conversationId!, role: "assistant", content: text },
       });
-      await storeMemory(userId, "message", `Scalar: ${text}`, conversationId);
+      await storeMemory(userId, "message", `Shopper: ${text}`, conversationId);
     },
   });
 

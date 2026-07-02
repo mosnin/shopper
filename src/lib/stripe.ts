@@ -3,7 +3,7 @@ import { fetchWithTimeout } from "@/lib/http";
 import type { PaidPlanName } from "@/lib/credits";
 
 // Thin Stripe layer over the REST API (no SDK, mirroring the existing
-// fetch-based billing code). Covers exactly what Scalar needs: creating a
+// fetch-based billing code). Covers exactly what Shopper needs: creating a
 // hosted Checkout session for a plan subscription, and verifying webhook
 // signatures. Env-gated: without STRIPE_SECRET_KEY, callers treat billing as
 // not configured and return 501.

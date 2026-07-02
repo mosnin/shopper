@@ -85,8 +85,8 @@ type NavItem = {
   accent?: boolean;
 };
 
-// The agent is Scalar; render the brand logo as its nav icon.
-const ScalarLogoIcon: NavIcon = ({ className }) => <LogoMark className={className} />;
+// The agent is Shopper; render the brand logo as its nav icon.
+const ShopperLogoIcon: NavIcon = ({ className }) => <LogoMark className={className} />;
 
 export const NAV_ITEMS: NavItem[] = [
   { label: "Home", href: "/dashboard", icon: Home },
@@ -94,7 +94,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "Radar", href: "/radar", icon: Radar },
   { label: "CRM", href: "/crm", icon: Users },
   { label: "Field", href: "/field", icon: Crosshair },
-  { label: "Scalar", href: "/agent", icon: ScalarLogoIcon },
+  { label: "Shopper", href: "/agent", icon: ShopperLogoIcon },
   { label: "Context", href: "/product-context", icon: BookOpen },
   { label: "Settings", href: "/settings", icon: Settings },
 ];
@@ -128,10 +128,10 @@ const LAUNCHPAD_TILES: Tile[] = [
       "Your contact and entity database - enriched, organised, and always current.",
   },
   {
-    label: "Scalar",
+    label: "Shopper",
     href: "/agent",
     description:
-      "Talk to Scalar, your agent. Search, enrich, and orchestrate your pipeline in plain language.",
+      "Talk to Shopper, your agent. Search, enrich, and orchestrate your pipeline in plain language.",
     highlight: true,
   },
   {
@@ -156,7 +156,7 @@ const LAUNCHPAD_TILES: Tile[] = [
     label: "Skills",
     href: "/skills",
     description:
-      "Ready-made playbooks for operating Scalar. Copy or download as .md for your agent.",
+      "Ready-made playbooks for operating Shopper. Copy or download as .md for your agent.",
   },
   {
     label: "Settings",
@@ -181,7 +181,7 @@ const SIDEBAR_WIDTH = 224; // px - the sidebar panel's own width
 // When sidebar is floating (left-3 = 12px margin), content must shift by:
 //   sidebar width + left margin + gutter between sidebar edge and content
 const SIDEBAR_INSET = SIDEBAR_WIDTH + 12 + 16; // 252 px total
-const STORAGE_KEY = "scalar-nav-mode";
+const STORAGE_KEY = "shopper-nav-mode";
 
 // ── Dock magnification constants ─────────────────────────────────────────────
 const BASE = 46;
@@ -468,7 +468,7 @@ function Sidebar({
           <Link href="/dashboard" className="flex items-center gap-2.5">
             <LogoMark className="h-6 w-6" />
             <span className="font-brand text-base font-bold text-foreground">
-              Scalar
+              Shopper
             </span>
           </Link>
         </div>
@@ -688,7 +688,7 @@ function Launchpad({
             <div className="pointer-events-auto flex shrink-0 items-center justify-between px-5 pt-7 sm:px-10">
               <div>
                 <p className="text-xs uppercase tracking-[0.25em] text-primary/80">
-                  Scalar // CRM
+                  Shopper // CRM
                 </p>
                 <h2 className="font-brand mt-1 text-3xl text-foreground sm:text-4xl">
                   Everything
@@ -857,7 +857,7 @@ export function DashboardShell({
                 <Link href="/dashboard" className="flex items-center gap-2">
                   <LogoMark className="h-6 w-6" />
                   <span className="font-brand text-base font-bold text-foreground hidden sm:inline">
-                    Scalar
+                    Shopper
                   </span>
                 </Link>
                 <div className="flex items-center gap-1.5 sm:gap-2">

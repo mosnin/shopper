@@ -49,7 +49,7 @@ export async function GET(req: Request) {
   if (responseType !== "code") return fail("unsupported_response_type");
   if (!codeChallenge || method !== "S256") return fail("invalid_request", "PKCE S256 is required");
 
-  // Require a signed-in Scalar user; otherwise send them through Clerk and back.
+  // Require a signed-in Shopper user; otherwise send them through Clerk and back.
   const { userId: clerkId } = await auth();
   if (!clerkId) {
     const signIn = new URL("/sign-in", origin);

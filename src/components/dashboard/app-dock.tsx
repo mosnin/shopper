@@ -128,7 +128,7 @@ function DockButton({
 }
 
 export function AppDock({ isStaff = false }: { isStaff?: boolean }) {
-  // isStaff is accepted for layout compatibility; no staff-only tiles exist in Scalar.
+  // isStaff is accepted for layout compatibility; no staff-only tiles exist in Shopper.
   void isStaff;
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -251,7 +251,7 @@ export function AppDock({ isStaff = false }: { isStaff?: boolean }) {
               <div className="pointer-events-auto flex items-center justify-between px-5 pt-7 sm:px-10">
                 <div>
                   <p className="text-xs uppercase tracking-[0.25em] text-orange/80">
-                    Scalar // CRM
+                    Shopper // CRM
                   </p>
                   <h2 className="font-brand mt-1 text-3xl text-white sm:text-4xl">Everything</h2>
                 </div>

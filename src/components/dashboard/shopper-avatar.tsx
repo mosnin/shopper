@@ -5,10 +5,10 @@ import { motion, useReducedMotion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 /**
- * Scalar's avatar: the app favicon badge. When `active` (the agent is
+ * Shopper's avatar: the app favicon badge. When `active` (the agent is
  * responding) it breathes and pulses a ring so the reply feels alive.
  */
-export function ScalarAvatar({ className, active = false }: { className?: string; active?: boolean }) {
+export function ShopperAvatar({ className, active = false }: { className?: string; active?: boolean }) {
   const reduce = useReducedMotion();
   const animate = active && !reduce;
 

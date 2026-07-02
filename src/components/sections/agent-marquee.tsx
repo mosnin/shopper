@@ -3,7 +3,7 @@
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
 import { ProgressiveBlur } from "@/components/ui/progressive-blur";
 
-// The agents Scalar connects to over MCP. Logos are self-hosted and rendered
+// The agents Shopper connects to over MCP. Logos are self-hosted and rendered
 // monochrome so the wall stays legible in both light and dark mode (several
 // marks are dark or solid-colored and would otherwise vanish on one theme).
 const agents = [

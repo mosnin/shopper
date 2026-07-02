@@ -55,7 +55,7 @@ export function SignUpForm() {
             onChange={(e) => setAgreed(e.target.checked)}
           />
           <span className="text-sm leading-relaxed text-muted-foreground">
-            I agree to Scalar&apos;s{" "}
+            I agree to Shopper&apos;s{" "}
             <Link href="/terms" className="text-orange hover:text-orange-dark">
               Terms of Service
             </Link>{" "}

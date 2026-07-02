@@ -63,7 +63,7 @@ function OperateVisual() {
     <div className="rounded-xl border border-border bg-background/60 px-3 py-2.5 dark:border-white/10 dark:bg-white/[0.03]">
       <p className="flex items-center gap-2 text-xs text-foreground/80">
         <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-        <span className="font-brand text-foreground">Scalar</span> enriched 12 companies
+        <span className="font-brand text-foreground">Shopper</span> enriched 12 companies
         <span className="text-muted-foreground">. just now</span>
       </p>
       <p className="mt-1.5 pl-3.5 text-[11px] text-muted-foreground">
@@ -77,7 +77,7 @@ const steps = [
   {
     title: "Connect",
     description:
-      "Sign up, connect your domain and AgentMail key, and point Scalar at your product context. The agents have everything they need in minutes.",
+      "Sign up, connect your domain and AgentMail key, and point Shopper at your product context. The agents have everything they need in minutes.",
     visual: <ConnectVisual />,
   },
   {

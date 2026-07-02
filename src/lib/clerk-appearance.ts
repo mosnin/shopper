@@ -1,5 +1,5 @@
 // Shared Clerk appearance so the hosted sign-in / sign-up components match
-// Scalar's baby-blue + white system instead of Clerk's stock theme. Colors are
+// Shopper's baby-blue + white system instead of Clerk's stock theme. Colors are
 // wired to our CSS variables so the forms follow light/dark automatically; the
 // surrounding card frame is supplied by the auth pages, so Clerk's own card is
 // stripped to transparent. Typed via the SignIn component's own prop so we stay

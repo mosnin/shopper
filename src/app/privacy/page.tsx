@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { LegalDoc, L } from "@/components/legal/legal-doc";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Scalar",
-  description: "How Scalar collects, uses, and protects your data.",
+  title: "Privacy Policy | Shopper",
+  description: "How Shopper collects, uses, and protects your data.",
 };
 
 export default function PrivacyPage() {
@@ -13,8 +13,8 @@ export default function PrivacyPage() {
       updated="June 9, 2026"
       intro={
         <>
-          This Privacy Policy explains what data Scalar collects, how we use it,
-          and the choices you have. Scalar is the CRM your agents run, and the
+          This Privacy Policy explains what data Shopper collects, how we use it,
+          and the choices you have. Shopper is the CRM your agents run, and the
           principle behind this policy is the same one behind the product: your
           data is a single source of truth you control. Enrichment flows in;
           your data does not leak out. We do not sell it, and we do not use it
@@ -25,7 +25,7 @@ export default function PrivacyPage() {
         {
           heading: "Who we are",
           body: [
-            "Scalar provides the CRM and intelligence service described at tryscalar.xyz. For personal data you store about your own contacts and companies, you are the data controller and we act as your processor; the terms of that relationship are set out in our Data Processing Addendum. For account and billing data we collect about you directly, we are the controller.",
+            "Shopper provides the CRM and intelligence service described at shopper.sh. For personal data you store about your own contacts and companies, you are the data controller and we act as your processor; the terms of that relationship are set out in our Data Processing Addendum. For account and billing data we collect about you directly, we are the controller.",
           ],
         },
         {
@@ -33,7 +33,7 @@ export default function PrivacyPage() {
           bullets: [
             "Account data: your name, email, and authentication identifiers, handled by Clerk.",
             "Billing data: your plan, credit usage, and payment records, handled by our payment processor, Stripe. We do not store full card numbers.",
-            "Customer Data: the companies, contacts, deals, emails, notes, and agent memory you create or enrich inside Scalar.",
+            "Customer Data: the companies, contacts, deals, emails, notes, and agent memory you create or enrich inside Shopper.",
             "Usage data: logs, device and browser information, and product analytics used to keep the service reliable and secure.",
             "Cookies: a small set of cookies needed to sign you in and run the app, described in our Cookie Policy.",
           ],
@@ -45,19 +45,19 @@ export default function PrivacyPage() {
             "To bill you: meter credit usage and process payments through Stripe.",
             "To secure the service: detect abuse, enforce rate limits, and protect accounts.",
             "To support you: respond to requests and send essential service notices.",
-            "To improve Scalar: understand aggregate usage. We do not use your Customer Data to train models for other customers.",
+            "To improve Shopper: understand aggregate usage. We do not use your Customer Data to train models for other customers.",
           ],
         },
         {
           heading: "Enrichment and accuracy",
           body: [
-            "When you run discovery or enrichment, Scalar queries third-party providers and writes verified results into your CRM. We apply a strict accuracy rule: data is saved only when it matches the correct person or company by name and company or domain. If we cannot verify a match, we return nothing rather than a wrong value, and you are not charged. This protects the people in your database as much as it protects your data quality.",
+            "When you run discovery or enrichment, Shopper queries third-party providers and writes verified results into your CRM. We apply a strict accuracy rule: data is saved only when it matches the correct person or company by name and company or domain. If we cannot verify a match, we return nothing rather than a wrong value, and you are not charged. This protects the people in your database as much as it protects your data quality.",
           ],
         },
         {
           heading: "How we share data",
           body: [
-            "We share data only with the subprocessors that run Scalar (hosting, authentication, payments, email, background jobs, and the data providers that power enrichment), each listed on our Subprocessors page and bound to protect it. We may disclose data if required by law or to protect rights and safety. We do not sell personal data, and we do not share it for cross-context behavioral advertising.",
+            "We share data only with the subprocessors that run Shopper (hosting, authentication, payments, email, background jobs, and the data providers that power enrichment), each listed on our Subprocessors page and bound to protect it. We may disclose data if required by law or to protect rights and safety. We do not sell personal data, and we do not share it for cross-context behavioral advertising.",
           ],
         },
         {
@@ -87,7 +87,7 @@ export default function PrivacyPage() {
         {
           heading: "Children",
           body: [
-            "Scalar is not directed to children and is intended for users 18 and older. We do not knowingly collect personal data from children.",
+            "Shopper is not directed to children and is intended for users 18 and older. We do not knowingly collect personal data from children.",
           ],
         },
         {
@@ -97,7 +97,7 @@ export default function PrivacyPage() {
               We will update this policy as the service and the law evolve, and
               we will change the date above when we do. For any privacy request
               or question, email{" "}
-              <L href="mailto:hello@tryscalar.xyz">hello@tryscalar.xyz</L>.
+              <L href="mailto:hello@shopper.sh">hello@shopper.sh</L>.
             </>,
           ],
         },

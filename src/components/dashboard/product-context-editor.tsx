@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Check, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const PLACEHOLDER = `What you sell, who it's for, and why it wins. The more Scalar knows, the sharper its outreach.
+const PLACEHOLDER = `What you sell, who it's for, and why it wins. The more Shopper knows, the sharper its outreach.
 
 Example:
 • Product: <what it is, in a sentence>
@@ -68,7 +68,7 @@ export function ProductContextEditor({ initial }: { initial: string }) {
         />
         <div className="mt-4 flex items-center justify-between gap-3">
           <p className="text-xs text-muted-foreground">
-            Scalar reads this before every action - saved to your workspace.
+            Shopper reads this before every action - saved to your workspace.
           </p>
           <div className="flex items-center gap-2">
             <AnimatePresence mode="wait">

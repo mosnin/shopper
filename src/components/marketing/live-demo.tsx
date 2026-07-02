@@ -174,7 +174,7 @@ export function LiveDemo() {
           </div>
           <div className="mx-auto flex items-center gap-2 rounded-full border border-border bg-background/60 px-3 py-1 text-[11px] text-muted-foreground dark:border-white/10">
             <span className="h-1.5 w-1.5 rounded-full bg-success" />
-            app.tryscalar.xyz / crm
+            app.shopper.sh / crm
           </div>
         </div>
 
@@ -187,7 +187,7 @@ export function LiveDemo() {
               <span className="h-2 w-2 rounded-full bg-primary" />
             </span>
             <p className="truncate font-mono text-xs text-foreground/85">
-              <span className="text-muted-foreground">scalar </span>
+              <span className="text-muted-foreground">shopper </span>
               {typed}
               {!reduce && (
                 <motion.span

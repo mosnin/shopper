@@ -233,7 +233,7 @@ export function DashboardOverview({
         <div className="relative z-10 flex h-full flex-col justify-between p-6 sm:p-8 lg:p-10">
           {/* Eyebrow */}
           <p className="font-brand text-xs uppercase tracking-[0.3em] text-primary">
-            SCALAR // RESEARCH
+            SHOPPER // RESEARCH
           </p>
 
           {/* Main content */}
@@ -295,7 +295,7 @@ export function DashboardOverview({
               </Button>
               <Button variant="outline" size="lg" asChild>
                 <Link href="/agent">
-                  Ask Scalar
+                  Ask Shopper
                 </Link>
               </Button>
             </div>
@@ -375,7 +375,7 @@ export function DashboardOverview({
                   <ArrowUpRight className="h-5 w-5 text-white/70 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white" />
                 </div>
                 <div>
-                  <p className="font-brand text-xl text-white">Ask Scalar</p>
+                  <p className="font-brand text-xl text-white">Ask Shopper</p>
                   <p className="mt-1 text-sm text-white/75">
                     Your agent, ready to enrich and discover.
                   </p>
@@ -407,7 +407,7 @@ export function DashboardOverview({
             <div className="relative z-10 p-8">
               <div>
                 <p className="font-brand text-xs uppercase tracking-[0.3em] text-primary">
-                  Explore Scalar
+                  Explore Shopper
                 </p>
                 <h2 className="font-brand mt-2 text-2xl text-foreground sm:text-3xl">
                   Discover · Enrich · Converse · Context
@@ -426,7 +426,7 @@ export function DashboardOverview({
                   // reachable directly until the core moment is proven and felt.
                   { label: "Discover", href: "/discover", body: "Find + enrich the right people" },
                   { label: "CRM", href: "/crm", body: "Records you can trust" },
-                  { label: "Scalar", href: "/agent", body: "Your agent runs the pipeline" },
+                  { label: "Shopper", href: "/agent", body: "Your agent runs the pipeline" },
                   { label: "Context", href: "/product-context", body: "Ground your agent in your product" },
                 ].map((item) => {
                   return (

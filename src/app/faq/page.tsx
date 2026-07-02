@@ -13,12 +13,12 @@ const faqCategories = [
     category: "Getting started",
     questions: [
       {
-        q: "What is Scalar?",
-        a: "Scalar is the CRM your agents run: structured storage, a real UI, and built-in intelligence in one system. Your AI agents discover leads, enrich records, track deals, and run email relationships, and the work lands in a clean, deduped database you can actually browse and trust, instead of rotting in scattered markdown files.",
+        q: "What is Shopper?",
+        a: "Shopper is the CRM your agents run: structured storage, a real UI, and built-in intelligence in one system. Your AI agents discover leads, enrich records, track deals, and run email relationships, and the work lands in a clean, deduped database you can actually browse and trust, instead of rotting in scattered markdown files.",
       },
       {
         q: "Do I need to bring my own agent?",
-        a: "No. Scalar ships with a built-in agent that can discover, enrich, and write your CRM from a chat. If you already run your own agent, connect it over MCP and it operates the same CRM through the same tools.",
+        a: "No. Shopper ships with a built-in agent that can discover, enrich, and write your CRM from a chat. If you already run your own agent, connect it over MCP and it operates the same CRM through the same tools.",
       },
       {
         q: "Is there a free plan?",
@@ -31,7 +31,7 @@ const faqCategories = [
     questions: [
       {
         q: "How do I connect my agent?",
-        a: "Any agent that speaks MCP works: Claude, OpenClaw, Hermes, or your own. Connect via OAuth, or generate an API key from Settings and point your agent at Scalar's MCP server. Once connected, it reads and writes your CRM immediately.",
+        a: "Any agent that speaks MCP works: Claude, OpenClaw, Hermes, or your own. Connect via OAuth, or generate an API key from Settings and point your agent at Shopper's MCP server. Once connected, it reads and writes your CRM immediately.",
       },
       {
         q: "What can a connected agent actually do?",
@@ -44,11 +44,11 @@ const faqCategories = [
     questions: [
       {
         q: "Where does the enrichment data come from?",
-        a: "Discovery and enrichment run on orchestrated best-in-class data providers. Scalar picks the right tool for each job, refines noisy results into real, deduped companies, and writes clean records into your CRM. We orchestrate providers; we do not sell data.",
+        a: "Discovery and enrichment run on orchestrated best-in-class data providers. Shopper picks the right tool for each job, refines noisy results into real, deduped companies, and writes clean records into your CRM. We orchestrate providers; we do not sell data.",
       },
       {
-        q: "What happens if Scalar can't verify a match?",
-        a: "It returns nothing. Scalar never attaches data for the wrong person or company: every lookup verifies the name and the company or domain before saving, and a same-name stranger is treated as a miss, not a match. A wrong value is worse than no value, and a miss is never charged.",
+        q: "What happens if Shopper can't verify a match?",
+        a: "It returns nothing. Shopper never attaches data for the wrong person or company: every lookup verifies the name and the company or domain before saving, and a same-name stranger is treated as a miss, not a match. A wrong value is worse than no value, and a miss is never charged.",
       },
       {
         q: "Who owns my data?",
@@ -87,7 +87,7 @@ export default function FAQPage() {
               <span className="text-gradient-orange">questions</span>
             </h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-              Everything you need to know about Scalar. Can&apos;t find what
+              Everything you need to know about Shopper. Can&apos;t find what
               you&apos;re looking for? Reach out to us directly.
             </p>
           </div>

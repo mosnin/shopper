@@ -66,7 +66,7 @@ export function BulkEnrichModal({
             <div className="relative z-10 p-6 sm:p-7">
               <div className="flex items-start justify-between">
                 <p className="font-brand text-xs uppercase tracking-[0.25em] text-primary/80">
-                  Scalar // Bulk enrich
+                  Shopper // Bulk enrich
                 </p>
                 {state !== "running" && (
                   <button

@@ -2,7 +2,7 @@
 
 /**
  * AgentCircuitSection - the system, wired. A CircuitBoard visualization
- * customized to Scalar's actual data flow: discovery and radar feed
+ * customized to Shopper's actual data flow: discovery and radar feed
  * verification and enrichment, everything lands in the CRM core, and the
  * CRM drives outreach over email and phone. Animated pulses trace the
  * paths agents actually take through the product (MCP in, records out).
@@ -36,7 +36,7 @@ const CONNECTIONS = [
   { from: "crm", to: "calls", animated: true, bidirectional: true },
 ];
 
-// Scalar baby blue for traces and pulses; grid stays whisper-quiet.
+// Shopper baby blue for traces and pulses; grid stays whisper-quiet.
 const BLUE = {
   traceColor: "rgba(90, 176, 232, 0.30)",
   pulseColor: "#5AB0E8",

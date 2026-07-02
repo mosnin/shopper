@@ -5,31 +5,31 @@ import { SquircleFilters } from "@/components/ui/squircle-filter";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Scalar | The CRM Your Agents Run",
+  title: "Shopper | The Shopping Engine Your Agents Run",
   description:
-    "A CRM operated by AI agents - they discover leads, enrich your database, run the conversations, and own the data. You direct; the agents operate.",
-  metadataBase: new URL("https://tryscalar.xyz"),
-  applicationName: "Scalar",
+    "Comprehensive shopping for AI agents - they search the whole web for the items you want, watch listings, manage your wish list and shopping lists, and buy smarter. You direct; the agents shop.",
+  metadataBase: new URL("https://shopper.sh"),
+  applicationName: "Shopper",
   appleWebApp: {
     capable: true,
-    title: "Scalar",
+    title: "Shopper",
     statusBarStyle: "default",
   },
   formatDetection: { telephone: false },
   openGraph: {
-    title: "Scalar | The CRM Your Agents Run",
+    title: "Shopper | The Shopping Engine Your Agents Run",
     description:
-      "A CRM operated by AI agents - discover, enrich, and own every relationship, all on data that stays inside.",
-    url: "https://tryscalar.xyz",
-    siteName: "Scalar",
+      "Connect your AI agents over MCP and let them do comprehensive shopping - web-wide item search, deep browsing, price radar, wish lists, and shopping lists.",
+    url: "https://shopper.sh",
+    siteName: "Shopper",
     type: "website",
   },
 };
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0A0A0A" },
+    { media: "(prefers-color-scheme: light)", color: "#E1DCC9" },
+    { media: "(prefers-color-scheme: dark)", color: "#1F150C" },
   ],
 };
 

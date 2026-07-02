@@ -1,4 +1,4 @@
-// Scalar — Prisma schema (Postgres on Supabase)
+// Shopper — Prisma schema (Postgres on Supabase)
 // Auth is Clerk; users are mirrored here via the Clerk webhook.
 
 generator client {
@@ -30,7 +30,7 @@ model User {
   productContext   String?   @db.Text
   agentMailApiKey  String?
   agentPhoneApiKey String?
-  // Outbound webhook: where Scalar POSTs results when a scheduled task (intent
+  // Outbound webhook: where Shopper POSTs results when a scheduled task (intent
   // monitor / research schedule) completes, so the user's agent can be woken up.
   taskWebhookUrl   String?
   // Billing: plan + credit meter. Existing users default to "beta" with 10,000
@@ -80,7 +80,7 @@ model CreditLedger {
   @@map("credit_ledger")
 }
 
-// A chat with the Scalar agent. A fresh one is created on each page load; long-term
+// A chat with the Shopper agent. A fresh one is created on each page load; long-term
 // continuity comes from vector recall over memory_chunks, not from replaying history.
 model Conversation {
   id        String    @id @default(uuid())
@@ -145,7 +145,7 @@ model ApiKey {
 // by domain), and operated on by agents. Has many contacts.
 model Entity {
   id     String @id @default(uuid())
-  userId String // owner (the Scalar account)
+  userId String // owner (the Shopper account)
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   name        String
@@ -207,7 +207,7 @@ model GeocodeCache {
 // A person/company in the CRM. Agents discover, enrich, and operate on these.
 model Contact {
   id     String @id @default(uuid())
-  userId String // owner (the Scalar account this contact belongs to)
+  userId String // owner (the Shopper account this contact belongs to)
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   // Optional parent business. A contact is assigned to an entity or stands solo.

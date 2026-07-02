@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { AsciiField } from "@/components/dashboard/ascii-field";
 
-// Scalar taglines - one picked at random each mount.
+// Shopper taglines - one picked at random each mount.
 const TAGLINES = [
   "Your agents are already working.",
   "Research, enriched.",
@@ -15,7 +15,7 @@ const TAGLINES = [
 
 const easeOut = [0.16, 1, 0.3, 1] as const;
 
-const SEEN_KEY = "scalar_preloader_seen";
+const SEEN_KEY = "shopper_preloader_seen";
 
 /** Mark the session as seen and return whether to show the preloader. */
 function claimSession(): boolean {

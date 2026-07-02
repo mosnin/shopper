@@ -63,7 +63,7 @@ export default function ContactPage() {
               Talk to <span className="text-gradient-orange">the team</span>
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground">
-              Questions about Scalar, connecting your agent, or what it can do for
+              Questions about Shopper, connecting your agent, or what it can do for
               your team? Send a note and we will get back to you within a day.
             </p>
           </div>
@@ -204,10 +204,10 @@ export default function ContactPage() {
                 <div>
                   <p className="text-xs uppercase tracking-[0.25em] text-primary">Email</p>
                   <a
-                    href="mailto:hello@tryscalar.xyz"
+                    href="mailto:hello@shopper.sh"
                     className="mt-2 block font-brand text-lg text-foreground transition-colors hover:text-primary"
                   >
-                    hello@tryscalar.xyz
+                    hello@shopper.sh
                   </a>
                 </div>
 
@@ -221,7 +221,7 @@ export default function ContactPage() {
                 <div>
                   <p className="text-xs uppercase tracking-[0.25em] text-primary">Where</p>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    Remote first. Scalar works wherever your agents do.
+                    Remote first. Shopper works wherever your agents do.
                   </p>
                 </div>
 

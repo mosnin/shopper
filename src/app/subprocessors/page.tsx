@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { LegalDoc } from "@/components/legal/legal-doc";
 
 export const metadata: Metadata = {
-  title: "Subprocessors | Scalar",
-  description: "The third-party services Scalar uses to run the product.",
+  title: "Subprocessors | Shopper",
+  description: "The third-party services Shopper uses to run the product.",
 };
 
 export default function SubprocessorsPage() {
@@ -13,7 +13,7 @@ export default function SubprocessorsPage() {
       updated="June 9, 2026"
       intro={
         <>
-          To run Scalar we rely on a focused set of trusted providers. Each
+          To run Shopper we rely on a focused set of trusted providers. Each
           processes data only to deliver part of the service and is bound to
           protect it. We list them here in the open so you always know who
           touches your data. This page is referenced by our Data Processing
@@ -41,7 +41,7 @@ export default function SubprocessorsPage() {
         {
           heading: "Intelligence and data providers",
           body: [
-            "These power discovery, enrichment, and research. Scalar orchestrates them, applies its accuracy rule, and writes only verified results into your CRM. We orchestrate providers; we do not sell data.",
+            "These power discovery, enrichment, and research. Shopper orchestrates them, applies its accuracy rule, and writes only verified results into your CRM. We orchestrate providers; we do not sell data.",
           ],
           bullets: [
             "Exa: prospecting and intent discovery.",

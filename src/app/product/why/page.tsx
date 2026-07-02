@@ -2,18 +2,18 @@ import type { Metadata } from "next";
 import { FeaturePage } from "@/components/marketing/feature-page";
 
 export const metadata: Metadata = {
-  title: "Why Scalar | Scalar",
+  title: "Why Shopper | Shopper",
   description:
     "Structure, a real UI, and built-in intelligence as one system your agents operate, versus dumping everything into messy markdown files.",
 };
 
-export default function WhyScalarPage() {
+export default function WhyShopperPage() {
   return (
     <FeaturePage
-      eyebrow="Why Scalar"
+      eyebrow="Why Shopper"
       title="Structure your agents"
       accent="can't outgrow"
-      subtitle="Agent frameworks dump everything into messy markdown files. Scalar gives your agents a structured system: typed records, a real UI, and built-in intelligence, in one place."
+      subtitle="Agent frameworks dump everything into messy markdown files. Shopper gives your agents a structured system: typed records, a real UI, and built-in intelligence, in one place."
       blocks={[
         {
           title: "Structure, not scattered files",

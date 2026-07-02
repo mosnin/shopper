@@ -13,7 +13,7 @@ export function DashboardHeader() {
           <Link href="/dashboard" className="flex items-center gap-2">
             <LogoMark className="h-7 w-7" priority />
             <span className="font-brand text-base font-bold text-foreground hidden sm:inline">
-              Scalar
+              Shopper
             </span>
           </Link>
           <div className="flex items-center gap-1.5 sm:gap-2">

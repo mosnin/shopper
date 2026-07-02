@@ -15,7 +15,7 @@ borders stay sharp.
 - **Low matrix (1-10):** blobby, gooey, lots of bleed.
 - **High matrix (40-50):** crisp edges, just clean corner smoothing.
 
-In Scalar we keep the matrix **between 40 and 50 depending on the element** (see
+In Shopper we keep the matrix **between 40 and 50 depending on the element** (see
 `src/components/ui/squircle-filter.tsx`):
 
 - `#squircle` (matrix 45) - default for cards and panels.

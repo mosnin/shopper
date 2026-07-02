@@ -97,8 +97,8 @@ export function LegalDoc({
 
             <p className="mt-12 text-sm text-muted-foreground">
               Questions about this document? Email{" "}
-              <a href="mailto:hello@tryscalar.xyz" className="text-primary hover:text-primary/80">
-                hello@tryscalar.xyz
+              <a href="mailto:hello@shopper.sh" className="text-primary hover:text-primary/80">
+                hello@shopper.sh
               </a>
               .
             </p>

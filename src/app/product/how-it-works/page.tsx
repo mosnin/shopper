@@ -3,7 +3,7 @@ import { FeaturePage } from "@/components/marketing/feature-page";
 import { AgentCircuitSection } from "@/components/sections/agent-circuit";
 
 export const metadata: Metadata = {
-  title: "How it works | Scalar",
+  title: "How it works | Shopper",
   description:
     "Three steps from empty to a CRM that fills itself: connect your agent, let it work, and watch it compound on data you own.",
 };

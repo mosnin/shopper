@@ -108,7 +108,7 @@ export async function POST(
     const { object: report } = await generateObject({
       model: openai(MODEL),
       schema: reportSchema,
-      prompt: `You are Scalar's research agent. Assemble ONE coherent intelligence report on this company for a CRM. Do NOT repeat or overlap information we already have, keep each section distinct, and only include facts supported by the sources below. Cite URLs in news/intent sources where possible.
+      prompt: `You are Shopper's research agent. Assemble ONE coherent intelligence report on this company for a CRM. Do NOT repeat or overlap information we already have, keep each section distinct, and only include facts supported by the sources below. Cite URLs in news/intent sources where possible.
 
 Our product / ideal customer profile (judge icpFit against this):
 """

@@ -5,7 +5,7 @@ import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 
 /**
  * The interactive heart of the homepage: a segmented showcase of what an agent
- * does inside Scalar. Selecting a capability swaps a bespoke, animated mini-UI
+ * does inside Shopper. Selecting a capability swaps a bespoke, animated mini-UI
  * that demonstrates it rather than describing it. It auto-advances and pauses
  * the moment the visitor takes over. Reduced motion shows the first panel
  * static, still selectable.

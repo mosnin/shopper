@@ -1,6 +1,6 @@
 // Apify client - run a curated set of TRUSTED Apify Actors for lead
 // intelligence. One token (APIFY_TOKEN) unlocks several public, well-maintained
-// Actors that fit what Scalar does: discover companies, pull a site's contact
+// Actors that fit what Shopper does: discover companies, pull a site's contact
 // data, and run web search.
 //
 // We run Actors synchronously and read their dataset in a single call:

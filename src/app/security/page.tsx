@@ -61,7 +61,7 @@ export default function SecurityPage() {
               Your data, <span className="text-gradient-orange">yours alone</span>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
-              Scalar is built so the data your agents produce stays consistent,
+              Shopper is built so the data your agents produce stays consistent,
               private, and under your control. Here is exactly how.
             </p>
           </div>
@@ -119,8 +119,8 @@ export default function SecurityPage() {
               </ul>
               <p className="mt-8 text-sm text-muted-foreground">
                 Found a vulnerability? Report it to{" "}
-                <a href="mailto:hello@tryscalar.xyz" className="text-primary hover:text-primary/80">
-                  hello@tryscalar.xyz
+                <a href="mailto:hello@shopper.sh" className="text-primary hover:text-primary/80">
+                  hello@shopper.sh
                 </a>{" "}
                 and we will respond quickly.
               </p>

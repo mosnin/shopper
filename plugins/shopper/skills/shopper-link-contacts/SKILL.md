@@ -1,15 +1,15 @@
 ---
-name: scalar-link-contacts
-description: Keep Scalar tidy: link people to companies, dedupe, bulk-enrich.
+name: shopper-link-contacts
+description: Keep Shopper tidy: link people to companies, dedupe, bulk-enrich.
 ---
 
 # Keep the CRM clean
 
-Scalar is built around the contact-to-entity relationship. A contact is most
+Shopper is built around the contact-to-entity relationship. A contact is most
 useful when it belongs to a company.
 
 ## Steps
-1. For any unassigned contact, use "Match to company". Scalar finds where they
+1. For any unassigned contact, use "Match to company". Shopper finds where they
    work and links them, creating the company if needed (never a duplicate).
 2. Use search + sort on the CRM page to find records fast. "Smart sort" ranks by
    how well results match your query; "Score fit" rates each record 0-100 against

@@ -173,13 +173,13 @@ export function WelcomeClient({ firstName }: { firstName?: string }) {
       <FloatIn>
         <div className="mb-12 text-center">
           <p className="mb-3 text-xs uppercase tracking-[0.3em] text-primary">
-            Welcome to Scalar
+            Welcome to Shopper
           </p>
           <h1 className="font-brand text-4xl text-foreground sm:text-5xl">
             {firstName ? `Hello, ${firstName}.` : "Hello."}
           </h1>
           <p className="mt-4 text-base text-muted-foreground sm:text-lg">
-            Tell Scalar who you sell to. In one sentence, it will build your CRM live.
+            Tell Shopper who you sell to. In one sentence, it will build your CRM live.
           </p>
         </div>
       </FloatIn>

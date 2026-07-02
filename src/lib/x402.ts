@@ -143,7 +143,7 @@ export function resourceUrl(path: string): string {
   const base =
     process.env.X402_RESOURCE_BASE?.replace(/\/$/, "") ||
     process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, "") ||
-    "https://tryscalar.xyz";
+    "https://shopper.sh";
   return base + path;
 }
 

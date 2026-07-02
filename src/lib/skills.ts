@@ -1,4 +1,4 @@
-// Premade skills that teach an agent how to operate Scalar. Surfaced on /skills
+// Premade skills that teach an agent how to operate Shopper. Surfaced on /skills
 // where users can copy them or download as .md to drop into their own agent.
 
 export interface Skill {
@@ -10,17 +10,17 @@ export interface Skill {
 
 export const SKILLS: Skill[] = [
   {
-    slug: "scalar-discover",
-    name: "Discover leads with Scalar",
+    slug: "shopper-discover",
+    name: "Discover leads with Shopper",
     description: "Find companies and people and add them to the CRM, deduped and enriched.",
     content: `---
-name: scalar-discover
-description: Find companies and people with Scalar and add them to the CRM.
+name: shopper-discover
+description: Find companies and people with Shopper and add them to the CRM.
 ---
 
-# Discover leads with Scalar
+# Discover leads with Shopper
 
-Use Scalar's Discover tools to turn a goal into real, CRM-ready records.
+Use Shopper's Discover tools to turn a goal into real, CRM-ready records.
 
 ## When to use
 - You need new accounts or contacts for outbound.
@@ -28,7 +28,7 @@ Use Scalar's Discover tools to turn a goal into real, CRM-ready records.
 
 ## How to work
 1. Start broad with "Find companies": describe the ideal customer and pick a
-   count. Scalar returns named companies with industry, location, phone, website,
+   count. Shopper returns named companies with industry, location, phone, website,
    and key decision makers.
 2. Review the results. Add the strong ones individually, or "Add all" to bulk-add.
    Duplicates (by domain) are skipped automatically.
@@ -43,12 +43,12 @@ Use Scalar's Discover tools to turn a goal into real, CRM-ready records.
 `,
   },
   {
-    slug: "scalar-enrich",
+    slug: "shopper-enrich",
     name: "Enrich entities and contacts",
     description: "Add firmographics, tech stack, funding, and verified contact info, accurately.",
     content: `---
-name: scalar-enrich
-description: Enrich companies and people in Scalar without ever attaching the wrong record.
+name: shopper-enrich
+description: Enrich companies and people in Shopper without ever attaching the wrong record.
 ---
 
 # Enrich entities and contacts
@@ -71,21 +71,21 @@ description: Enrich companies and people in Scalar without ever attaching the wr
 `,
   },
   {
-    slug: "scalar-link-contacts",
+    slug: "shopper-link-contacts",
     name: "Keep the CRM clean",
     description: "Link contacts to companies, dedupe, and bulk-enrich the right way.",
     content: `---
-name: scalar-link-contacts
-description: Keep Scalar tidy: link people to companies, dedupe, bulk-enrich.
+name: shopper-link-contacts
+description: Keep Shopper tidy: link people to companies, dedupe, bulk-enrich.
 ---
 
 # Keep the CRM clean
 
-Scalar is built around the contact-to-entity relationship. A contact is most
+Shopper is built around the contact-to-entity relationship. A contact is most
 useful when it belongs to a company.
 
 ## Steps
-1. For any unassigned contact, use "Match to company". Scalar finds where they
+1. For any unassigned contact, use "Match to company". Shopper finds where they
    work and links them, creating the company if needed (never a duplicate).
 2. Use search + sort on the CRM page to find records fast. "Smart sort" ranks by
    how well results match your query; "Score fit" rates each record 0-100 against
@@ -99,19 +99,19 @@ useful when it belongs to a company.
 `,
   },
   {
-    slug: "scalar-intent-monitors",
+    slug: "shopper-intent-monitors",
     name: "Schedule intent and research",
     description: "Run recurring intent scans and deep research that drop into your CRM.",
     content: `---
-name: scalar-intent-monitors
-description: Set up recurring intent monitors and background research in Scalar.
+name: shopper-intent-monitors
+description: Set up recurring intent monitors and background research in Shopper.
 ---
 
 # Schedule intent and research
 
 ## Intent monitors
 - From Discover, run "Intent scanner" with what you sell, then "Schedule
-  recurring". Scalar re-runs it and adds new in-market companies automatically,
+  recurring". Shopper re-runs it and adds new in-market companies automatically,
   deduped.
 
 ## Background research
@@ -120,26 +120,26 @@ description: Set up recurring intent monitors and background research in Scalar.
 
 ## Notifications
 - Set an "Agent notifications webhook" in Settings. When a scheduled task
-  completes, Scalar POSTs the new results to your URL so your agent can wake up
+  completes, Shopper POSTs the new results to your URL so your agent can wake up
   and act on them.
 `,
   },
   {
-    slug: "scalar-mcp-agent",
+    slug: "shopper-mcp-agent",
     name: "Connect your agent (MCP)",
-    description: "Operate Scalar from your own agent over MCP, with safe guardrails.",
+    description: "Operate Shopper from your own agent over MCP, with safe guardrails.",
     content: `---
-name: scalar-mcp-agent
-description: Drive Scalar's CRM from an external agent via MCP and webhooks.
+name: shopper-mcp-agent
+description: Drive Shopper's CRM from an external agent via MCP and webhooks.
 ---
 
 # Connect your agent (MCP)
 
-Scalar is the CRM your agents run. Point your own agent at it over MCP.
+Shopper is the CRM your agents run. Point your own agent at it over MCP.
 
 ## Setup
 1. Create an API key in Settings.
-2. Connect Scalar's MCP server in your agent using that key. Your agent can now
+2. Connect Shopper's MCP server in your agent using that key. Your agent can now
    read and write entities, contacts, emails, and run discovery/enrichment
    through the same operations the app uses.
 3. To get notified when scheduled tasks finish, set the Agent notifications

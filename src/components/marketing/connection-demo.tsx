@@ -20,7 +20,7 @@ type Client = {
   lang: string;
 };
 
-const ENDPOINT = "https://app.tryscalar.xyz/api/mcp";
+const ENDPOINT = "https://app.shopper.sh/api/mcp";
 
 const clients: Client[] = [
   {
@@ -29,7 +29,7 @@ const clients: Client[] = [
     lang: "json",
     snippet: `{
   "mcpServers": {
-    "scalar": {
+    "shopper": {
       "url": "${ENDPOINT}",
       "headers": {
         "Authorization": "Bearer scl_your_key"
@@ -42,7 +42,7 @@ const clients: Client[] = [
     id: "openclaw",
     label: "OpenClaw",
     lang: "toml",
-    snippet: `[mcp.scalar]
+    snippet: `[mcp.shopper]
 url = "${ENDPOINT}"
 auth = "Bearer scl_your_key"`,
   },
@@ -182,7 +182,7 @@ export function ConnectionDemo() {
       {/* Live handshake + tools */}
       <div className="flex flex-col overflow-hidden rounded-[1.5rem] border border-border bg-card shadow-xl shadow-black/[0.04] dark:border-white/10 dark:shadow-black/40">
         <div className="flex items-center justify-between border-b border-border px-4 py-2.5 dark:border-white/10">
-          <span className="font-mono text-[11px] text-muted-foreground">scalar / mcp</span>
+          <span className="font-mono text-[11px] text-muted-foreground">shopper / mcp</span>
           <button
             type="button"
             onClick={run}

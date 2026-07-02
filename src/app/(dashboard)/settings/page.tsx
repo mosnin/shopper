@@ -30,7 +30,7 @@ export default async function SettingsPage() {
     : null;
 
   const h = await headers();
-  const host = h.get("host") ?? "www.tryscalar.xyz";
+  const host = h.get("host") ?? "www.shopper.sh";
   const proto = host.startsWith("localhost") || host.startsWith("127.") ? "http" : "https";
   const mcpUrl = `${proto}://${host}/api/mcp/mcp`;
 
@@ -129,7 +129,7 @@ export default async function SettingsPage() {
           <CardHeader>
             <CardTitle className="text-base">Connect your agent (MCP)</CardTitle>
             <CardDescription>
-              Add Scalar as a remote MCP connector in Claude or any MCP client.
+              Add Shopper as a remote MCP connector in Claude or any MCP client.
               Use this URL. It authorizes over OAuth (you sign in to approve), or
               your agent can pass an API key above as a Bearer token.
             </CardDescription>
@@ -177,7 +177,7 @@ export default async function SettingsPage() {
             <CardTitle className="text-base">Agent notifications webhook</CardTitle>
             <CardDescription>
               When a scheduled task finishes (intent monitor or background
-              research), Scalar POSTs the new results to this URL so your agent
+              research), Shopper POSTs the new results to this URL so your agent
               (e.g. openclaw or Hermes) can wake up and act on them.
             </CardDescription>
           </CardHeader>

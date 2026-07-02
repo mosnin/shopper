@@ -1,13 +1,13 @@
 ---
-name: scalar-intent-monitors
-description: Set up recurring intent monitors and background research in Scalar.
+name: shopper-intent-monitors
+description: Set up recurring intent monitors and background research in Shopper.
 ---
 
 # Schedule intent and research
 
 ## Intent monitors
 - From Discover, run "Intent scanner" with what you sell, then "Schedule
-  recurring". Scalar re-runs it and adds new in-market companies automatically,
+  recurring". Shopper re-runs it and adds new in-market companies automatically,
   deduped.
 
 ## Background research
@@ -16,5 +16,5 @@ description: Set up recurring intent monitors and background research in Scalar.
 
 ## Notifications
 - Set an "Agent notifications webhook" in Settings. When a scheduled task
-  completes, Scalar POSTs the new results to your URL so your agent can wake up
+  completes, Shopper POSTs the new results to your URL so your agent can wake up
   and act on them.

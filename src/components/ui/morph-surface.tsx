@@ -194,7 +194,7 @@ export function MorphSurface({
   expandedHeight = FEEDBACK_HEIGHT,
   animationSpeed = SPEED,
   springConfig,
-  surfaceTitle = "Scalar",
+  surfaceTitle = "Shopper",
   triggerLabel = "Feedback",
   triggerIcon,
   placeholder = "What's on your mind?",

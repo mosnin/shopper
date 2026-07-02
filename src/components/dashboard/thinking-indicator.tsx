@@ -1,10 +1,10 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { ScalarAvatar } from "./scalar-avatar";
+import { ShopperAvatar } from "./shopper-avatar";
 
 /**
- * Animated "Scalar is thinking…" indicator shown while status === "submitted"
+ * Animated "Shopper is thinking…" indicator shown while status === "submitted"
  * (before first tokens arrive). Three bouncing dots.
  */
 export function ThinkingIndicator() {
@@ -12,7 +12,7 @@ export function ThinkingIndicator() {
 
   return (
     <div className="flex items-start gap-3 py-1">
-      <ScalarAvatar active />
+      <ShopperAvatar active />
       <div className="flex items-center gap-1 rounded-2xl rounded-tl-sm border border-border bg-card px-4 py-3">
         {[0, 1, 2].map((i) => (
           <motion.span

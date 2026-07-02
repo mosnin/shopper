@@ -6,7 +6,7 @@ import { ManifestoContent } from "./manifesto-content";
 export const metadata: Metadata = {
   title: "Manifesto",
   description:
-    "Why we built Scalar: agents are brilliant at doing and hopeless at remembering. The work should remember itself.",
+    "Why we built Shopper: agents are brilliant at doing and hopeless at remembering. The work should remember itself.",
 };
 
 export default function ManifestoPage() {

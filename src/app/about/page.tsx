@@ -11,7 +11,7 @@ import { motion } from "motion/react";
 
 const easeOut = [0.16, 1, 0.3, 1] as const;
 
-// The story, told straight: why Scalar exists. No invented history, no client
+// The story, told straight: why Shopper exists. No invented history, no client
 // counts, no team-size theater. Three beats and the principle that anchors them.
 const story = [
   {
@@ -26,7 +26,7 @@ const story = [
     eyebrow: "The answer",
     title: "Give the work a structured home.",
     body: [
-      "Scalar is the place agent work lands and stays consistent: typed companies, contacts, deals, and emails in a real database, deduped and validated on the way in.",
+      "Shopper is the place agent work lands and stays consistent: typed companies, contacts, deals, and emails in a real database, deduped and validated on the way in.",
       "And it comes with a real UI, so you can see, trust, edit, and navigate everything your agent did. Structure for the machine, an interface for the human, intelligence built into both.",
     ],
   },
@@ -34,7 +34,7 @@ const story = [
     eyebrow: "Agent-first",
     title: "Built for agents to operate, over MCP.",
     body: [
-      "Scalar was built agent-first from day one. A secure MCP surface and per-user API keys mean your agent, whether that's Claude, OpenClaw, Hermes, or the built-in one, operates the CRM directly: discovering leads, enriching records, tracking deals, running email.",
+      "Shopper was built agent-first from day one. A secure MCP surface and per-user API keys mean your agent, whether that's Claude, OpenClaw, Hermes, or the built-in one, operates the CRM directly: discovering leads, enriching records, tracking deals, running email.",
       "Agents and humans go through the same operations layer, so there is never drift between what the agent does and what you see.",
     ],
   },
@@ -56,7 +56,7 @@ export default function AboutPage() {
               <span className="text-gradient-orange">agents run</span>
             </h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-              Scalar exists because agent work deserves a better home than a
+              Shopper exists because agent work deserves a better home than a
               folder of markdown files. This is the why.
             </p>
           </div>
@@ -111,7 +111,7 @@ export default function AboutPage() {
               </h2>
               <p className="mt-4 text-muted-foreground leading-relaxed">
                 Enrichment must attach to the right person at the right company,
-                verified, every time. If Scalar can&apos;t confirm a match, it
+                verified, every time. If Shopper can&apos;t confirm a match, it
                 returns nothing rather than a guess, and a miss is never charged.
                 Accuracy beats coverage. That rule is the soul of the product:
                 a CRM you can trust is the only kind worth having.
@@ -132,7 +132,7 @@ export default function AboutPage() {
               Connect your agent. It just works.
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              Point your agent at Scalar over MCP, or use the built-in one, and
+              Point your agent at Shopper over MCP, or use the built-in one, and
               watch your CRM fill itself.
             </p>
             <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
