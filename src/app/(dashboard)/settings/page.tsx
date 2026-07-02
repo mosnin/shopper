@@ -18,7 +18,7 @@ import { getBilling } from "@/lib/credits";
 
 export const dynamic = "force-dynamic";
 
-const PAID_PLANS = ["starter", "pro", "business"];
+const PAID_PLANS = ["plus", "pro", "beta"];
 
 export default async function SettingsPage() {
   const user = await getDbUser();

@@ -4,9 +4,9 @@ import { checkRateLimit } from "@/lib/rate-limit";
 import { createCheckoutSession, priceIdFor, stripeConfigured } from "@/lib/stripe";
 import type { PaidPlanName } from "@/lib/credits";
 
-const PAID_PLANS = ["starter", "pro", "business"] as const;
+const PAID_PLANS = ["plus", "pro"] as const;
 
-// POST /api/billing/checkout  body: { plan: "starter" | "pro" | "business" }
+// POST /api/billing/checkout  body: { plan: "plus" | "pro" }
 // Creates a Stripe Checkout session and returns its URL. Env-gated: without
 // STRIPE_SECRET_KEY (or the plan's price id) this returns 501 so the UI can
 // show "Billing launches soon".
@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
     const plan = body?.plan;
     if (!plan || !(PAID_PLANS as readonly string[]).includes(plan)) {
       return NextResponse.json(
-        { error: "plan must be starter, pro, or business" },
+        { error: "plan must be plus or pro" },
         { status: 400 },
       );
     }

@@ -23,18 +23,17 @@ type Driver = {
 };
 
 const drivers: Driver[] = [
-  { id: "discovery", label: "Discovery runs", unit: "prompts", cost: 12, max: 200, step: 5, default: 40 },
-  { id: "emails", label: "Verified emails", unit: "found", cost: 8, max: 600, step: 10, default: 120 },
-  { id: "enrich", label: "Company enrichments", unit: "companies", cost: 30, max: 300, step: 5, default: 60 },
-  { id: "research", label: "Deep research runs", unit: "reports", cost: 18, max: 200, step: 5, default: 20 },
+  { id: "search", label: "Item searches", unit: "searches", cost: 2, max: 600, step: 10, default: 100 },
+  { id: "hunts", label: "Comprehensive shopping hunts", unit: "hunts", cost: 12, max: 200, step: 5, default: 20 },
+  { id: "deep", label: "Deep shopping browser sessions", unit: "sessions", cost: 30, max: 100, step: 5, default: 10 },
+  { id: "radar", label: "Radar scan runs", unit: "scans", cost: 18, max: 200, step: 5, default: 20 },
 ];
 
-// Plan monthly credit allotments, smallest first. Business is omitted here: it
-// carries fewer credits than Pro (it trades credit volume for more monitors).
+// Plan monthly credit allotments, smallest first.
 const plans = [
   { name: "Free", credits: 200, href: "/sign-up" },
-  { name: "Starter", credits: 3000, href: "/sign-up?plan=starter" },
-  { name: "Pro", credits: 12000, href: "/sign-up?plan=pro" },
+  { name: "Plus", credits: 1500, href: "/sign-up?plan=plus" },
+  { name: "Pro", credits: 4000, href: "/sign-up?plan=pro" },
 ];
 
 export function UsageEstimator() {
@@ -50,7 +49,7 @@ export function UsageEstimator() {
   const recommended = useMemo(() => {
     const fit = plans.find((p) => p.credits >= total);
     if (fit) return { name: fit.name, href: fit.href, note: "covers this every month" };
-    return { name: "Pro plus top-ups", href: "/sign-up?plan=pro", note: "or Business for a team" };
+    return { name: "Pro plus top-ups", href: "/sign-up?plan=pro", note: "for serious shoppers and businesses" };
   }, [total]);
 
   const dollars = (total * 0.01).toFixed(0);

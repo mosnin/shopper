@@ -6,9 +6,8 @@ import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const UPGRADES = [
-  { plan: "starter", label: "Starter", price: "$39/mo" },
-  { plan: "pro", label: "Pro", price: "$129/mo" },
-  { plan: "business", label: "Business", price: "$99/mo" },
+  { plan: "plus", label: "Plus", price: "$10/mo" },
+  { plan: "pro", label: "Pro", price: "$20/mo" },
 ] as const;
 
 export function BillingUpgrade() {

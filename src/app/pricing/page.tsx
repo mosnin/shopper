@@ -14,7 +14,7 @@ import Border2 from "@/components/pixel-perfect/border2";
 
 // Launch sale: list price is 2x the live price, struck through. Set SALE=false
 // to end it (prices then show at their live value with no strike-through).
-const SALE = true;
+const SALE = false;
 
 type Plan = {
   name: string;
@@ -32,41 +32,43 @@ const plans: Plan[] = [
     name: "Free",
     price: 0,
     credits: "200 credits / mo",
-    blurb: "Kick the tires. Feel your CRM fill itself, once.",
+    blurb: "Kick the tires. Send your agent on its first hunt.",
     features: [
       "1 seat",
       "Full MCP + the built-in agent",
-      "All discovery & enrichment tools",
+      "All shopping search tools (Exa, Firecrawl, Tavily)",
+      "Wish list & shopping lists",
       "Community support",
     ],
     cta: "Start free",
     href: "/sign-up",
   },
   {
-    name: "Starter",
-    price: 39,
-    credits: "3,000 credits / mo",
-    blurb: "For one operator running an agent.",
+    name: "Plus",
+    price: 10,
+    credits: "1,500 credits / mo",
+    blurb: "For everyday shoppers with an agent on retainer.",
     features: [
       "1 seat",
-      "Full MCP + agent (read & write)",
-      "All enrichment, discovery & deep research",
-      "1 scheduled monitor",
-      "Top-up credits at $0.012 each",
+      "Everything in Free",
+      "Radar: 5 standing item scans",
+      "Deep shopping: agent browser sessions (Browserbase)",
+      "Top-up credits anytime",
       "Email support",
     ],
-    cta: "Get Starter",
-    href: "/sign-up?plan=starter",
+    cta: "Get Plus",
+    href: "/sign-up?plan=plus",
   },
   {
     name: "Pro",
-    price: 129,
-    credits: "12,000 credits / mo",
-    blurb: "For power users compounding a real pipeline.",
+    price: 20,
+    credits: "4,000 credits / mo",
+    blurb: "For serious shoppers, resellers, and businesses.",
     features: [
       "1 seat",
-      "Everything in Starter",
-      "10 scheduled monitors",
+      "Everything in Plus",
+      "Radar: 25 standing item scans",
+      "Manufacturer & supplier sourcing",
       "Multiple API keys for your agents",
       "Priority support",
     ],
@@ -74,35 +76,20 @@ const plans: Plan[] = [
     href: "/sign-up?plan=pro",
     popular: true,
   },
-  {
-    name: "Business",
-    price: 99,
-    credits: "8,000 credits / mo",
-    blurb: "For running a wall of monitors on autopilot.",
-    features: [
-      "1 seat",
-      "Everything in Pro",
-      "25 scheduled monitors",
-      "Priority support",
-    ],
-    cta: "Get Business",
-    href: "/sign-up?plan=business",
-  },
 ];
 
 // What a credit buys. Credits are denominated in cents (1 credit = $0.01) and
 // every action is priced at roughly 3x its underlying provider cost, so usage
 // is always margin-positive. CRM reads/writes are free.
 const creditCosts: { action: string; credits: string }[] = [
-  { action: "Agent turn / CRM read & write", credits: "1" },
-  { action: "Web search", credits: "2" },
-  { action: "Find a contact's LinkedIn", credits: "3" },
-  { action: "Find a verified work email", credits: "8" },
-  { action: "Find a verified phone", credits: "12" },
-  { action: "Discover companies from a prompt", credits: "12" },
-  { action: "Deep report / analyze a site", credits: "8" },
-  { action: "Enrich a company aspect", credits: "30" },
-  { action: "Scheduled deep research run", credits: "18" },
+  { action: "Agent turn / wish list read & write", credits: "1" },
+  { action: "Web item search", credits: "2" },
+  { action: "Price check on a listing", credits: "3" },
+  { action: "Comprehensive shopping hunt", credits: "12" },
+  { action: "Deep report on a product or seller", credits: "8" },
+  { action: "Deep shopping browser session", credits: "30" },
+  { action: "Manufacturer / supplier sourcing run (Pro)", credits: "12" },
+  { action: "Radar scan run", credits: "18" },
 ];
 
 function PriceTag({ plan }: { plan: Plan }) {
@@ -137,12 +124,12 @@ export default function PricingPage() {
             )}
             <h1 className="font-brand text-4xl tracking-tight text-foreground sm:text-5xl lg:text-6xl">
               Pricing that scales with{" "}
-              <span className="text-gradient-orange">your pipeline</span>
+              <span className="text-gradient-orange">your shopping</span>
             </h1>
             <p className="mx-auto mt-5 max-w-xl text-lg text-muted-foreground">
-              A seat plus usage credits. You pay for the heavy lifting -
-              discovery, enrichment, agent runs - as you create value, not for
-              shelfware. Cancel anytime.
+              Free to start, with usage credits. You pay for the heavy lifting -
+              web-wide hunts, deep browsing, standing scans - not for shelfware.
+              Cancel anytime.
             </p>
           </div>
         </section>
@@ -150,7 +137,7 @@ export default function PricingPage() {
         {/* Plan cards */}
         <section className="-mt-8 pb-8">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mx-auto grid max-w-4xl grid-cols-1 gap-5 sm:grid-cols-3">
               {plans.map((plan, index) => (
                 <motion.div
                   key={plan.name}
@@ -211,8 +198,8 @@ export default function PricingPage() {
               <div>
                 <p className="font-brand text-lg text-foreground">Enterprise</p>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  Bring your own provider keys (cost pass-through, cheaper
-                  credits), volume pricing, SSO, and an SLA.
+                  Sourcing at volume, procurement teams, bring-your-own provider
+                  keys, SSO, and an SLA.
                 </p>
               </div>
               <Button variant="outline" className="mt-4 sm:mt-0" asChild>
@@ -231,8 +218,9 @@ export default function PricingPage() {
                 You only pay for the <span className="text-gradient-orange">heavy lifting</span>
               </h2>
               <p className="mt-4 text-muted-foreground">
-                1 credit = $0.01. Reading and writing your CRM is free; you spend
-                credits only when an agent pulls real data from the outside world.
+                1 credit = $0.01. Reading and writing your wish list and shopping
+                lists is free; you spend credits only when an agent goes out and
+                shops the real web.
               </p>
             </div>
             <div className="mt-10 overflow-hidden rounded-3xl border border-border bg-card">

@@ -11,9 +11,8 @@ import { OpError } from "@/lib/crm-operations";
 
 export const PLANS = {
   free: { credits: 200, monitors: 0 },
-  starter: { credits: 3000, monitors: 1 },
-  pro: { credits: 12000, monitors: 10 },
-  business: { credits: 8000, monitors: 25 },
+  plus: { credits: 1500, monitors: 5 },
+  pro: { credits: 4000, monitors: 25 },
   beta: { credits: 10000, monitors: 10 },
 } as const;
 
@@ -201,9 +200,8 @@ export async function spendCredits(
 // its own Price config). Kept next to PLANS so price and allotment move
 // together.
 export const PLAN_USD = {
-  starter: 39,
-  pro: 129,
-  business: 99,
+  plus: 10,
+  pro: 20,
 } as const;
 
 export type PaidPlanName = keyof typeof PLAN_USD;
