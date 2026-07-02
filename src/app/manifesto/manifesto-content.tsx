@@ -18,13 +18,13 @@ const line = {
 };
 
 // The Shopper manifesto: an on-brand editorial statement of why the product
-// exists. Replaces the inherited agency page (red, wrong logo, stock copy) with
-// the baby-blue ASCII signature and our own conviction.
+// exists. A short conviction piece about agents that shop for people, the time
+// given back, and data the buyer owns.
 const beliefs = [
-  "We gave agents the power to do almost anything. Research a company, find the right person, draft the email, work the deal. Then we watched them forget all of it the moment the session ended. Brilliant at doing. Hopeless at remembering.",
-  "The common answer is a folder of markdown files. Scattered notes no human would tolerate and no system can trust. The same company researched twice. Contradictions nobody catches. A goldfish with a PhD.",
-  "We do not think memory is a feature you bolt on. It is the product. A structured place where every record is typed, deduped, and yours, with a real interface a human can see and an agent can operate over the same surface.",
-  "So your data compounds instead of rotting. So the second move is sharper than the first. So the leverage stays quiet: already working for you, in the background, on a single source of truth you own and can walk away with.",
+  "Nobody gets to the end of a life and wishes they had spent more evenings comparing listings in twenty tabs. Finding the right thing at the right price from a seller you can trust is real work, and it was never meant to be yours.",
+  "It is agent work. Patient, wide, relentless: sweep the whole web, read the forum thread, open the js-heavy storefront, check who the seller actually is, and come back with the one find that matters. Agents are built for exactly this. They just never had an engine.",
+  "The shopping tools bolted onto chat assistants are not that engine. One partner catalog, no memory between sessions, no idea who is selling. We think your agents deserve the open web, a real browser, vetted sellers, and lists that persist.",
+  "And we think what they learn about you, your sizes, your tastes, your budgets, your wants, belongs to you. Exportable, never resold, shared across every agent you run. The hunt keeps going while you live your life. That is the time given back.",
 ];
 
 export function ManifestoContent() {
@@ -60,8 +60,8 @@ export function ManifestoContent() {
           variants={line}
           className="font-brand mt-5 text-4xl leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-6xl"
         >
-          The work should{" "}
-          <span className="text-gradient-orange">remember itself</span>.
+          The hunting should{" "}
+          <span className="text-gradient-orange">do itself</span>.
         </motion.h1>
 
         <div className="mt-12 space-y-7">

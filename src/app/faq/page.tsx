@@ -14,15 +14,15 @@ const faqCategories = [
     questions: [
       {
         q: "What is Shopper?",
-        a: "Shopper is the CRM your agents run: structured storage, a real UI, and built-in intelligence in one system. Your AI agents discover leads, enrich records, track deals, and run email relationships, and the work lands in a clean, deduped database you can actually browse and trust, instead of rotting in scattered markdown files.",
+        a: "Shopper is the shopping engine your AI agents run. Agents hunt the whole web for items for sale, vet the sellers against real corporate registries, and save every find to a structured Wish List you own. Shopping Lists track your errands, Radar runs standing scans on paid plans, and About You keeps your sizes, tastes, and budgets in one durable place.",
       },
       {
         q: "Do I need to bring my own agent?",
-        a: "No. Shopper ships with a built-in agent that can discover, enrich, and write your CRM from a chat. If you already run your own agent, connect it over MCP and it operates the same CRM through the same tools.",
+        a: "No. Shopper ships with a built-in agent that hunts, vets, and works your lists from a chat. If you already run your own agent, connect it over MCP and it gets the same engines and the same lists.",
       },
       {
         q: "Is there a free plan?",
-        a: "Yes. The free tier includes 200 credits per month, one seat, MCP read access, the built-in agent, and all discovery and enrichment tools. Enough to feel your CRM fill itself before you pay anything.",
+        a: "Yes. The free tier has limited usage but includes the full hunting engine, seller vetting, the built-in agent, MCP access, and your Wish List and Shopping Lists. Radar and higher usage come with Plus at $10/mo; Pro at $20/mo adds manufacturer and supplier sourcing.",
       },
     ],
   },
@@ -30,29 +30,37 @@ const faqCategories = [
     category: "Agents and MCP",
     questions: [
       {
-        q: "How do I connect my agent?",
-        a: "Any agent that speaks MCP works: Claude, OpenClaw, Hermes, or your own. Connect via OAuth, or generate an API key from Settings and point your agent at Shopper's MCP server. Once connected, it reads and writes your CRM immediately.",
+        q: "How do agents connect?",
+        a: "Any agent that speaks MCP works: Hermes, OpenClaw, Codex, Claude Code, Cursor, or your own. Generate an API key from Settings and point your MCP client at https://shopper.sh/api/mcp. Once connected, it can hunt, vet sellers, and read and write your Wish List, Shopping Lists, and About You immediately.",
       },
       {
         q: "What can a connected agent actually do?",
-        a: "Everything the app can do: search and read records, create and update companies and contacts, run discovery and enrichment, and keep notes and context. Agents go through the same operations layer the UI uses, with dedup and validation on every write, so there is no drift between what your agent does and what you see.",
+        a: "Everything the built-in agent can: hunt the web with Exa, Firecrawl, and Tavily, run deep shopping in a real Browserbase browser, vet sellers, save and update finds, work Shopping Lists, set up Radar scans on paid plans, and keep your About You context current. Agents go through the same operations layer the app uses, so there is no drift between what your agent does and what you see.",
+      },
+      {
+        q: "What does a hunt cost?",
+        a: "Browsing and editing your lists is always free. Hunts spend usage: the free plan includes enough to feel the product work, and Plus and Pro raise the ceiling. Deep shopping hunts that use a real browser cost more than plain search hunts, and Shopper always prefers the cheapest engine that can do the job.",
       },
     ],
   },
   {
-    category: "Data and accuracy",
+    category: "Finds and sellers",
     questions: [
       {
-        q: "Where does the enrichment data come from?",
-        a: "Discovery and enrichment run on orchestrated best-in-class data providers. Shopper picks the right tool for each job, refines noisy results into real, deduped companies, and writes clean records into your CRM. We orchestrate providers; we do not sell data.",
+        q: "How are sellers vetted?",
+        a: "Every seller, store, and manufacturer attached to a find is checked against public corporate registries: GLEIF, Companies House, and SEC EDGAR. A verified seller shows its registry match; an unverifiable one is flagged plainly so you can decide with open eyes.",
       },
       {
-        q: "What happens if Shopper can't verify a match?",
-        a: "It returns nothing. Shopper never attaches data for the wrong person or company: every lookup verifies the name and the company or domain before saving, and a same-name stranger is treated as a miss, not a match. A wrong value is worse than no value, and a miss is never charged.",
+        q: "Is Radar included in the free plan?",
+        a: "No, Radar is paid-only. Standing scans run continuously in the background, so they live on Plus and Pro. Set one up, 'recently listed pre-owned GPUs at a good price' or 'Gucci shoes size 10M under $400', and matches land in your Wish List the moment they appear.",
+      },
+      {
+        q: "Can Shopper source manufacturers and suppliers?",
+        a: "Yes, on the Pro plan. Pro extends hunting and vetting past the retail shelf: agents source manufacturers and suppliers directly, vet them against the same registries, and save them as structured records, which is how many teams use Shopper for business buying.",
       },
       {
         q: "Who owns my data?",
-        a: "You do. Your CRM is a single source of truth you control: isolated per user, never resold, and never used to train models. Enrichment flows in; your data does not leak out.",
+        a: "You do. Your Wish List, Shopping Lists, and About You are a single source of truth you control: isolated per user, exportable, never resold, and never used to train models. Finds flow in; your data does not leak out.",
       },
     ],
   },
@@ -61,11 +69,11 @@ const faqCategories = [
     questions: [
       {
         q: "How does pricing work?",
-        a: "A seat plus usage credits, where 1 credit = $0.01. Reading and writing your CRM is free; you spend credits only when an agent pulls real data from the outside world, like discovery, enrichment, or deep research. Your cost scales with your pipeline, not with shelfware seats, and you can cancel anytime.",
+        a: "Free with limited usage, Plus at $10/mo, and Pro at $20/mo. Plus unlocks Radar and higher hunt usage; Pro adds manufacturer and supplier sourcing on top. You can cancel anytime.",
       },
       {
-        q: "What happens when I run out of credits?",
-        a: "Paid plans reset their credits monthly, and you can top up anytime if you need more before the reset. You are only charged when a lookup actually returns verified data, never for a miss.",
+        q: "How is this different from the shopping tools inside my LLM provider?",
+        a: "Provider shopping MCPs search a partner catalog and forget everything between chats. Shopper hunts the open web, drops into a real browser when it needs to, vets who is selling, and keeps durable lists every one of your agents shares. It is an order of magnitude more capable, which is the whole point of a dedicated engine.",
       },
     ],
   },

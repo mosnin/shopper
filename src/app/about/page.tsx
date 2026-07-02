@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
+import { ImagePlaceholder } from "@/components/marketing/image-placeholder";
 
 const easeOut = [0.16, 1, 0.3, 1] as const;
 
@@ -52,13 +53,18 @@ export default function AboutPage() {
           <div className="relative z-10 mx-auto max-w-4xl px-4 text-center">
             <Badge variant="primary" className="mb-4">About</Badge>
             <h1 className="font-brand text-4xl tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-              The CRM your{" "}
+              The shopping engine your{" "}
               <span className="text-gradient-orange">agents run</span>
             </h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-              Shopper exists because agent work deserves a better home than a
-              folder of markdown files. This is the why.
+              Shopper exists because hunting the web for the right thing is work
+              an agent should be doing for you. This is the why.
             </p>
+            <ImagePlaceholder
+              label="Agents hunting the web"
+              aspect="aspect-[16/7]"
+              className="mx-auto mt-12 max-w-3xl"
+            />
           </div>
         </section>
 
@@ -106,15 +112,16 @@ export default function AboutPage() {
                 The principle
               </p>
               <h2 className="font-brand mt-3 text-2xl text-foreground sm:text-3xl">
-                A wrong answer is worse than{" "}
-                <span className="text-gradient-orange">no answer</span>
+                A cheap price from a ghost store is{" "}
+                <span className="text-gradient-orange">not a deal</span>
               </h2>
               <p className="mt-4 text-muted-foreground leading-relaxed">
-                Enrichment must attach to the right person at the right company,
-                verified, every time. If Shopper can&apos;t confirm a match, it
-                returns nothing rather than a guess, and a miss is never charged.
-                Accuracy beats coverage. That rule is the soul of the product:
-                a CRM you can trust is the only kind worth having.
+                Every find Shopper saves carries its seller, and every seller is
+                checked against real registries: GLEIF, Companies House, SEC
+                EDGAR. If a seller cannot be verified, the find says so plainly
+                instead of dressing it up. Trust beats a bargain. That rule is
+                the soul of the product: a find you can act on is the only kind
+                worth saving.
               </p>
               <Button variant="outline" className="mt-8" asChild>
                 <Link href="/manifesto">
@@ -129,11 +136,11 @@ export default function AboutPage() {
         <section className="py-24 sm:py-32">
           <div className="mx-auto max-w-3xl px-4 text-center">
             <h2 className="font-brand text-3xl text-foreground sm:text-4xl">
-              Connect your agent. It just works.
+              Connect your agent. It hunts.
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
               Point your agent at Shopper over MCP, or use the built-in one, and
-              watch your CRM fill itself.
+              watch your Wish List fill itself.
             </p>
             <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Button variant="glow" size="lg" asChild>
