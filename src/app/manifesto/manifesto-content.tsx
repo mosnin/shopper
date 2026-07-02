@@ -37,7 +37,7 @@ export function ManifestoContent() {
         speed={0.07}
         gradient
       />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(90,176,232,0.14),transparent_55%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(65,45,21,0.14),transparent_55%)]" />
 
       <motion.div
         variants={container}

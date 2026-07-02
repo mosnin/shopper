@@ -11,7 +11,7 @@ import { useEffect, useRef } from "react";
  * (used on the marketing site); otherwise it uses the baby-blue brand tone.
  */
 const GRADIENT_STOPS: [number, number, number][] = [
-  [90, 176, 232], // baby blue   #5AB0E8
+  [65, 45, 21],   // dark brown  #412D15
   [91, 141, 239], // blue        #5B8DEF
   [124, 119, 240], // indigo     #7C77F0
   [167, 139, 250], // purple     #A78BFA
@@ -92,7 +92,7 @@ export function AsciiField({
             ctx.fillStyle = `rgba(${r},${g},${b},${a.toFixed(3)})`;
           } else {
             ctx.fillStyle =
-              v > 0.86 ? `rgba(143,204,242,${a.toFixed(3)})` : `rgba(90,176,232,${a.toFixed(3)})`;
+              v > 0.86 ? `rgba(107,78,42,${a.toFixed(3)})` : `rgba(65,45,21,${a.toFixed(3)})`;
           }
           ctx.fillText(ch, x * cw, y * cell);
         }

@@ -12,7 +12,7 @@ export default function SkillsPage() {
       <FloatIn delay={0}>
         <div className="relative overflow-hidden rounded-3xl border border-border bg-card">
           <AsciiField className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.12] dark:opacity-30" />
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_0%,rgba(90,176,232,0.10),transparent_60%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_0%,rgba(65,45,21,0.10),transparent_60%)]" />
           <div className="relative z-10 px-6 py-10 sm:px-10 sm:py-14">
             <p className="font-brand text-xs uppercase tracking-[0.25em] text-primary/80">
               Shopper // Skills

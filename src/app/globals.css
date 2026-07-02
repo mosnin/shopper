@@ -14,33 +14,33 @@
   --color-4: 195 100% 63%;
   --color-5: 90 100% 63%;
 
-  /* Shopper - Charcoal & Green Palette */
-  --background: #ffffff;
-  --foreground: #1C1C1C;
-  --card: #ffffff;
-  --card-foreground: #1C1C1C;
-  --popover: #ffffff;
-  --popover-foreground: #1C1C1C;
-  --primary: #5AB0E8;
-  --primary-foreground: #ffffff;
-  --secondary: #F5F5F5;
-  --secondary-foreground: #1C1C1C;
-  --muted: #F5F5F5;
-  --muted-foreground: #737373;
-  --accent: #E6F3FC;
-  --accent-foreground: #5AB0E8;
-  --destructive: #DC2626;
-  --destructive-foreground: #ffffff;
-  --border: #E5E5E5;
-  --input: #E5E5E5;
-  --ring: #5AB0E8;
-  --success: #16A34A;
-  --warning: #EAB308;
-  --chart-1: #2E7DB3;
-  --chart-2: #5AB0E8;
-  --chart-3: #94A3B8;
-  --chart-4: #16A34A;
-  --chart-5: #EAB308;
+  /* Shopper - Cream & Dark Brown Palette (#000000 / #1F150C / #412D15 / #E1DCC9) */
+  --background: #E1DCC9;
+  --foreground: #1F150C;
+  --card: #EAE6D7;
+  --card-foreground: #1F150C;
+  --popover: #EAE6D7;
+  --popover-foreground: #1F150C;
+  --primary: #412D15;
+  --primary-foreground: #E1DCC9;
+  --secondary: #D6D0BB;
+  --secondary-foreground: #1F150C;
+  --muted: #D8D2BF;
+  --muted-foreground: #6B5D44;
+  --accent: #D3CBB2;
+  --accent-foreground: #412D15;
+  --destructive: #B3261E;
+  --destructive-foreground: #F5F1E6;
+  --border: #C6BEA4;
+  --input: #C6BEA4;
+  --ring: #412D15;
+  --success: #3F6D34;
+  --warning: #A9761B;
+  --chart-1: #412D15;
+  --chart-2: #6B4E2A;
+  --chart-3: #8A7A5C;
+  --chart-4: #3F6D34;
+  --chart-5: #A9761B;
   --chart-background: oklch(1 0 0);
   --chart-foreground: oklch(0.145 0.004 285);
   --chart-foreground-muted: oklch(0.55 0.014 260);
@@ -69,32 +69,32 @@
 }
 
 .dark {
-  --background: #0A0A0A;
-  --foreground: #F5F5F5;
-  --card: #141414;
-  --card-foreground: #F5F5F5;
-  --popover: #141414;
-  --popover-foreground: #F5F5F5;
-  --primary: #5AB0E8;
-  --primary-foreground: #ffffff;
-  --secondary: #1C1C1C;
-  --secondary-foreground: #F5F5F5;
-  --muted: #1C1C1C;
-  --muted-foreground: #A3A3A3;
-  --accent: #1C1C1C;
-  --accent-foreground: #F5F5F5;
-  --destructive: #DC2626;
-  --destructive-foreground: #ffffff;
-  --border: #2A2A2A;
-  --input: #2A2A2A;
-  --ring: #8FCCF2;
-  --success: #16A34A;
-  --warning: #EAB308;
-  --chart-1: #3E96D6;
-  --chart-2: #5AB0E8;
-  --chart-3: #64748B;
-  --chart-4: #22C55E;
-  --chart-5: #FACC15;
+  --background: #120C06;
+  --foreground: #E1DCC9;
+  --card: #1F150C;
+  --card-foreground: #E1DCC9;
+  --popover: #1F150C;
+  --popover-foreground: #E1DCC9;
+  --primary: #E1DCC9;
+  --primary-foreground: #1F150C;
+  --secondary: #2A1D10;
+  --secondary-foreground: #E1DCC9;
+  --muted: #2A1D10;
+  --muted-foreground: #A99C82;
+  --accent: #332412;
+  --accent-foreground: #E1DCC9;
+  --destructive: #D64545;
+  --destructive-foreground: #F5F1E6;
+  --border: #3A2B18;
+  --input: #3A2B18;
+  --ring: #E1DCC9;
+  --success: #6FA35C;
+  --warning: #CE9A3A;
+  --chart-1: #C9B896;
+  --chart-2: #A9885B;
+  --chart-3: #7A6A4C;
+  --chart-4: #6FA35C;
+  --chart-5: #CE9A3A;
   --chart-background: oklch(0.145 0 0);
   --chart-foreground: oklch(0.45 0 0);
   --chart-foreground-muted: oklch(0.65 0.01 260);
@@ -144,17 +144,17 @@
   --color-charcoal-light: #2A2A2A;
   --color-charcoal-dark: #0A0A0A;
 
-  /* Brand green (canonical). Legacy `orange` tokens are repointed to green so
-     existing text-orange/bg-orange utilities render on-brand; rename to
-     `brand` over time (tracked as a debt). */
-  --color-brand: #5AB0E8;
-  --color-brand-light: #8FCCF2;
-  --color-brand-dark: #3A8FCC;
-  --color-brand-glow: rgba(90, 176, 232, 0.4);
-  --color-orange: #8FCCF2;
-  --color-orange-light: #BFE2F8;
-  --color-orange-dark: #5AB0E8;
-  --color-orange-glow: rgba(90, 176, 232, 0.4);
+  /* Brand brown (canonical). Legacy `orange` tokens are repointed to the
+     brown scale so existing text-orange/bg-orange utilities render on-brand;
+     rename to `brand` over time (tracked as a debt). */
+  --color-brand: #412D15;
+  --color-brand-light: #6B4E2A;
+  --color-brand-dark: #1F150C;
+  --color-brand-glow: rgba(65, 45, 21, 0.4);
+  --color-orange: #6B4E2A;
+  --color-orange-light: #8A6B42;
+  --color-orange-dark: #412D15;
+  --color-orange-glow: rgba(65, 45, 21, 0.4);
 
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
@@ -278,8 +278,8 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(90, 176, 232, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(90, 176, 232, 0.6); }
+  0%, 100% { box-shadow: 0 0 20px rgba(65, 45, 21, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(65, 45, 21, 0.6); }
 }
 
 @keyframes rainbow {
@@ -320,7 +320,7 @@ h1,
 
 /* Utility classes */
 .text-gradient-orange {
-  background: linear-gradient(135deg, #5AB0E8, #8FCCF2, #BFE2F8);
+  background: linear-gradient(135deg, #412D15, #6B4E2A, #8A6B42);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -328,13 +328,13 @@ h1,
 
 .glow-button {
   position: relative;
-  background: linear-gradient(135deg, #5AB0E8, #3A8FCC);
-  box-shadow: 0 0 20px rgba(90, 176, 232, 0.4);
+  background: linear-gradient(135deg, #412D15, #1F150C);
+  box-shadow: 0 0 20px rgba(65, 45, 21, 0.4);
   transition: all 0.3s ease;
 }
 
 .glow-button:hover {
-  box-shadow: 0 0 30px rgba(90, 176, 232, 0.6);
+  box-shadow: 0 0 30px rgba(65, 45, 21, 0.6);
   transform: translateY(-1px);
 }
 
@@ -354,7 +354,7 @@ h1,
 }
 
 .phase-connector.completed::after {
-  background: linear-gradient(90deg, #5AB0E8, #8FCCF2);
+  background: linear-gradient(90deg, #412D15, #6B4E2A);
 }
 
 @media (prefers-reduced-motion: reduce) {

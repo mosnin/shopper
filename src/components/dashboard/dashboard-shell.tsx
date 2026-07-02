@@ -676,7 +676,7 @@ function Launchpad({
           <AsciiField
             className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.15] dark:opacity-40"
           />
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_25%,rgba(90,176,232,0.12),transparent_60%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_25%,rgba(65,45,21,0.12),transparent_60%)]" />
 
           <motion.div
             initial={{ opacity: 0, y: 24 }}

@@ -130,7 +130,7 @@ export default function PricingPage() {
       <main className="flex-1 pt-16">
         {/* Hero */}
         <section className="relative overflow-hidden py-24 sm:py-28">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(90,176,232,0.12),transparent_55%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(65,45,21,0.12),transparent_55%)]" />
           <div className="relative z-10 mx-auto max-w-3xl px-4 text-center">
             {SALE && (
               <Badge variant="primary" className="mb-4">Launch sale: 50% off</Badge>
@@ -162,7 +162,7 @@ export default function PricingPage() {
                   <Card
                     className={cn(
                       "relative flex h-full flex-col",
-                      plan.popular && "border-primary shadow-lg shadow-[0_8px_40px_-8px_rgba(90,176,232,0.35)]",
+                      plan.popular && "border-primary shadow-lg shadow-[0_8px_40px_-8px_rgba(65,45,21,0.35)]",
                     )}
                   >
                     {plan.popular && (

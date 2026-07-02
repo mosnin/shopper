@@ -66,7 +66,7 @@ export function DashboardPreloader({ name }: { name: string }) {
             className="pointer-events-none absolute inset-0"
             style={{
               background:
-                "radial-gradient(ellipse 55% 45% at 50% 48%, rgba(90,176,232,0.18) 0%, transparent 65%)",
+                "radial-gradient(ellipse 55% 45% at 50% 48%, rgba(65,45,21,0.18) 0%, transparent 65%)",
             }}
           />
 
@@ -84,7 +84,7 @@ export function DashboardPreloader({ name }: { name: string }) {
               }}
               style={{
                 background:
-                  "linear-gradient(105deg, transparent 25%, rgba(90,176,232,0.12) 45%, rgba(143,204,242,0.18) 52%, rgba(90,176,232,0.10) 58%, transparent 75%)",
+                  "linear-gradient(105deg, transparent 25%, rgba(65,45,21,0.12) 45%, rgba(107,78,42,0.18) 52%, rgba(65,45,21,0.10) 58%, transparent 75%)",
                 mixBlendMode: "screen",
                 width: "60%",
                 left: 0,
@@ -155,7 +155,7 @@ export function DashboardPreloader({ name }: { name: string }) {
                   }}
                   style={{
                     background:
-                      "linear-gradient(105deg, transparent 30%, rgba(90,176,232,0.38) 50%, rgba(143,204,242,0.30) 55%, transparent 70%)",
+                      "linear-gradient(105deg, transparent 30%, rgba(65,45,21,0.38) 50%, rgba(107,78,42,0.30) 55%, transparent 70%)",
                     mixBlendMode: "screen",
                   }}
                 />
@@ -165,7 +165,7 @@ export function DashboardPreloader({ name }: { name: string }) {
             {/* Thin progress bar that sweeps scaleX 0→1 */}
             <motion.div
               className="mx-auto mt-8 h-px w-40 origin-left overflow-hidden"
-              style={{ background: "rgba(90,176,232,0.18)" }}
+              style={{ background: "rgba(65,45,21,0.18)" }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.35 }}
@@ -174,7 +174,7 @@ export function DashboardPreloader({ name }: { name: string }) {
                 className="h-full w-full"
                 style={{
                   background:
-                    "linear-gradient(90deg, rgba(90,176,232,0.6) 0%, rgba(143,204,242,1) 60%, rgba(90,176,232,0.6) 100%)",
+                    "linear-gradient(90deg, rgba(65,45,21,0.6) 0%, rgba(107,78,42,1) 60%, rgba(65,45,21,0.6) 100%)",
                   originX: 0,
                 }}
                 initial={{ scaleX: 0 }}

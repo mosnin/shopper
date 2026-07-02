@@ -26,7 +26,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         speed={0.06}
         gradient
       />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_12%_8%,rgba(90,176,232,0.16),transparent_60%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_12%_8%,rgba(65,45,21,0.16),transparent_60%)]" />
 
       {/* Back to home, floating over both columns */}
       <Link

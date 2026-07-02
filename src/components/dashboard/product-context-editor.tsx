@@ -51,7 +51,7 @@ export function ProductContextEditor({ initial }: { initial: string }) {
       {/* subtle animated accent sweep */}
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute -inset-x-10 -top-24 h-40 bg-[radial-gradient(ellipse_at_center,rgba(90,176,232,0.18),transparent_70%)]"
+        className="pointer-events-none absolute -inset-x-10 -top-24 h-40 bg-[radial-gradient(ellipse_at_center,rgba(65,45,21,0.18),transparent_70%)]"
         animate={{ opacity: [0.4, 0.8, 0.4] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
       />

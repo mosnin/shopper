@@ -37,8 +37,8 @@ export function HeroSection() {
     >
       <motion.div style={reduce ? undefined : { y: asciiY }} className="absolute inset-0">
         <AsciiField className="absolute inset-0 h-full w-full opacity-30 dark:opacity-25" cell={14} speed={0.09} gradient />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(90,176,232,0.12),transparent_55%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(90,176,232,0.05),transparent_55%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(65,45,21,0.12),transparent_55%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(65,45,21,0.05),transparent_55%)]" />
         {/* fade the field into the page so the demo below sits on clean ground */}
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background" />
       </motion.div>

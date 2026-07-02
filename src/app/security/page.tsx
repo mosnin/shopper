@@ -54,7 +54,7 @@ export default function SecurityPage() {
         {/* Hero */}
         <section className="relative overflow-hidden py-24 sm:py-32">
           <div className="absolute inset-0 bg-muted/40 dark:bg-charcoal-dark" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(90,176,232,0.12),transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(65,45,21,0.12),transparent_50%)]" />
           <div className="relative z-10 mx-auto max-w-4xl px-4 text-center">
             <Badge variant="primary" className="mb-4">Security &amp; Trust</Badge>
             <h1 className="font-brand text-4xl tracking-tight text-foreground sm:text-5xl lg:text-6xl">

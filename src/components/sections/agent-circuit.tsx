@@ -38,9 +38,9 @@ const CONNECTIONS = [
 
 // Shopper baby blue for traces and pulses; grid stays whisper-quiet.
 const BLUE = {
-  traceColor: "rgba(90, 176, 232, 0.30)",
-  pulseColor: "#5AB0E8",
-  nodeColor: "rgba(90, 176, 232, 0.55)",
+  traceColor: "rgba(65, 45, 21, 0.30)",
+  pulseColor: "#412D15",
+  nodeColor: "rgba(65, 45, 21, 0.55)",
 };
 
 const BOARD_W = 850;

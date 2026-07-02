@@ -3,7 +3,7 @@
 /**
  * CompoundingSection - the core promise as a picture: a database that gets
  * more valuable with every agent run. Single-series line chart (validated
- * chart-1 token: #2E7DB3 light / #3E96D6 dark, 3:1+ on both surfaces) with
+ * chart-1 token: #412D15 light / #C9B896 dark, 3:1+ on both surfaces) with
  * crosshair tooltip, plus metric tiles for the shape of a working account.
  * The data is an ILLUSTRATIVE product view, labeled as such, never a claim.
  */
