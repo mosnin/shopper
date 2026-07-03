@@ -32,7 +32,7 @@ model User {
   role             String    @default("member")
   // The About You context every hunt is grounded in (sizes, tastes, budgets) +
   // a connected AgentMail key for email. Both are per-user settings.
-  productContext   String?   @db.Text @map("aboutYou")
+  productContext   String?   @map("aboutYou") @db.Text
   agentMailApiKey  String?
   agentPhoneApiKey String?
   // Outbound webhook: where Shopper POSTs results when a scheduled task (intent
@@ -64,6 +64,7 @@ model User {
   activities        Activity[]
   segments          Segment[]
   pipelines         Pipeline[]
+  items             Item[]
 
   @@map("users")
 }
@@ -177,6 +178,7 @@ model Entity {
 
   contacts   Contact[]
   activities Activity[]
+  items      Item[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -195,6 +197,51 @@ enum EntityStatus {
   ARCHIVED
 
   @@map("SellerStatus")
+}
+
+// An item the user wants: the star object of the Wish List and Shopping Lists.
+// A loose wish-list item has listId null; assigning it to a shopping list sets
+// listId. Optionally tied to the seller (Entity) that carries it. status drives
+// the "purchased" check-off. Agents create these from hunts; the UI shows them.
+model Item {
+  id     String @id @default(uuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  title     String
+  url       String? // the listing / product page
+  imageUrl  String?
+  price     String? // free text so "$899", "40-60", or "~$1,200" all fit
+  currency  String?
+  condition String? // "new" | "used - like new" | "refurbished" | etc.
+  quantity  Int?     @default(1) // for grocery / supply style lists
+  notes     String?  @db.Text
+  tags      String[] @default([])
+
+  status      ItemStatus @default(WANTED)
+  source      String? // "agent:find_items", "manual", "radar", etc.
+  purchasedAt DateTime?
+
+  // Optional parent seller (store/marketplace/manufacturer) and shopping list.
+  sellerId String?
+  seller   Entity?   @relation(fields: [sellerId], references: [id], onDelete: SetNull)
+  listId   String?
+  list     Pipeline? @relation(fields: [listId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId, status])
+  @@index([userId, updatedAt])
+  @@index([listId])
+  @@index([sellerId])
+  @@map("items")
+}
+
+enum ItemStatus {
+  WANTED
+  PURCHASED
+  ARCHIVED
 }
 
 // Shared geocode cache. Keyed by a normalized address string so the same city
@@ -234,10 +281,10 @@ model Contact {
   imageUrl String?
 
   // Pipeline
-  status ContactStatus @default(NEW)
-  source String? // how it was found: "discover:domain", "manual", "import", etc.
-  tags   String[]      @default([])
-  notes  String?
+  status          ContactStatus @default(NEW)
+  source          String? // how it was found: "discover:domain", "manual", "import", etc.
+  tags            String[]      @default([])
+  notes           String?
   // Stamped by log_outreach when the agent reaches out; powers the
   // "who needs a follow-up" query (status is the qualitative state, this the
   // temporal one - updatedAt is polluted by every edit, so it can't be used).
@@ -280,7 +327,7 @@ model Activity {
   entity    Entity?  @relation(fields: [entityId], references: [id], onDelete: Cascade)
 
   kind    String // "note" | "outreach" | "call" | "reply" | "status_change"
-  body    String @db.Text
+  body    String  @db.Text
   channel String? // "email" | "linkedin" | "phone" | null
 
   createdAt DateTime @default(now())
@@ -399,10 +446,10 @@ model ContactCall {
   toNumber       String?
   status         String? // in-progress / completed / failed
   durationSec    Int?
-  summary        String? @db.Text
-  transcript     String? @db.Text
+  summary        String?       @db.Text
+  transcript     String?       @db.Text
   recordingUrl   String?
-  savedAsContext Boolean @default(false)
+  savedAsContext Boolean       @default(false)
 
   startedAt DateTime?
   createdAt DateTime  @default(now())
@@ -529,6 +576,7 @@ model Pipeline {
   updatedAt DateTime @updatedAt
 
   entries PipelineEntry[]
+  items   Item[]
 
   @@index([userId])
   @@map("shopping_lists")

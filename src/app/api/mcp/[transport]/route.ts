@@ -64,6 +64,17 @@ import { storeMemory, recallMemory } from "@/lib/memory";
 import { prisma } from "@/lib/prisma";
 import { planFor } from "@/lib/credits";
 import {
+  listItems,
+  createItem,
+  updateItem,
+  setItemStatus,
+  deleteItem,
+  listShoppingLists,
+  getShoppingList,
+  createShoppingList,
+  deleteShoppingList,
+} from "@/lib/item-operations";
+import {
   isBrowserbaseConfigured,
   createBrowserSession,
   sessionDebugUrl,
@@ -75,12 +86,6 @@ import {
   getSegment,
   createSegment,
   buildSmartSegment,
-  listPipelines,
-  getPipeline,
-  createPipeline,
-  addToPipeline,
-  updatePipelineEntry,
-  pipelineMetrics,
 } from "@/lib/field-operations";
 
 type ToolResult = {
@@ -270,7 +275,7 @@ const handler = createMcpHandler(
 
     server.tool(
       "create_source",
-      "Save a seller, store, marketplace, or manufacturer into the wish list. Also how a found item is saved: name is the item or listing title, website is the listing URL, notes carry price and condition.",
+      "Save a seller, store, marketplace, or manufacturer into the wish list (the place that carries the goods). For an actual item to BUY, use save_item instead - this tool is for the sellers themselves.",
       {
         name: z.string(),
         domain: z.string().optional(),
@@ -445,7 +450,7 @@ const handler = createMcpHandler(
 
     server.tool(
       "search_web",
-      "Search the web (Tavily) for items, listings, prices, and reviews, e.g. 'pre-owned RTX 4090 for sale under $900'. Returns titles, URLs, and snippets to review and save with create_source.",
+      "Search the web (Tavily) for items, listings, prices, and reviews, e.g. 'pre-owned RTX 4090 for sale under $900'. Returns titles, URLs, and snippets to review and save with save_item.",
       {
         query: z.string(),
         maxResults: z.number().int().min(1).max(20).optional(),
@@ -535,54 +540,102 @@ const handler = createMcpHandler(
       async (args, extra) => run(() => buildSmartSegment(userIdFrom(extra), args)),
     );
 
+    /* --------------------------- Wish list ------------------------ */
+    server.tool(
+      "save_item",
+      "Save an item the user wants to the wish list. This is how a find becomes a tracked item: title is the product or listing name, url is the listing page, price is free text ('$899', '40-60'), condition is 'new'/'used'/etc. Optionally attach it to a seller (sellerId) and/or a shopping list (listId). Prefer this over create_source for things to BUY; create_source is for the stores and sellers themselves.",
+      {
+        title: z.string(),
+        url: z.string().optional(),
+        imageUrl: z.string().optional(),
+        price: z.string().optional(),
+        condition: z.string().optional(),
+        quantity: z.number().int().min(1).max(9999).optional(),
+        notes: z.string().optional(),
+        sellerId: z.string().optional(),
+        listId: z.string().optional(),
+      },
+      { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false },
+      async (args, extra) =>
+        gated(extra, "create", 200, (userId) => createItem(userId, { ...args, source: "agent" })),
+    );
+
+    server.tool(
+      "list_items",
+      "List items on the wish list, newest first. Filter by status ('WANTED' | 'PURCHASED' | 'ARCHIVED'), by a shopping list (listId), or by a search query. Call before saving so you build on what is already there.",
+      {
+        status: z.enum(["WANTED", "PURCHASED", "ARCHIVED"]).optional(),
+        listId: z.string().optional(),
+        query: z.string().optional(),
+      },
+      { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
+      async ({ status, listId, query }, extra) =>
+        run(() => listItems(userIdFrom(extra), { status, listId, q: query })),
+    );
+
+    server.tool(
+      "update_item",
+      "Update a saved item: fix the price, add a listing url, move it to a shopping list (listId), attach a seller (sellerId), or set status. Pass only what changes.",
+      {
+        id: z.string(),
+        title: z.string().optional(),
+        url: z.string().nullable().optional(),
+        price: z.string().nullable().optional(),
+        condition: z.string().nullable().optional(),
+        quantity: z.number().int().min(1).max(9999).nullable().optional(),
+        notes: z.string().nullable().optional(),
+        sellerId: z.string().nullable().optional(),
+        listId: z.string().nullable().optional(),
+        status: z.enum(["WANTED", "PURCHASED", "ARCHIVED"]).optional(),
+      },
+      async ({ id, ...patch }, extra) => run(() => updateItem(userIdFrom(extra), id, patch)),
+    );
+
+    server.tool(
+      "mark_item_purchased",
+      "Check an item off: set it PURCHASED (stamps the purchase time), or back to WANTED. This is the shopping-list check-off.",
+      { id: z.string(), purchased: z.boolean().default(true) },
+      async ({ id, purchased }, extra) =>
+        run(() => setItemStatus(userIdFrom(extra), id, purchased ? "PURCHASED" : "WANTED")),
+    );
+
+    server.tool(
+      "delete_item",
+      "Remove an item from the wish list by id.",
+      { id: z.string() },
+      { readOnlyHint: false, destructiveHint: true, idempotentHint: true, openWorldHint: false },
+      async ({ id }, extra) => run(() => deleteItem(userIdFrom(extra), id)),
+    );
+
     /* ------------------------ Shopping lists ---------------------- */
     server.tool(
       "list_shopping_lists",
-      "List shopping lists with item counts. Lists are anything that needs buying: groceries, home decor for a move, auto parts, business supplies.",
+      "List the user's shopping lists with item tallies (total and how many are purchased). Lists are anything that needs buying: groceries, home decor for a move, auto parts, business supplies.",
       {},
-      async (_args, extra) => run(() => listPipelines(userIdFrom(extra))),
+      { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
+      async (_args, extra) => run(() => listShoppingLists(userIdFrom(extra))),
     );
 
     server.tool(
       "get_shopping_list",
-      "Get a shopping list with its items (stage, priority score, conversation status) and linked seller contacts.",
+      "Get a shopping list with all its items (wanted first, then purchased).",
       { id: z.string() },
-      async ({ id }, extra) => run(() => getPipeline(userIdFrom(extra), id)),
+      async ({ id }, extra) => run(() => getShoppingList(userIdFrom(extra), id)),
     );
 
     server.tool(
       "create_shopping_list",
-      "Create a shopping list with a goal (e.g. 'restock the office' or 'furnish the new apartment'), optionally seeded from a collection.",
-      { name: z.string(), goal: z.string().optional(), segmentId: z.string().optional() },
-      async (args, extra) => run(() => createPipeline(userIdFrom(extra), args)),
+      "Create a shopping list with a name and optional goal (e.g. 'restock the office' or 'furnish the new apartment'). Add items to it with save_item using its listId.",
+      { name: z.string(), goal: z.string().optional() },
+      async (args, extra) => run(() => createShoppingList(userIdFrom(extra), args)),
     );
 
     server.tool(
-      "add_to_shopping_list",
-      "Add items or seller contacts (by ids and/or a whole collection) to a shopping list as new entries.",
-      { pipelineId: z.string(), contactIds: z.array(z.string()).max(1000).optional(), segmentId: z.string().optional() },
-      async ({ pipelineId, ...rest }, extra) => run(() => addToPipeline(userIdFrom(extra), pipelineId, rest)),
-    );
-
-    server.tool(
-      "check_off_list_item",
-      "Update a shopping list entry: move its stage (WON means purchased - this is how you check off a bought item), set a 0-100 priority score, or set conversation status. Set conversationStatus to CLOSED when a thread with a seller is done.",
-      {
-        pipelineId: z.string(),
-        entryId: z.string(),
-        stage: z.enum(["NEW", "ENRICHED", "PROSPECTING", "ENGAGING", "REPLYING", "WON", "LOST"]).optional(),
-        dealScore: z.number().int().min(0).max(100).nullable().optional(),
-        conversationStatus: z.enum(["OPEN", "AWAITING_REPLY", "STALLED", "CLOSED"]).optional(),
-      },
-      async ({ pipelineId, entryId, ...patch }, extra) =>
-        run(() => updatePipelineEntry(userIdFrom(extra), pipelineId, entryId, patch)),
-    );
-
-    server.tool(
-      "shopping_list_progress",
-      "Progress for a shopping list: counts by stage (purchased vs still hunting), conversation status, and open seller threads.",
-      { pipelineId: z.string() },
-      async ({ pipelineId }, extra) => run(() => pipelineMetrics(userIdFrom(extra), pipelineId)),
+      "delete_shopping_list",
+      "Delete a shopping list by id. Its items are kept (detached from the list), not destroyed.",
+      { id: z.string() },
+      { readOnlyHint: false, destructiveHint: true, idempotentHint: true, openWorldHint: false },
+      async ({ id }, extra) => run(() => deleteShoppingList(userIdFrom(extra), id)),
     );
 
     /* ------------------------- About You -------------------------- */
@@ -846,10 +899,10 @@ const handler = createMcpHandler(
 
 THE SHOPPING LOOP
 1. Orient. Call get_balance to know your runway, get_user_context to load the user's sizes, tastes, and budgets, and recall for past context (this session is stateless). Call search_wishlist before hunting so you build on saved records instead of duplicating them.
-2. Hunt. Use find_items for comprehensive shopping from a prompt (it searches across stores, marketplaces, and listings via Exa deep research and saves new finds). Use find_local_stores for shopping nearby via Google Maps. Use search_web (Tavily) and google_search to read raw results, check prices, and read reviews - review-and-save with create_source rather than presenting a raw search hit as a vetted find.
-3. Go deep when scraping is not enough. deep_shopping_session gives you a real browser (Browserbase) for forums, marketplaces, and javascript-heavy storefronts - connect over CDP, browse like a person, then save what you find. Paid plans.
+2. Hunt. Use find_items for comprehensive shopping from a prompt (it searches across stores, marketplaces, and listings via Exa deep research). Use find_local_stores for shopping nearby via Google Maps. Use search_web (Tavily) and google_search to read raw results, check prices, and read reviews. When you find something worth keeping, call save_item with the title, listing url, price, and condition - do not present a raw search hit as a vetted find.
+3. Go deep when scraping is not enough. deep_shopping_session gives you a real browser (Browserbase) for forums, marketplaces, and javascript-heavy storefronts - connect over CDP, browse like a person, then save_item what you find. Paid plans.
 4. Vet before buying. enrich_source for firmographics on an unknown store, verify_seller against public registries (GLEIF, Companies House, SEC EDGAR) before a big purchase or new supplier, detect_store_tech to judge how established a shop is. Prefer a null over a wrong value - never attach data to the wrong seller.
-5. Keep the lists. Wish list: save items and sellers with create_source. Shopping lists: create_shopping_list for anything that needs buying (groceries, a move, auto parts, business supplies), add_to_shopping_list to grow it, check_off_list_item (stage WON) when something is purchased, shopping_list_progress to report status.
+5. Keep the lists. Items are the star: save_item saves a thing to buy (carry its price, condition, and url), list_items reads the wish list, update_item fixes details, mark_item_purchased checks it off. Sellers (the stores and manufacturers themselves) are saved with create_source. Shopping lists group items: create_shopping_list for anything that needs buying (groceries, a move, auto parts, business supplies), then save_item with that list's listId to add to it, mark_item_purchased as things arrive, and list_shopping_lists / get_shopping_list to report progress.
 6. Work seller relationships (sourcing). source_manufacturers (Pro) finds factories and wholesale suppliers. extract_seller_details pulls public contact info from a seller site; enrich_seller_contact completes a person's email or phone; place_call has the AI phone agent call a seller about stock or price; save_email_context and log_outreach keep every thread on the record; list_due_followups finds quotes worth chasing.
 7. Learn the user. When you discover a durable fact (a size, a brand they love, a budget ceiling), merge it into update_user_context and remember the decision - every future hunt gets sharper.
 
