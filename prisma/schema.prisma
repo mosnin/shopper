@@ -1,5 +1,10 @@
-// Shopper — Prisma schema (Postgres on Supabase)
+// Shopper - Prisma schema (Postgres on Neon)
 // Auth is Clerk; users are mirrored here via the Clerk webhook.
+// Naming: models keep their original client names (Entity, Contact, Segment,
+// Pipeline...) so application code is untouched, while @@map/@map give every
+// table and key column its Shopper-domain name (sellers, seller_contacts,
+// collections, shopping_lists, radar_scans...). Renaming the client models is
+// a tracked debt; the database itself speaks the product's language.
 
 generator client {
   provider        = "prisma-client-js"
@@ -25,9 +30,9 @@ model User {
   lastName         String?
   imageUrl         String?
   role             String    @default("member")
-  // Operator-authored context the agent reads (what you're selling) + a
-  // connected AgentMail key for email. Both are per-user settings.
-  productContext   String?   @db.Text
+  // The About You context every hunt is grounded in (sizes, tastes, budgets) +
+  // a connected AgentMail key for email. Both are per-user settings.
+  productContext   String?   @db.Text @map("aboutYou")
   agentMailApiKey  String?
   agentPhoneApiKey String?
   // Outbound webhook: where Shopper POSTs results when a scheduled task (intent
@@ -141,8 +146,8 @@ model ApiKey {
   @@map("api_keys")
 }
 
-// A business in the CRM. Discovered (e.g. via Tavily), enriched (via Explorium
-// by domain), and operated on by agents. Has many contacts.
+// A seller, store, marketplace, manufacturer, or saved item in the wish list.
+// Found by hunts (Exa/Tavily), enriched by domain, operated on by agents.
 model Entity {
   id     String @id @default(uuid())
   userId String // owner (the Shopper account)
@@ -181,13 +186,15 @@ model Entity {
   @@index([userId, updatedAt])
   @@index([userId, createdAt])
   @@index([userId, domain])
-  @@map("entities")
+  @@map("sellers")
 }
 
 enum EntityStatus {
   NEW
   ENRICHED
   ARCHIVED
+
+  @@map("SellerStatus")
 }
 
 // Shared geocode cache. Keyed by a normalized address string so the same city
@@ -204,14 +211,15 @@ model GeocodeCache {
   @@map("geocode_cache")
 }
 
-// A person/company in the CRM. Agents discover, enrich, and operate on these.
+// A seller contact: a person at a store, marketplace, or manufacturer.
+// Agents find, enrich, and work these (quotes, availability, sourcing).
 model Contact {
   id     String @id @default(uuid())
   userId String // owner (the Shopper account this contact belongs to)
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  // Optional parent business. A contact is assigned to an entity or stands solo.
-  entityId String?
+  // Optional parent seller. A contact is assigned to a seller or stands solo.
+  entityId String? @map("sellerId")
   entity   Entity? @relation(fields: [entityId], references: [id], onDelete: SetNull)
 
   // Core
@@ -253,7 +261,7 @@ model Contact {
   @@index([entityId])
   @@index([userId, updatedAt])
   @@index([userId, createdAt])
-  @@map("contacts")
+  @@map("seller_contacts")
 }
 
 // A timestamped trail of what happened with a contact or company: outreach
@@ -268,7 +276,7 @@ model Activity {
   // Polymorphic target: at least one is set.
   contactId String?
   contact   Contact? @relation(fields: [contactId], references: [id], onDelete: Cascade)
-  entityId  String?
+  entityId  String?  @map("sellerId")
   entity    Entity?  @relation(fields: [entityId], references: [id], onDelete: Cascade)
 
   kind    String // "note" | "outreach" | "call" | "reply" | "status_change"
@@ -334,6 +342,8 @@ enum ContactStatus {
   WON
   LOST
   ARCHIVED
+
+  @@map("SellerContactStatus")
 }
 
 // Email exchanged with a contact. Rendered from the connected AgentMail account;
@@ -360,7 +370,7 @@ model ContactEmail {
 
   @@index([contactId])
   @@index([agentMailThreadId])
-  @@map("contact_emails")
+  @@map("seller_contact_emails")
 }
 
 enum Emaildirection {
@@ -373,9 +383,9 @@ enum CallDirection {
   OUTBOUND
 }
 
-// A phone call with a contact, placed/tracked via the user's AgentPhone account
-// (per-user key on User.agentPhoneApiKey). Mirrors ContactEmail for calls so the
-// agent's call history with a lead is durable and visible on the CRM.
+// A phone call with a seller contact, placed/tracked via the user's AgentPhone
+// account (per-user key on User.agentPhoneApiKey). Mirrors ContactEmail so the
+// agent's call history with a seller is durable and visible on the wish list.
 model ContactCall {
   id        String  @id @default(uuid())
   contactId String
@@ -399,11 +409,12 @@ model ContactCall {
 
   @@index([contactId])
   @@index([agentPhoneCallId])
-  @@map("contact_calls")
+  @@map("seller_contact_calls")
 }
 
-// Recurring Exa intent monitor — runs on a schedule, delivers results via webhook.
-// Results are attributed to userId and saved as entities tagged "intent".
+// A Radar scan: a standing hunt for a wanted item ("recently listed pre-owned
+// GPUs at a good price"). Runs on a schedule, delivers results via webhook;
+// results are attributed to userId and saved to the wish list tagged "radar".
 model IntentMonitor {
   id           String    @id @default(uuid())
   userId       String
@@ -426,29 +437,29 @@ model IntentMonitor {
   @@index([userId])
   @@index([active, nextRunAt])
   @@index([exaMonitorId])
-  @@map("intent_monitors")
+  @@map("radar_scans")
 }
 
-// A single execution of an intent monitor: what it pulled, and how much was added.
+// A single execution of a Radar scan: what it pulled, and how much was added.
 model MonitorRun {
   id         String        @id @default(uuid())
   userId     String
-  monitorId  String
+  monitorId  String        @map("scanId")
   monitor    IntentMonitor @relation(fields: [monitorId], references: [id], onDelete: Cascade)
   items      Json? // the pulled results [{ title, url, summary }]
   found      Int           @default(0)
   added      Int           @default(0)
-  addedToCrm Boolean       @default(false) // whether results were ingested
+  addedToCrm Boolean       @default(false) @map("addedToWishlist") // whether results were ingested
   createdAt  DateTime      @default(now())
 
   @@index([monitorId])
   @@index([userId])
-  @@map("monitor_runs")
+  @@map("radar_scan_runs")
 }
 
-// Scheduled deep research (Linkup or Exa) on a topic, contact, or entity.
+// Scheduled deep research (Linkup or Exa) on an item, seller, or market.
 // When targetType+targetId are set, research is merged into that record's notes.
-// When null, top sources are saved as new entities.
+// When null, top sources are saved as new wish list records.
 model ResearchSchedule {
   id         String    @id @default(uuid())
   userId     String
@@ -471,9 +482,9 @@ model ResearchSchedule {
   @@map("research_schedules")
 }
 
-// ── Field: customer segments + agentic pipelines ────────────────────────────
+// -- Shopping lists: collections + agent-worked lists ------------------------
 
-// A customer segment: a named set of target contacts, built manually or from a
+// A collection: a named group of seller contacts, built manually or from a
 // prompt (OpenAI + vector match). FK to User so account deletion cascades.
 model Segment {
   id        String   @id @default(uuid())
@@ -488,12 +499,12 @@ model Segment {
   members ContactSegment[]
 
   @@index([userId])
-  @@map("segments")
+  @@map("collections")
 }
 
 model ContactSegment {
   id        String   @id @default(uuid())
-  segmentId String
+  segmentId String   @map("collectionId")
   segment   Segment  @relation(fields: [segmentId], references: [id], onDelete: Cascade)
   contactId String
   contact   Contact  @relation(fields: [contactId], references: [id], onDelete: Cascade)
@@ -502,11 +513,12 @@ model ContactSegment {
 
   @@unique([segmentId, contactId])
   @@index([contactId])
-  @@map("contact_segments")
+  @@map("collection_members")
 }
 
-// A pipeline: agentic deal flow. Contacts enter as PipelineEntry rows that track
-// stage, deal score, and conversation status so agents don't loop forever.
+// A shopping list: groceries, a move, auto parts, business supplies. Items
+// enter as PipelineEntry rows tracking stage (WON = purchased, checked off),
+// priority, and seller-thread status so agents don't loop forever.
 model Pipeline {
   id        String   @id @default(uuid())
   userId    String
@@ -519,7 +531,7 @@ model Pipeline {
   entries PipelineEntry[]
 
   @@index([userId])
-  @@map("pipelines")
+  @@map("shopping_lists")
 }
 
 enum PipelineStage {
@@ -530,6 +542,8 @@ enum PipelineStage {
   REPLYING
   WON
   LOST
+
+  @@map("ShoppingListStage")
 }
 
 enum ConversationStatus {
@@ -542,12 +556,12 @@ enum ConversationStatus {
 model PipelineEntry {
   id                 String             @id @default(uuid())
   userId             String
-  pipelineId         String
+  pipelineId         String             @map("shoppingListId")
   pipeline           Pipeline           @relation(fields: [pipelineId], references: [id], onDelete: Cascade)
   contactId          String
   contact            Contact            @relation(fields: [contactId], references: [id], onDelete: Cascade)
   stage              PipelineStage      @default(NEW)
-  dealScore          Int? // 1-100 likelihood the deal closes
+  dealScore          Int?               @map("priorityScore") // 1-100 how much this item matters
   conversationStatus ConversationStatus @default(OPEN)
   lastActivityAt     DateTime?
   createdAt          DateTime           @default(now())
@@ -557,7 +571,7 @@ model PipelineEntry {
   @@index([userId])
   @@index([contactId])
   @@index([pipelineId, stage])
-  @@map("pipeline_entries")
+  @@map("shopping_list_items")
 }
 
 // ── Provenance spine (Moment 3 - Visible Trust) ─────────────────────────────
@@ -567,7 +581,7 @@ model PipelineEntry {
 // to show "via explorium, 3 days ago" on each enriched field and by the
 // re-verify scheduler to find stale rows.
 //
-// recordType: "contact" | "entity"
+// recordType: "contact" | "entity" (a seller contact | a seller)
 // field:      column name exactly as stored on the record (e.g. "email", "phone",
 //             "linkedin", "industry", "location", "phone", "description", "website")
 // source:     short provider slug: "explorium" | "pipe0" | "exa" | "manual" | etc.
