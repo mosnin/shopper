@@ -76,10 +76,6 @@ export default function FluidSpatialHero({ images = defaultImages }: { images?: 
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const smoothX = useSpring(mouseX, { damping: 30, stiffness: 400, mass: 0.5 });
-  const smoothY = useSpring(mouseY, { damping: 30, stiffness: 400, mass: 0.5 });
-  const auraX = useSpring(mouseX, { damping: 40, stiffness: 200, mass: 1 });
-  const auraY = useSpring(mouseY, { damping: 40, stiffness: 200, mass: 1 });
   const canvasX = useSpring(mouseX, { damping: 30, stiffness: 200, mass: 0.8 });
   const canvasY = useSpring(mouseY, { damping: 30, stiffness: 200, mass: 0.8 });
 
@@ -131,7 +127,7 @@ export default function FluidSpatialHero({ images = defaultImages }: { images?: 
   }
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-background transition-colors duration-500 md:cursor-none">
+    <section className="relative min-h-[90vh] w-full overflow-hidden bg-background pt-24 transition-colors duration-500">
       {/* Warm animated blob backdrop */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {blobs.map((b, i) => (
@@ -210,7 +206,6 @@ export default function FluidSpatialHero({ images = defaultImages }: { images?: 
             }}
             placeholder={`e.g. ${PROMPTS[0]}`}
             className="relative z-10 min-h-[80px] w-full resize-none bg-transparent pt-1 text-lg font-normal text-foreground outline-none transition-colors duration-500 selection:bg-primary/20 placeholder:text-muted-foreground/70 sm:min-h-[96px] sm:pt-2 sm:text-xl md:min-h-[112px] md:text-2xl"
-            style={{ cursor: "auto" }}
           />
 
           <div className="relative z-10 mt-1 flex flex-row items-center justify-between sm:mt-2">
@@ -267,21 +262,6 @@ export default function FluidSpatialHero({ images = defaultImages }: { images?: 
         </Link>
       </motion.div>
 
-      {/* Custom trailing cursor (desktop only) */}
-      {mounted && !reduce && (
-        <>
-          <motion.div
-            aria-hidden
-            className="pointer-events-none fixed left-0 top-0 z-40 hidden h-32 w-32 rounded-full bg-primary/10 blur-xl dark:bg-white/5 sm:block"
-            style={{ x: auraX, y: auraY, translateX: "-50%", translateY: "-50%" }}
-          />
-          <motion.div
-            aria-hidden
-            className="pointer-events-none fixed left-0 top-0 z-50 hidden h-4 w-4 rounded-full bg-primary shadow-lg dark:bg-[#E1DCC9] md:block"
-            style={{ x: smoothX, y: smoothY, translateX: "-50%", translateY: "-50%" }}
-          />
-        </>
-      )}
     </section>
   );
 }
