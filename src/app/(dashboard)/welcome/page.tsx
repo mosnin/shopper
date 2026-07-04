@@ -31,7 +31,7 @@ export default async function WelcomePage() {
     <div className="relative min-h-screen overflow-hidden">
       {/* Brand backdrop, matching the marketing surfaces. */}
       <AsciiField className="pointer-events-none fixed inset-0 h-full w-full opacity-[0.10] dark:opacity-25" cell={14} speed={0.07} gradient />
-      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(65,45,21,0.12),transparent_55%)]" />
+      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(37,99,235,0.12),transparent_55%)]" />
       <div className="relative z-10">
         <WelcomeClient firstName={user.firstName ?? undefined} />
       </div>

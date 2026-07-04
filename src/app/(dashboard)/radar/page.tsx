@@ -58,7 +58,7 @@ export default function RadarPage() {
       <FloatIn>
         <div className="relative overflow-hidden rounded-3xl border border-border bg-card">
           <AsciiField className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.12] dark:opacity-30" />
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_0%,rgba(65,45,21,0.10),transparent_60%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_0%,rgba(37,99,235,0.10),transparent_60%)]" />
           <div className="relative z-10 px-6 py-9 sm:px-10 sm:py-12">
             <p className="font-brand text-xs uppercase tracking-[0.25em] text-primary/80">Shopper // Radar</p>
             <h1 className="font-brand mt-2 text-3xl text-foreground sm:text-4xl">Radar</h1>

@@ -56,9 +56,9 @@ export function DiscoverWorking() {
         className="absolute inset-0 rounded-2xl"
         animate={{
           background: [
-            "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(65,45,21,0.06) 0%, transparent 70%)",
-            "radial-gradient(ellipse 80% 65% at 50% 50%, rgba(65,45,21,0.12) 0%, transparent 70%)",
-            "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(65,45,21,0.06) 0%, transparent 70%)",
+            "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(37,99,235,0.06) 0%, transparent 70%)",
+            "radial-gradient(ellipse 80% 65% at 50% 50%, rgba(37,99,235,0.12) 0%, transparent 70%)",
+            "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(37,99,235,0.06) 0%, transparent 70%)",
           ],
         }}
         transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}

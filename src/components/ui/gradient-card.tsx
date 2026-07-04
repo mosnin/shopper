@@ -10,8 +10,8 @@ import { AsciiField } from "@/components/dashboard/ascii-field";
 
 // Shared green edge-glow replacing the original orange/amber.
 const glow = {
-  rest: "0 0 15px 3px rgba(65,45,21,0.7), 0 0 25px 5px rgba(107,78,42,0.5), 0 0 35px 7px rgba(138,107,66,0.35)",
-  hover: "0 0 20px 4px rgba(65,45,21,0.9), 0 0 30px 6px rgba(107,78,42,0.7), 0 0 40px 8px rgba(138,107,66,0.5)",
+  rest: "0 0 15px 3px rgba(37,99,235,0.7), 0 0 25px 5px rgba(22,163,74,0.5), 0 0 35px 7px rgba(234,179,8,0.35)",
+  hover: "0 0 20px 4px rgba(37,99,235,0.9), 0 0 30px 6px rgba(22,163,74,0.7), 0 0 40px 8px rgba(234,179,8,0.5)",
 } as const;
 
 export type GradientCardProps = {
@@ -64,7 +64,7 @@ export function GradientCard({
         transformStyle: "preserve-3d",
         backgroundColor: "#0d0e12",
         // Soft downward glow with negative spread - no ring/halo edge.
-        boxShadow: "0 24px 70px -30px rgba(65,45,21,0.30)",
+        boxShadow: "0 24px 70px -30px rgba(37,99,235,0.30)",
       }}
       initial={{ y: 0 }}
       animate={{ y: isHovered ? -5 : 0, rotateX: rotation.x, rotateY: rotation.y, perspective: 1000 }}
@@ -92,7 +92,7 @@ export function GradientCard({
         className="absolute bottom-0 left-0 right-0 z-20 h-2/3"
         style={{
           background:
-            "radial-gradient(ellipse at bottom right, rgba(65,45,21,0.6) -10%, rgba(65,45,21,0) 70%), radial-gradient(ellipse at bottom left, rgba(107,78,42,0.5) -10%, rgba(107,78,42,0) 70%)",
+            "radial-gradient(ellipse at bottom right, rgba(37,99,235,0.6) -10%, rgba(37,99,235,0) 70%), radial-gradient(ellipse at bottom left, rgba(22,163,74,0.5) -10%, rgba(22,163,74,0) 70%)",
           filter: "blur(40px)",
         }}
         animate={{ opacity: isHovered ? 0.95 : 0.8, y: isHovered ? rotation.x * 0.5 : 0 }}
@@ -102,7 +102,7 @@ export function GradientCard({
         className="absolute bottom-0 left-0 right-0 z-[21] h-2/3"
         style={{
           background:
-            "radial-gradient(circle at bottom center, rgba(65,45,21,0.6) -20%, rgba(65,45,21,0) 60%)",
+            "radial-gradient(circle at bottom center, rgba(37,99,235,0.6) -20%, rgba(37,99,235,0) 60%)",
           filter: "blur(45px)",
         }}
         animate={{ opacity: isHovered ? 0.9 : 0.75, y: isHovered ? `calc(10% + ${rotation.x * 0.3}px)` : "10%" }}

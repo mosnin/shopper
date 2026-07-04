@@ -61,7 +61,7 @@ export function BulkEnrichModal({
             className="relative w-full max-w-md overflow-hidden rounded-3xl border border-border bg-card shadow-2xl"
           >
             <AsciiField className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.14] dark:opacity-30" />
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(65,45,21,0.12),transparent_60%)]" />
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(37,99,235,0.12),transparent_60%)]" />
 
             <div className="relative z-10 p-6 sm:p-7">
               <div className="flex items-start justify-between">

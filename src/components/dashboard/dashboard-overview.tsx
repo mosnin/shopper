@@ -72,7 +72,7 @@ function BentoCard({
       className={cn(
         "relative overflow-hidden rounded-3xl bg-card",
         "shadow-[0_2px_12px_-2px_rgba(0,0,0,0.07),0_1px_4px_-1px_rgba(0,0,0,0.05)]",
-        hoverLift && "transition-shadow duration-300 hover:shadow-[0_8px_32px_-4px_rgba(65,45,21,0.22),0_2px_8px_-2px_rgba(0,0,0,0.08)]",
+        hoverLift && "transition-shadow duration-300 hover:shadow-[0_8px_32px_-4px_rgba(37,99,235,0.22),0_2px_8px_-2px_rgba(0,0,0,0.08)]",
         className,
       )}
     >
@@ -125,7 +125,7 @@ function StatCard({
             transition={{ duration: 3.5, repeat: Infinity, repeatDelay: 2, ease: "easeInOut" }}
             style={{
               background:
-                "radial-gradient(ellipse 70% 60% at 50% 100%, rgba(65,45,21,0.18) 0%, transparent 70%)",
+                "radial-gradient(ellipse 70% 60% at 50% 100%, rgba(37,99,235,0.18) 0%, transparent 70%)",
             }}
           />
         )}
@@ -195,7 +195,7 @@ export function DashboardOverview({
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse 70% 60% at 90% 110%, rgba(65,45,21,0.18) 0%, transparent 65%)",
+              "radial-gradient(ellipse 70% 60% at 90% 110%, rgba(37,99,235,0.18) 0%, transparent 65%)",
           }}
         />
 
@@ -205,7 +205,7 @@ export function DashboardOverview({
           className="pointer-events-none absolute -left-20 -top-20 h-72 w-72 rounded-full opacity-20"
           style={{
             background:
-              "radial-gradient(circle, rgba(65,45,21,0.35) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(37,99,235,0.35) 0%, transparent 70%)",
             filter: "blur(40px)",
           }}
         />
@@ -216,7 +216,7 @@ export function DashboardOverview({
           className="pointer-events-none absolute inset-x-0 bottom-0 h-px"
           style={{
             background:
-              "linear-gradient(90deg, transparent, rgba(65,45,21,0.5) 50%, transparent)",
+              "linear-gradient(90deg, transparent, rgba(37,99,235,0.5) 50%, transparent)",
           }}
         />
 
@@ -332,10 +332,10 @@ export function DashboardOverview({
           <Link href="/agent" className="group block h-full">
             <motion.div
               whileHover={{ y: -4, transition: { duration: 0.25, ease: "easeOut" } }}
-              className="relative h-full min-h-[180px] overflow-hidden rounded-3xl transition-shadow duration-300 hover:shadow-[0_8px_40px_-4px_rgba(65,45,21,0.35)]"
+              className="relative h-full min-h-[180px] overflow-hidden rounded-3xl transition-shadow duration-300 hover:shadow-[0_8px_40px_-4px_rgba(37,99,235,0.35)]"
               style={{
                 background:
-                  "linear-gradient(135deg, #412D15 0%, #6B4E2A 55%, #8A6B42 100%)",
+                  "linear-gradient(135deg, #2563EB 0%, #16A34A 55%, #EAB308 100%)",
               }}
             >
               {/* Noise overlay for depth */}
@@ -392,7 +392,7 @@ export function DashboardOverview({
         <motion.div variants={cardVariants} className="lg:col-span-2">
           <motion.div
             whileHover={{ y: -3, transition: { duration: 0.25, ease: "easeOut" } }}
-            className="relative overflow-hidden rounded-3xl border border-dashed border-primary/40 bg-accent/30 transition-shadow duration-300 hover:shadow-[0_8px_32px_-4px_rgba(65,45,21,0.15)]"
+            className="relative overflow-hidden rounded-3xl border border-dashed border-primary/40 bg-accent/30 transition-shadow duration-300 hover:shadow-[0_8px_32px_-4px_rgba(37,99,235,0.15)]"
           >
             {/* Subtle radial */}
             <div
@@ -400,7 +400,7 @@ export function DashboardOverview({
               className="pointer-events-none absolute inset-0"
               style={{
                 background:
-                  "radial-gradient(ellipse 60% 80% at 0% 100%, rgba(65,45,21,0.10) 0%, transparent 65%)",
+                  "radial-gradient(ellipse 60% 80% at 0% 100%, rgba(37,99,235,0.10) 0%, transparent 65%)",
               }}
             />
 
@@ -438,7 +438,7 @@ export function DashboardOverview({
                     >
                       <Link
                         href={item.href}
-                        className="group flex flex-col justify-between gap-3 rounded-2xl bg-card p-4 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.07)] transition-shadow duration-200 hover:shadow-[0_6px_20px_-4px_rgba(65,45,21,0.16)]"
+                        className="group flex flex-col justify-between gap-3 rounded-2xl bg-card p-4 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.07)] transition-shadow duration-200 hover:shadow-[0_6px_20px_-4px_rgba(37,99,235,0.16)]"
                       >
                         <div className="flex items-center justify-between">
                           <p className="font-brand text-sm font-semibold text-foreground">{item.label}</p>
@@ -480,7 +480,7 @@ export function DashboardOverview({
         <motion.div variants={cardVariants}>
           <motion.div
             whileHover={{ y: -3, transition: { duration: 0.25, ease: "easeOut" } }}
-            className="relative overflow-hidden rounded-3xl bg-card shadow-[0_2px_12px_-2px_rgba(0,0,0,0.07),0_1px_4px_-1px_rgba(0,0,0,0.05)] transition-shadow duration-300 hover:shadow-[0_8px_32px_-4px_rgba(65,45,21,0.18),0_2px_8px_-2px_rgba(0,0,0,0.08)]"
+            className="relative overflow-hidden rounded-3xl bg-card shadow-[0_2px_12px_-2px_rgba(0,0,0,0.07),0_1px_4px_-1px_rgba(0,0,0,0.05)] transition-shadow duration-300 hover:shadow-[0_8px_32px_-4px_rgba(37,99,235,0.18),0_2px_8px_-2px_rgba(0,0,0,0.08)]"
           >
             <div className="p-6">
               <p className="font-brand text-xs uppercase tracking-[0.25em] text-muted-foreground">

@@ -44,7 +44,7 @@ resold). Plans: Free (limited) / Plus $10/mo / Pro $20/mo.
 - Value proposition / positioning - `docs/foundation/valueprop.md`
 - Value proposition (legacy) - `@docs/foundation/value-proposition.md`
 - PRD / build brief - `docs/foundation/prd.md`
-- Brand kit - palette `#E1DCC9` cream / `#412D15` brown / `#1F150C` dark brown / `#000000` (logo at `public/logo.svg`, a shopping bag)
+- Brand kit - white palette with blue `#2563EB` / green `#16A34A` / yellow `#EAB308` accents (logo at `public/logo.svg`, a shopping bag)
 - User experience - not yet provided
 
 Deep context and all decisions are indexed in `@docs/README.md`.
@@ -86,9 +86,9 @@ Deep context and all decisions are indexed in `@docs/README.md`.
   · **Lint:** `pnpm lint`.
 - **Conventions:** import alias `@/*` → `src/*`. Route groups: `(auth)`,
   `(dashboard)`, `(admin)`. Theme tokens live in `src/app/globals.css`
-  (**cream `#E1DCC9` + dark brown `#412D15`/`#1F150C`, light by default**;
-  legacy `orange`/`brand` Tailwind utilities are aliased to the brown scale -
-  rename is a tracked debt). Logo: a shopping-bag mark via `LogoMark`
+  (**white + blue `#2563EB` / green `#16A34A` / yellow `#EAB308`, light by
+  default**; legacy `orange`/`brand` Tailwind utilities are aliased to the blue
+  scale - rename is a tracked debt). Logo: a shopping-bag mark via `LogoMark`
   (inline SVG, currentColor). The agent is named **Shopper** and uses the
   logo as its avatar/nav icon.
 - **Copy hard rule:** NEVER use em dashes or en dashes anywhere (UI, code,
@@ -104,7 +104,7 @@ Deep context and all decisions are indexed in `@docs/README.md`.
   `export const viewport`; file-convention `app/manifest.ts` / `app/apple-icon.tsx`).
   Verify APIs against the installed Next, not memory.
 - **Origin:** rebranded from the `mosnin/fortitudov4` agency scaffolding (forked
-  the orange/charcoal studio site, then diverged to cream/brown - do not
-  reintroduce orange/charcoal as the brand).
+  the orange/charcoal studio site, then diverged to white + blue/green/yellow -
+  do not reintroduce orange/charcoal or the old cream/brown as the brand).
 
 <!-- ritual:installed -->

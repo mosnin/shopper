@@ -9,7 +9,7 @@ export function CTASection() {
       <div className="relative mx-auto max-w-5xl overflow-hidden rounded-3xl border border-border bg-muted/40 px-6 py-20 text-center dark:bg-card sm:py-24">
         {/* ASCII: barely visible in light, more present in dark */}
         <AsciiField className="absolute inset-0 h-full w-full opacity-20 dark:opacity-50" speed={0.08} gradient />
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(65,45,21,0.12),transparent_60%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(37,99,235,0.12),transparent_60%)]" />
         <div className="relative z-10">
           <h2 className="font-brand text-3xl text-foreground sm:text-4xl lg:text-5xl">
             Give your agents{" "}

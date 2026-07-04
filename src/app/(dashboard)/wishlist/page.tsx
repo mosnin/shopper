@@ -188,7 +188,7 @@ function ItemCard({ item, delay }: { item: ItemCardData; delay: number }) {
         className={cn(
           "flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card",
           "shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),0_1px_3px_-1px_rgba(0,0,0,0.06)]",
-          "transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_6px_20px_-4px_rgba(0,0,0,0.12),0_2px_6px_-2px_rgba(65,45,21,0.12)]",
+          "transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_6px_20px_-4px_rgba(0,0,0,0.12),0_2px_6px_-2px_rgba(37,99,235,0.12)]",
           purchased && "opacity-70"
         )}
       >

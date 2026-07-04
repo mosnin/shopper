@@ -26,7 +26,7 @@ export function ImagePlaceholder({
         className,
       )}
     >
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(65,45,21,0.08),transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.08),transparent_60%)]" />
       <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-muted-foreground">
         <ImageIcon className="h-6 w-6 opacity-60" />
         <span className="text-xs uppercase tracking-[0.2em]">{label}</span>

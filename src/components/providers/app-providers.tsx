@@ -33,7 +33,7 @@ const elements = {
 };
 
 const baseVars = {
-  colorPrimary: "#412D15",
+  colorPrimary: "#2563EB",
   colorDanger: "#DC2626",
   colorSuccess: "#16A34A",
   colorWarning: "#EAB308",

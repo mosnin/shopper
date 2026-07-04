@@ -14,33 +14,33 @@
   --color-4: 195 100% 63%;
   --color-5: 90 100% 63%;
 
-  /* Shopper - Cream & Dark Brown Palette (#000000 / #1F150C / #412D15 / #E1DCC9) */
-  --background: #E1DCC9;
-  --foreground: #1F150C;
-  --card: #EAE6D7;
-  --card-foreground: #1F150C;
-  --popover: #EAE6D7;
-  --popover-foreground: #1F150C;
-  --primary: #412D15;
-  --primary-foreground: #E1DCC9;
-  --secondary: #D6D0BB;
-  --secondary-foreground: #1F150C;
-  --muted: #D8D2BF;
-  --muted-foreground: #6B5D44;
-  --accent: #D3CBB2;
-  --accent-foreground: #412D15;
-  --destructive: #B3261E;
-  --destructive-foreground: #F5F1E6;
-  --border: #C6BEA4;
-  --input: #C6BEA4;
-  --ring: #412D15;
-  --success: #3F6D34;
-  --warning: #A9761B;
-  --chart-1: #412D15;
-  --chart-2: #6B4E2A;
-  --chart-3: #8A7A5C;
-  --chart-4: #3F6D34;
-  --chart-5: #A9761B;
+  /* Shopper - White + Yellow/Green/Blue Palette */
+  --background: #FFFFFF;
+  --foreground: #0F172A;
+  --card: #FFFFFF;
+  --card-foreground: #0F172A;
+  --popover: #FFFFFF;
+  --popover-foreground: #0F172A;
+  --primary: #2563EB;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F1F5F9;
+  --secondary-foreground: #0F172A;
+  --muted: #F1F5F9;
+  --muted-foreground: #64748B;
+  --accent: #DBEAFE;
+  --accent-foreground: #1D4ED8;
+  --destructive: #DC2626;
+  --destructive-foreground: #FFFFFF;
+  --border: #E2E8F0;
+  --input: #E2E8F0;
+  --ring: #2563EB;
+  --success: #16A34A;
+  --warning: #EAB308;
+  --chart-1: #2563EB;
+  --chart-2: #16A34A;
+  --chart-3: #EAB308;
+  --chart-4: #0EA5E9;
+  --chart-5: #F59E0B;
   --chart-background: oklch(1 0 0);
   --chart-foreground: oklch(0.145 0.004 285);
   --chart-foreground-muted: oklch(0.55 0.014 260);
@@ -69,32 +69,32 @@
 }
 
 .dark {
-  --background: #120C06;
-  --foreground: #E1DCC9;
-  --card: #1F150C;
-  --card-foreground: #E1DCC9;
-  --popover: #1F150C;
-  --popover-foreground: #E1DCC9;
-  --primary: #E1DCC9;
-  --primary-foreground: #1F150C;
-  --secondary: #2A1D10;
-  --secondary-foreground: #E1DCC9;
-  --muted: #2A1D10;
-  --muted-foreground: #A99C82;
-  --accent: #332412;
-  --accent-foreground: #E1DCC9;
-  --destructive: #D64545;
-  --destructive-foreground: #F5F1E6;
-  --border: #3A2B18;
-  --input: #3A2B18;
-  --ring: #E1DCC9;
-  --success: #6FA35C;
-  --warning: #CE9A3A;
-  --chart-1: #C9B896;
-  --chart-2: #A9885B;
-  --chart-3: #7A6A4C;
-  --chart-4: #6FA35C;
-  --chart-5: #CE9A3A;
+  --background: #0B1120;
+  --foreground: #E2E8F0;
+  --card: #111827;
+  --card-foreground: #E2E8F0;
+  --popover: #111827;
+  --popover-foreground: #E2E8F0;
+  --primary: #3B82F6;
+  --primary-foreground: #FFFFFF;
+  --secondary: #1E293B;
+  --secondary-foreground: #E2E8F0;
+  --muted: #1E293B;
+  --muted-foreground: #94A3B8;
+  --accent: #172554;
+  --accent-foreground: #BFDBFE;
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+  --border: #1E293B;
+  --input: #1E293B;
+  --ring: #3B82F6;
+  --success: #22C55E;
+  --warning: #FACC15;
+  --chart-1: #60A5FA;
+  --chart-2: #4ADE80;
+  --chart-3: #FACC15;
+  --chart-4: #38BDF8;
+  --chart-5: #FBBF24;
   --chart-background: oklch(0.145 0 0);
   --chart-foreground: oklch(0.45 0 0);
   --chart-foreground-muted: oklch(0.65 0.01 260);
@@ -144,17 +144,17 @@
   --color-charcoal-light: #2A2A2A;
   --color-charcoal-dark: #0A0A0A;
 
-  /* Brand brown (canonical). Legacy `orange` tokens are repointed to the
-     brown scale so existing text-orange/bg-orange utilities render on-brand;
-     rename to `brand` over time (tracked as a debt). */
-  --color-brand: #412D15;
-  --color-brand-light: #6B4E2A;
-  --color-brand-dark: #1F150C;
-  --color-brand-glow: rgba(65, 45, 21, 0.4);
-  --color-orange: #6B4E2A;
-  --color-orange-light: #8A6B42;
-  --color-orange-dark: #412D15;
-  --color-orange-glow: rgba(65, 45, 21, 0.4);
+  /* Brand blue (canonical). Legacy `orange` tokens are repointed to the blue
+     scale so existing text-orange/bg-orange utilities render on-brand; rename
+     to `brand` over time (tracked as a debt). */
+  --color-brand: #2563EB;
+  --color-brand-light: #3B82F6;
+  --color-brand-dark: #1D4ED8;
+  --color-brand-glow: rgba(37, 99, 235, 0.4);
+  --color-orange: #3B82F6;
+  --color-orange-light: #60A5FA;
+  --color-orange-dark: #2563EB;
+  --color-orange-glow: rgba(37, 99, 235, 0.4);
 
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
@@ -278,8 +278,8 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(65, 45, 21, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(65, 45, 21, 0.6); }
+  0%, 100% { box-shadow: 0 0 20px rgba(37, 99, 235, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(37, 99, 235, 0.6); }
 }
 
 @keyframes rainbow {
@@ -320,7 +320,7 @@ h1,
 
 /* Utility classes */
 .text-gradient-orange {
-  background: linear-gradient(135deg, #412D15, #6B4E2A, #8A6B42);
+  background: linear-gradient(135deg, #2563EB, #16A34A, #EAB308);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -328,13 +328,13 @@ h1,
 
 .glow-button {
   position: relative;
-  background: linear-gradient(135deg, #412D15, #1F150C);
-  box-shadow: 0 0 20px rgba(65, 45, 21, 0.4);
+  background: linear-gradient(135deg, #2563EB, #1D4ED8);
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
   transition: all 0.3s ease;
 }
 
 .glow-button:hover {
-  box-shadow: 0 0 30px rgba(65, 45, 21, 0.6);
+  box-shadow: 0 0 30px rgba(37, 99, 235, 0.6);
   transform: translateY(-1px);
 }
 
@@ -354,7 +354,7 @@ h1,
 }
 
 .phase-connector.completed::after {
-  background: linear-gradient(90deg, #412D15, #6B4E2A);
+  background: linear-gradient(90deg, #2563EB, #16A34A);
 }
 
 @media (prefers-reduced-motion: reduce) {

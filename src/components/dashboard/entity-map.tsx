@@ -60,12 +60,12 @@ export default function EntityMap({
           key={e.id}
           center={[e.lat, e.lng]}
           radius={7}
-          pathOptions={{ color: "#412D15", fillColor: "#412D15", fillOpacity: 0.85, weight: 2 }}
+          pathOptions={{ color: "#2563EB", fillColor: "#2563EB", fillOpacity: 0.85, weight: 2 }}
         >
           <Popup>
             <div className="text-sm font-medium">{e.name}</div>
             {e.location && <div className="text-xs text-neutral-500">{e.location}</div>}
-            <a href={`/wishlist/entity/${e.id}`} className="text-xs text-[#412D15] underline">Open</a>
+            <a href={`/wishlist/entity/${e.id}`} className="text-xs text-[#2563EB] underline">Open</a>
           </Popup>
         </CircleMarker>
       ))}

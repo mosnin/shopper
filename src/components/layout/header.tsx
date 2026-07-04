@@ -119,7 +119,7 @@ function MegaPanel({ group }: { group: NavGroup }) {
         className="group/feat relative flex flex-col justify-between overflow-hidden rounded-2xl border border-border/60 bg-muted/40 p-4 transition-colors hover:bg-muted/70 dark:border-white/10 dark:bg-white/[0.03] dark:hover:bg-white/[0.06]"
       >
         <AsciiField className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.18] dark:opacity-30" cell={12} speed={0.07} gradient />
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_70%_0%,rgba(65,45,21,0.16),transparent_60%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_70%_0%,rgba(37,99,235,0.16),transparent_60%)]" />
         <div className="relative">
           <p className="text-[0.65rem] uppercase tracking-[0.25em] text-primary">{group.featured.eyebrow}</p>
           <p className="mt-2 font-brand text-lg leading-tight text-foreground">{group.featured.title}</p>
@@ -329,7 +329,7 @@ export function Header() {
           >
             <div className="absolute inset-0 bg-background/97 backdrop-blur-xl dark:bg-charcoal-dark/95" />
             <AsciiField className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.12] dark:opacity-30" cell={14} speed={0.09} gradient />
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_15%,rgba(65,45,21,0.18),transparent_60%)]" />
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_15%,rgba(37,99,235,0.18),transparent_60%)]" />
 
             <motion.div
               className="relative flex h-full flex-col overflow-y-auto"

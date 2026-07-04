@@ -56,7 +56,7 @@ export default function ContactPage() {
             speed={0.06}
             gradient
           />
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(65,45,21,0.12),transparent_55%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.12),transparent_55%)]" />
           <div className="relative z-10 mx-auto max-w-4xl px-4 text-center">
             <p className="text-xs uppercase tracking-[0.3em] text-primary">Contact</p>
             <h1 className="font-brand mt-4 text-4xl tracking-tight text-foreground sm:text-5xl lg:text-6xl">

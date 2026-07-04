@@ -30,8 +30,8 @@ export function ProblemSection() {
           sits above at z-10 and stays fully interactive. */}
       <DotGridSpotlight
         className="absolute inset-0 h-full w-full"
-        dotColor="rgba(65, 45, 21, 0.10)"
-        activeDotColor="rgba(65, 45, 21, 0.45)"
+        dotColor="rgba(37, 99, 235, 0.10)"
+        activeDotColor="rgba(37, 99, 235, 0.45)"
         spacing={26}
       />
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

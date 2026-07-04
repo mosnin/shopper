@@ -11,7 +11,7 @@ type ClerkAppearance = NonNullable<ComponentProps<typeof SignIn>["appearance"]>;
 
 export const clerkAppearance: ClerkAppearance = {
   variables: {
-    colorPrimary: "#412D15",
+    colorPrimary: "#2563EB",
     colorText: "var(--foreground)",
     colorTextSecondary: "var(--muted-foreground)",
     colorBackground: "var(--card)",

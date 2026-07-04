@@ -162,7 +162,7 @@ export function LiveDemo() {
   return (
     <div className="relative mx-auto w-full max-w-4xl">
       {/* soft brand glow under the window */}
-      <div className="pointer-events-none absolute -inset-x-6 -bottom-10 top-16 bg-[radial-gradient(ellipse_at_50%_50%,rgba(65,45,21,0.22),transparent_70%)] blur-2xl" />
+      <div className="pointer-events-none absolute -inset-x-6 -bottom-10 top-16 bg-[radial-gradient(ellipse_at_50%_50%,rgba(37,99,235,0.22),transparent_70%)] blur-2xl" />
 
       <div className="relative overflow-hidden rounded-[1.75rem] border border-border bg-card shadow-2xl shadow-black/10 dark:border-white/10 dark:shadow-black/50">
         {/* window chrome */}

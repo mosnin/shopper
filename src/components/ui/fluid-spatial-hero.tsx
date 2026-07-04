@@ -1,10 +1,11 @@
 "use client";
 
 // Fluid spatial hero, adapted for Shopper. A canvas of floating product images
-// drifts behind a liquid-glass prompt box: "tell your agent what to hunt." The
-// palette is our cream + dark brown, the wordmark is Space Grotesk (font-brand),
-// and the send action routes to sign-up. Honors prefers-reduced-motion and
-// renders a static, SSR-safe fallback until it mounts so the hero is never blank.
+// drifts behind a stationary liquid-glass prompt box: "tell your agent what to
+// hunt." Only the background moves; the headline and box hold still so the copy
+// stays readable. Palette is white with yellow/green/blue accents, wordmark is
+// Space Grotesk (font-brand), and the send action routes to sign-up. Honors
+// prefers-reduced-motion and mounts client-side so positions are stable.
 
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -49,12 +50,12 @@ const defaultImages: FloatingImage[] = [
   { src: "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=2574", className: "w-[180px] h-[220px] sm:w-[240px] sm:h-[300px] md:w-[280px] md:h-[360px] rounded-full", initialRotate: -7, duration: 4.3 },
 ];
 
-// Warm blob backdrop tuned to the brand browns on the cream canvas.
+// Bright blob backdrop: yellow, green, blue, sky on the white canvas.
 const blobs = [
-  { color: "#412D15", anim: { scale: [1, 1.2, 1], rotate: [0, 90, 0] }, duration: 20, className: "top-[-10%] left-[-10%] w-[60vw] h-[60vw] blur-[100px] md:blur-[140px] opacity-25 dark:opacity-20" },
-  { color: "#6B4E2A", anim: { scale: [1.2, 1, 1.2], rotate: [0, -90, 0] }, duration: 25, className: "top-[20%] right-[-10%] w-[50vw] h-[50vw] blur-[100px] md:blur-[140px] opacity-25 dark:opacity-20" },
-  { color: "#8A6B42", anim: { scale: [1, 1.3, 1], rotate: [0, 45, 0] }, duration: 22, className: "bottom-[-20%] left-[20%] w-[70vw] h-[70vw] blur-[120px] md:blur-[160px] opacity-20 dark:opacity-15" },
-  { color: "#C9B896", anim: { scale: [1.1, 0.9, 1.1], rotate: [0, -45, 0] }, duration: 18, className: "bottom-[-10%] right-[10%] w-[40vw] h-[40vw] blur-[100px] md:blur-[120px] opacity-30 dark:opacity-10" },
+  { color: "#3B82F6", anim: { scale: [1, 1.2, 1], rotate: [0, 90, 0] }, duration: 20, className: "top-[-10%] left-[-10%] w-[60vw] h-[60vw] blur-[100px] md:blur-[140px] opacity-40 dark:opacity-30" },
+  { color: "#22C55E", anim: { scale: [1.2, 1, 1.2], rotate: [0, -90, 0] }, duration: 25, className: "top-[20%] right-[-10%] w-[50vw] h-[50vw] blur-[100px] md:blur-[140px] opacity-35 dark:opacity-25" },
+  { color: "#FACC15", anim: { scale: [1, 1.3, 1], rotate: [0, 45, 0] }, duration: 22, className: "bottom-[-20%] left-[20%] w-[70vw] h-[70vw] blur-[120px] md:blur-[160px] opacity-35 dark:opacity-20" },
+  { color: "#38BDF8", anim: { scale: [1.1, 0.9, 1.1], rotate: [0, -45, 0] }, duration: 18, className: "bottom-[-10%] right-[10%] w-[40vw] h-[40vw] blur-[100px] md:blur-[120px] opacity-40 dark:opacity-20" },
 ];
 
 const PROMPTS = [
@@ -119,9 +120,6 @@ export default function FluidSpatialHero({ images = defaultImages }: { images?: 
   const normY = useTransform(canvasY, (y: number) => (windowSize.height === 0 ? 0 : (y / windowSize.height - 0.5) * 2));
   const translateX = useTransform(normX, [-1, 1], [350, -350]);
   const translateY = useTransform(normY, [-1, 1], [350, -350]);
-  const boxTranslateX = useTransform(normX, [-1, 1], [-20, 20]);
-  const boxTranslateY = useTransform(normY, [-1, 1], [-20, 20]);
-
   function submit() {
     router.push("/sign-up");
   }
@@ -151,7 +149,7 @@ export default function FluidSpatialHero({ images = defaultImages }: { images?: 
           {placed.map((img, index) => (
             <motion.div
               key={index}
-              className={`absolute overflow-hidden border border-primary/10 bg-card/50 shadow-[0_20px_50px_rgba(31,21,12,0.12)] backdrop-blur-sm transition-colors duration-500 dark:border-white/5 dark:bg-black/40 dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] ${img.className}`}
+              className={`absolute overflow-hidden border border-primary/10 bg-card/50 shadow-[0_20px_50px_rgba(15,23,42,0.12)] backdrop-blur-sm transition-colors duration-500 dark:border-white/5 dark:bg-black/40 dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] ${img.className}`}
               style={img.style}
               initial={{ rotate: img.initialRotate }}
               animate={reduce ? undefined : {
@@ -176,16 +174,14 @@ export default function FluidSpatialHero({ images = defaultImages }: { images?: 
         </motion.div>
       )}
 
-      {/* Headline + liquid-glass prompt box */}
-      <motion.div
-        className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-6 px-4 pointer-events-none md:gap-8"
-        style={mounted && !reduce ? { x: boxTranslateX, y: boxTranslateY } : undefined}
-      >
+      {/* Headline + liquid-glass prompt box. Stationary on purpose: only the
+          background canvas drifts, so the text stays perfectly readable. */}
+      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-6 px-4 pointer-events-none md:gap-8">
         <div className="mt-[-6vh] flex flex-col items-center text-center md:mt-[-4vh]">
           <p className="mb-3 text-xs uppercase tracking-[0.3em] text-primary sm:text-sm">
             The shopping engine your agents run
           </p>
-          <h1 className="font-brand mb-3 bg-gradient-to-b from-[#1F150C] to-[#6B4E2A] bg-clip-text text-5xl font-bold tracking-tighter text-transparent transition-all duration-500 dark:from-[#E1DCC9] dark:to-[#A9885B] sm:text-7xl md:mb-4 md:text-8xl">
+          <h1 className="font-brand mb-3 bg-gradient-to-b from-[#0F172A] to-[#2563EB] bg-clip-text text-5xl font-bold tracking-tighter text-transparent transition-all duration-500 dark:from-white dark:to-[#60A5FA] sm:text-7xl md:mb-4 md:text-8xl">
             Shopper
           </h1>
           <p className="max-w-lg text-center text-base font-medium leading-relaxed text-muted-foreground sm:text-lg md:text-xl">
@@ -195,7 +191,7 @@ export default function FluidSpatialHero({ images = defaultImages }: { images?: 
         </div>
 
         {/* Liquid-glass prompt box, tinted to cream + brown */}
-        <div className="pointer-events-auto relative mx-auto flex w-[calc(100%-2rem)] max-w-[760px] flex-col gap-3 rounded-[2rem] border border-white/40 bg-card/40 p-4 shadow-[0_20px_50px_-12px_rgba(31,21,12,0.12),inset_0_1px_2px_rgba(255,255,255,0.7)] backdrop-blur-2xl transition-all duration-500 hover:bg-card/55 dark:border-white/10 dark:bg-white/[0.06] dark:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.4),inset_0_1px_2px_rgba(255,255,255,0.15)] sm:gap-4 sm:rounded-[2.5rem] sm:p-5 md:p-6">
+        <div className="pointer-events-auto relative mx-auto flex w-[calc(100%-2rem)] max-w-[760px] flex-col gap-3 rounded-[2rem] border border-white/40 bg-card/40 p-4 shadow-[0_20px_50px_-12px_rgba(15,23,42,0.12),inset_0_1px_2px_rgba(255,255,255,0.7)] backdrop-blur-2xl transition-all duration-500 hover:bg-card/55 dark:border-white/10 dark:bg-white/[0.06] dark:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.4),inset_0_1px_2px_rgba(255,255,255,0.15)] sm:gap-4 sm:rounded-[2.5rem] sm:p-5 md:p-6">
           <div className="pointer-events-none absolute inset-0 rounded-[2rem] bg-gradient-to-b from-white/50 via-white/5 to-transparent opacity-70 dark:from-white/15 sm:rounded-[2.5rem]" />
 
           <textarea
@@ -238,14 +234,14 @@ export default function FluidSpatialHero({ images = defaultImages }: { images?: 
               >
                 <LogoMark className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 <span className="whitespace-nowrap text-xs font-medium sm:text-sm">Free plan</span>
-                <span className="ml-0.5 h-1.5 w-1.5 rounded-full bg-success shadow-[0_0_6px_rgba(63,109,52,0.5)]" />
+                <span className="ml-0.5 h-1.5 w-1.5 rounded-full bg-success shadow-[0_0_6px_rgba(22,163,74,0.5)]" />
                 <ChevronDown className="h-3 w-3 opacity-40 sm:h-3.5 sm:w-3.5" />
               </button>
               <button
                 type="button"
                 onClick={submit}
                 aria-label="Send to your agent"
-                className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-[0_3px_10px_rgba(31,21,12,0.2)] transition-all hover:-translate-y-0.5 hover:brightness-110 sm:h-10 sm:w-10 md:h-12 md:w-12"
+                className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-[0_3px_10px_rgba(15,23,42,0.2)] transition-all hover:-translate-y-0.5 hover:brightness-110 sm:h-10 sm:w-10 md:h-12 md:w-12"
               >
                 <ArrowRight className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />
               </button>
@@ -260,7 +256,7 @@ export default function FluidSpatialHero({ images = defaultImages }: { images?: 
         >
           Free to start, then Plus $10 or Pro $20 a month. See pricing.
         </Link>
-      </motion.div>
+      </div>
 
     </section>
   );

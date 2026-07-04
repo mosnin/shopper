@@ -6,7 +6,7 @@ pattern here, change it everywhere it's used — and update this file.
 
 > Companion to `AGENTS.md`. The icon rule there is part of this system.
 > ⚠️ We forked the orange/charcoal `fortitudov4` studio site and **deliberately
-> diverged**. Shopper is **cream + dark brown, light-default**. Do not reintroduce
+> diverged**. Shopper is **white + blue/green/yellow, light-default**. Do not reintroduce
 > orange/charcoal as the brand.
 
 ---
@@ -20,24 +20,24 @@ alive." Never "vibe-coded."
 
 ---
 
-## 2. Color - brand brown is the only accent
+## 2. Color - blue leads, green and yellow accent
 
 Tokens live in `src/app/globals.css` (`:root` light / `.dark` dark, exposed via `@theme`):
 
 | Token | Light | Dark | Use |
 | --- | --- | --- | --- |
-| `--background` | `#E1DCC9` | `#120C06` | Page background (light is the default) |
-| `--card` / `--popover` | `#EAE6D7` | `#1F150C` | Panels, cards |
-| `--foreground` | `#1F150C` | `#E1DCC9` | Text |
-| `--muted` / `--muted-foreground` | `#D8D2BF` / `#6B5D44` | `#2A1D10` / `#A99C82` | Subtle fills / secondary text |
-| **`--primary`** | **`#412D15`** | **`#E1DCC9`** | The accent - buttons, eyebrows, highlights |
-| `--accent` | `#D3CBB2` | `#332412` | Tints |
-| `--border` / `--input` | `#C6BEA4` | `#3A2B18` | Borders |
-| `--ring` | `#412D15` | `#E1DCC9` | Focus rings |
-| `--destructive` / `--success` / `--warning` | `#B3261E` / `#3F6D34` / `#A9761B` | - | Status only - not decoration |
+| `--background` | `#FFFFFF` | `#0B1120` | Page background (light is the default) |
+| `--card` / `--popover` | `#FFFFFF` | `#111827` | Panels, cards |
+| `--foreground` | `#0F172A` | `#E2E8F0` | Text |
+| `--muted` / `--muted-foreground` | `#F1F5F9` / `#64748B` | `#1E293B` / `#94A3B8` | Subtle fills / secondary text |
+| **`--primary`** | **`#2563EB`** | **`#3B82F6`** | The accent - buttons, eyebrows, highlights |
+| `--accent` | `#DBEAFE` | `#172554` | Tints |
+| `--border` / `--input` | `#E2E8F0` | `#1E293B` | Borders |
+| `--ring` | `#2563EB` | `#3B82F6` | Focus rings |
+| `--destructive` / `--success` / `--warning` | `#DC2626` / `#16A34A` / `#EAB308` | - | Status only - not decoration |
 
 Rules:
-- **Brand brown (`#412D15`) is the single brand accent on the cream surface.**
+- **Brand blue (`#2563EB`) leads on white; green and yellow are secondary accents.**
   Don't introduce new accent hues unless asked. (The one sanctioned multi-hue is
   the ASCII gradient, §5.)
 - **Legacy alias:** the `orange` / `brand` Tailwind utilities are remapped to the
@@ -58,7 +58,7 @@ Rules:
   (Was Bitcount Grid Single, a pixel-grid face; dropped - it read as retro/
   pixelated once the CSP allowed the webfont to actually load, clashing with the
   quiet-premium aesthetic.)
-- **Accent word:** wrap one word in `.text-gradient-orange` (a brown gradient, bg-clip-text).
+- **Accent word:** wrap one word in `.text-gradient-orange` (a blue->green->yellow gradient, bg-clip-text).
 - **Body:** Inter (`font-sans`).
 - **Eyebrow:** `text-xs uppercase tracking-[0.3em] text-primary`.
 - **Logo:** `]s[` — `LogoMark` (`src/components/brand/logo-mark.tsx`) in `font-brand`,
@@ -155,7 +155,7 @@ system. In production use:
 
 | Effect | File | Where | Notes |
 |---|---|---|---|
-| **AgentCircuit** | `sections/agent-circuit.tsx` (wraps `ui/circuit-board.tsx`) | Homepage + `/product/how-it-works` | Shopper's real data flow as an animated circuit: agent, discover/radar, verify/enrich, CRM core, email/calls. Pulses in `#412D15`. Scale-to-fit via `react-use-measure`. |
+| **AgentCircuit** | `sections/agent-circuit.tsx` (wraps `ui/circuit-board.tsx`) | Homepage + `/product/how-it-works` | Shopper's real data flow as an animated circuit: agent, discover/radar, verify/enrich, CRM core, email/calls. Pulses in `#2563EB`. Scale-to-fit via `react-use-measure`. |
 | **DotGridSpotlight** | `dot-grid-spotlight.tsx` | Problem section background | Cursor-lit dot field in primary blue at whisper opacity. Content stays `z-10`. |
 | **ShimmeringText** | `shimmering-text.tsx` | CTA heading accent | Character shimmer from `--primary` to `--foreground`. Use on ONE phrase per page. |
 | **Footer reveal** | pattern in `app/page.tsx` | Homepage | Content (`z-10`, opaque bg) slides up over the sticky footer (`sticky bottom-0 z-0`). Pure CSS. |
