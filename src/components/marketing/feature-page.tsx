@@ -33,6 +33,8 @@ export type FeaturePageProps = {
   /** Optional extra content rendered after the steps, before the CTA. */
   extra?: React.ReactNode;
   ctaTitle: string;
+  /** Optional royalty-free hero photo; falls back to a labelled placeholder. */
+  heroImage?: string;
 };
 
 export function FeaturePage({
@@ -45,6 +47,7 @@ export function FeaturePage({
   steps,
   extra,
   ctaTitle,
+  heroImage,
 }: FeaturePageProps) {
   return (
     <>
@@ -88,6 +91,7 @@ export function FeaturePage({
             </div>
             <ImagePlaceholder
               label={`${eyebrow} visual`}
+              src={heroImage}
               aspect="aspect-[16/7]"
               className="mx-auto mt-14 max-w-3xl"
             />

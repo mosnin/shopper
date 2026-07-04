@@ -158,14 +158,14 @@ export function IntelligenceSection() {
     <section id="intelligence" className="relative scroll-mt-24 bg-muted/30 py-24 dark:bg-background sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs uppercase tracking-[0.25em] text-primary">The living wish list</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-primary">Your living wish list</p>
           <h2 className="font-brand mt-3 text-3xl text-foreground sm:text-4xl lg:text-5xl">
-            Your wish list <span className="text-gradient-orange">stays alive</span>
+            Your wish list <span className="text-gradient-orange">keeps working</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            A bookmark folder rots. A Shopper wish list keeps working: prices
-            tracked, sellers vetted, registries checked, and better options
-            surfaced while you get on with your day.
+            A folder of bookmarks just sits there. Your Shopper wish list stays
+            up to date: prices tracked, deals flagged, sellers checked, and
+            better options surfaced while you get on with your day.
           </p>
         </div>
 
@@ -222,7 +222,7 @@ export function IntelligenceSection() {
           transition={{ duration: 0.5, ease: EASE }}
           className="mx-auto mt-10 max-w-4xl"
         >
-          <ImagePlaceholder label="Wish list, in the app" aspect="aspect-[21/9]" />
+          <ImagePlaceholder label="A shopper reviewing finds on a laptop" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=75&w=1600&auto=format&fit=crop" aspect="aspect-[21/9]" />
         </motion.div>
 
         <motion.p

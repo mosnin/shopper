@@ -3,20 +3,19 @@
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
 import { ProgressiveBlur } from "@/components/ui/progressive-blur";
 
-// The agents that plug into Shopper over MCP, and the engine underneath them.
-// Rendered as wordmarks in the brand face so the wall stays legible in both
-// light and dark mode without shipping a folder of third-party logos.
+// A friendly scrolling row: where Shopper looks, what it does, and the AI
+// assistants it works with. Rendered as wordmarks in the brand face so the
+// wall stays legible in both light and dark mode.
 const items = [
-  { id: "hermes", name: "Hermes" },
-  { id: "openclaw", name: "OpenClaw" },
-  { id: "codex", name: "Codex" },
-  { id: "claude-code", name: "Claude Code" },
-  { id: "cursor", name: "Cursor" },
-  { id: "mcp", name: "MCP" },
-  { id: "exa", name: "Exa" },
-  { id: "firecrawl", name: "Firecrawl" },
-  { id: "tavily", name: "Tavily" },
-  { id: "browserbase", name: "Browserbase" },
+  { id: "every-store", name: "Every store" },
+  { id: "marketplaces", name: "Marketplaces" },
+  { id: "local-sellers", name: "Local sellers" },
+  { id: "price-tracking", name: "Price tracking" },
+  { id: "deal-alerts", name: "Deal alerts" },
+  { id: "chatgpt", name: "ChatGPT" },
+  { id: "claude", name: "Claude" },
+  { id: "gemini", name: "Gemini" },
+  { id: "any-ai", name: "and any AI assistant" },
 ];
 
 export function AgentMarquee() {
@@ -24,7 +23,7 @@ export function AgentMarquee() {
     <section className="py-16 sm:py-20">
       <div className="mx-auto max-w-5xl px-6 text-center">
         <p className="text-sm font-medium text-muted-foreground">
-          Works with the agents you already run, on an engine built for the hunt
+          Searches everywhere you shop, and works with the AI assistants you already use
         </p>
       </div>
 

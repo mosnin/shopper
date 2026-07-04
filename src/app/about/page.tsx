@@ -61,7 +61,8 @@ export default function AboutPage() {
               an agent should be doing for you. This is the why.
             </p>
             <ImagePlaceholder
-              label="Agents hunting the web"
+              label="A relaxed shopper checking their phone"
+              src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=75&w=1600&auto=format&fit=crop"
               aspect="aspect-[16/7]"
               className="mx-auto mt-12 max-w-3xl"
             />

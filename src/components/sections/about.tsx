@@ -56,7 +56,7 @@ export function AboutSection() {
           </div>
 
           <div className="space-y-4">
-            <ImagePlaceholder label="About visual: agents at work" aspect="aspect-[16/9]" />
+            <ImagePlaceholder label="Shopping bags and a phone" src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=75&w=1600&auto=format&fit=crop" aspect="aspect-[16/9]" />
             {values.map((value, index) => (
               <motion.div
                 key={value.title}

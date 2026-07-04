@@ -32,22 +32,22 @@ export type FloatingImage = {
 // Curated product photography (Unsplash) - the things people shop for. Swap in
 // your own by passing the `images` prop; these are on-brand-neutral defaults.
 const defaultImages: FloatingImage[] = [
-  { src: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2670", className: "w-[160px] h-[160px] sm:w-[200px] sm:h-[200px] md:w-[260px] md:h-[260px] rounded-full", initialRotate: -3, duration: 3.5 },
-  { src: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=2599", className: "w-[180px] h-[220px] sm:w-[240px] sm:h-[280px] md:w-[300px] md:h-[340px] rounded-[40%_60%_60%_40%/60%_30%_70%_40%]", initialRotate: 4, duration: 4.2 },
-  { src: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=2670", className: "w-[160px] h-[160px] sm:w-[220px] sm:h-[220px] md:w-[280px] md:h-[280px] rounded-[30%_70%_70%_30%/30%_30%_70%_70%]", initialRotate: -5, duration: 3.8 },
-  { src: "https://images.unsplash.com/photo-1484704849700-f032a568e944?q=80&w=2670", className: "w-[180px] h-[140px] sm:w-[260px] sm:h-[200px] md:w-[320px] md:h-[260px] rounded-[50px]", initialRotate: 6, duration: 4.0 },
-  { src: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=2564", className: "w-[140px] h-[180px] sm:w-[180px] sm:h-[240px] md:w-[240px] md:h-[300px] rounded-full", initialRotate: 2, duration: 3.6 },
-  { src: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=2670", className: "w-[180px] h-[180px] sm:w-[240px] sm:h-[240px] md:w-[300px] md:h-[300px] rounded-[40%_60%_50%_50%/50%_50%_50%_50%]", initialRotate: -4, duration: 4.5 },
-  { src: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=2670", className: "w-[140px] h-[200px] sm:w-[200px] sm:h-[280px] md:w-[260px] md:h-[340px] rounded-[60px]", initialRotate: 7, duration: 3.4 },
-  { src: "https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=2680", className: "w-[160px] h-[160px] sm:w-[220px] sm:h-[220px] md:w-[280px] md:h-[280px] rounded-full", initialRotate: -2, duration: 4.1 },
-  { src: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?q=80&w=2688", className: "w-[180px] h-[140px] sm:w-[260px] sm:h-[200px] md:w-[320px] md:h-[260px] rounded-[35%_65%_65%_35%/35%_35%_65%_65%]", initialRotate: 5, duration: 3.9 },
-  { src: "https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=2574", className: "w-[140px] h-[140px] sm:w-[200px] sm:h-[200px] md:w-[260px] md:h-[260px] rounded-full", initialRotate: -6, duration: 4.3 },
-  { src: "https://images.unsplash.com/photo-1560343090-f0409e92791a?q=80&w=2564", className: "w-[180px] h-[220px] sm:w-[240px] sm:h-[280px] md:w-[300px] md:h-[340px] rounded-[45%_55%_60%_40%/55%_45%_55%_45%]", initialRotate: 3, duration: 3.7 },
-  { src: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?q=80&w=2564", className: "w-[160px] h-[160px] sm:w-[220px] sm:h-[220px] md:w-[280px] md:h-[280px] rounded-[50px]", initialRotate: -7, duration: 4.4 },
-  { src: "https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?q=80&w=2670", className: "w-[140px] h-[180px] sm:w-[200px] sm:h-[260px] md:w-[260px] md:h-[320px] rounded-full", initialRotate: 4, duration: 3.3 },
-  { src: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?q=80&w=2680", className: "w-[180px] h-[180px] sm:w-[240px] sm:h-[240px] md:w-[300px] md:h-[300px] rounded-[40%_60%_55%_45%/50%_50%_50%_50%]", initialRotate: -3, duration: 4.6 },
-  { src: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=2680", className: "w-[160px] h-[140px] sm:w-[220px] sm:h-[200px] md:w-[280px] md:h-[260px] rounded-[60px]", initialRotate: 6, duration: 3.2 },
-  { src: "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=2574", className: "w-[180px] h-[220px] sm:w-[240px] sm:h-[300px] md:w-[280px] md:h-[360px] rounded-full", initialRotate: -7, duration: 4.3 },
+  { src: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=70&w=480&auto=format&fit=crop", className: "w-[160px] h-[160px] sm:w-[200px] sm:h-[200px] md:w-[260px] md:h-[260px] rounded-full", initialRotate: -3, duration: 3.5 },
+  { src: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=70&w=480&auto=format&fit=crop", className: "w-[180px] h-[220px] sm:w-[240px] sm:h-[280px] md:w-[300px] md:h-[340px] rounded-[40%_60%_60%_40%/60%_30%_70%_40%]", initialRotate: 4, duration: 4.2 },
+  { src: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=70&w=480&auto=format&fit=crop", className: "w-[160px] h-[160px] sm:w-[220px] sm:h-[220px] md:w-[280px] md:h-[280px] rounded-[30%_70%_70%_30%/30%_30%_70%_70%]", initialRotate: -5, duration: 3.8 },
+  { src: "https://images.unsplash.com/photo-1484704849700-f032a568e944?q=70&w=480&auto=format&fit=crop", className: "w-[180px] h-[140px] sm:w-[260px] sm:h-[200px] md:w-[320px] md:h-[260px] rounded-[50px]", initialRotate: 6, duration: 4.0 },
+  { src: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=70&w=480&auto=format&fit=crop", className: "w-[140px] h-[180px] sm:w-[180px] sm:h-[240px] md:w-[240px] md:h-[300px] rounded-full", initialRotate: 2, duration: 3.6 },
+  { src: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=70&w=480&auto=format&fit=crop", className: "w-[180px] h-[180px] sm:w-[240px] sm:h-[240px] md:w-[300px] md:h-[300px] rounded-[40%_60%_50%_50%/50%_50%_50%_50%]", initialRotate: -4, duration: 4.5 },
+  { src: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=70&w=480&auto=format&fit=crop", className: "w-[140px] h-[200px] sm:w-[200px] sm:h-[280px] md:w-[260px] md:h-[340px] rounded-[60px]", initialRotate: 7, duration: 3.4 },
+  { src: "https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=70&w=480&auto=format&fit=crop", className: "w-[160px] h-[160px] sm:w-[220px] sm:h-[220px] md:w-[280px] md:h-[280px] rounded-full", initialRotate: -2, duration: 4.1 },
+  { src: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?q=70&w=480&auto=format&fit=crop", className: "w-[180px] h-[140px] sm:w-[260px] sm:h-[200px] md:w-[320px] md:h-[260px] rounded-[35%_65%_65%_35%/35%_35%_65%_65%]", initialRotate: 5, duration: 3.9 },
+  { src: "https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=70&w=480&auto=format&fit=crop", className: "w-[140px] h-[140px] sm:w-[200px] sm:h-[200px] md:w-[260px] md:h-[260px] rounded-full", initialRotate: -6, duration: 4.3 },
+  { src: "https://images.unsplash.com/photo-1560343090-f0409e92791a?q=70&w=480&auto=format&fit=crop", className: "w-[180px] h-[220px] sm:w-[240px] sm:h-[280px] md:w-[300px] md:h-[340px] rounded-[45%_55%_60%_40%/55%_45%_55%_45%]", initialRotate: 3, duration: 3.7 },
+  { src: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?q=70&w=480&auto=format&fit=crop", className: "w-[160px] h-[160px] sm:w-[220px] sm:h-[220px] md:w-[280px] md:h-[280px] rounded-[50px]", initialRotate: -7, duration: 4.4 },
+  { src: "https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?q=70&w=480&auto=format&fit=crop", className: "w-[140px] h-[180px] sm:w-[200px] sm:h-[260px] md:w-[260px] md:h-[320px] rounded-full", initialRotate: 4, duration: 3.3 },
+  { src: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?q=70&w=480&auto=format&fit=crop", className: "w-[180px] h-[180px] sm:w-[240px] sm:h-[240px] md:w-[300px] md:h-[300px] rounded-[40%_60%_55%_45%/50%_50%_50%_50%]", initialRotate: -3, duration: 4.6 },
+  { src: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=70&w=480&auto=format&fit=crop", className: "w-[160px] h-[140px] sm:w-[220px] sm:h-[200px] md:w-[280px] md:h-[260px] rounded-[60px]", initialRotate: 6, duration: 3.2 },
+  { src: "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=70&w=480&auto=format&fit=crop", className: "w-[180px] h-[220px] sm:w-[240px] sm:h-[300px] md:w-[280px] md:h-[360px] rounded-full", initialRotate: -7, duration: 4.3 },
 ];
 
 // Bright blob backdrop: yellow, green, blue, sky on the white canvas.
@@ -59,10 +59,10 @@ const blobs = [
 ];
 
 const PROMPTS = [
-  "Find a pre-owned RTX 4090 under $900",
-  "Gucci loafers, size 10M, under $400",
-  "A used Herman Miller Aeron near me",
-  "Restock my office supplies list",
+  "A comfy office chair under $200",
+  "Running shoes, size 10, on sale",
+  "The best deal on an air fryer",
+  "A birthday gift for a coffee lover",
 ];
 
 type Positioned = FloatingImage & { style: { top: string; left: string } };
@@ -71,6 +71,7 @@ export default function FluidSpatialHero({ images = defaultImages }: { images?: 
   const router = useRouter();
   const reduce = useReducedMotion();
   const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
   const [placed, setPlaced] = useState<Positioned[]>([]);
   const [prompt, setPrompt] = useState("");
@@ -82,13 +83,17 @@ export default function FluidSpatialHero({ images = defaultImages }: { images?: 
 
   useEffect(() => {
     setMounted(true);
+    const mobile = window.innerWidth < 768;
+    setIsMobile(mobile);
     setWindowSize({ width: window.innerWidth, height: window.innerHeight });
 
-    // Exact 4x4 grid over a 250vw/250vh canvas: even spread, zero overlap.
+    // On phones, place far fewer tiles: the image payload and compositing cost
+    // are the main reason the hero felt heavy on mobile.
+    const count = mobile ? 7 : 16;
     const rows = 4, cols = 4;
     const cells = Array.from({ length: 16 }, (_, i) => i).sort(() => Math.random() - 0.5);
     setPlaced(
-      images.slice(0, 16).map((img, i) => {
+      images.slice(0, count).map((img, i) => {
         const cell = cells[i] ?? i;
         const row = Math.floor(cell / cols);
         const col = cell % cols;
@@ -124,17 +129,23 @@ export default function FluidSpatialHero({ images = defaultImages }: { images?: 
     router.push("/sign-up");
   }
 
+  const stillBlobs = reduce || isMobile;
+
   return (
-    <section className="relative min-h-[90vh] w-full overflow-hidden bg-background pt-24 transition-colors duration-500">
-      {/* Warm animated blob backdrop */}
+    <section className="relative flex min-h-[100svh] w-full flex-col overflow-hidden bg-background pt-20 transition-colors duration-500 sm:pt-24">
+      {/* Soft brand wash at the very top so the area behind the floating header
+          reads intentional instead of a blank white gap. */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-48 bg-[linear-gradient(to_bottom,rgba(37,99,235,0.10),transparent)]" />
+
+      {/* Blob backdrop. Static on phones (animating giant blurs was a big cost). */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {blobs.map((b, i) => (
           <motion.div
             key={i}
             aria-hidden
-            animate={reduce ? undefined : b.anim}
+            animate={stillBlobs ? undefined : b.anim}
             transition={{ duration: b.duration, repeat: Infinity, ease: "linear" }}
-            className={`absolute rounded-full mix-blend-multiply dark:mix-blend-screen transition-opacity duration-500 ${b.className}`}
+            className={`absolute rounded-full mix-blend-multiply dark:mix-blend-screen ${b.className}`}
             style={{ backgroundColor: b.color }}
           />
         ))}
@@ -149,10 +160,10 @@ export default function FluidSpatialHero({ images = defaultImages }: { images?: 
           {placed.map((img, index) => (
             <motion.div
               key={index}
-              className={`absolute overflow-hidden border border-primary/10 bg-card/50 shadow-[0_20px_50px_rgba(15,23,42,0.12)] backdrop-blur-sm transition-colors duration-500 dark:border-white/5 dark:bg-black/40 dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] ${img.className}`}
+              className={`absolute overflow-hidden border border-primary/10 bg-card shadow-[0_16px_40px_rgba(15,23,42,0.12)] dark:border-white/5 dark:bg-black/40 dark:shadow-[0_16px_40px_rgba(0,0,0,0.4)] ${img.className}`}
               style={img.style}
               initial={{ rotate: img.initialRotate }}
-              animate={reduce ? undefined : {
+              animate={stillBlobs ? undefined : {
                 y: [0, -40, 0],
                 x: [0, 20, 0],
                 rotate: [img.initialRotate, img.initialRotate + 5, img.initialRotate],
@@ -177,20 +188,20 @@ export default function FluidSpatialHero({ images = defaultImages }: { images?: 
       {/* Headline + liquid-glass prompt box. Stationary on purpose: only the
           background canvas drifts, so the text stays perfectly readable. */}
       <div className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-6 px-4 pointer-events-none md:gap-8">
-        <div className="mt-[-6vh] flex flex-col items-center text-center md:mt-[-4vh]">
+        <div className="mt-[-4vh] flex flex-col items-center text-center">
           <p className="mb-3 text-xs uppercase tracking-[0.3em] text-primary sm:text-sm">
-            The shopping engine your agents run
+            Your personal shopper, powered by AI
           </p>
           <h1 className="font-brand mb-3 bg-gradient-to-b from-[#0F172A] to-[#2563EB] bg-clip-text text-5xl font-bold tracking-tighter text-transparent transition-all duration-500 dark:from-white dark:to-[#60A5FA] sm:text-7xl md:mb-4 md:text-8xl">
             Shopper
           </h1>
           <p className="max-w-lg text-center text-base font-medium leading-relaxed text-muted-foreground sm:text-lg md:text-xl">
-            Connect your agent and describe what you want. <br className="hidden md:block" />
-            It hunts the whole web, and saves every find to a wish list you own.
+            Tell Shopper what you are looking for. It searches the whole internet,
+            finds the best price, and keeps every option in one simple list.
           </p>
         </div>
 
-        {/* Liquid-glass prompt box, tinted to cream + brown */}
+        {/* Liquid-glass prompt box */}
         <div className="pointer-events-auto relative mx-auto flex w-[calc(100%-2rem)] max-w-[760px] flex-col gap-3 rounded-[2rem] border border-white/40 bg-card/40 p-4 shadow-[0_20px_50px_-12px_rgba(15,23,42,0.12),inset_0_1px_2px_rgba(255,255,255,0.7)] backdrop-blur-2xl transition-all duration-500 hover:bg-card/55 dark:border-white/10 dark:bg-white/[0.06] dark:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.4),inset_0_1px_2px_rgba(255,255,255,0.15)] sm:gap-4 sm:rounded-[2.5rem] sm:p-5 md:p-6">
           <div className="pointer-events-none absolute inset-0 rounded-[2rem] bg-gradient-to-b from-white/50 via-white/5 to-transparent opacity-70 dark:from-white/15 sm:rounded-[2.5rem]" />
 
@@ -221,7 +232,7 @@ export default function FluidSpatialHero({ images = defaultImages }: { images?: 
                 className="flex h-9 items-center gap-1.5 rounded-full border border-border/60 bg-background/60 px-3 text-muted-foreground shadow-sm transition-all hover:bg-background/90 hover:text-foreground sm:h-10 sm:gap-2 sm:px-4 md:h-12 md:px-5"
               >
                 <ScanSearch className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                <span className="text-xs font-medium sm:text-sm">Deep shop</span>
+                <span className="text-xs font-medium sm:text-sm">Any store</span>
               </button>
             </div>
 

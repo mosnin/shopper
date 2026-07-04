@@ -6,20 +6,19 @@ import { DotGridSpotlight } from "@/components/dot-grid-spotlight";
 
 const easeOut = [0.16, 1, 0.3, 1] as const;
 
-// The two sides of the same coin: what agent shopping looks like as a bolt-on
-// MCP inside a chat window, and what it looks like with a real engine behind
-// it. No icons-in-boxes (design rule); the contrast carries the point.
+// The two sides of the same coin: shopping the hard way, and shopping with
+// Shopper. No icons-in-boxes (design rule); the contrast carries the point.
 const without = [
-  "Every hunt starts from zero: no sizes, no tastes, no budget",
-  "A dump of links in a chat that scrolls away",
-  "No wish list, no shopping lists, nothing to check off",
-  "Nothing keeps watching after the conversation ends",
+  "Twenty tabs open, comparing prices by hand",
+  "You find a deal, then lose the link an hour later",
+  "You forget what you were even looking for",
+  "The price drops the day after you stop checking",
 ];
 const withShopper = [
-  "About You: durable context every hunt reads first",
-  "Finds land structured: item, price, seller, source",
-  "Wish lists and shopping lists your agents read and write",
-  "Radar keeps scanning long after you close the tab",
+  "One place that searches every store for you",
+  "Every option saved with its price and seller",
+  "Wish lists and shopping lists you can check off",
+  "It keeps watching and tells you when prices drop",
 ];
 
 export function ProblemSection() {
@@ -38,13 +37,13 @@ export function ProblemSection() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs uppercase tracking-[0.25em] text-primary">The problem</p>
           <h2 className="font-brand mt-3 text-3xl text-foreground sm:text-4xl lg:text-5xl">
-            Chat can shop for a minute.{" "}
-            <span className="text-gradient-orange">Then it forgets.</span>
+            Shopping online is a mess.{" "}
+            <span className="text-gradient-orange">It doesn't have to be.</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            The shopping MCPs bolted onto chat apps dump links and move on: no
-            lists, no memory, no watching. Shopper is the other half your agent
-            was missing - structure plus a real shopping engine.
+            Dozens of tabs, prices that never sit still, deals you miss, and a
+            wish list scattered across a hundred sites. Shopper does the hunting
+            for you and keeps everything in one place you own.
           </p>
         </div>
 
@@ -57,7 +56,7 @@ export function ProblemSection() {
           >
             <SpotlightCard className="h-full p-7">
               <p className="font-brand text-sm uppercase tracking-[0.2em] text-muted-foreground">
-                Shopping in a chat window
+                Shopping on your own
               </p>
               <ul className="mt-5 space-y-3">
                 {without.map((line) => (

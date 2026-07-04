@@ -24,39 +24,39 @@ type Cap = {
 const caps: Cap[] = [
   {
     id: "hunt",
-    label: "Comprehensive hunts",
-    title: "The whole web, hunted from a sentence",
-    body: "Say what you want. The agent sweeps the web with Exa, Firecrawl, and Tavily powered search and scraping, compares prices, reads reviews, and returns real listings, not a page of ads.",
+    label: "Find anything",
+    title: "Search every store from one sentence",
+    body: "Just say what you want. Shopper searches across stores, marketplaces, and local sellers all at once, compares prices, reads the reviews, and brings back real options, not a page of ads.",
   },
   {
     id: "deep",
-    label: "Deep shopping",
-    title: "When scraping is not enough, it gets a browser",
-    body: "Forums, marketplaces, and javascript-heavy storefronts need real clicks. The agent picks up a Browserbase browser and works them the way you would, only tirelessly.",
+    label: "Search everywhere",
+    title: "It looks where a search box can't",
+    body: "The best deals often hide on marketplaces, forums, and finicky sites. Shopper opens a real browser and digs through them the way you would, only faster and without getting tired.",
   },
   {
     id: "radar",
-    label: "Radar",
-    title: "Standing scans for exactly what you want",
-    body: "Recently listed pre-owned GPUs at a good price. Gucci shoes in 10M under $400. Cars, business suppliers, anything. Radar keeps scanning and reports every match. Paid plans.",
+    label: "Deal alerts",
+    title: "It watches for the deal you're waiting on",
+    body: "Set Shopper on the lookout: a used graphics card at a good price, a certain pair of shoes under $400, a car, anything. It keeps scanning and tells you the moment a match shows up. On paid plans.",
   },
   {
     id: "lists",
-    label: "Wish list + lists",
-    title: "Every find lands somewhere structured",
-    body: "Items, sellers, stores, and manufacturers live in a wish list your agents read and write over MCP. Shopping lists cover grocery runs, home decor, auto parts, business supplies: hunted, monitored, checked off.",
+    label: "Your lists",
+    title: "Everything you want, in one place",
+    body: "Keep a wish list of things you want and shopping lists for the grocery run, the house move, car parts, or office supplies. Shopper fills them in and you check items off as you buy.",
   },
   {
     id: "about",
-    label: "About You",
-    title: "Context that makes every hunt fit",
-    body: "Sizes, tastes, budgets, and no-gos live in About You. Agents read it before every hunt and update it as they learn, so results fit you instead of the average shopper.",
+    label: "It learns you",
+    title: "It gets to know your taste and budget",
+    body: "Your sizes, style, budgets, and the things you'd rather avoid all live in one spot. Shopper remembers them, so results fit you instead of the average shopper, and get better over time.",
   },
   {
     id: "sourcing",
-    label: "Sourcing",
-    title: "Go past retail to the source",
-    body: "On Pro, agents hunt manufacturers and suppliers directly and vet them against public registries like GLEIF, Companies House, and SEC EDGAR before you commit to a big purchase.",
+    label: "Go to the source",
+    title: "Buy straight from the maker",
+    body: "On Pro, Shopper can find manufacturers and suppliers directly and check each one against public business registries before you commit to a big purchase.",
   },
 ];
 
@@ -141,7 +141,7 @@ function DeepPanel({ reduce }: { reduce: boolean | null }) {
         </motion.p>
       </div>
       <motion.p variants={panelItem} className="px-1 pt-1 text-[11px] text-muted-foreground">
-        Real browser, real pages: forums, marketplaces, and stores scrapers cannot reach
+        A real browser reaching forums, marketplaces, and stores a plain search misses
       </motion.p>
     </PanelFrame>
   );
@@ -318,13 +318,13 @@ export function CapabilitiesSection() {
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs uppercase tracking-[0.25em] text-primary">Capabilities</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-primary">What it does</p>
           <h2 className="font-brand mt-3 text-3xl text-foreground sm:text-4xl lg:text-5xl">
-            What your agent <span className="text-gradient-orange">actually does</span>
+            Your personal <span className="text-gradient-orange">shopping assistant</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Hunting, deep shopping, standing scans, lists, and sourcing as
-            first-class tools. Run by your agent, visible to you, on data that
+            Find anything, track prices, catch deals, and keep your lists in one
+            place. Shopper does the searching, you make the call, and the data
             stays yours.
           </p>
         </div>
