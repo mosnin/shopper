@@ -11,13 +11,13 @@ const EASE = [0.16, 1, 0.3, 1] as const;
  * at that stage. It reads as a single guided path, not four loose cards.
  */
 
-function ConnectVisual() {
+function SearchVisual() {
   return (
     <div className="flex items-center justify-between rounded-xl border border-border bg-background/60 px-3 py-2.5 dark:border-white/10 dark:bg-white/[0.03]">
-      <span className="font-mono text-xs text-foreground/80">claude-code · mcp</span>
+      <span className="font-mono text-xs text-foreground/80">stores · marketplaces · local sellers</span>
       <span className="inline-flex items-center gap-1.5 rounded-full bg-success/10 px-2 py-0.5 text-[11px] font-medium text-success">
         <span className="h-1.5 w-1.5 rounded-full bg-success" />
-        connected
+        searching
       </span>
     </div>
   );
@@ -30,7 +30,7 @@ function AskVisual() {
         <span className="text-muted-foreground">you </span>find me a mid-century walnut desk under $900
       </div>
       <div className="flex flex-wrap gap-1.5">
-        {["reads About You", "desk width from notes", "budget saved"].map((c) => (
+        {["knows your taste", "remembers your size", "budget saved"].map((c) => (
           <span key={c} className="rounded-md border border-border bg-card px-2 py-1 text-[11px] text-foreground/75 dark:border-white/10">
             {c}
           </span>
@@ -75,27 +75,27 @@ function RadarVisual() {
 
 const steps = [
   {
-    title: "Connect your agent",
+    title: "Tell Shopper what you want",
     description:
-      "Point Hermes, OpenClaw, Codex, Claude Code, or any MCP client at Shopper, or just use the built-in Shopper agent. One connection, a full set of shopping tools.",
-    visual: <ConnectVisual />,
-  },
-  {
-    title: "Tell it what you want",
-    description:
-      "An item, a whole shopping list, a standing brief. The agent reads About You first, your sizes, tastes, and budgets, so the hunt fits you from the first result.",
+      "One item, a whole shopping list, or a standing wish. Shopper already knows your sizes, tastes, and budget, so what it finds fits you from the very first result.",
     visual: <AskVisual />,
   },
   {
-    title: "It hunts and saves finds",
+    title: "It searches everywhere",
     description:
-      "Search and scraping across the whole web, a real browser when a storefront fights back. Every find lands in your wish list: item, price, seller, source.",
+      "Shopper looks across stores, marketplaces, and local sellers all at once, and opens a real browser for the trickier sites, so nothing good slips through.",
+    visual: <SearchVisual />,
+  },
+  {
+    title: "You see the best options in one list",
+    description:
+      "Every option lands in your list with its price and its seller, side by side and easy to compare. No lost links, no scattered tabs, everything in one place.",
     visual: <HuntVisual />,
   },
   {
-    title: "Radar keeps watching",
+    title: "It watches for better deals",
     description:
-      "Standing scans keep hunting after you log off. New listings, price drops, and restocks arrive as matches, not as another tab you have to remember to open.",
+      "Shopper keeps looking after you close the tab. Price drops, new listings, and restocks show up as matches, not as one more thing you have to remember to check.",
     visual: <RadarVisual />,
   },
 ];
@@ -115,7 +115,7 @@ export function HowItWorksSection() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs uppercase tracking-[0.25em] text-primary">How it works</p>
           <h2 className="font-brand mt-3 text-3xl text-foreground sm:text-4xl lg:text-5xl">
-            From a sentence to a <span className="text-gradient-orange">find you trust</span>
+            From a sentence to a <span className="text-gradient-orange">list you trust</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
             A calm, transparent process that keeps you in control the whole way through.

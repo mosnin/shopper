@@ -31,30 +31,30 @@ export function CompoundingSection() {
     <section className="bg-background py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs uppercase tracking-[0.25em] text-primary">The compounding</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-primary">It gets better</p>
           <h2 className="font-brand mt-3 text-3xl text-foreground sm:text-4xl lg:text-5xl">
-            Every hunt makes the next one sharper
+            The more you use it, the better it gets
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            About You grows with every hunt, the wish list gets smarter with
-            every find. This is what a month of agent shopping looks like when
-            nothing gets forgotten.
+            Every search teaches Shopper a little more about your taste, your
+            sizes, and your budget, so your list keeps getting sharper. This is
+            what a month of shopping looks like when nothing gets forgotten.
           </p>
         </div>
 
         <div className="relative mx-auto mt-12 max-w-4xl rounded-2xl border border-border bg-card/40 p-4 sm:p-6">
           <Border2 />
           <div className="flex items-baseline justify-between gap-4 px-2">
-            <p className="font-brand text-sm text-foreground">Wish list finds, 30 days</p>
+            <p className="font-brand text-sm text-foreground">Wish list items, 30 days</p>
             <p className="text-xs text-muted-foreground">Illustrative view</p>
           </div>
 
           <dl className="mt-4 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-4">
             {[
-              { label: "Finds saved", value: "312" },
-              { label: "Sellers vetted", value: "148" },
+              { label: "Items saved", value: "312" },
+              { label: "Sellers checked", value: "148" },
               { label: "Price drops caught", value: "64" },
-              { label: "About You facts", value: "87" },
+              { label: "Things it learned", value: "87" },
             ].map((m) => (
               <Metric key={m.label} className="bg-card px-4 py-3">
                 <MetricLabel className="text-xs text-muted-foreground">{m.label}</MetricLabel>
@@ -78,7 +78,7 @@ export function CompoundingSection() {
           </div>
 
           <p className="mt-3 px-2 text-right text-xs text-muted-foreground">
-            Day 30: {LAST.toLocaleString("en-US")} finds, all yours, all exportable.
+            Day 30: {LAST.toLocaleString("en-US")} items, all yours, all yours to export.
           </p>
         </div>
       </div>

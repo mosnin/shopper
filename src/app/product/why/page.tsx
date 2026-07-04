@@ -4,35 +4,36 @@ import { FeaturePage } from "@/components/marketing/feature-page";
 export const metadata: Metadata = {
   title: "Why Shopper | Shopper",
   description:
-    "Why a dedicated shopping engine beats the shopping MCPs bolted onto LLM providers: web-wide hunting, real browsers, seller vetting, and lists you own.",
+    "Why a tool built for shopping beats a basic AI chat: it searches everywhere, checks sellers, keeps your lists, watches for deals, and the data is yours.",
 };
 
 export default function WhyShopperPage() {
   return (
     <FeaturePage
       eyebrow="Why Shopper"
-      title="An order of magnitude past"
-      accent="bolted-on shopping"
-      subtitle="LLM providers bolt shopping MCPs onto their assistants: one catalog, no memory, no vetting. Shopper is a shopping engine built for agents: web-wide hunting, real browsers, vetted sellers, and lists that persist."
+      title="Built for shopping,"
+      accent="not a chat that forgets"
+      subtitle="A basic AI chat dumps a few links and forgets. Deal sites only show their own stock. Shopper searches everywhere, checks the sellers, keeps your lists, and watches for deals, all in one place you own."
+      heroImage="https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=75&w=1600&auto=format&fit=crop"
       blocks={[
         {
-          title: "The whole web, not a partner catalog",
-          body: "Provider shopping tools search whoever signed the deal. Shopper hunts the open web with Exa, Firecrawl, and Tavily, and drops into a real Browserbase browser for forums, marketplaces, and js-heavy storefronts.",
+          title: "Everywhere, not one store",
+          body: "A basic chat searches whoever it has a deal with. Shopper looks across stores, marketplaces, and local sellers all at once, and opens a real browser for the tricky sites a plain search can't reach.",
         },
         {
-          title: "Vetted sellers, not just links",
-          body: "Shopper checks sellers, stores, and manufacturers against GLEIF, Companies House, and SEC EDGAR, so 'found it cheaper' comes with 'and here is who is actually selling it'.",
+          title: "Checked sellers, not just links",
+          body: "Shopper checks sellers, stores, and makers against public business registries, so 'found it cheaper' comes with 'and here's who is actually selling it'.",
         },
         {
-          title: "Memory that outlives the chat",
-          body: "Wish List, Shopping Lists, and About You are durable, structured, and yours. Every agent you connect reads and writes the same lists over MCP, so the hunt compounds instead of restarting.",
+          title: "Lists that don't disappear",
+          body: "Your wish list and shopping lists stay put, organized, and yours. Nothing scrolls away, nothing gets forgotten, and your search history makes the next search sharper.",
         },
         {
-          title: "Radar keeps hunting",
-          body: "A chat tool stops when the chat ends. Radar runs standing scans, on paid plans, so the pre-owned GPU, the size 10M Gucci, or the right supplier finds you.",
+          title: "It keeps watching",
+          body: "A chat stops when you close it. Shopper keeps watching in the background, on paid plans, so the used graphics card, the shoes in your size, or the right supplier finds you.",
         },
       ]}
-      ctaTitle="Give your agents a real shopping engine."
+      ctaTitle="Start shopping smarter, free."
     />
   );
 }

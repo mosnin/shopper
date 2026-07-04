@@ -83,14 +83,14 @@ export function AgentCircuitSection() {
     <section className="relative bg-background py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs uppercase tracking-[0.25em] text-primary">The system</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-primary">How it fits together</p>
           <h2 className="font-brand mt-3 text-3xl text-foreground sm:text-4xl lg:text-5xl">
-            Your agents plug in over MCP
+            One place for everything you want
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Hermes, OpenClaw, Codex, Claude Code, or the built-in Shopper agent:
-            hunts and Radar feed vetting and comparison, every find lands in the
-            wish list, and the wish list drives your lists and alerts.
+            You ask, Shopper searches everywhere and watches for deals, and every
+            find lands in one wish list. That list powers your shopping lists and
+            your price alerts, so nothing you wanted ever slips through.
           </p>
         </div>
 

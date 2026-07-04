@@ -12,16 +12,16 @@ export function CTASection() {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(37,99,235,0.12),transparent_60%)]" />
         <div className="relative z-10">
           <h2 className="font-brand text-3xl text-foreground sm:text-4xl lg:text-5xl">
-            Give your agents{" "}
+            Start shopping{" "}
             <ShimmeringText
-              text="buying power"
+              text="smarter, free"
               duration={2.4}
               className="align-baseline font-brand [--color:var(--primary)] [--shimmering-color:var(--foreground)]"
             />
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-lg text-muted-foreground">
-            Connect the agent you already run, tell it what you want, and let it
-            hunt, compare, vet, and watch - on lists that stay yours.
+            Tell Shopper what you want, and let it search everywhere, compare
+            prices, and watch for deals, all on lists that stay yours.
           </p>
           <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link

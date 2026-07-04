@@ -6,27 +6,27 @@ import { TextFlip } from "@/components/text-flip";
 
 const easeOut = [0.16, 1, 0.3, 1] as const;
 
-// The moat: everyone else owns one of these. Shopper is all four as one system.
+// Why Shopper: built for shopping, not a chat that forgets. Four plain reasons.
 const pillars = [
   {
     n: "01",
-    title: "Structured lists",
-    body: "Wish lists, shopping lists, and About You as typed records, not links lost in a chat scroll. Deduped and validated on the way in, exportable on the way out.",
+    title: "Built for shopping",
+    body: "This is not a chat window that forgets what you asked. Shopper is made to find things to buy, compare prices, and help you decide, and it does that one job really well.",
   },
   {
     n: "02",
-    title: "A real UI",
-    body: "You can see, edit, and check off exactly what your agent found and saved. No black box, no scrolling back through a conversation.",
+    title: "Lists you can see and own",
+    body: "See, edit, and check off exactly what Shopper found and saved. Everything lives in real lists you control, not buried in a conversation you have to scroll back through.",
   },
   {
     n: "03",
-    title: "A real shopping engine",
-    body: "Exa, Firecrawl, and Tavily powered search and scraping, plus a Browserbase browser for the hard sites. First-class tools, orchestrated into real listings from real sellers.",
+    title: "It searches everywhere",
+    body: "Shopper looks across stores, marketplaces, and local sellers, and opens a real browser for the tricky sites, so you get real listings from real sellers, not a page of ads.",
   },
   {
     n: "04",
-    title: "Agent-native by default",
-    body: "A secure MCP surface and per-user keys mean your agent shops directly, through the same layer the app uses. Any client, one engine.",
+    title: "It never stops watching",
+    body: "Prices tracked and deals flagged long after you close the tab. Shopper keeps working in the background so you never overpay and never miss the drop.",
   },
 ];
 
@@ -37,21 +37,20 @@ export function WhyShopperSection() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs uppercase tracking-[0.25em] text-primary">Why Shopper</p>
           <h2 className="font-brand mt-3 flex flex-wrap items-baseline justify-center gap-x-2 text-3xl text-foreground sm:text-4xl lg:text-5xl">
-            <span>Shopper owns</span>
+            <span>Built for</span>
             <TextFlip
               as={motion.span}
               interval={1.9}
               className="text-gradient-orange"
             >
-              {["structure.", "the UI.", "the engine.", "all four."]}
+              {["shopping.", "your lists.", "good deals.", "you."]}
             </TextFlip>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            The shopping MCPs bolted onto LLM providers dump links and forget.
-            Deal sites only see their own inventory. Shopper is structure, UI,
-            a real shopping engine, and agent-native access, as one system, an
-            order of magnitude better than a bolt-on. Your data stays owned and
-            exportable.
+            A basic AI chat dumps a few links and forgets. Deal sites only show
+            their own stock. Shopper searches everywhere, keeps your lists,
+            tracks prices, and watches for deals, all in one place. And the data
+            is yours to keep and export.
           </p>
         </div>
 

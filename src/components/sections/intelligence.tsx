@@ -172,43 +172,43 @@ export function IntelligenceSection() {
         <div className="mt-14 grid auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {/* Price watching: the accent, a wide feature tile */}
           <Tile className="lg:col-span-2" delay={0}>
-            <TileHead label="Prices tracked" body="Every saved find is re-checked on a schedule, so your agent moves the moment a price crosses your target instead of you refreshing tabs." />
+            <TileHead label="Prices tracked" body="Every saved item is checked again and again, so you hear about it the moment the price drops to where you want it, no refreshing tabs." />
             <PriceWatchMini />
           </Tile>
 
           {/* Seller vetting with a mini card */}
           <Tile delay={0.06}>
-            <TileHead label="Sellers vetted" body="Verified against public registries: GLEIF, Companies House, SEC EDGAR." />
+            <TileHead label="Sellers checked" body="Each seller is checked against public business registries, so you know who you're buying from." />
             <SellerMini />
           </Tile>
 
           {/* Three compact text tiles */}
           <Tile delay={0}>
-            <TileHead label="Reviews read" body="Hundreds of reviews digested into the two things that matter for you." />
+            <TileHead label="Reviews read" body="Hundreds of reviews boiled down to the two things that actually matter for you." />
           </Tile>
           <Tile delay={0.06}>
-            <TileHead label="Availability watched" body="Sold out, restocked, relisted: the list knows before you do." />
+            <TileHead label="Stock watched" body="Sold out, back in stock, relisted: your list knows before you do." />
           </Tile>
           <Tile delay={0.12}>
-            <TileHead label="Alternatives surfaced" body="Better price, better seller, or better fit, offered alongside every find." />
+            <TileHead label="Better options found" body="A better price, a better seller, or a better fit, offered alongside every item." />
           </Tile>
 
           {/* Price history with a sparkline */}
           <Tile className="lg:col-span-2" delay={0}>
-            <TileHead label="Price history" body="Where a listing has been, so you know whether today's price is actually good." />
+            <TileHead label="Price history" body="See where a price has been, so you know whether today's deal is actually a deal." />
             <Sparkline />
           </Tile>
 
           {/* Provenance, compact */}
           <Tile delay={0.06}>
-            <TileHead label="Every find sourced" body="Item, price, seller, and where it came from, on every record." />
+            <TileHead label="Every option saved" body="The item, the price, the seller, and where it came from, saved with every find." />
           </Tile>
 
           {/* Sourced answers, full width */}
           <Tile className="lg:col-span-3" delay={0}>
             <div className="grid gap-4 lg:grid-cols-2 lg:items-center">
               <div>
-                <TileHead label="Ask about any find" body="Sourced answers to the questions that decide a purchase, not a wall of links. Ask anything about an item, a seller, or a supplier and get a cited, verifiable answer." />
+                <TileHead label="Ask about anything" body="Ask a real question about an item or a seller and get a clear answer with its sources, not a wall of links to sort through yourself." />
               </div>
               <AskMini />
             </div>
@@ -232,8 +232,9 @@ export function IntelligenceSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mx-auto mt-10 max-w-2xl text-center text-sm text-muted-foreground"
         >
-          Noisy results are refined into real listings from real sellers, never
-          ad farms, never the wrong variant. Accuracy beats coverage, always.
+          Messy search results are cleaned up into real listings from real
+          sellers, never ad farms, never the wrong version. Getting it right
+          beats casting a wide net, always.
         </motion.p>
       </div>
     </section>

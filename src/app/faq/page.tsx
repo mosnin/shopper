@@ -14,66 +14,53 @@ const faqCategories = [
     questions: [
       {
         q: "What is Shopper?",
-        a: "Shopper is the shopping engine your AI agents run. Agents hunt the whole web for items for sale, vet the sellers against real corporate registries, and save every find to a structured Wish List you own. Shopping Lists track your errands, Radar runs standing scans on paid plans, and About You keeps your sizes, tastes, and budgets in one durable place.",
+        a: "Shopper is a personal shopping assistant powered by AI. You tell it what you want to buy, it searches across the whole internet, stores, marketplaces, and local sellers, and finds the best options and prices. Everything gets saved into simple lists you own: a Wish List for things you want and Shopping Lists for the grocery run, a house move, car parts, or office supplies.",
       },
       {
-        q: "Do I need to bring my own agent?",
-        a: "No. Shopper ships with a built-in agent that hunts, vets, and works your lists from a chat. If you already run your own agent, connect it over MCP and it gets the same engines and the same lists.",
+        q: "How does it find things?",
+        a: "You describe what you want in plain words. Shopper searches lots of places at once, compares prices, reads the reviews, and opens a real browser for the trickier sites so nothing good slips through. Then it brings back real options from real sellers, not a page of ads, and saves each one with its price and seller.",
       },
       {
-        q: "Is there a free plan?",
-        a: "Yes. The free tier has limited usage but includes the full hunting engine, seller vetting, the built-in agent, MCP access, and your Wish List and Shopping Lists. Radar and higher usage come with Plus at $10/mo; Pro at $20/mo adds manufacturer and supplier sourcing.",
-      },
-    ],
-  },
-  {
-    category: "Agents and MCP",
-    questions: [
-      {
-        q: "How do agents connect?",
-        a: "Any agent that speaks MCP works: Hermes, OpenClaw, Codex, Claude Code, Cursor, or your own. Generate an API key from Settings and point your MCP client at https://shopper.sh/api/mcp. Once connected, it can hunt, vet sellers, and read and write your Wish List, Shopping Lists, and About You immediately.",
-      },
-      {
-        q: "What can a connected agent actually do?",
-        a: "Everything the built-in agent can: hunt the web with Exa, Firecrawl, and Tavily, run deep shopping in a real Browserbase browser, vet sellers, save and update finds, work Shopping Lists, set up Radar scans on paid plans, and keep your About You context current. Agents go through the same operations layer the app uses, so there is no drift between what your agent does and what you see.",
-      },
-      {
-        q: "What does a hunt cost?",
-        a: "Browsing and editing your lists is always free. Hunts spend usage: the free plan includes enough to feel the product work, and Plus and Pro raise the ceiling. Deep shopping hunts that use a real browser cost more than plain search hunts, and Shopper always prefers the cheapest engine that can do the job.",
+        q: "Do I need any special AI tools to use it?",
+        a: "No. You can just use Shopper here and it does everything for you. If you already use AI assistants like ChatGPT, Claude, or Gemini, you can also connect them so they can shop through Shopper, but that is completely optional.",
       },
     ],
   },
   {
-    category: "Finds and sellers",
+    category: "How it works",
     questions: [
       {
-        q: "How are sellers vetted?",
-        a: "Every seller, store, and manufacturer attached to a find is checked against public corporate registries: GLEIF, Companies House, and SEC EDGAR. A verified seller shows its registry match; an unverifiable one is flagged plainly so you can decide with open eyes.",
+        q: "Does Shopper buy things for me?",
+        a: "Shopper finds the best options, tracks prices, and keeps your lists in order, but you stay in control of the actual purchase. It does the hunting and the watching, then hands you the deal so you make the final call.",
       },
       {
-        q: "Is Radar included in the free plan?",
-        a: "No, Radar is paid-only. Standing scans run continuously in the background, so they live on Plus and Pro. Set one up, 'recently listed pre-owned GPUs at a good price' or 'Gucci shoes size 10M under $400', and matches land in your Wish List the moment they appear.",
+        q: "Can it watch for deals?",
+        a: "Yes. Tell Shopper what you are waiting for, like a used graphics card at a good price or a certain pair of shoes under $400, and it keeps watching in the background. The moment a match shows up or a price drops, it lands in your list so you never miss it. Deal alerts are part of the paid plans.",
       },
       {
-        q: "Can Shopper source manufacturers and suppliers?",
-        a: "Yes, on the Pro plan. Pro extends hunting and vetting past the retail shelf: agents source manufacturers and suppliers directly, vet them against the same registries, and save them as structured records, which is how many teams use Shopper for business buying.",
+        q: "How does it check the sellers?",
+        a: "Every seller Shopper finds is checked against public business registries, so you know who you are buying from. If a seller cannot be verified, Shopper says so plainly instead of dressing it up, so you can decide with open eyes.",
       },
       {
         q: "Who owns my data?",
-        a: "You do. Your Wish List, Shopping Lists, and About You are a single source of truth you control: isolated per user, exportable, never resold, and never used to train models. Finds flow in; your data does not leak out.",
+        a: "You do. Your lists are yours alone: private to you, easy to export, never resold, and never used to train AI models. Finds flow in, and your data does not leak out.",
       },
     ],
   },
   {
-    category: "Pricing and billing",
+    category: "Plans and pricing",
     questions: [
       {
-        q: "How does pricing work?",
-        a: "Free with limited usage, Plus at $10/mo, and Pro at $20/mo. Plus unlocks Radar and higher hunt usage; Pro adds manufacturer and supplier sourcing on top. You can cancel anytime.",
+        q: "Is there a free plan?",
+        a: "Yes. Free to start, with limited usage but the full experience: searching, seller checks, and your Wish List and Shopping Lists. Deal alerts and more searching come with Plus at $10/mo. Pro at $20/mo adds sourcing straight from manufacturers and suppliers.",
       },
       {
-        q: "How is this different from the shopping tools inside my LLM provider?",
-        a: "Provider shopping MCPs search a partner catalog and forget everything between chats. Shopper hunts the open web, drops into a real browser when it needs to, vets who is selling, and keeps durable lists every one of your agents shares. It is an order of magnitude more capable, which is the whole point of a dedicated engine.",
+        q: "How does pricing work?",
+        a: "Free with limited usage, Plus at $10/mo, and Pro at $20/mo. Plus unlocks deal alerts and more searching. Pro adds buying straight from the source on top. You can cancel anytime.",
+      },
+      {
+        q: "Can it help with business buying?",
+        a: "Yes, on the Pro plan. Pro goes past the retail shelf: Shopper can find manufacturers and suppliers directly, check each one against public business registries, and save them to your lists, which is how many teams use it for buying at work.",
       },
     ],
   },
