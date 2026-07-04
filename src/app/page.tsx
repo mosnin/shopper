@@ -6,6 +6,7 @@ import { AgentMarquee } from "@/components/sections/agent-marquee";
 import { ProductDemo } from "@/components/sections/product-demo";
 import { ProblemSection } from "@/components/sections/problem";
 import { CapabilitiesSection } from "@/components/sections/capabilities";
+import { CategoriesSection } from "@/components/sections/categories";
 import { IntelligenceSection } from "@/components/sections/intelligence";
 import { AgentCircuitSection } from "@/components/sections/agent-circuit";
 import { HowItWorksSection } from "@/components/sections/how-it-works";
@@ -31,6 +32,7 @@ export default function Home() {
             <ProductDemo />
             <ProblemSection />
             <CapabilitiesSection />
+            <CategoriesSection />
             <IntelligenceSection />
             <AgentCircuitSection />
             <HowItWorksSection />
