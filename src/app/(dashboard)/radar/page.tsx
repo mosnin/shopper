@@ -16,6 +16,14 @@ type Monitor = {
 
 const FREQ = ["hourly", "daily", "weekly"] as const;
 
+// One-tap starters for the killer flow: a good scan in seconds.
+const EXAMPLES = [
+  "recently listed pre-owned RTX 4090s under $1000",
+  "Gucci loafers size 10M under $400",
+  "rust-free Miata project cars under $5000",
+  "new wholesale suppliers of oak flooring",
+];
+
 export default function RadarPage() {
   const [items, setItems] = useState<Monitor[]>([]);
   const [loading, setLoading] = useState(true);
@@ -89,6 +97,18 @@ export default function RadarPage() {
                   placeholder="e.g. recently listed pre-owned RTX 4090s under $1200"
                   className="w-full resize-y rounded-2xl border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
                 />
+                <div className="mt-2 flex flex-wrap gap-1.5">
+                  {EXAMPLES.map((ex) => (
+                    <button
+                      key={ex}
+                      type="button"
+                      onClick={() => setQuery(ex)}
+                      className="rounded-full border border-border bg-muted/60 px-2.5 py-1 text-xs text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
+                    >
+                      {ex}
+                    </button>
+                  ))}
+                </div>
               </div>
               <div className="grid gap-3 sm:grid-cols-2">
                 <div>
