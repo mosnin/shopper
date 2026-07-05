@@ -4,8 +4,10 @@ import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 import { DashboardOverview } from "@/components/dashboard/dashboard-overview";
 import { DashboardPreloader } from "@/components/dashboard/dashboard-preloader";
+import { AgentConnectionPanel } from "@/components/dashboard/agent-connection-panel";
 import { hasCompletedFirstRun } from "@/lib/welcome-orchestrator";
 import { computePulse } from "@/lib/pulse";
+import { MCP_TOOL_COUNT } from "@/lib/mcp-catalog";
 
 // New radar signals over the last 7 days. Kept out of the component body so the
 // time window (Date.now) isn't an impure call during render.
@@ -51,6 +53,14 @@ export default async function DashboardPage() {
       ])
     : [0, 0, 0, 0, 0];
 
+  // Agent-operator panel inputs: active API keys and how much the agents saved.
+  const [apiKeys, itemsSaved] = user
+    ? await Promise.all([
+        prisma.apiKey.count({ where: { userId: user.id, revokedAt: null } }),
+        prisma.item.count({ where: { userId: user.id } }),
+      ])
+    : [0, 0];
+
   // The living-state number on the dashboard's Radar line.
   const radarSignals = user ? await recentRadarSignals(user.id) : 0;
 
@@ -75,6 +85,14 @@ export default async function DashboardPage() {
   return (
     <>
       <DashboardPreloader name={user?.firstName ?? ""} />
+      <div className="mb-6">
+        <AgentConnectionPanel
+          apiKeys={apiKeys}
+          toolCount={MCP_TOOL_COUNT}
+          itemsSaved={itemsSaved}
+          radarSignals={radarSignals}
+        />
+      </div>
       <DashboardOverview
         firstName={user?.firstName}
         totalContacts={totalContacts}
