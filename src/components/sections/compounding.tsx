@@ -28,8 +28,13 @@ const LAST = SERIES[SERIES.length - 1].finds;
 
 export function CompoundingSection() {
   return (
-    <section className="bg-background py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden bg-background py-24 sm:py-32">
+      {/* Section-top wash: a whisper of brand blue for rhythm and dark-mode depth. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-[radial-gradient(60%_100%_at_50%_0%,rgba(37,99,235,0.06),transparent_70%)]"
+      />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs uppercase tracking-[0.25em] text-primary">It compounds</p>
           <h2 className="font-brand mt-3 text-3xl text-foreground sm:text-4xl lg:text-5xl">
@@ -43,7 +48,7 @@ export function CompoundingSection() {
           </p>
         </div>
 
-        <div className="relative mx-auto mt-12 max-w-4xl rounded-2xl border border-border bg-card/40 p-4 sm:p-6">
+        <div className="relative mx-auto mt-14 max-w-4xl rounded-2xl border border-border bg-card/40 p-4 sm:p-6">
           <Border2 />
           <div className="flex items-baseline justify-between gap-4 px-2">
             <p className="font-brand text-sm text-foreground">Wish list items, 30 days</p>

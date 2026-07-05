@@ -110,8 +110,13 @@ export function HowItWorksSection() {
   const fillScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section id="how-it-works" className="relative scroll-mt-24 bg-muted/40 py-24 dark:bg-charcoal-dark sm:py-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="how-it-works" className="relative overflow-hidden scroll-mt-24 bg-muted/40 py-24 dark:bg-background sm:py-32">
+      {/* Section-top wash: a whisper of brand blue for rhythm and dark-mode depth. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-[radial-gradient(60%_100%_at_50%_0%,rgba(37,99,235,0.06),transparent_70%)]"
+      />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs uppercase tracking-[0.25em] text-primary">How it works</p>
           <h2 className="font-brand mt-3 text-3xl text-foreground sm:text-4xl lg:text-5xl">
@@ -144,7 +149,7 @@ export function HowItWorksSection() {
               >
                 {/* node */}
                 <div className="relative z-10 flex justify-center">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-primary/30 bg-background font-brand text-sm tabular-nums text-primary shadow-sm dark:bg-charcoal-dark">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-primary/30 bg-background font-brand text-sm tabular-nums text-primary shadow-sm dark:bg-card">
                     0{i + 1}
                   </span>
                 </div>

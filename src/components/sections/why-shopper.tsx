@@ -32,8 +32,13 @@ const pillars = [
 
 export function WhyShopperSection() {
   return (
-    <section id="why" className="relative scroll-mt-24 bg-background py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="why" className="relative overflow-hidden scroll-mt-24 bg-background py-24 sm:py-32">
+      {/* Section-top wash: a whisper of brand blue for rhythm and dark-mode depth. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-[radial-gradient(60%_100%_at_50%_0%,rgba(37,99,235,0.06),transparent_70%)]"
+      />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs uppercase tracking-[0.25em] text-primary">Why Shopper</p>
           <h2 className="font-brand mt-3 flex flex-wrap items-baseline justify-center gap-x-2 text-3xl text-foreground sm:text-4xl lg:text-5xl">
@@ -61,7 +66,7 @@ export function WhyShopperSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: index * 0.08, ease: easeOut }}
+              transition={{ duration: 0.5, delay: index * 0.08, ease: easeOut }}
               className="h-full"
             >
               <SpotlightCard className="h-full p-6">

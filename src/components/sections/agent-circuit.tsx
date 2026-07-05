@@ -36,8 +36,8 @@ const CONNECTIONS = [
   { from: "wishlist", to: "alerts", animated: true, bidirectional: true },
 ];
 
-// Shopper brand brown for traces and pulses; grid stays whisper-quiet.
-const BROWN = {
+// Shopper brand blue for traces and pulses; grid stays whisper-quiet.
+const TRACE = {
   traceColor: "rgba(37, 99, 235, 0.30)",
   pulseColor: "#2563EB",
   nodeColor: "rgba(37, 99, 235, 0.55)",
@@ -70,7 +70,7 @@ export function AgentCircuit({ className }: { className?: string }) {
             height={BOARD_H}
             pulseSpeed={2.6}
             traceWidth={2}
-            {...BROWN}
+            {...TRACE}
           />
         </div>
       )}
@@ -80,8 +80,13 @@ export function AgentCircuit({ className }: { className?: string }) {
 
 export function AgentCircuitSection() {
   return (
-    <section className="relative bg-background py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden bg-background py-24 sm:py-32">
+      {/* Section-top wash: a whisper of brand blue for rhythm and dark-mode depth. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-[radial-gradient(60%_100%_at_50%_0%,rgba(37,99,235,0.06),transparent_70%)]"
+      />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs uppercase tracking-[0.25em] text-primary">How it fits together</p>
           <h2 className="font-brand mt-3 text-3xl text-foreground sm:text-4xl lg:text-5xl">
@@ -94,7 +99,7 @@ export function AgentCircuitSection() {
           </p>
         </div>
 
-        <div className="relative mx-auto mt-12 w-full max-w-4xl rounded-2xl border border-border bg-card/40 p-3 sm:p-6">
+        <div className="relative mx-auto mt-14 w-full max-w-4xl rounded-2xl border border-border bg-card/40 p-3 sm:p-6">
           <Border2 />
           <AgentCircuit className="w-full overflow-hidden" />
         </div>

@@ -33,22 +33,27 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 export function CategoriesSection() {
   const reduce = useReducedMotion();
   return (
-    <section className="py-20 sm:py-28">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-12 text-center">
-          <p className="text-xs uppercase tracking-[0.3em] text-primary">Hunt anything</p>
-          <h2 className="font-brand mt-3 text-3xl tracking-tight text-foreground sm:text-4xl">
+    <section className="relative overflow-hidden py-24 sm:py-32">
+      {/* Section-top wash: a whisper of brand blue for rhythm and dark-mode depth. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-[radial-gradient(60%_100%_at_50%_0%,rgba(37,99,235,0.06),transparent_70%)]"
+      />
+      <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="text-xs uppercase tracking-[0.25em] text-primary">Hunt anything</p>
+          <h2 className="font-brand mt-3 text-3xl text-foreground sm:text-4xl lg:text-5xl">
             Your agents hunt any market:{" "}
             <span className="text-gradient-orange">GPUs, sneakers, cars, suppliers</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
+          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
             Shopper is not a fixed catalog. Deal-hunters, resellers, and sourcers
             point their agents at any market and work the whole web: marketplaces,
             forums, local sellers, and makers.
           </p>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {categories.map((c, i) => (
             <motion.div
               key={c.name}
@@ -59,7 +64,7 @@ export function CategoriesSection() {
             >
               <Link
                 href="/sign-up"
-                className="group relative block aspect-[4/3] overflow-hidden rounded-2xl border border-border/60"
+                className="group relative block aspect-[4/3] overflow-hidden rounded-2xl border border-border/60 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10"
                 style={{ backgroundImage: `linear-gradient(135deg, ${c.from}, ${c.to})` }}
               >
                 {c.image && (

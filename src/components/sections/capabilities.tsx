@@ -314,9 +314,14 @@ export function CapabilitiesSection() {
   return (
     <section
       id="capabilities"
-      className="relative scroll-mt-24 bg-muted/30 py-24 dark:bg-background sm:py-32"
+      className="relative overflow-hidden scroll-mt-24 bg-muted/30 py-24 dark:bg-background sm:py-32"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      {/* Section-top wash: a whisper of brand blue for rhythm and dark-mode depth. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-[radial-gradient(60%_100%_at_50%_0%,rgba(37,99,235,0.06),transparent_70%)]"
+      />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs uppercase tracking-[0.25em] text-primary">What your agent gets</p>
           <h2 className="font-brand mt-3 text-3xl text-foreground sm:text-4xl lg:text-5xl">

@@ -6,6 +6,8 @@ import { motion } from "motion/react";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
 import { ImagePlaceholder } from "@/components/marketing/image-placeholder";
 
+const easeOut = [0.16, 1, 0.3, 1] as const;
+
 const values = [
   {
     title: "Owned data - yours to keep, yours to export",
@@ -26,8 +28,13 @@ const values = [
 
 export function AboutSection() {
   return (
-    <section id="about" className="relative scroll-mt-24 bg-background py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="about" className="relative overflow-hidden scroll-mt-24 bg-background py-24 sm:py-32">
+      {/* Section-top wash: a whisper of brand blue for rhythm and dark-mode depth. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-[radial-gradient(60%_100%_at_50%_0%,rgba(37,99,235,0.06),transparent_70%)]"
+      />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:items-center">
           <div>
             <p className="text-xs uppercase tracking-[0.25em] text-primary">About Shopper</p>
@@ -60,10 +67,10 @@ export function AboutSection() {
             {values.map((value, index) => (
               <motion.div
                 key={value.title}
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.08 }}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: index * 0.08, ease: easeOut }}
               >
                 <SpotlightCard className="p-6">
                   <h3 className="font-brand text-lg text-foreground">{value.title}</h3>
