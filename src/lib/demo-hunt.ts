@@ -57,22 +57,56 @@ function guessCondition(text: string): string | null {
   return null;
 }
 
-function rank(results: DemoResult[]): DemoResult[] {
-  // Priced items first, cheapest to dearest; unpriced after, original order.
-  const priced = results.filter((r) => r.priceValue != null).sort((a, b) => (a.priceValue! - b.priceValue!));
-  const rest = results.filter((r) => r.priceValue == null);
-  return [...priced, ...rest].slice(0, 6);
+// Where real listings live. Results from these rank first and never get
+// filtered as junk; unknown domains survive only if they carry a price.
+const MARKETPLACES = new Set([
+  "ebay.com", "facebook.com", "craigslist.org", "mercari.com", "offerup.com",
+  "grailed.com", "poshmark.com", "stockx.com", "goat.com", "depop.com",
+  "reverb.com", "etsy.com", "bringatrailer.com", "cars.com", "autotrader.com",
+  "newegg.com", "bestbuy.com", "amazon.com", "backmarket.com", "swappa.com",
+  "reddit.com", "shopgoodwill.com", "1stdibs.com", "chrono24.com",
+]);
+
+// Obvious non-listings: articles, videos, wikis. Dropped even with a price.
+const JUNK = /(wikipedia|youtube|youtu\.be|pinterest|quora|tiktok|instagram|medium\.com|linkedin|news|\.gov|support\.|help\.)/i;
+
+function isMarketplace(domain: string): boolean {
+  return [...MARKETPLACES].some((m) => domain === m || domain.endsWith("." + m));
+}
+
+// Keep the list clean and diverse: drop junk, require a real signal (a price or
+// a known marketplace), cap to two per source, rank marketplaces + priced
+// first, then cheapest, and take six.
+function refine(results: DemoResult[]): DemoResult[] {
+  const seen = new Map<string, number>();
+  const kept = results.filter((r) => {
+    if (!r.url || JUNK.test(r.url)) return false;
+    const mkt = isMarketplace(r.source);
+    if (!mkt && r.priceValue == null) return false;
+    const n = seen.get(r.source) ?? 0;
+    if (n >= 2) return false;
+    seen.set(r.source, n + 1);
+    return true;
+  });
+  const score = (r: DemoResult) => (isMarketplace(r.source) ? 0 : 1) + (r.priceValue != null ? 0 : 2);
+  kept.sort((a, b) => {
+    const s = score(a) - score(b);
+    if (s !== 0) return s;
+    if (a.priceValue != null && b.priceValue != null) return a.priceValue - b.priceValue;
+    return 0;
+  });
+  return kept.slice(0, 6);
 }
 
 async function liveHunt(query: string): Promise<DemoResult[] | null> {
   const shopQuery = `${query} for sale price listing`;
   try {
     if (isTavilyConfigured()) {
-      const raw = await tavilySearch(shopQuery, { maxResults: 12 });
+      const raw = await tavilySearch(shopQuery, { maxResults: 20 });
       const mapped = raw.map((r) => {
         const priceValue = parsePrice(`${r.title} ${r.content}`);
         return {
-          title: r.title.slice(0, 120),
+          title: cleanTitle(r.title),
           url: r.url,
           source: domainOf(r.url),
           price: fmtPrice(priceValue),
@@ -81,15 +115,16 @@ async function liveHunt(query: string): Promise<DemoResult[] | null> {
           image: null,
         } satisfies DemoResult;
       });
-      if (mapped.length) return rank(mapped);
+      const refined = refine(mapped);
+      if (refined.length >= 3) return refined;
     }
     if (isExaConfigured()) {
-      const raw = await exaDeepSearch(shopQuery, 12);
+      const raw = await exaDeepSearch(shopQuery, 20);
       const mapped = raw.map((r) => {
         const text = `${r.title} ${r.summary ?? ""} ${(r.highlights ?? []).join(" ")}`;
         const priceValue = parsePrice(text);
         return {
-          title: (r.title ?? "Listing").slice(0, 120),
+          title: cleanTitle(r.title ?? "Listing"),
           url: r.url,
           source: domainOf(r.url),
           price: fmtPrice(priceValue),
@@ -98,12 +133,22 @@ async function liveHunt(query: string): Promise<DemoResult[] | null> {
           image: null,
         } satisfies DemoResult;
       });
-      if (mapped.length) return rank(mapped);
+      const refined = refine(mapped);
+      if (refined.length >= 3) return refined;
     }
   } catch (e) {
     console.warn("[demo-hunt] live provider failed, using sample", e);
   }
   return null;
+}
+
+// Strip site-name tails and noise so titles read like listings.
+function cleanTitle(t: string): string {
+  return t
+    .replace(/\s*[|\-\u2013\u2014]\s*(ebay|facebook marketplace|craigslist|mercari|etsy|stockx|goat|reverb|amazon\.com).*$/i, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 110);
 }
 
 /* ------------------------------- Sample sets ------------------------------ */

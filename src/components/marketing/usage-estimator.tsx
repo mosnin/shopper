@@ -32,7 +32,6 @@ const drivers: Driver[] = [
 // Plan monthly credit allotments, smallest first.
 const plans = [
   { name: "Free", credits: 200, href: "/sign-up" },
-  { name: "Plus", credits: 1500, href: "/sign-up?plan=plus" },
   { name: "Pro", credits: 4000, href: "/sign-up?plan=pro" },
   { name: "Max", credits: 12000, href: "/sign-up?plan=max" },
 ];

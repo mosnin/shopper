@@ -42,6 +42,24 @@ export default function RadarPage() {
   }, []);
   useEffect(() => { load(); }, [load]);
 
+  // Close the loop from the marketing hunt: if the visitor tried a hunt and
+  // clicked "Watch with Radar", the query rode along in localStorage (and the
+  // ?intent= param). Prefill and open the form so their first move is one tap.
+  useEffect(() => {
+    let intent = "";
+    try {
+      intent = localStorage.getItem("shopper_intent") ?? "";
+      if (intent) localStorage.removeItem("shopper_intent");
+    } catch { /* storage blocked */ }
+    if (!intent && typeof window !== "undefined") {
+      intent = new URLSearchParams(window.location.search).get("intent") ?? "";
+    }
+    if (intent) {
+      setQuery(intent);
+      setOpen(true);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   async function create() {
     if (!query.trim()) return;
     setBusy(true); setErr(null);

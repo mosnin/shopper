@@ -21,6 +21,17 @@ const CHIPS = [
 
 const HUNTING = ["Searching marketplaces", "Reading listings", "Parsing prices", "Ranking the deals"];
 
+// Persist the hunt so it survives the Clerk signup redirect. The Radar page
+// reads it on first visit and offers to watch exactly this, closing the loop
+// from "try it" to "your agent is already watching."
+function rememberIntent(query: string) {
+  try {
+    localStorage.setItem("shopper_intent", query);
+  } catch {
+    /* storage blocked; the ?intent= query param is the fallback */
+  }
+}
+
 export function LiveHunt() {
   const [query, setQuery] = useState("");
   const [state, setState] = useState<"idle" | "loading" | "done" | "error">("idle");
@@ -132,14 +143,19 @@ export function LiveHunt() {
               <span>
                 {hunt.results.length} found for &ldquo;{hunt.query}&rdquo;, cheapest first
               </span>
-              <span
-                className={cn(
-                  "rounded-full px-2 py-0.5 font-medium",
-                  hunt.provider === "live" ? "bg-success/10 text-success" : "bg-muted text-muted-foreground",
-                )}
-              >
-                {hunt.provider === "live" ? "live results" : "sample results"}
-              </span>
+              {hunt.provider === "live" ? (
+                <span className="inline-flex items-center gap-1 rounded-full bg-success/10 px-2 py-0.5 font-medium text-success">
+                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-success" />
+                  live
+                </span>
+              ) : (
+                <span
+                  title="A representative hunt. Sign up and your agent runs every hunt live across the web."
+                  className="rounded-full bg-muted px-2 py-0.5 font-medium text-muted-foreground"
+                >
+                  example
+                </span>
+              )}
             </div>
 
             <div className="space-y-2">
@@ -159,11 +175,19 @@ export function LiveHunt() {
               </div>
               <Link
                 href={`/sign-up?intent=${encodeURIComponent(hunt.query)}`}
+                onClick={() => rememberIntent(hunt.query)}
                 className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5"
               >
                 Watch with Radar <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
+
+            {hunt.provider === "sample" && (
+              <p className="mt-2 text-center text-xs text-muted-foreground">
+                This is an example. Sign up and your agent runs this hunt live
+                across every marketplace.
+              </p>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
