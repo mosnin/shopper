@@ -13,6 +13,8 @@ const isPublicRoute = createRouteMatcher([
   "/manifesto(.*)",
   "/faq(.*)",
   "/product(.*)",
+  "/connect(.*)",
+  "/tools(.*)",
   "/security(.*)",
   "/privacy(.*)",
   "/terms(.*)",
@@ -23,6 +25,8 @@ const isPublicRoute = createRouteMatcher([
   "/refund-policy(.*)",
   "/api/webhooks(.*)",
   "/api/inngest(.*)",
+  // Public marketing hunt: no auth, IP rate-limited, its own spend cap.
+  "/api/demo(.*)",
   // MCP server + OAuth endpoints do their own auth (Bearer / OAuth / Clerk).
   "/api/mcp(.*)",
   "/api/oauth(.*)",
