@@ -34,6 +34,7 @@ const plans = [
   { name: "Free", credits: 200, href: "/sign-up" },
   { name: "Plus", credits: 1500, href: "/sign-up?plan=plus" },
   { name: "Pro", credits: 4000, href: "/sign-up?plan=pro" },
+  { name: "Max", credits: 12000, href: "/sign-up?plan=max" },
 ];
 
 export function UsageEstimator() {
@@ -49,7 +50,7 @@ export function UsageEstimator() {
   const recommended = useMemo(() => {
     const fit = plans.find((p) => p.credits >= total);
     if (fit) return { name: fit.name, href: fit.href, note: "covers this every month" };
-    return { name: "Pro plus top-ups", href: "/sign-up?plan=pro", note: "for serious shoppers and businesses" };
+    return { name: "Max plus top-ups", href: "/sign-up?plan=max", note: "for resellers and sourcers at volume" };
   }, [total]);
 
   const dollars = (total * 0.01).toFixed(0);

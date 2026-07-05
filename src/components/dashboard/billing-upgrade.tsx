@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 const UPGRADES = [
   { plan: "plus", label: "Plus", price: "$10/mo" },
   { plan: "pro", label: "Pro", price: "$20/mo" },
+  { plan: "max", label: "Max", price: "$49/mo" },
 ] as const;
 
 export function BillingUpgrade() {

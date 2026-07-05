@@ -63,7 +63,7 @@ const plans: Plan[] = [
     name: "Pro",
     price: 20,
     credits: "4,000 credits / mo",
-    blurb: "For resellers, sourcers, and teams running agents at scale.",
+    blurb: "For an operator running agents on a real pipeline.",
     features: [
       "1 seat",
       "Everything in Plus",
@@ -75,6 +75,22 @@ const plans: Plan[] = [
     cta: "Get Pro",
     href: "/sign-up?plan=pro",
     popular: true,
+  },
+  {
+    name: "Max",
+    price: 49,
+    credits: "12,000 credits / mo",
+    blurb: "For resellers and sourcers who make money on every find.",
+    features: [
+      "1 seat",
+      "Everything in Pro",
+      "Radar: 100 standing item scans",
+      "Highest hunt + deep-browser throughput",
+      "Agents self-pay with USDC over x402",
+      "Priority support",
+    ],
+    cta: "Get Max",
+    href: "/sign-up?plan=max",
   },
 ];
 
@@ -138,7 +154,7 @@ export default function PricingPage() {
         {/* Plan cards */}
         <section className="-mt-8 pb-8">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-            <div className="mx-auto grid max-w-4xl grid-cols-1 gap-5 sm:grid-cols-3">
+            <div className="mx-auto grid max-w-5xl grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {plans.map((plan, index) => (
                 <motion.div
                   key={plan.name}

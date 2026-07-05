@@ -772,7 +772,7 @@ const handler = createMcpHandler(
     server.tool(
       "buy_plan",
       "Buy a Shopper plan for 30 days with USDC over x402 (plus or pro; cheaper per credit than top-ups for sustained work). TWO STEPS: (1) call with { plan } and NO xPayment for a quote; (2) sign the USDC payment with your x402 client and call again with the same { plan } plus xPayment (base64 X-PAYMENT). Activates the plan and refills credits to its allotment. Idempotent on the on-chain nonce; not recurring (re-buy after 30 days).",
-      { plan: z.enum(["plus", "pro"]), xPayment: z.string().optional() },
+      { plan: z.enum(["plus", "pro", "max"]), xPayment: z.string().optional() },
       { readOnlyHint: false, destructiveHint: false, idempotentHint: true, openWorldHint: true },
       async ({ plan, xPayment }, extra) =>
         gated(extra, "x402_buy", 20, (userId) => buyPlanViaMcp(userId, plan, xPayment)),

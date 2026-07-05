@@ -13,6 +13,7 @@ export const PLANS = {
   free: { credits: 200, monitors: 0 },
   plus: { credits: 1500, monitors: 5 },
   pro: { credits: 4000, monitors: 25 },
+  max: { credits: 12000, monitors: 100 },
   beta: { credits: 10000, monitors: 10 },
 } as const;
 
@@ -205,6 +206,7 @@ export async function spendCredits(
 export const PLAN_USD = {
   plus: 10,
   pro: 20,
+  max: 49,
 } as const;
 
 export type PaidPlanName = keyof typeof PLAN_USD;

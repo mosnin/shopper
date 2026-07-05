@@ -23,7 +23,7 @@ export function priceIdFor(plan: PaidPlanName): string | undefined {
  *  webhook can tell which plan a subscription switched to. */
 export function planForPriceId(priceId: string | undefined): PaidPlanName | undefined {
   if (!priceId) return undefined;
-  for (const plan of ["plus", "pro"] as const) {
+  for (const plan of ["plus", "pro", "max"] as const) {
     if (priceIdFor(plan) === priceId) return plan;
   }
   return undefined;
