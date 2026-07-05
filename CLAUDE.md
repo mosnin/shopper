@@ -37,6 +37,17 @@ an order of magnitude beyond the shopping MCPs bolted onto LLM providers.
 **Data:** a single source of truth you control (owned, exportable, never
 resold). Plans: Free (limited) / Plus $10/mo / Pro $20/mo.
 
+**ICP call (2026-07, founder):** Shopper is **the shopping engine for AI
+agents.** The buyer is the agent operator (Claude Code / Cursor / Codex /
+OpenClaw / Hermes users), the reseller, and the sourcer, not the mass
+consumer. Lead with the one-line MCP connect, Radar, and agent self-pay
+(x402). Marketing surfaces that serve this: the agent-first hero
+(`src/components/sections/agent-hero.tsx`), `/connect` (per-client connect),
+and `/tools` (the full MCP catalog, driven by `src/lib/mcp-catalog.ts` and
+guarded 1:1 against the live server by `tests/mcp-catalog.test.ts` so the
+"52 tools" claim can't drift). The in-app dashboard leads with
+`AgentConnectionPanel` (endpoint, keys, tool count, agent activity).
+
 ## Foundation
 
 - North Star - `@docs/foundation/north-star.md` - the taste calibration
