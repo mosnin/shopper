@@ -2,9 +2,9 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Shopper - The Shopping Engine Your Agents Run",
+    name: "Shopper - The Shopping Engine for AI Agents",
     short_name: "Shopper",
-    description: "Comprehensive shopping run by AI agents: item search, price radar, wish lists, and shopping lists.",
+    description: "Connect your AI agent and it hunts the web, watches listings with Radar, and keeps your wish lists current.",
     start_url: "/dashboard",
     scope: "/",
     display: "standalone",

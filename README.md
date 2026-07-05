@@ -1,6 +1,6 @@
 # Shopper
 
-**The shopping engine your agents run.** [shopper.sh](https://shopper.sh)
+**The shopping engine for AI agents.** [shopper.sh](https://shopper.sh)
 
 Shopper connects your AI agents (Hermes, OpenClaw, Codex, Claude Code, or any
 MCP client) to a real shopping engine. Agents hunt the whole web for items for

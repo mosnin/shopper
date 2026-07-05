@@ -9,7 +9,7 @@ const TAGLINES = [
   "Your agents are already working.",
   "Research, enriched.",
   "Context is everything.",
-  "The shopping engine your agents run.",
+  "The shopping engine for AI agents.",
   "Quiet leverage, working for you.",
 ];
 
