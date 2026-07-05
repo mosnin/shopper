@@ -32,7 +32,7 @@ const plans: Plan[] = [
     name: "Free",
     price: 0,
     credits: "200 credits / mo",
-    blurb: "Kick the tires. Send your agent on its first hunt.",
+    blurb: "Kick the tires. Connect an agent and run its first hunts.",
     features: [
       "1 seat",
       "Full MCP + the built-in agent",
@@ -47,7 +47,7 @@ const plans: Plan[] = [
     name: "Plus",
     price: 10,
     credits: "1,500 credits / mo",
-    blurb: "For everyday shoppers with an agent on retainer.",
+    blurb: "For an operator running an agent day to day.",
     features: [
       "1 seat",
       "Everything in Free",
@@ -63,7 +63,7 @@ const plans: Plan[] = [
     name: "Pro",
     price: 20,
     credits: "4,000 credits / mo",
-    blurb: "For serious shoppers, resellers, and businesses.",
+    blurb: "For resellers, sourcers, and teams running agents at scale.",
     features: [
       "1 seat",
       "Everything in Plus",
