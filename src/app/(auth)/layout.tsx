@@ -6,9 +6,9 @@ import { AsciiField } from "@/components/dashboard/ascii-field";
 // The proof points on the brand panel. No client counts, no invented stats:
 // just what the product is, stated plainly. Kept to three so the panel breathes.
 const proofPoints = [
-  "A wish list, shopping lists, and a real shopping engine in one system.",
-  "Your agent operates it directly over MCP. Hunt, compare, watch, buy.",
-  "Your data stays yours. Isolated per account, never resold, never used to train.",
+  "One line connects any MCP client: https://shopper.sh/api/mcp, OAuth or API key.",
+  "52 tools: web-wide hunts, seller vetting, lists, memory, Radar standing scans.",
+  "Your data stays yours. Isolated per account, exportable, never resold.",
 ];
 
 /**
@@ -47,7 +47,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
 
           <div className="max-w-md">
             <p className="text-xs uppercase tracking-[0.3em] text-orange/80">
-              The shopping engine your agents run
+              The shopping engine for AI agents
             </p>
             <h2 className="font-brand mt-4 text-3xl leading-tight text-foreground xl:text-4xl">
               Send an agent shopping and it{" "}

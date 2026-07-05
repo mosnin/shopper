@@ -124,12 +124,13 @@ export default function PricingPage() {
             )}
             <h1 className="font-brand text-4xl tracking-tight text-foreground sm:text-5xl lg:text-6xl">
               Pricing that scales with{" "}
-              <span className="text-gradient-orange">your shopping</span>
+              <span className="text-gradient-orange">your agents</span>
             </h1>
             <p className="mx-auto mt-5 max-w-xl text-lg text-muted-foreground">
-              Free to start, with usage credits. You pay for the heavy lifting -
-              web-wide hunts, deep browsing, standing scans - not for shelfware.
-              Cancel anytime.
+              Free to start, with usage credits. You pay for the heavy lifting
+              your agents do: web-wide hunts, deep browsing, Radar scans, not
+              for shelfware. Agents can even buy plans and credits themselves
+              with USDC over x402. Cancel anytime.
             </p>
           </div>
         </section>

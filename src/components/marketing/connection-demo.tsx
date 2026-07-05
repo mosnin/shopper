@@ -39,6 +39,21 @@ const clients: Client[] = [
 }`,
   },
   {
+    id: "cursor",
+    label: "Cursor",
+    lang: "json",
+    snippet: `{
+  "mcpServers": {
+    "shopper": {
+      "url": "${ENDPOINT}",
+      "headers": {
+        "Authorization": "Bearer shp_your_key"
+      }
+    }
+  }
+}`,
+  },
+  {
     id: "hermes",
     label: "Hermes",
     lang: "toml",
@@ -69,25 +84,25 @@ auth = "Bearer shp_your_key"`,
 ];
 
 const handshake = [
-  { t: "connecting agent over mcp", tone: "muted" as const },
-  { t: "authenticated as you", tone: "muted" as const },
-  { t: "scoped to your lists only", tone: "muted" as const },
-  { t: "12 typed tools available", tone: "plain" as const },
+  { t: "connecting to https://shopper.sh/api/mcp", tone: "muted" as const },
+  { t: "authenticated: oauth or api key, scoped to you", tone: "muted" as const },
+  { t: "shared state loaded: wish list, lists, about you, memory", tone: "muted" as const },
+  { t: "52 tools available", tone: "plain" as const },
 ];
 
 const tools = [
-  "search_items",
+  "find_items",
   "deep_shop",
   "vet_seller",
+  "save_item",
   "list_wish_list",
-  "add_find",
-  "update_find",
-  "list_shopping_lists",
   "add_list_item",
   "check_off_item",
-  "get_about_you",
-  "update_about_you",
   "create_radar_scan",
+  "list_radar_scans",
+  "get_about_you",
+  "save_memory",
+  "x402_top_up",
 ];
 
 export function ConnectionDemo() {

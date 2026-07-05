@@ -5,43 +5,43 @@ import { AgentCircuitSection } from "@/components/sections/agent-circuit";
 export const metadata: Metadata = {
   title: "How it works | Shopper",
   description:
-    "Three steps from a sentence to a wish list that fills itself: tell Shopper what you want, it searches everywhere, and it keeps watching for deals.",
+    "Connect your agent in one line over MCP, give it the ask, and it hunts the web, saves structured finds, sets Radar scans, and can even pay its own way with USDC.",
 };
 
 export default function HowItWorksPage() {
   return (
     <FeaturePage
       eyebrow="How it works"
-      title="Tell it what you want."
+      title="Connect your agent."
       accent="It shops."
-      subtitle="Three steps from a sentence to a wish list that fills itself, on lists you own."
+      subtitle="One line over MCP, then your agent hunts, saves, watches, and pays its own way, on state you own."
       heroImage="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=75&w=1600&auto=format&fit=crop"
       blocks={[
         {
-          title: "No setup, nothing to learn",
-          body: "There's nothing to import and no storefront to figure out. Ask for what you want in plain words and the first search starts filling your wish list.",
+          title: "One line, 52 tools",
+          body: "Point any MCP client at https://shopper.sh/api/mcp with OAuth or an API key and the tools appear: hunts, deep browser shopping, Radar, lists, memory, and billing. No SDK, no bespoke integration.",
         },
         {
-          title: "Use it here, or with your AI",
-          body: "You can just use Shopper here. If you already use AI assistants like ChatGPT, Claude, or Gemini, you can connect them too, and they shop through the same lists.",
+          title: "It can pay its own way",
+          body: "Over x402, a funded agent buys its own credits and plans with USDC, capped by what you put in the wallet. No agent yet? The built-in one runs the same tools from plain conversation.",
         },
       ]}
       steps={[
         {
-          title: "Tell Shopper what you want",
-          body: "Describe the item, your budget, and anything that matters. Shopper already knows your sizes and taste, so it gets it right from the first result.",
+          title: "Connect and ask",
+          body: "Drop the endpoint into Claude Code, Cursor, Codex, OpenClaw, Hermes, or any MCP client, then give your agent the ask: the item, the budget, what matters. About You fills in your sizes and taste.",
         },
         {
-          title: "It searches everywhere",
-          body: "Shopper looks across stores, marketplaces, and local sellers all at once, opens a real browser for the tricky sites, checks the sellers, and saves the best options.",
+          title: "It hunts and saves",
+          body: "The agent runs web-wide hunts, opens a real browser for marketplaces and forums, vets sellers against public registries, and writes structured finds to your wish list and shopping lists.",
         },
         {
-          title: "It watches for deals",
-          body: "For the things not for sale at your price today, set a deal alert on a paid plan. New matches and price drops land in your list the moment they appear.",
+          title: "Radar watches",
+          body: "For things not at your price today, the agent sets a Radar standing scan on a paid plan. The engine watches 24/7 and new matches land in your list the moment they appear.",
         },
       ]}
       extra={<AgentCircuitSection />}
-      ctaTitle="Start shopping in minutes."
+      ctaTitle="Connect your agent in minutes."
     />
   );
 }

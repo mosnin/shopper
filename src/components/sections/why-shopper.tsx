@@ -6,27 +6,27 @@ import { TextFlip } from "@/components/text-flip";
 
 const easeOut = [0.16, 1, 0.3, 1] as const;
 
-// Why Shopper: built for shopping, not a chat that forgets. Four plain reasons.
+// Why Shopper vs the shopping MCPs bolted onto LLM providers. Four plain reasons.
 const pillars = [
   {
     n: "01",
-    title: "Built for shopping",
-    body: "This is not a chat window that forgets what you asked. Shopper is made to find things to buy, compare prices, and help you decide, and it does that one job really well.",
+    title: "Structure, not link dumps",
+    body: "Bolted-on shopping MCPs return links and forget them. Shopper returns typed finds with price, seller, and source, saved into lists your agent can query, update, and check off.",
   },
   {
     n: "02",
-    title: "Lists you can see and own",
-    body: "See, edit, and check off exactly what Shopper found and saved. Everything lives in real lists you control, not buried in a conversation you have to scroll back through.",
+    title: "A real engine underneath",
+    body: "52 tools backed by a real shopping engine: web-wide hunts, local stores, deep browser sessions for marketplaces and forums, and seller vetting against public registries.",
   },
   {
     n: "03",
-    title: "It searches everywhere",
-    body: "Shopper looks across stores, marketplaces, and local sellers, and opens a real browser for the tricky sites, so you get real listings from real sellers, not a page of ads.",
+    title: "It keeps watching",
+    body: "Stateless MCPs stop when the session ends. Radar runs standing scans 24/7 and drops matches into your wish list, so your agent wakes up to finds instead of starting over.",
   },
   {
     n: "04",
-    title: "It never stops watching",
-    body: "Prices tracked and deals flagged long after you close the tab. Shopper keeps working in the background so you never overpay and never miss the drop.",
+    title: "A wallet of its own",
+    body: "With x402, your agent buys its own credits and plans in USDC over HTTP 402, no human in the loop. No provider's bolted-on shopping tool lets an agent fund its own work.",
   },
 ];
 
@@ -43,14 +43,14 @@ export function WhyShopperSection() {
               interval={1.9}
               className="text-gradient-orange"
             >
-              {["shopping.", "your lists.", "good deals.", "you."]}
+              {["agents.", "state.", "watching.", "operators."]}
             </TextFlip>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            A basic AI chat dumps a few links and forgets. Deal sites only show
-            their own stock. Shopper searches everywhere, keeps your lists,
-            tracks prices, and watches for deals, all in one place. And the data
-            is yours to keep and export.
+            The shopping MCPs bolted onto LLM providers are stateless link
+            dumps: no lists, no watching, no memory. Shopper is structure, an
+            engine, standing scans, and a wallet in one system: an order of
+            magnitude more. And the data is yours: exportable, never resold.
           </p>
         </div>
 

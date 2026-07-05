@@ -18,14 +18,14 @@ type Category = {
 };
 
 const categories: Category[] = [
-  { name: "Electronics & tech", blurb: "GPUs, cameras, a deal on last year's flagship", from: "#2563EB", to: "#1E3A8A" },
-  { name: "Fashion & sneakers", blurb: "That grail in your exact size, at your price", from: "#16A34A", to: "#14532D" },
-  { name: "Auto & parts", blurb: "A project car, or the part that's always sold out", from: "#0EA5E9", to: "#075985" },
-  { name: "Home & moving", blurb: "Furnish a place from empty, on a budget", from: "#CA8A04", to: "#713F12" },
-  { name: "Groceries & supplies", blurb: "The recurring list, restocked and checked off", from: "#22C55E", to: "#166534" },
-  { name: "Collectibles & rare finds", blurb: "The thing that only shows up on forums", from: "#3B82F6", to: "#1E40AF" },
-  { name: "Business supplies", blurb: "Bulk orders, better sellers, cleaner margins", from: "#0891B2", to: "#164E63" },
-  { name: "Manufacturers & sourcing", blurb: "Go past the middleman, straight to the maker", from: "#EAB308", to: "#854D0E" },
+  { name: "GPUs & tech", blurb: "Pre-owned cards at flip-worthy prices, watched 24/7", from: "#2563EB", to: "#1E3A8A" },
+  { name: "Sneakers & fashion", blurb: "Grails in your size, under your number, before the crowd", from: "#16A34A", to: "#14532D" },
+  { name: "Cars & parts", blurb: "A project car, or the part every reseller is hunting", from: "#0EA5E9", to: "#075985" },
+  { name: "Home & moving", blurb: "Furnish a place from empty while your agent compares", from: "#CA8A04", to: "#713F12" },
+  { name: "Groceries & supplies", blurb: "The recurring list, restocked and checked off by an agent", from: "#22C55E", to: "#166534" },
+  { name: "Collectibles & rare finds", blurb: "The stuff that only surfaces on forums, deep-browsed", from: "#3B82F6", to: "#1E40AF" },
+  { name: "Business supplies", blurb: "Bulk orders, vetted sellers, cleaner resale margins", from: "#0891B2", to: "#164E63" },
+  { name: "Manufacturers & sourcing", blurb: "Past the middleman, straight to the maker, on Pro", from: "#EAB308", to: "#854D0E" },
 ];
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -36,14 +36,15 @@ export function CategoriesSection() {
     <section className="py-20 sm:py-28">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-12 text-center">
-          <p className="text-xs uppercase tracking-[0.3em] text-primary">Shop anything</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-primary">Hunt anything</p>
           <h2 className="font-brand mt-3 text-3xl tracking-tight text-foreground sm:text-4xl">
-            If it's for sale, your agent can{" "}
-            <span className="text-gradient-orange">hunt it down</span>
+            Your agents hunt any market:{" "}
+            <span className="text-gradient-orange">GPUs, sneakers, cars, suppliers</span>
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
-            Shopper is not a fixed catalog. Point an agent at any category and it
-            works the whole web: marketplaces, forums, local sellers, and makers.
+            Shopper is not a fixed catalog. Deal-hunters, resellers, and sourcers
+            point their agents at any market and work the whole web: marketplaces,
+            forums, local sellers, and makers.
           </p>
         </div>
 

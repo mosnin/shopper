@@ -33,15 +33,15 @@ const groups: NavGroup[] = [
   {
     label: "Product",
     links: [
-      { label: "Shop the web", href: "/product/discover", description: "Agents hunt the whole web for items for sale, from a plain-English ask." },
-      { label: "Vet sellers", href: "/product/enrich", description: "Sellers checked against GLEIF, Companies House, and SEC EDGAR." },
-      { label: "Radar", href: "/product/signals", description: "Standing scans that keep hunting: pre-owned GPUs, size 10M Gucci, anything." },
-      { label: "The agent", href: "/product/agent", description: "A built-in agent that hunts, vets, and fills your Wish List." },
+      { label: "Hunts", href: "/product/discover", description: "Your agent hunts the whole web for items for sale, from one ask." },
+      { label: "Vet sellers", href: "/product/enrich", description: "Sellers checked against GLEIF, Companies House, and SEC EDGAR before money moves." },
+      { label: "Radar", href: "/product/signals", description: "Standing scans that watch the web 24/7: pre-owned GPUs, size 10M Gucci, anything." },
+      { label: "The agent", href: "/product/agent", description: "No agent of your own? A built-in one runs the same 52 tools." },
     ],
     featured: {
       eyebrow: "New",
       title: "Deep shopping",
-      body: "Give your agent a real browser for forums, marketplaces, and js-heavy storefronts.",
+      body: "Your agent gets a real browser session for forums, marketplaces, and js-heavy storefronts.",
       href: "/product/discover",
       cta: "See how agents hunt",
     },
@@ -49,39 +49,42 @@ const groups: NavGroup[] = [
   {
     label: "Solutions",
     links: [
-      { label: "Why Shopper", href: "/product/why", description: "An order of magnitude better than the shopping MCPs bolted onto LLM providers." },
-      { label: "For agent builders", href: "/integrations", description: "Connect your own agent over MCP and give it a real shopping engine." },
-      { label: "Data you own", href: "/security", description: "Your Wish List, lists, and About You stay yours, never resold." },
-      { label: "Pricing", href: "/pricing", description: "Free to start. Plus $10/mo, Pro $20/mo with supplier sourcing." },
+      { label: "Why Shopper", href: "/product/why", description: "A real engine, not a stateless shopping MCP bolted onto an LLM provider." },
+      { label: "For agent builders", href: "/integrations", description: "One line over MCP: https://shopper.sh/api/mcp, OAuth or API key, 52 tools." },
+      { label: "Data you own", href: "/security", description: "Wish list, lists, and About You: shared by your agents, exportable, never resold." },
+      { label: "Pricing", href: "/pricing", description: "Free to start. Plus $10/mo, Pro $20/mo. Agents can pay in USDC over x402." },
     ],
     featured: {
       eyebrow: "The thesis",
-      title: "The shopping engine your agents run",
-      body: "Web-wide hunting, seller vetting, and standing Radar scans while agents do the work.",
+      title: "The shopping engine for AI agents",
+      body: "Web-wide hunts, seller vetting, Radar scans, and shared state every connected agent works from.",
       href: "/product/why",
       cta: "See why",
     },
   },
   {
-    label: "Resources",
+    label: "Developers",
     links: [
-      { label: "How it works", href: "/product/how-it-works", description: "Connect your agent, ask, and it hunts, in three steps." },
-      { label: "Integrations", href: "/integrations", description: "Hermes, OpenClaw, Codex, Claude Code, and anything that speaks MCP." },
-      { label: "Security and trust", href: "/security", description: "How your data stays isolated, owned, and yours." },
-      { label: "FAQ", href: "/faq", description: "The honest answers to the common questions." },
+      { label: "Connect your agent", href: "/connect", description: "One line points any MCP client at Shopper. OAuth or API key." },
+      { label: "MCP tools", href: "/tools", description: "All 52 tools your agent gets: hunts, lists, vetting, memory, self-pay." },
+      { label: "Integrations", href: "/integrations", description: "Claude Code, Cursor, Codex, OpenClaw, Hermes, and anything that speaks MCP." },
+      { label: "FAQ", href: "/faq", description: "The honest answers: tools, plans, x402, and what agents can actually do." },
     ],
     featured: {
-      eyebrow: "Read",
-      title: "The Shopper manifesto",
-      body: "Why agents that shop for people give you your time back, on data you own.",
-      href: "/manifesto",
-      cta: "Read the manifesto",
+      eyebrow: "Copy, paste, done",
+      title: "Connect in one line",
+      body: "claude mcp add --transport http shopper https://shopper.sh/api/mcp",
+      href: "/connect",
+      cta: "Connect your agent",
     },
   },
 ];
 
 // Direct links (no mega menu), Apple-style.
-const directLinks = [{ label: "Pricing", href: "/pricing" }];
+const directLinks = [
+  { label: "Connect", href: "/connect" },
+  { label: "Pricing", href: "/pricing" },
+];
 
 /* ----------------------------- Mega menu panel ---------------------------- */
 

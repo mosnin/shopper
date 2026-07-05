@@ -12,16 +12,16 @@ export function CTASection() {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(37,99,235,0.12),transparent_60%)]" />
         <div className="relative z-10">
           <h2 className="font-brand text-3xl text-foreground sm:text-4xl lg:text-5xl">
-            Start shopping{" "}
+            Give your agents{" "}
             <ShimmeringText
-              text="smarter, free"
+              text="buying power"
               duration={2.4}
               className="align-baseline font-brand [--color:var(--primary)] [--shimmering-color:var(--foreground)]"
             />
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-lg text-muted-foreground">
-            Tell Shopper what you want, and let it search everywhere, compare
-            prices, and watch for deals, all on lists that stay yours.
+            Connect any MCP client to https://shopper.sh/api/mcp and your agent
+            starts hunting, saving, and watching, on lists that stay yours.
           </p>
           <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link
@@ -38,7 +38,7 @@ export function CTASection() {
               See pricing
             </Link>
           </div>
-          <p className="mt-4 text-xs text-muted-foreground">Free to start. Plus $10/mo, Pro $20/mo.</p>
+          <p className="mt-4 text-xs text-muted-foreground">Free to start. Plus $10/mo, Pro $20/mo adds manufacturer and supplier sourcing.</p>
         </div>
       </div>
     </section>

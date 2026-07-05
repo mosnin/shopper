@@ -4,36 +4,36 @@ import { FeaturePage } from "@/components/marketing/feature-page";
 export const metadata: Metadata = {
   title: "Why Shopper | Shopper",
   description:
-    "Why a tool built for shopping beats a basic AI chat: it searches everywhere, checks sellers, keeps your lists, watches for deals, and the data is yours.",
+    "Why a real shopping engine beats the shopping MCPs bolted onto LLM providers: web-wide hunts, structured shared state, Radar watching 24/7, seller vetting, and x402 so agents pay their own way.",
 };
 
 export default function WhyShopperPage() {
   return (
     <FeaturePage
       eyebrow="Why Shopper"
-      title="Built for shopping,"
-      accent="not a chat that forgets"
-      subtitle="A basic AI chat dumps a few links and forgets. Deal sites only show their own stock. Shopper searches everywhere, checks the sellers, keeps your lists, and watches for deals, all in one place you own."
+      title="A real engine,"
+      accent="not a bolted-on MCP"
+      subtitle="The shopping MCPs bolted onto LLM providers are stateless link dumps: one partner catalog, no lists, no watching, no wallet. Shopper is the engine underneath your agents: web-wide hunts, vetted sellers, structured shared state, Radar watching 24/7, and x402 so agents pay their own way."
       heroImage="https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=75&w=1600&auto=format&fit=crop"
       blocks={[
         {
-          title: "Everywhere, not one store",
-          body: "A basic chat searches whoever it has a deal with. Shopper looks across stores, marketplaces, and local sellers all at once, and opens a real browser for the tricky sites a plain search can't reach.",
+          title: "The whole web, not one catalog",
+          body: "A bolted-on shopping MCP searches whoever its provider has a deal with. Shopper hunts across marketplaces, storefronts, and local sellers at once, and gives your agent a real browser session for the forums and js-heavy sites a plain search cannot reach.",
         },
         {
-          title: "Checked sellers, not just links",
-          body: "Shopper checks sellers, stores, and makers against public business registries, so 'found it cheaper' comes with 'and here's who is actually selling it'.",
+          title: "Vetted sellers, not just links",
+          body: "Every seller behind a find is checked against GLEIF, Companies House, and SEC EDGAR, so 'found it cheaper' comes with 'and here is who is actually selling it'.",
         },
         {
-          title: "Lists that don't disappear",
-          body: "Your wish list and shopping lists stay put, organized, and yours. Nothing scrolls away, nothing gets forgotten, and your search history makes the next search sharper.",
+          title: "Shared state, not a fresh chat",
+          body: "Bolted-on MCPs forget everything between calls. Shopper gives every connected agent the same structured state: wish list, shopping lists, About You, and long-term memory. Connect five agents; they work one truth, and you own it, exportable, never resold.",
         },
         {
-          title: "It keeps watching",
-          body: "A chat stops when you close it. Shopper keeps watching in the background, on paid plans, so the used graphics card, the shoes in your size, or the right supplier finds you.",
+          title: "It watches, and it can pay",
+          body: "A stateless MCP stops when the call ends. Radar keeps standing scans running 24/7 on paid plans, and over x402 your agent can buy its own credits and plans with USDC, capped by what you fund. No bolted-on MCP has a wallet.",
         },
       ]}
-      ctaTitle="Start shopping smarter, free."
+      ctaTitle="Give your agents a real engine."
     />
   );
 }

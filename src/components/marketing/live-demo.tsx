@@ -86,7 +86,7 @@ export function LiveDemo() {
   const [typed, setTyped] = useState("");
   const [revealed, setRevealed] = useState(0);
   const [enriched, setEnriched] = useState(false);
-  const [status, setStatus] = useState("Reading your ask");
+  const [status, setStatus] = useState("Agent connected, reading the ask");
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   const clearTimers = useCallback(() => {
@@ -105,14 +105,14 @@ export function LiveDemo() {
       setTyped("");
       setRevealed(0);
       setEnriched(false);
-      setStatus("Reading your ask");
+      setStatus("Agent connected, reading the ask");
 
       // Reduced motion: skip straight to the finished board.
       if (reduce) {
         setTyped(build.prompt);
         setRevealed(build.rows.length);
         setEnriched(true);
-        setStatus(`Done. ${build.rows.length} finds saved, ${totalContacts(build)} sellers vetted`);
+        setStatus(`save_item: ${build.rows.length} finds saved, ${totalContacts(build)} sellers vetted`);
         return;
       }
 
@@ -125,7 +125,7 @@ export function LiveDemo() {
       let t = chars * typeStep + 360;
 
       // 2) Discover: stream rows one at a time.
-      at(t, () => setStatus("Hunting the web"));
+      at(t, () => setStatus("find_items: hunting the web"));
       t += 320;
       build.rows.forEach((_, i) => {
         at(t, () => setRevealed(i + 1));
@@ -134,12 +134,12 @@ export function LiveDemo() {
 
       // 3) Enrich + sense intent.
       t += 200;
-      at(t, () => setStatus("Vetting sellers"));
+      at(t, () => setStatus("vet_seller: checking public registries"));
       at(t + 120, () => setEnriched(true));
       t += 900;
       at(t, () => setStatus("Scoring the deals"));
       t += 850;
-      at(t, () => setStatus(`Done. ${build.rows.length} finds saved, ${totalContacts(build)} sellers vetted`));
+      at(t, () => setStatus(`save_item: ${build.rows.length} finds saved, ${totalContacts(build)} sellers vetted`));
 
       // 4) Hold, then move to the next prompt.
       if (autoAdvance) {
@@ -187,7 +187,7 @@ export function LiveDemo() {
               <span className="h-2 w-2 rounded-full bg-primary" />
             </span>
             <p className="truncate font-mono text-xs text-foreground/85">
-              <span className="text-muted-foreground">shopper </span>
+              <span className="text-muted-foreground">agent </span>
               {typed}
               {!reduce && (
                 <motion.span

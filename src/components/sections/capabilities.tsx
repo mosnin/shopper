@@ -24,39 +24,39 @@ type Cap = {
 const caps: Cap[] = [
   {
     id: "hunt",
-    label: "Find anything",
-    title: "Search every store from one sentence",
-    body: "Just say what you want. Shopper searches across stores, marketplaces, and local sellers all at once, compares prices, reads the reviews, and brings back real options, not a page of ads.",
+    label: "Web-wide hunts",
+    title: "One find_items call hunts the whole web",
+    body: "Your agent calls find_items and Shopper fans the hunt out across stores, marketplaces, and local sellers, with search engines under the hood (Exa, Firecrawl, Tavily). Back come structured listings with price and seller, not a page of links.",
   },
   {
     id: "deep",
-    label: "Search everywhere",
-    title: "It looks where a search box can't",
-    body: "The best deals often hide on marketplaces, forums, and finicky sites. Shopper opens a real browser and digs through them the way you would, only faster and without getting tired.",
+    label: "Deep browser",
+    title: "A real browser when scraping is not enough",
+    body: "The best deals hide on marketplaces and forums that fight scrapers. Your agent opens a deep browser session and works them page by page: listings read, sellers rated, finds saved straight to the wish list.",
   },
   {
     id: "radar",
-    label: "Deal alerts",
-    title: "It watches for the deal you're waiting on",
-    body: "Set Shopper on the lookout: a used graphics card at a good price, a certain pair of shoes under $400, a car, anything. It keeps scanning and tells you the moment a match shows up. On paid plans.",
+    label: "Radar scans",
+    title: "Standing scans that watch the web 24/7",
+    body: "Set a Radar: recently listed pre-owned GPUs at a good price, a grail sneaker in your size, a project car. It keeps scanning around the clock and drops every match into your wish list. On paid plans.",
   },
   {
     id: "lists",
-    label: "Your lists",
-    title: "Everything you want, in one place",
-    body: "Keep a wish list of things you want and shopping lists for the grocery run, the house move, car parts, or office supplies. Shopper fills them in and you check items off as you buy.",
+    label: "Shared state",
+    title: "Wish list and shopping lists as agent state",
+    body: "Full CRUD over your wish list and shopping lists: the grocery run, the move, auto parts, office supplies. Every agent you connect reads and writes the same lists, so nothing lives and dies in one chat.",
   },
   {
     id: "about",
-    label: "It learns you",
-    title: "It gets to know your taste and budget",
-    body: "Your sizes, style, budgets, and the things you'd rather avoid all live in one spot. Shopper remembers them, so results fit you instead of the average shopper, and get better over time.",
+    label: "About You memory",
+    title: "Context that persists across every client",
+    body: "Sizes, budgets, preferences, and no-gos live in About You, plus recall and remember tools for everything else. It persists across sessions and across clients, so a hunt started in Claude Code picks up in Cursor.",
   },
   {
     id: "sourcing",
-    label: "Go to the source",
-    title: "Buy straight from the maker",
-    body: "On Pro, Shopper can find manufacturers and suppliers directly and check each one against public business registries before you commit to a big purchase.",
+    label: "Agents pay their own way",
+    title: "Your agent buys its own credits with x402",
+    body: "Running low mid-hunt? Your agent pays over HTTP 402 with USDC and keeps working, no card form, no human in the loop. Credits and plans, bought by the agent itself. No other shopping MCP does this.",
   },
 ];
 
@@ -94,7 +94,7 @@ function HuntPanel({ reduce }: { reduce: boolean | null }) {
   return (
     <PanelFrame reduce={reduce}>
       <motion.div variants={panelItem} className="flex items-center gap-2 rounded-xl border border-border bg-background/60 px-3 py-2.5 font-mono text-xs text-foreground/80 dark:border-white/10 dark:bg-white/[0.03]">
-        <span className="text-muted-foreground">hunt</span>
+        <span className="text-muted-foreground">find_items</span>
         pre-owned RTX 4090 under $1,400
       </motion.div>
       <motion.p variants={panelItem} className="px-1 text-[11px] text-muted-foreground">
@@ -241,18 +241,18 @@ function AboutYouPanel({ reduce }: { reduce: boolean | null }) {
 
 function SourcingPanel({ reduce }: { reduce: boolean | null }) {
   const rows = [
-    { name: "Meridian Textiles Ltd", check: "GLEIF verified" },
-    { name: "Hartwell Components", check: "Companies House" },
-    { name: "Corsa Auto Supply Co", check: "SEC EDGAR" },
+    { name: "HTTP 402 quote", check: "received" },
+    { name: "USDC payment", check: "settled on-chain" },
+    { name: "Credits topped up", check: "hunt resumed" },
   ];
   return (
     <PanelFrame reduce={reduce}>
       <motion.div variants={panelItem} className="flex items-center gap-2 rounded-xl border border-border bg-background/60 px-3 py-2.5 font-mono text-xs text-foreground/80 dark:border-white/10 dark:bg-white/[0.03]">
-        <span className="text-muted-foreground">source</span>
-        organic cotton canvas, 500 yd minimum
+        <span className="text-muted-foreground">x402</span>
+        buy_credits, paid in USDC
       </motion.div>
       <motion.p variants={panelItem} className="px-1 text-[11px] text-muted-foreground">
-        3 suppliers found and vetted against public registries
+        The agent pays and keeps working, no human in the loop
       </motion.p>
       <div className="space-y-1.5">
         {rows.map((r) => (
@@ -318,14 +318,14 @@ export function CapabilitiesSection() {
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs uppercase tracking-[0.25em] text-primary">What it does</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-primary">What your agent gets</p>
           <h2 className="font-brand mt-3 text-3xl text-foreground sm:text-4xl lg:text-5xl">
-            Your personal <span className="text-gradient-orange">shopping assistant</span>
+            52 tools. <span className="text-gradient-orange">One shopping engine.</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Find anything, track prices, catch deals, and keep your lists in one
-            place. Shopper does the searching, you make the call, and the data
-            stays yours.
+            Hunts, deep browser sessions, Radar scans, lists, memory, seller
+            vetting, even billing: everything an agent needs to shop, over one
+            MCP connection. Your data stays yours: exportable, never resold.
           </p>
         </div>
 

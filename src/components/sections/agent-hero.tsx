@@ -9,96 +9,9 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion, AnimatePresence } from "motion/react";
-import { ArrowRight, Check, Copy, Radar as RadarIcon } from "lucide-react";
+import { ArrowRight, Radar as RadarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-/* ----------------------------- Connect card ----------------------------- */
-
-const MCP_URL = "https://shopper.sh/api/mcp";
-
-const CONNECT_TABS = [
-  {
-    id: "claude",
-    label: "Claude Code",
-    code: `claude mcp add --transport http shopper ${MCP_URL}`,
-    lang: "shell",
-  },
-  {
-    id: "cursor",
-    label: "Cursor",
-    code: `{
-  "mcpServers": {
-    "shopper": { "url": "${MCP_URL}" }
-  }
-}`,
-    lang: "json",
-  },
-  {
-    id: "any",
-    label: "Any agent",
-    code: `# Streamable HTTP + OAuth or API key
-${MCP_URL}`,
-    lang: "shell",
-  },
-] as const;
-
-function ConnectCard() {
-  const [tab, setTab] = useState<(typeof CONNECT_TABS)[number]["id"]>("claude");
-  const [copied, setCopied] = useState(false);
-  const active = CONNECT_TABS.find((t) => t.id === tab) ?? CONNECT_TABS[0];
-
-  async function copy() {
-    try {
-      await navigator.clipboard.writeText(active.code);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1600);
-    } catch {
-      /* clipboard unavailable; the code is selectable */
-    }
-  }
-
-  return (
-    <div className="overflow-hidden rounded-2xl border border-border bg-[#0B1120] shadow-2xl shadow-primary/10">
-      {/* Title bar */}
-      <div className="flex items-center justify-between border-b border-white/10 px-4 py-2.5">
-        <div className="flex items-center gap-1">
-          {CONNECT_TABS.map((t) => (
-            <button
-              key={t.id}
-              type="button"
-              onClick={() => setTab(t.id)}
-              className={cn(
-                "rounded-full px-3 py-1 text-xs font-medium transition-colors",
-                tab === t.id
-                  ? "bg-white/10 text-white"
-                  : "text-slate-400 hover:text-slate-200",
-              )}
-            >
-              {t.label}
-            </button>
-          ))}
-        </div>
-        <button
-          type="button"
-          onClick={copy}
-          aria-label="Copy to clipboard"
-          className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs text-slate-300 transition-colors hover:bg-white/10 hover:text-white"
-        >
-          {copied ? <Check className="h-3.5 w-3.5 text-green-400" /> : <Copy className="h-3.5 w-3.5" />}
-          {copied ? "Copied" : "Copy"}
-        </button>
-      </div>
-      {/* Code */}
-      <pre className="overflow-x-auto px-4 py-4 font-mono text-[13px] leading-relaxed text-slate-100">
-        <code>{active.code}</code>
-      </pre>
-      {/* One-liner under the code */}
-      <div className="border-t border-white/10 px-4 py-2.5 text-xs text-slate-400">
-        One line. Your agent gets 52 shopping tools, memory, and a wallet.
-      </div>
-    </div>
-  );
-}
+import { ConnectTabs } from "@/components/marketing/connect-tabs";
 
 /* --------------------------- Live transcript ---------------------------- */
 
@@ -305,7 +218,7 @@ export function AgentHero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="flex flex-col gap-4"
         >
-          <ConnectCard />
+          <ConnectTabs />
           <Transcript reduce={reduce} />
         </motion.div>
       </div>

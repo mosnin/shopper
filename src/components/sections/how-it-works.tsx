@@ -14,10 +14,10 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 function SearchVisual() {
   return (
     <div className="flex items-center justify-between rounded-xl border border-border bg-background/60 px-3 py-2.5 dark:border-white/10 dark:bg-white/[0.03]">
-      <span className="font-mono text-xs text-foreground/80">stores · marketplaces · local sellers</span>
+      <span className="font-mono text-xs text-foreground/80">https://shopper.sh/api/mcp</span>
       <span className="inline-flex items-center gap-1.5 rounded-full bg-success/10 px-2 py-0.5 text-[11px] font-medium text-success">
         <span className="h-1.5 w-1.5 rounded-full bg-success" />
-        searching
+        connected
       </span>
     </div>
   );
@@ -27,10 +27,10 @@ function AskVisual() {
   return (
     <div className="space-y-1.5">
       <div className="rounded-xl border border-border bg-background/60 px-3 py-2 font-mono text-xs text-foreground/80 dark:border-white/10 dark:bg-white/[0.03]">
-        <span className="text-muted-foreground">you </span>find me a mid-century walnut desk under $900
+        <span className="text-muted-foreground">you </span>find me a pre-owned RTX 4090 under $1,400
       </div>
       <div className="flex flex-wrap gap-1.5">
-        {["knows your taste", "remembers your size", "budget saved"].map((c) => (
+        {["reads About You", "knows your budget", "checks your lists"].map((c) => (
           <span key={c} className="rounded-md border border-border bg-card px-2 py-1 text-[11px] text-foreground/75 dark:border-white/10">
             {c}
           </span>
@@ -42,8 +42,8 @@ function AskVisual() {
 
 function HuntVisual() {
   const fields = [
-    { k: "Find", v: "Walnut desk, 58 in, $740" },
-    { k: "Seller", v: "rated 4.9, ships freight" },
+    { k: "Find", v: "RTX 4090, pre-owned, $1,140" },
+    { k: "Seller", v: "rated 4.9, registry checked" },
   ];
   return (
     <div className="space-y-1">
@@ -67,7 +67,7 @@ function RadarVisual() {
         <span className="text-muted-foreground">. overnight</span>
       </p>
       <p className="mt-1.5 pl-3.5 text-[11px] text-muted-foreground">
-        Walnut desks under $900, freshly listed, already priced and vetted
+        Pre-owned GPUs at a good price, freshly listed, saved to the wish list
       </p>
     </div>
   );
@@ -75,27 +75,27 @@ function RadarVisual() {
 
 const steps = [
   {
-    title: "Tell Shopper what you want",
+    title: "Connect your agent",
     description:
-      "One item, a whole shopping list, or a standing wish. Shopper already knows your sizes, tastes, and budget, so what it finds fits you from the very first result.",
-    visual: <AskVisual />,
-  },
-  {
-    title: "It searches everywhere",
-    description:
-      "Shopper looks across stores, marketplaces, and local sellers all at once, and opens a real browser for the trickier sites, so nothing good slips through.",
+      "One line in Claude Code, Cursor, Codex, OpenClaw, Hermes, or any MCP client: https://shopper.sh/api/mcp, with OAuth or an API key. Your agent picks up all 52 tools instantly.",
     visual: <SearchVisual />,
   },
   {
-    title: "You see the best options in one list",
+    title: "Tell it what you want",
     description:
-      "Every option lands in your list with its price and its seller, side by side and easy to compare. No lost links, no scattered tabs, everything in one place.",
+      "One item, a whole shopping list, or a standing wish. Your agent reads About You first, so sizes, budgets, and no-gos shape the hunt from the very first call.",
+    visual: <AskVisual />,
+  },
+  {
+    title: "It hunts and saves the finds",
+    description:
+      "The agent works stores, marketplaces, and local sellers, opens a real browser for the tricky ones, and saves every find to your wish list with its price and seller.",
     visual: <HuntVisual />,
   },
   {
-    title: "It watches for better deals",
+    title: "Radar keeps watching",
     description:
-      "Shopper keeps looking after you close the tab. Price drops, new listings, and restocks show up as matches, not as one more thing you have to remember to check.",
+      "Standing scans run 24/7 after the session ends, and new matches land in the wish list. If you allow it, the agent even tops up its own credits with USDC over x402.",
     visual: <RadarVisual />,
   },
 ];
@@ -115,10 +115,11 @@ export function HowItWorksSection() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs uppercase tracking-[0.25em] text-primary">How it works</p>
           <h2 className="font-brand mt-3 text-3xl text-foreground sm:text-4xl lg:text-5xl">
-            From a sentence to a <span className="text-gradient-orange">list you trust</span>
+            From one line to an{" "}
+            <span className="text-gradient-orange">agent that shops</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            A calm, transparent process that keeps you in control the whole way through.
+            Connect once, then delegate. Your agent does the work; you stay in control of every purchase.
           </p>
         </div>
 

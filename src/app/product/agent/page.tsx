@@ -2,38 +2,38 @@ import type { Metadata } from "next";
 import { FeaturePage } from "@/components/marketing/feature-page";
 
 export const metadata: Metadata = {
-  title: "Your assistant | Shopper",
+  title: "The agent | Shopper",
   description:
-    "A built-in shopping assistant that searches everywhere, checks sellers, and keeps your Wish List and Shopping Lists current, or connect your own AI.",
+    "No agent of your own yet? Shopper includes a built-in agent that runs the same 52 tools: web-wide hunts, seller vetting, Radar, and your lists, from plain conversation.",
 };
 
 export default function AgentPage() {
   return (
     <FeaturePage
-      eyebrow="Your assistant"
-      title="A shopper that"
-      accent="actually shops"
-      subtitle="Shopper comes with a built-in assistant that searches everywhere, checks sellers, saves options to your wish list, and works your shopping lists, all in plain conversation. And it remembers you between visits."
+      eyebrow="The agent"
+      title="No agent yet?"
+      accent="One is included"
+      subtitle="Shopper ships with a built-in agent that runs the same engine your external agents would: web-wide hunts, seller vetting, wish list and shopping list writes, and Radar, all from plain conversation. It shares the same state, so when you connect your own agents later, nothing forks."
       heroImage="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=75&w=1600&auto=format&fit=crop"
       blocks={[
         {
-          title: "It shops, it doesn't dump links",
-          body: "Ask for 'a used graphics card under $1,100 from a seller I can trust' and it does the work: searches everywhere, checks the seller, and saves a clear option to your list, not ten blue links to sort through.",
+          title: "It shops, it does not dump links",
+          body: "Ask for 'a pre-owned RTX 4090 under $1,100 from a seller I can trust' and it does the work: hunts the whole web, vets the seller against public registries, and saves a structured find to your list, not ten blue links to sort through.",
         },
         {
-          title: "It knows you",
-          body: "Your sizes, tastes, and budgets are remembered and kept up to date, so the assistant never asks for your shoe size twice and what it finds actually fits you.",
+          title: "It runs on shared memory",
+          body: "Your sizes, tastes, and budgets live in About You and long-term memory, the same state every connected agent reads. The built-in agent never asks for your shoe size twice, and what it finds actually fits.",
         },
         {
           title: "It works your lists",
-          body: "Give it a shopping list for the groceries, the move, or the workshop, and it keeps an eye on the list, tracks down the items, and checks things off as you buy them.",
+          body: "Give it a shopping list for the groceries, the move, or the workshop, and it tracks down the items, checks things off as you buy, and sets Radar scans on the ones worth waiting for.",
         },
         {
-          title: "Or connect your own AI",
-          body: "Already use ChatGPT, Claude, Gemini, or another AI assistant? Connect it and it shops through the same lists, with the same searching and the same seller checks.",
+          title: "Same engine as your own agents",
+          body: "The built-in agent uses the same operations layer your Claude Code, Cursor, Codex, OpenClaw, or Hermes agents get over MCP. Start here, connect your own agents whenever, and they all work the same lists.",
         },
       ]}
-      ctaTitle="Put a shopper on it."
+      ctaTitle="Put an agent on it."
     />
   );
 }

@@ -38,13 +38,14 @@ export function ManifestoRail() {
       >
         <div className="px-6 pb-8 pt-2 md:px-10">
           <p className="max-w-3xl font-brand text-xl leading-snug text-foreground sm:text-2xl">
-            We do not think shopping is a feature you bolt onto a chat app. It is the product.
+            Shopping is work agents should do. We do not think it is a feature you bolt onto an LLM. It is the product.
           </p>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-            A structured place where every find is typed, priced, and yours, with a
-            real interface a human can browse and an agent can operate over the same
-            surface. So your lists compound instead of scrolling away, and the
-            leverage stays quiet: already hunting for you.
+            So we built the engine: a structured place where every find is typed,
+            priced, and yours, with a real interface a human can browse and an
+            agent can operate over the same surface. Your lists compound instead
+            of scrolling away, and the leverage stays quiet: your agents, already
+            hunting for you.
           </p>
           <Link
             href="/manifesto"

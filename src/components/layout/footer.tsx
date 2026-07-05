@@ -3,8 +3,8 @@ import { LogoMark } from "@/components/brand/logo-mark";
 
 const footerLinks = {
   product: [
-    { label: "Capabilities", href: "/#capabilities" },
-    { label: "Intelligence", href: "/#intelligence" },
+    { label: "Connect your agent", href: "/connect" },
+    { label: "MCP tools", href: "/tools" },
     { label: "Integrations", href: "/integrations" },
     { label: "Pricing", href: "/pricing" },
     { label: "Manifesto", href: "/manifesto" },
@@ -39,8 +39,9 @@ export function Footer() {
                 <span className="font-brand text-lg font-bold text-foreground">Shopper</span>
               </Link>
               <p className="max-w-xs text-sm text-muted-foreground">
-                The shopping engine your agents run. They hunt the whole web,
-                vet the sellers, and keep your lists current - on data you own.
+                The shopping engine for AI agents. Connect over MCP and your
+                agents hunt the web, vet sellers, and keep your lists current,
+                on data you own.
               </p>
             </div>
 

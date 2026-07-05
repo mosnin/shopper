@@ -10,7 +10,7 @@ const values = [
   {
     title: "Owned data - yours to keep, yours to export",
     description:
-      "Every find, list, and About You fact lives in your Shopper account. No shared pool, no lock-in. Export it all whenever you like.",
+      "Every find, list, and About You fact lives in your Shopper account. No shared pool, no lock-in, never resold. Export it all whenever you like.",
   },
   {
     title: "Vetted before you spend",
@@ -18,9 +18,9 @@ const values = [
       "Before a big purchase or a new supplier, sellers are checked against public registries: GLEIF, Companies House, SEC EDGAR. Trust is earned, then verified.",
   },
   {
-    title: "Deep personal context",
+    title: "One memory, every client",
     description:
-      "Agents read About You before every hunt: sizes, tastes, budgets, no-gos. Results fit your life, not a demographic bucket.",
+      "Agents read About You before every hunt: sizes, budgets, no-gos. State persists across sessions and clients, so every agent you connect shares it.",
   },
 ];
 
@@ -32,19 +32,19 @@ export function AboutSection() {
           <div>
             <p className="text-xs uppercase tracking-[0.25em] text-primary">About Shopper</p>
             <h2 className="font-brand mt-3 text-3xl text-foreground sm:text-4xl lg:text-5xl">
-              Shopping for people whose agents{" "}
-              <span className="text-gradient-orange">do the work</span>
+              Shopping is work.{" "}
+              <span className="text-gradient-orange">Agents should do it.</span>
             </h2>
             <p className="mt-5 text-lg text-muted-foreground">
-              Shopper is a shopping engine whose operators are AI agents. They
-              hunt the whole web for items, compare prices, read reviews, vet
-              sellers, and keep every find in lists you own.
+              Shopper is the shopping engine your agents run. Connected over
+              MCP, they hunt the whole web for items, compare prices, read
+              reviews, vet sellers, and keep every find in lists you own.
             </p>
             <p className="mt-4 text-muted-foreground">
-              For grocery runs, a whole-home refit, auto parts, business
-              supplies, or sourcing a manufacturer. The way we shop changed;
-              Shopper gives your agents the memory and the engine to shop with
-              understanding, not just search and forget.
+              Deal-hunting, resale sourcing, the grocery run, auto parts, a
+              whole-home refit, or finding a manufacturer. You already run
+              agents; Shopper gives them the engine, the state, and the memory
+              to shop with understanding instead of search and forget.
             </p>
             <Link
               href="/sign-up"

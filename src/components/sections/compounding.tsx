@@ -31,14 +31,15 @@ export function CompoundingSection() {
     <section className="bg-background py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs uppercase tracking-[0.25em] text-primary">It gets better</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-primary">It compounds</p>
           <h2 className="font-brand mt-3 text-3xl text-foreground sm:text-4xl lg:text-5xl">
-            The more you use it, the better it gets
+            Every hunt makes the next one sharper
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Every search teaches Shopper a little more about your taste, your
-            sizes, and your budget, so your list keeps getting sharper. This is
-            what a month of shopping looks like when nothing gets forgotten.
+            Every hunt grows About You, and the wish list gets smarter with each
+            find. Because all your agents share one memory, a fact learned in
+            Claude Code sharpens the next hunt in Cursor. This is what a month
+            looks like when nothing gets forgotten.
           </p>
         </div>
 
@@ -51,10 +52,10 @@ export function CompoundingSection() {
 
           <dl className="mt-4 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-4">
             {[
-              { label: "Items saved", value: "312" },
-              { label: "Sellers checked", value: "148" },
-              { label: "Price drops caught", value: "64" },
-              { label: "Things it learned", value: "87" },
+              { label: "Finds saved", value: "312" },
+              { label: "Sellers vetted", value: "148" },
+              { label: "Radar matches", value: "64" },
+              { label: "Facts remembered", value: "87" },
             ].map((m) => (
               <Metric key={m.label} className="bg-card px-4 py-3">
                 <MetricLabel className="text-xs text-muted-foreground">{m.label}</MetricLabel>
@@ -78,7 +79,7 @@ export function CompoundingSection() {
           </div>
 
           <p className="mt-3 px-2 text-right text-xs text-muted-foreground">
-            Day 30: {LAST.toLocaleString("en-US")} items, all yours, all yours to export.
+            Day 30: {LAST.toLocaleString("en-US")} items, shared by every agent you connect, yours to export.
           </p>
         </div>
       </div>

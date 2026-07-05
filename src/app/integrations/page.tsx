@@ -13,12 +13,12 @@ const easeOut = [0.16, 1, 0.3, 1] as const;
 
 // Known MCP clients. The lists are the substrate; the agent is interchangeable.
 const agents = [
-  { name: "Hermes", body: "Point Hermes at Shopper and it hunts the web, vets sellers, and fills the Wish List you can see." },
-  { name: "OpenClaw", body: "OpenClaw agents get the full engine over MCP: search, deep shopping, and list read and write." },
-  { name: "Codex", body: "Codex connects over the same surface, so your coding agent can also restock the workshop." },
   { name: "Claude Code", body: "Drop the Shopper MCP config into Claude Code and ask it to find the part mid-session." },
   { name: "Cursor", body: "Cursor speaks MCP, so the same editor that ships your code can source your hardware." },
-  { name: "Any MCP client", body: "If it speaks MCP, it connects. No bespoke integration, no exported copy of your data." },
+  { name: "Codex", body: "Codex connects over the same surface, so your coding agent can also restock the workshop." },
+  { name: "OpenClaw", body: "OpenClaw agents get the full engine over MCP: hunts, deep shopping, Radar, and list read and write." },
+  { name: "Hermes", body: "Point Hermes at Shopper and it hunts the web, vets sellers, and fills the Wish List you can see." },
+  { name: "Any MCP client", body: "If it speaks MCP, it connects: one line, OAuth or API key, 52 tools. No bespoke integration." },
 ];
 
 // The engines the hunts run on, plus how money moves. Honest and specific:
@@ -37,21 +37,21 @@ const capabilities = [
   "Hunt the whole web for items for sale from a plain-English ask",
   "Deep shop with a real browser: forums, marketplaces, storefronts",
   "Vet sellers against GLEIF, Companies House, and SEC EDGAR",
-  "Read and write the Wish List and Shopping Lists",
-  "Keep About You current: sizes, tastes, budgets",
-  "Set up Radar standing scans on paid plans",
+  "Read and write the Wish List and Shopping Lists all your agents share",
+  "Keep About You and long-term memory current: sizes, tastes, budgets",
+  "Set Radar standing scans on paid plans, and top up credits over x402",
 ];
 
 const steps = [
   {
     n: "01",
-    title: "Create a key",
-    body: "Generate a per-user API key in Settings. It scopes an agent to your lists and nothing else.",
+    title: "Authenticate",
+    body: "Use OAuth, or generate a per-user API key in Settings. Either scopes an agent to your lists and nothing else.",
   },
   {
     n: "02",
     title: "Point your agent",
-    body: "Connect your MCP client to the Shopper endpoint with that key. The tools appear automatically.",
+    body: "Connect your MCP client to https://shopper.sh/api/mcp. All 52 tools appear automatically.",
   },
   {
     n: "03",
@@ -80,9 +80,9 @@ export default function IntegrationsPage() {
               Connect your <span className="text-gradient-orange">own agents</span>
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground">
-              Shopper is open by connection. Plug any MCP agent into the same
-              shopping engine over a secure endpoint and per-user keys. The lists
-              are the substrate; agents are interchangeable.
+              One line connects any MCP client to the engine:
+              https://shopper.sh/api/mcp, OAuth or API key, 52 tools. The
+              structured state is the substrate; agents are interchangeable.
             </p>
             <div className="mt-9 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Link
@@ -111,8 +111,9 @@ export default function IntegrationsPage() {
                 Paste the config, <span className="text-gradient-orange">watch it connect</span>
               </h2>
               <p className="mt-4 text-lg text-muted-foreground">
-                A per-user key scopes an agent to your data and nothing else. Drop
-                the endpoint into your MCP client and the typed tools appear.
+                OAuth or a per-user API key scopes an agent to your data and
+                nothing else. Drop the endpoint into your MCP client and 52
+                tools appear.
               </p>
             </div>
             <div className="mt-12">
