@@ -14,9 +14,9 @@ export default function TermsPage() {
       intro={
         <>
           These Terms of Service (the &ldquo;Terms&rdquo;) govern your access to
-          and use of Shopper, the CRM your agents run: structured storage, a real
-          UI, and built-in intelligence operated by you and the AI agents you
-          connect. By creating an account or using the service, you agree to
+          and use of Shopper, the shopping engine your agents run: structured
+          storage, a real UI, and a built-in hunting engine operated by you and
+          the AI agents you connect. By creating an account or using the service, you agree to
           these Terms. If you are using Shopper on behalf of an organization, you
           agree on its behalf and confirm you have authority to do so.
         </>
@@ -25,7 +25,7 @@ export default function TermsPage() {
         {
           heading: "The service",
           body: [
-            "Shopper is a software-as-a-service customer relationship management platform. It stores companies, contacts, deals, emails, and agent memory in a structured database, presents them in a web interface, and exposes them to AI agents over a secure MCP (Model Context Protocol) surface and per-user API keys. You can use the built-in agent or connect your own.",
+            "Shopper is a software-as-a-service shopping engine. It hunts the web for items for sale, stores the items, sellers, seller contacts, shopping lists, Radar scans, and agent memory you keep in a structured database, presents them in a web interface, and exposes them to AI agents over a secure MCP (Model Context Protocol) surface and per-user API keys. You can use the built-in agent or connect your own.",
             "We may add, change, or remove features over time. We will not make a material reduction to the core service for an active paid plan without notice.",
           ],
         },
@@ -39,7 +39,7 @@ export default function TermsPage() {
         {
           heading: "Plans, credits, and billing",
           body: [
-            "Shopper is priced as a seat plus usage credits, where one credit equals one cent (USD 0.01). Reading and writing your own CRM is free; credits are consumed only when an agent pulls real data from outside providers, such as discovery, enrichment, deep research, or scheduled monitors. Each operation's credit cost is shown in the product.",
+            "Shopper is priced as a seat plus usage credits, where one credit equals one cent (USD 0.01). Reading and writing your own wish list and lists is free; credits are consumed only when an agent pulls real data from outside providers, such as hunts, deep browser sessions, seller vetting and enrichment, or Radar runs. Each operation's credit cost is shown in the product.",
             "Paid plans renew automatically and reset their credit allowance each billing period. Payments are processed by our payment provider, Stripe; we do not store full card details. You authorize us and Stripe to charge your payment method for the plan you select and any top-ups you purchase. You can cancel anytime from billing settings, and cancellation takes effect at the end of the current period.",
           ],
           bullets: [
@@ -64,7 +64,7 @@ export default function TermsPage() {
         {
           heading: "Third-party providers",
           body: [
-            "Shopper orchestrates third-party data and infrastructure providers (listed on our Subprocessors page) to deliver discovery, enrichment, email, and hosting. Your use of data returned by those providers is subject to applicable law and the providers' terms. We are not responsible for the accuracy of third-party data beyond our own verification rules, though we apply strict accuracy gates before saving anything.",
+            "Shopper orchestrates third-party data and infrastructure providers (listed on our Subprocessors page) to deliver hunts, seller vetting, enrichment, email, and hosting. Your use of data returned by those providers is subject to applicable law and the providers' terms. We are not responsible for the accuracy of third-party data beyond our own verification rules, though we apply strict accuracy gates before saving anything.",
           ],
         },
         {

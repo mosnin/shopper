@@ -35,7 +35,8 @@ supplies) and check off purchases, run Radar standing scans for wanted items
 You context. **Moat:** structure + UI + a real shopping engine as one system,
 an order of magnitude beyond the shopping MCPs bolted onto LLM providers.
 **Data:** a single source of truth you control (owned, exportable, never
-resold). Plans: Free (limited) / Plus $10/mo / Pro $20/mo.
+resold). Plans: Free (limited) / Pro $20/mo / Max $49/mo (reseller scale;
+a hidden 'plus' plan remains functional in the backend for legacy signups).
 
 **ICP call (2026-07, founder):** Shopper is **the shopping engine for AI
 agents.** The buyer is the agent operator (Claude Code / Cursor / Codex /
@@ -88,9 +89,9 @@ Deep context and all decisions are indexed in `@docs/README.md`.
   Auth: **Clerk**. UI: Radix + shadcn-style kit in `src/components/ui`,
   `lucide-react`, `motion`, `next-themes`. Payments: **Stripe** (cards; migrated
   off Creem.io 2026-06-12) + x402 USDC for agents. Uploads: Uploadthing.
-- **ORM / DB:** target is **Prisma** ORM on **Supabase** Postgres.
-  ⚠️ _The tree still ships the original **Drizzle + Neon** layer (`src/db/`,
-  `drizzle.config.ts`). Migration to Prisma is an open cycle - see the Heading._
+- **ORM / DB:** **Prisma** ORM on **Neon** Postgres (pgvector enabled). The
+  schema maps every table/column to Shopper-domain names via @@map/@map; the
+  client-side model rename (Entity -> Seller etc.) is a tracked debt.
 - **Package manager:** pnpm (`pnpm-lock.yaml`).
 - **Setup:** copy `.env.local.example` → `.env.local` and fill keys; `pnpm install`.
 - **Run (dev):** `pnpm dev` · **Build:** `pnpm build` · **Start:** `pnpm start`

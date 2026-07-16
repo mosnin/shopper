@@ -15,8 +15,8 @@ export default function DpaPage() {
         <>
           This Data Processing Addendum (the &ldquo;DPA&rdquo;) describes how
           Shopper processes personal data on your behalf and forms part of our
-          Terms of Service. When you store data about your contacts and
-          companies in Shopper, you are the controller of that personal data and
+          Terms of Service. When you store data about sellers, suppliers, and
+          their contacts in Shopper, you are the controller of that personal data and
           Shopper is your processor. If you need a countersigned copy for your
           compliance records, email us.
         </>
@@ -31,7 +31,7 @@ export default function DpaPage() {
         {
           heading: "Scope and purpose",
           body: [
-            "We process Customer Data to store your CRM, run discovery and enrichment, operate the agent and MCP surface, sync email, and provide support and security. We do not process it for our own independent purposes, and we never sell it or use it to train models for other customers.",
+            "We process Customer Data to store your wish list and shopping lists, run hunts, seller vetting, and Radar scans, operate the agent and MCP surface, sync seller email, and provide support and security. The subject matter is the data you keep in Shopper: items you want, sellers and sources, seller contacts (people at those businesses, mainly for sourcing and quotes), lists, Radar scans and results, your About You preferences, agent memory, and activity logs. We do not process it for our own independent purposes, and we never sell it or use it to train models for other customers.",
           ],
         },
         {

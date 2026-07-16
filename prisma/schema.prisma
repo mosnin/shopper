@@ -13,7 +13,7 @@ generator client {
 
 datasource db {
   provider   = "postgresql"
-  // Read the Supabase Vercel integration's auto-injected vars directly so no
+  // Read the Neon/Vercel integration's auto-injected vars directly so no
   // manual env control is needed. POSTGRES_PRISMA_URL = pooled (pgbouncer),
   // POSTGRES_URL_NON_POOLING = direct connection (migrations / db push).
   url        = env("POSTGRES_PRISMA_URL")
@@ -113,7 +113,7 @@ model Message {
   @@map("messages")
 }
 
-// Token-efficient memory: embedded snippets of past messages and CRM data the agent
+// Token-efficient memory: embedded snippets of past messages and wish list data the agent
 // can recall by similarity instead of stuffing everything into the prompt.
 model MemoryChunk {
   id        String                       @id @default(uuid())

@@ -31,14 +31,14 @@ export default function AcceptableUsePage() {
           bullets: [
             "Do not upload or enrich data you have no right to use.",
             "Do not store special-category personal data (such as health, biometric, or government-ID data) in Shopper.",
-            "Do not use enriched contact data to harass, defraud, discriminate against, or endanger anyone.",
-            "Honor opt-outs and deletion requests from the people in your database.",
+            "Do not use enriched seller-contact data to harass, defraud, discriminate against, or endanger anyone.",
+            "Honor opt-outs and deletion requests from the people whose contacts you store.",
           ],
         },
         {
           heading: "No spam or abusive outreach",
           body: [
-            "Shopper is for relationship intelligence and tracking, not bulk unsolicited email. Do not use the platform or its email features to send spam, chain messages, or deceptive outreach. Sending must comply with applicable anti-spam law and the policies of the underlying email provider.",
+            "Shopper's outreach features exist to contact sellers and suppliers about specific items: quotes, availability, sourcing. They are not for marketing campaigns or bulk unsolicited email. Do not use the platform or its email or phone features to send spam, chain messages, or deceptive outreach. Sending must comply with applicable anti-spam law and the policies of the underlying email provider.",
           ],
         },
         {

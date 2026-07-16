@@ -57,10 +57,12 @@ function statusColor(status: string) {
   }
 }
 
+// Display labels for seller-contact statuses, in sourcing terms (the enum
+// values are fixed in the schema; only the wording is shopper-flavored).
 function statusLabel(status: string) {
   const map: Record<string, string> = {
-    NEW: "New", ENRICHED: "Enriched", LEAD: "Lead", CONTACTED: "Contacted",
-    REPLIED: "Replied", QUALIFIED: "Qualified", WON: "Won", LOST: "Lost", ARCHIVED: "Archived",
+    NEW: "New", ENRICHED: "Vetted", CONTACTED: "Contacted",
+    REPLIED: "Replied", QUALIFIED: "Promising", WON: "Purchased", LOST: "Passed", ARCHIVED: "Archived",
   };
   return map[status] ?? status;
 }

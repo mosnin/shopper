@@ -235,7 +235,7 @@ The signed-in shell owns navigation in three modes, persisted to `localStorage`
   dynamic params are `Promise` (`await params`); `export const viewport` for
   theme-color; file-convention `app/manifest.ts` + `app/apple-icon.tsx` (PNG via
   `next/og` `ImageResponse`). Verify APIs against installed Next; don't assume ≤14.
-- **DB:** Prisma on Supabase. Datasource reads the **Supabase Vercel integration**
+- **DB:** Prisma on Neon. Datasource reads the **Vercel integration's**
   names — `POSTGRES_PRISMA_URL` (pooled) + `POSTGRES_URL_NON_POOLING` (direct) — not a
   custom `DATABASE_URL`. Build runs `prisma db push` (schema auto-applies on deploy);
   prefer additive/idempotent schema changes.
