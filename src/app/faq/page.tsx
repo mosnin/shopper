@@ -35,7 +35,7 @@ const faqCategories = [
     questions: [
       {
         q: "What is Radar?",
-        a: "Radar is standing scans: your agent describes what you are waiting for, a pre-owned RTX 4090 under $1,100, a size 10M loafer under $400, a specific part, and Radar watches the web 24/7. New matches land in your list the moment they appear. Radar comes with paid plans: 5 standing scans on Plus, 25 on Pro.",
+        a: "Radar is standing scans: your agent describes what you are waiting for, a pre-owned RTX 4090 under $1,100, a size 10M loafer under $400, a specific part, and Radar watches the web 24/7. New matches land in your list the moment they appear. Radar comes with paid plans: 25 standing scans on Pro, 100 on Max.",
       },
       {
         q: "Can my agent really pay for itself?",
@@ -60,7 +60,7 @@ const faqCategories = [
     questions: [
       {
         q: "What does it cost?",
-        a: "Free to start, with limited usage but the full surface: MCP connection, hunts, seller vetting, and your lists. Plus is $10/mo and adds Radar (5 standing scans) and deep browser sessions. Pro is $20/mo and adds 25 Radar scans plus manufacturer and supplier sourcing. Cancel anytime.",
+        a: "Free to start, with limited usage but the full surface: MCP connection, hunts, seller vetting, and your lists. Pro is $20/mo with 25 Radar standing scans, deep browser sessions, and manufacturer and supplier sourcing. Max is $49/mo with 100 Radar scans and the highest throughput, built for resellers and sourcers. Cancel anytime.",
       },
       {
         q: "Can my agent buy the plan itself?",

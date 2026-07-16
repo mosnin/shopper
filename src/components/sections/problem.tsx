@@ -39,7 +39,7 @@ export function ProblemSection() {
           <p className="text-xs uppercase tracking-[0.25em] text-primary">The problem</p>
           <h2 className="font-brand mt-3 text-3xl text-foreground sm:text-4xl lg:text-5xl">
             Your agent can shop.{" "}
-            <span className="text-gradient-orange">It just can't remember.</span>
+            <span className="text-gradient-orange">It just can&apos;t remember.</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
             Ask an agent to find something and it dumps links into a chat, then

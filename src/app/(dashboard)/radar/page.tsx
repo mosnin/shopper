@@ -95,7 +95,7 @@ export default function RadarPage() {
               new listings and, if you let it, adds them to your wish list automatically.
             </p>
             <p className="mt-2 text-xs text-muted-foreground">
-              Radar is included on Plus and Pro plans - upgrade to run standing scans.
+              Radar is included on paid plans - upgrade to run standing scans.
             </p>
             <Button className="mt-5" size="sm" onClick={() => setOpen((o) => !o)} variant={open ? "glow" : "default"}>
               New radar
@@ -159,7 +159,7 @@ export default function RadarPage() {
       {loading ? null : items.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-border bg-card/50 p-10 text-center">
           <p className="font-brand text-base">No radars yet</p>
-          <p className="mt-1 text-sm text-muted-foreground">Create one to start watching for newly listed items. Available on Plus and Pro plans.</p>
+          <p className="mt-1 text-sm text-muted-foreground">Create one to start watching for newly listed items. Available on paid plans.</p>
         </div>
       ) : (
         <div className="space-y-3">

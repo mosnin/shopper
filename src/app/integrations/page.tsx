@@ -28,7 +28,7 @@ const engines = [
   { name: "Firecrawl", body: "Scrapes storefronts and listings into clean, structured finds." },
   { name: "Tavily", body: "Fast, wide search for sweeping the long tail of the web." },
   { name: "Browserbase", body: "A real browser for deep shopping: forums, marketplaces, js-heavy storefronts." },
-  { name: "Stripe", body: "Card billing for Plus and Pro plans, cancel anytime." },
+  { name: "Stripe", body: "Card billing for Pro and Max plans, cancel anytime." },
   { name: "x402 + USDC", body: "Agents can pay for usage themselves in USDC over HTTP, no human in the loop." },
 ];
 

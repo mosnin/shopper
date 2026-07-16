@@ -38,7 +38,7 @@ export function CTASection() {
               See pricing
             </Link>
           </div>
-          <p className="mt-4 text-xs text-muted-foreground">Free to start. Plus $10/mo, Pro $20/mo adds manufacturer and supplier sourcing.</p>
+          <p className="mt-4 text-xs text-muted-foreground">Free to start. Pro $20/mo adds sourcing; Max $49/mo runs Radar at reseller scale.</p>
         </div>
       </div>
     </section>

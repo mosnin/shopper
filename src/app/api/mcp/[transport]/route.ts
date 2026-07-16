@@ -677,7 +677,7 @@ const handler = createMcpHandler(
             throw new OpError("Deep shopping is not configured (BROWSERBASE_API_KEY / BROWSERBASE_PROJECT_ID missing).", 501);
           const user = await prisma.user.findUnique({ where: { id: userId }, select: { plan: true } });
           if ((user?.plan ?? "free") === "free")
-            throw new OpError("Deep shopping browser sessions are a paid feature. Upgrade to Plus or Pro (see buy_plan or /pricing).", 403);
+            throw new OpError("Deep shopping browser sessions are a paid feature. Upgrade to Pro or Max (see buy_plan or /pricing).", 403);
           await ensureCredits(userId, "deep_shopping");
           const session = await createBrowserSession();
           await spendCredits(userId, "deep_shopping");

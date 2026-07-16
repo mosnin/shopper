@@ -4,7 +4,7 @@ import { FeaturePage } from "@/components/marketing/feature-page";
 export const metadata: Metadata = {
   title: "Radar | Shopper",
   description:
-    "Radar standing scans watch the web 24/7 for the items your agent is hunting: pre-owned GPUs, shoes in your size, parts, anything. Matches land in your list the moment they appear. Plus gets 5 scans, Pro gets 25.",
+    "Radar standing scans watch the web 24/7 for the items your agent is hunting: pre-owned GPUs, shoes in your size, parts, anything. Matches land in your list the moment they appear. Pro runs 25 standing scans, Max runs 100.",
 };
 
 export default function SignalsPage() {
@@ -30,7 +30,7 @@ export default function SignalsPage() {
         },
         {
           title: "On paid plans",
-          body: "Radar comes with Plus ($10/mo, 5 standing scans) and Pro ($20/mo, 25 standing scans). Pro also watches manufacturers and suppliers, for buying that goes past the retail shelf.",
+          body: "Radar comes with Pro ($20/mo, 25 standing scans) and Max ($49/mo, 100 standing scans). Pro and above also watch manufacturers and suppliers, for buying that goes past the retail shelf.",
         },
       ]}
       ctaTitle="Put a Radar scan on it."

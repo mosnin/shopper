@@ -86,7 +86,7 @@ export const services: Service[] = [
       "Standing scans on a schedule",
       "Price, condition & size constraints",
       "New matches land in your Wish List",
-      "Plus and Pro plans",
+      "Pro and Max plans",
     ],
     startingPrice: "Paid plans",
   },

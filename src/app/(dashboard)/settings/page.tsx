@@ -109,7 +109,7 @@ export default async function SettingsPage() {
             {billing && !PAID_PLANS.includes(billing.plan) && (
               <div className="mt-4 border-t border-border pt-4">
                 <p className="mb-3 text-sm text-muted-foreground">
-                  Upgrade to Plus ($10/mo) or Pro ($20/mo) for a bigger monthly allotment and Radar scans.
+                  Upgrade to Pro ($20/mo) or Max ($49/mo) for a bigger monthly allotment and Radar scans.
                 </p>
                 <BillingUpgrade />
               </div>
