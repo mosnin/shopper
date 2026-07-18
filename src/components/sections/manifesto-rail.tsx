@@ -27,7 +27,7 @@ export function ManifestoRail() {
             type="button"
             onClick={toggle}
             aria-expanded={open}
-            className="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-foreground/5"
+            className="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-foreground/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
           >
             <span className="relative flex h-2 w-2">
               <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
@@ -49,7 +49,7 @@ export function ManifestoRail() {
           </p>
           <Link
             href="/manifesto"
-            className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+            className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
           >
             Read the manifesto
             <ArrowRight className="h-4 w-4" />

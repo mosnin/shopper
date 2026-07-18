@@ -263,7 +263,11 @@ function RunRow({ run, onChanged }: { run: Run; onChanged: () => void }) {
     try {
       const res = await fetch(`/api/monitor-runs/${run.id}/add-to-crm`, { method: "POST" });
       const d = await res.json().catch(() => ({}));
-      setMsg(res.ok ? `Added ${d.entitiesAdded} finds, ${d.contactsAdded} sellers.` : (d.error ?? "Failed."));
+      setMsg(
+        res.ok
+          ? `Added ${d.entitiesAdded} finds, ${d.contactsAdded} sellers${d.itemsAdded ? `, ${d.itemsAdded} items` : ""}.`
+          : (d.error ?? "Failed."),
+      );
       if (res.ok) onChanged();
     } finally { setAdding(false); }
   }

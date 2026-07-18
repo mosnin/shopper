@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/card";
 import { headers } from "next/headers";
 import { FloatIn } from "@/components/ui/float-in";
-import { ApiKeysManager } from "./api-keys";
+import { ApiKeyPanel } from "@/components/dashboard/api-key-panel";
 import { AgentMailKeyForm } from "@/components/dashboard/agentmail-key-form";
 import { AgentPhoneKeyForm } from "@/components/dashboard/agentphone-key-form";
 import { TaskWebhookForm } from "@/components/dashboard/task-webhook-form";
@@ -120,7 +120,7 @@ export default async function SettingsPage() {
 
       {/* API keys */}
       <FloatIn delay={0.14}>
-        <ApiKeysManager />
+        <ApiKeyPanel mcpUrl={mcpUrl} />
       </FloatIn>
 
       {/* MCP connector */}

@@ -184,7 +184,8 @@ function ItemCard({ item, delay }: { item: ItemCardData; delay: number }) {
 
   return (
     <FloatIn delay={delay}>
-      <div
+      <Link
+        href={`/wishlist/item/${item.id}`}
         className={cn(
           "flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card",
           "shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),0_1px_3px_-1px_rgba(0,0,0,0.06)]",
@@ -239,6 +240,7 @@ function ItemCard({ item, delay }: { item: ItemCardData; delay: number }) {
               href={item.url}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
               className="mt-auto inline-flex items-center gap-1.5 pt-1 text-xs font-medium text-primary hover:underline"
             >
               <ExternalLink className="h-3.5 w-3.5" />
@@ -246,7 +248,7 @@ function ItemCard({ item, delay }: { item: ItemCardData; delay: number }) {
             </a>
           )}
         </div>
-      </div>
+      </Link>
     </FloatIn>
   );
 }

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { ArrowRight, Loader2, Radar, Search, Tag } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { DemoHunt, DemoResult } from "@/lib/demo-hunt";
@@ -33,6 +33,7 @@ function rememberIntent(query: string) {
 }
 
 export function LiveHunt() {
+  const reduce = useReducedMotion() ?? false;
   const [query, setQuery] = useState("");
   const [state, setState] = useState<"idle" | "loading" | "done" | "error">("idle");
   const [hunt, setHunt] = useState<DemoHunt | null>(null);
@@ -91,7 +92,7 @@ export function LiveHunt() {
         <button
           type="submit"
           disabled={state === "loading" || !query.trim()}
-          className="inline-flex shrink-0 items-center gap-1.5 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:brightness-110 disabled:opacity-60"
+          className="inline-flex shrink-0 items-center gap-1.5 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:brightness-110 disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
         >
           {state === "loading" ? <Loader2 className="h-4 w-4 animate-spin" /> : <>Hunt <ArrowRight className="h-4 w-4" /></>}
         </button>
@@ -105,7 +106,7 @@ export function LiveHunt() {
               key={c}
               type="button"
               onClick={() => run(c)}
-              className="rounded-full border border-border bg-card px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
+              className="rounded-full border border-border bg-card px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
             >
               {c}
             </button>
@@ -117,28 +118,35 @@ export function LiveHunt() {
       <AnimatePresence>
         {state === "loading" && (
           <motion.div
-            initial={{ opacity: 0 }}
+            initial={reduce ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            exit={reduce ? undefined : { opacity: 0 }}
             className="mt-4 flex items-center gap-2 text-sm text-muted-foreground"
+            role="status"
+            aria-live="polite"
           >
-            <Loader2 className="h-4 w-4 animate-spin text-primary" />
+            <Loader2 className="h-4 w-4 animate-spin text-primary" aria-hidden />
             <span>{HUNTING[phase]}...</span>
           </motion.div>
         )}
       </AnimatePresence>
 
       {state === "error" && (
-        <p className="mt-4 rounded-xl border border-border bg-card px-4 py-3 text-sm text-muted-foreground">
+        <p className="mt-4 rounded-xl border border-border bg-card px-4 py-3 text-sm text-muted-foreground" role="alert">
           {error}{" "}
-          <Link href="/sign-up" className="font-medium text-primary hover:underline">Sign up free</Link>.
+          <Link href="/sign-up" className="font-medium text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50">Sign up free</Link>.
         </p>
       )}
 
       {/* Results */}
       <AnimatePresence>
         {state === "done" && hunt && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-4">
+          <motion.div
+            initial={reduce ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="mt-4"
+            aria-live="polite"
+          >
             <div className="mb-2 flex items-center justify-between text-xs text-muted-foreground">
               <span>
                 {hunt.results.length} found for &ldquo;{hunt.query}&rdquo;, cheapest first
@@ -160,7 +168,7 @@ export function LiveHunt() {
 
             <div className="space-y-2">
               {hunt.results.map((r, i) => (
-                <ResultRow key={r.url + i} r={r} i={i} isBest={best === r} />
+                <ResultRow key={r.url + i} r={r} i={i} isBest={best === r} reduce={reduce} />
               ))}
             </div>
 
@@ -176,7 +184,7 @@ export function LiveHunt() {
               <Link
                 href={`/sign-up?intent=${encodeURIComponent(hunt.query)}`}
                 onClick={() => rememberIntent(hunt.query)}
-                className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5"
+                className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
               >
                 Watch with Radar <ArrowRight className="h-4 w-4" />
               </Link>
@@ -195,22 +203,22 @@ export function LiveHunt() {
   );
 }
 
-function ResultRow({ r, i, isBest }: { r: DemoResult; i: number; isBest: boolean }) {
+function ResultRow({ r, i, isBest, reduce }: { r: DemoResult; i: number; isBest: boolean; reduce: boolean }) {
   return (
     <motion.a
       href={r.url}
       target="_blank"
       rel="noopener noreferrer"
-      initial={{ opacity: 0, y: 8 }}
+      initial={reduce ? false : { opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: i * 0.05 }}
-      className="group flex items-center gap-3 rounded-2xl border border-border bg-card p-3 transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5"
+      transition={{ delay: reduce ? 0 : i * 0.05 }}
+      className="group flex items-center gap-3 rounded-2xl border border-border bg-card p-3 transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
     >
       {/* Thumb */}
       <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-muted">
         {r.image ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={r.image} alt="" className="h-full w-full object-cover" loading="lazy" draggable={false} />
+          <img src={r.image} alt="" aria-hidden className="h-full w-full object-cover" loading="lazy" draggable={false} />
         ) : (
           <div className="flex h-full w-full items-center justify-center text-[10px] font-semibold uppercase text-muted-foreground">
             {r.source.slice(0, 2)}

@@ -23,14 +23,14 @@ export async function POST(_req: NextRequest, { params }: { params: Promise<{ id
     const items = Array.isArray(run.items) ? (run.items as ExtractItem[]) : [];
     if (items.length === 0) return NextResponse.json({ error: "This run has no results to add." }, { status: 422 });
 
-    const { entitiesAdded, contactsAdded } = await extractAndAddToCrm(user.id, items);
+    const { entitiesAdded, contactsAdded, itemsAdded } = await extractAndAddToCrm(user.id, items);
 
     await prisma.monitorRun.update({
       where: { id },
       data: { addedToCrm: true, added: run.added + entitiesAdded + contactsAdded },
     });
 
-    return NextResponse.json({ ok: true, entitiesAdded, contactsAdded });
+    return NextResponse.json({ ok: true, entitiesAdded, contactsAdded, itemsAdded });
   } catch (e) {
     if (e instanceof NextResponse) return e;
     console.error("POST /api/monitor-runs/[id]/add-to-crm", e);

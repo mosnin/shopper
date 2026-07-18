@@ -9,6 +9,7 @@ import { generateObject } from "ai";
 import { openai } from "@ai-sdk/openai";
 import { prisma } from "@/lib/prisma";
 import { checkCreationBudget } from "@/lib/creation-guard";
+import { createItem } from "@/lib/item-operations";
 
 const MODEL = process.env.OPENAI_REFINER_MODEL ?? "gpt-5-mini";
 
@@ -55,6 +56,17 @@ const real = (s?: string | null) =>
   Boolean(s && s.trim() && !["null", "unknown", "n/a", "none"].includes(s.trim().toLowerCase()));
 const normName = (s: string) => s.trim().toLowerCase().replace(/\s+/g, " ");
 
+// Pull the first plausible $ amount (10..200000) out of a title/summary so a
+// scan result that reads a real listing price can seed the Item's price field.
+function extractPrice(text: string): string | undefined {
+  const matches = text.matchAll(/\$\s?([0-9]{1,3}(?:,[0-9]{3})*(?:\.[0-9]{1,2})?)/g);
+  for (const m of matches) {
+    const n = Number(m[1].replace(/,/g, ""));
+    if (Number.isFinite(n) && n >= 10 && n <= 200000) return m[1];
+  }
+  return undefined;
+}
+
 // Publishers/aggregators that should never become an "entity" even if the model
 // slips one through (the prompt already asks it to drop these).
 const AGGREGATOR_DOMAINS = new Set([
@@ -67,9 +79,9 @@ const AGGREGATOR_DOMAINS = new Set([
 export async function extractAndAddToCrm(
   userId: string,
   items: ExtractItem[],
-): Promise<{ entitiesAdded: number; contactsAdded: number; created: CreatedItem[] }> {
+): Promise<{ entitiesAdded: number; contactsAdded: number; itemsAdded: number; created: CreatedItem[] }> {
   if (!process.env.OPENAI_API_KEY || items.length === 0) {
-    return { entitiesAdded: 0, contactsAdded: 0, created: [] };
+    return { entitiesAdded: 0, contactsAdded: 0, itemsAdded: 0, created: [] };
   }
 
   // Circuit breaker: if this account has already accrued a flood of records in
@@ -77,7 +89,28 @@ export async function extractAndAddToCrm(
   const budget = await checkCreationBudget(userId);
   if (!budget.ok) {
     console.warn(`[radar-extract] creation cooldown for user ${userId}: ${budget.recent} in ${budget.windowMinutes}m`);
-    return { entitiesAdded: 0, contactsAdded: 0, created: [] };
+    return { entitiesAdded: 0, contactsAdded: 0, itemsAdded: 0, created: [] };
+  }
+
+  // ── Add each scan result that looks like a real listing (has a url) to the
+  // wish list as an Item, too. Deduped by url per user so re-running a scan
+  // (or adding the same run twice) never duplicates the item.
+  let itemsAdded = 0;
+  for (const i of items) {
+    if (!i.url) continue;
+    const dupe = await prisma.item.findFirst({ where: { userId, url: i.url }, select: { id: true } });
+    if (dupe) continue;
+
+    const title = real(i.title) ? i.title!.trim() : i.url;
+    const price = extractPrice(`${i.title ?? ""} ${i.summary ?? ""}`);
+
+    await createItem(userId, {
+      title,
+      url: i.url,
+      price: price ?? null,
+      source: "radar",
+    });
+    itemsAdded++;
   }
 
   const { object } = await generateObject({
@@ -198,5 +231,5 @@ ${items.map((i) => `- ${i.title ?? ""} (${i.url ?? ""}) ${i.summary ?? ""}`).joi
     contactsAdded++;
   }
 
-  return { entitiesAdded, contactsAdded, created };
+  return { entitiesAdded, contactsAdded, itemsAdded, created };
 }

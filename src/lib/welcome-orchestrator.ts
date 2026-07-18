@@ -25,6 +25,7 @@ import { exaFindCompanies, isExaConfigured } from "@/lib/exa";
 import { enrichDomain, isExploriumConfigured } from "@/lib/explorium";
 import { getCompanyNews, isPipe0Configured } from "@/lib/pipe0";
 import { createEntity } from "@/lib/crm-operations";
+import { createItem } from "@/lib/item-operations";
 import { Prisma } from "@prisma/client";
 
 // --------------------------------------------------------------------------
@@ -224,6 +225,21 @@ export async function runWelcomeOrchestration(
         } catch (err) {
           console.error("[welcome-orchestrator] createEntity failed", err);
           continue;
+        }
+
+        // Also save the find as a wish-list item so the list is non-empty
+        // after the first run - the seller record alone isn't the shopper's
+        // object of interest, the find is.
+        try {
+          await createItem(userId, {
+            title: entity.name,
+            url: c.website ?? null,
+            notes: entity.description ?? null,
+            sellerId: entity.id,
+            source: "welcome",
+          });
+        } catch (err) {
+          console.error("[welcome-orchestrator] createItem failed", err);
         }
 
         const row: WelcomeCompanyRow = {

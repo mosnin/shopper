@@ -97,11 +97,13 @@ function StatCard({
   value,
   accent = false,
   delay = 0,
+  hint,
 }: {
   label: string;
   value: number;
   accent?: boolean;
   delay?: number;
+  hint?: string;
 }) {
   const reduce = useReducedMotion();
   return (
@@ -139,6 +141,9 @@ function StatCard({
             <CountUp value={value} duration={1.2 + delay * 0.15} />
           </p>
           <p className="mt-1 text-sm text-muted-foreground">{label}</p>
+          {value === 0 && hint ? (
+            <p className="mt-2 text-xs text-muted-foreground/80">{hint}</p>
+          ) : null}
         </div>
       </motion.div>
     </SpotlightCard>
@@ -173,6 +178,12 @@ export function DashboardOverview({
   const reduce = useReducedMotion();
 
   const greeting = firstName ? `Good to see you, ${firstName}.` : "Good to see you.";
+
+  // First-visit read: nothing found, nothing watched, no radar armed yet.
+  // Swap the generic bento copy for a clear three-step path instead of
+  // empty stats.
+  const isFirstVisit =
+    totalContacts === 0 && totalCompanies === 0 && radarActive === 0 && radarSignals === 0;
 
   return (
     <motion.div
@@ -310,6 +321,7 @@ export function DashboardOverview({
           label="Stores"
           value={totalCompanies}
           delay={0}
+          hint="Sellers show up here as your agent shops"
         />
 
         {/* Enriched */}
@@ -318,6 +330,7 @@ export function DashboardOverview({
           value={enriched}
           accent
           delay={1}
+          hint="Detail your agent fills in as it works"
         />
 
         {/* Watching */}
@@ -325,6 +338,7 @@ export function DashboardOverview({
           label="Watching"
           value={inConversation}
           delay={2}
+          hint="Arm a Radar scan to watch for new listings"
         />
 
         {/* Agent accent card - spans 1 col on lg (rightmost in this row) */}
@@ -416,6 +430,33 @@ export function DashboardOverview({
                   Everything your shopping agent needs, in one place.
                 </p>
               </div>
+
+              {isFirstVisit && (
+                <ol className="mt-6 flex flex-col gap-2 border-t border-border/60 pt-5 sm:flex-row sm:gap-3">
+                  {[
+                    { n: "1", label: "Connect an agent", body: "Create an API key", href: "/settings" },
+                    { n: "2", label: "Run a first hunt", body: "Try Shop or Ask Shopper", href: "/shop" },
+                    { n: "3", label: "Arm Radar", body: "Watch for new listings", href: "/radar" },
+                  ].map((step) => (
+                    <Link
+                      key={step.n}
+                      href={step.href}
+                      className="group flex flex-1 items-start gap-3 rounded-2xl bg-card p-3 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] transition-shadow duration-200 hover:shadow-[0_6px_20px_-4px_rgba(37,99,235,0.16)]"
+                    >
+                      <span className="font-brand mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-[11px] text-primary">
+                        {step.n}
+                      </span>
+                      <span className="min-w-0">
+                        <span className="flex items-center gap-1 text-sm font-medium text-foreground">
+                          {step.label}
+                          <ArrowRight className="h-3 w-3 text-muted-foreground opacity-0 transition-all duration-150 group-hover:translate-x-0.5 group-hover:opacity-100" />
+                        </span>
+                        <span className="block text-xs text-muted-foreground">{step.body}</span>
+                      </span>
+                    </Link>
+                  ))}
+                </ol>
+              )}
 
               <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
                 {[
@@ -515,13 +556,22 @@ export function DashboardOverview({
                 <p className="mt-1.5 text-xs text-muted-foreground">
                   Start hunting for items and activity will appear here.
                 </p>
-                <Link
-                  href="/shop"
-                  className="mt-5 inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline"
-                >
-                  Shop now
-                  <ArrowRight className="h-3 w-3" />
-                </Link>
+                <div className="mt-5 flex flex-col items-center gap-2">
+                  <Link
+                    href="/shop"
+                    className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline"
+                  >
+                    Shop now
+                    <ArrowRight className="h-3 w-3" />
+                  </Link>
+                  <Link
+                    href="/connect"
+                    className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground hover:underline"
+                  >
+                    or connect an agent
+                    <ArrowRight className="h-3 w-3" />
+                  </Link>
+                </div>
               </div>
             ) : (
               /* Has data - show a mini summary */

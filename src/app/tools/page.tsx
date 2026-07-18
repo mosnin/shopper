@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { ConnectTabs } from "@/components/marketing/connect-tabs";
+import { StructuredData } from "@/components/marketing/structured-data";
 import { MCP_TOOL_GROUPS, MCP_TOOL_COUNT } from "@/lib/mcp-catalog";
 import { ArrowRight } from "lucide-react";
 
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
 export default function ToolsPage() {
   return (
     <>
+      <StructuredData />
       <Header />
       <main className="flex-1 pt-28 sm:pt-32">
         <section className="relative overflow-hidden pb-8">

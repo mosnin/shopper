@@ -28,6 +28,14 @@ import {
   updateContact,
   searchCrm,
 } from "@/lib/crm-operations";
+import {
+  listItems,
+  createItem,
+  setItemStatus,
+  listShoppingLists,
+  getShoppingList,
+  createShoppingList,
+} from "@/lib/item-operations";
 import { tavilySearch, isTavilyConfigured } from "@/lib/tavily";
 import { storeMemory, recallMemory } from "@/lib/memory";
 import { spendCredits } from "@/lib/credits";
@@ -41,6 +49,10 @@ Your name is Shopper and you should refer to yourself as Shopper when introducin
 yourself or when context makes it natural. You hunt the web for items the user \
 wants, compare prices, vet sellers, and keep their wish list (sellers, items, and \
 seller contacts) and shopping lists current on their behalf.
+
+Items are the star. Every find worth keeping should end up as an item (title,
+price, url, condition), not a vague note or a paragraph the user has to re-read
+later.
 
 How you work:
 - To hunt items, stores, or online sellers (anything not tied to a street
@@ -61,9 +73,23 @@ How you work:
   These tools spend credits, so confirm intent before large runs.
 - Vet an unknown seller or manufacturer with enrich_entity before recommending a
   big purchase.
-- Read/write the wish list with the list/get/create/update tools. Always work
-  from real data - call tools rather than guessing. When you save an item, carry
-  the price, condition, and URL in its notes.
+- save_item is how you record a real find as a piece of structured data: give
+  it the title and, whenever you have them, the url and price - that is what
+  makes the item useful later instead of just words in the chat. Reads/writes
+  on items and shopping lists are free, unlike the hunt tools above.
+- Use list_items to see what's already saved (filter by status or list) before
+  duplicating a find, and search_crm/list_entities/list_contacts for sellers
+  and seller contacts.
+- When the user says they bought, ordered, or picked something up, call
+  mark_item_purchased on that item - that is the check-off. Don't just say
+  "got it" in prose and leave the item as wanted.
+- Shopping lists group items toward a goal (groceries, a move, auto parts,
+  business supplies). Use list_shopping_lists / get_shopping_list to see what
+  exists and create_shopping_list to start a new one; pass its id as listId
+  when saving items so they land in the right list.
+- Read/write sellers and seller contacts with the entity/contact list/get/
+  create/update tools. Always work from real data - call tools rather than
+  guessing.
 - You have long-term memory: call recall to retrieve relevant past context
   (earlier hunts, preferences, wish list notes) instead of assuming. Each chat
   starts fresh, so recall is how you remember.
@@ -310,6 +336,60 @@ export async function POST(req: Request) {
         entityId: z.string().optional(),
       }),
       execute: ({ id, ...rest }) => exec(() => updateContact(userId, id, rest)),
+    }),
+    save_item: tool({
+      description:
+        "Save a real find as a structured item on the wish list (title, url, price, condition, notes). This is how a hunt result becomes something the user can act on later - prefer it over describing a find only in prose. Free, no credits.",
+      inputSchema: z.object({
+        title: z.string(),
+        url: z.string().optional(),
+        price: z.string().optional(),
+        condition: z.string().optional(),
+        notes: z.string().optional(),
+        listId: z.string().optional(),
+        sellerId: z.string().optional(),
+      }),
+      execute: (args) =>
+        exec(() => createItem(userId, { ...args, source: "agent" })),
+    }),
+    list_items: tool({
+      description:
+        "List saved items on the wish list. Filter by status (WANTED, PURCHASED, ARCHIVED), by shopping list id, or by a search query. Free, no credits.",
+      inputSchema: z.object({
+        status: z.enum(["WANTED", "PURCHASED", "ARCHIVED"]).optional(),
+        listId: z.string().optional(),
+        query: z.string().optional(),
+      }),
+      execute: ({ status, listId, query }) =>
+        exec(() => listItems(userId, { status, listId, q: query })),
+    }),
+    mark_item_purchased: tool({
+      description:
+        "Check off an item as purchased (or move it back to wanted). This is the shopping-list check-off - use it when the user says they bought, ordered, or picked something up. Free, no credits.",
+      inputSchema: z.object({
+        id: z.string(),
+        purchased: z.boolean().optional(),
+      }),
+      execute: ({ id, purchased }) =>
+        exec(() => setItemStatus(userId, id, purchased === false ? "WANTED" : "PURCHASED")),
+    }),
+    list_shopping_lists: tool({
+      description: "List the user's shopping lists (groceries, a move, auto parts, business supplies) with item and purchased counts. Free, no credits.",
+      inputSchema: z.object({}),
+      execute: () => exec(() => listShoppingLists(userId)),
+    }),
+    create_shopping_list: tool({
+      description: "Create a new shopping list to group items toward a goal. Free, no credits.",
+      inputSchema: z.object({
+        name: z.string(),
+        goal: z.string().optional(),
+      }),
+      execute: ({ name, goal }) => exec(() => createShoppingList(userId, { name, goal })),
+    }),
+    get_shopping_list: tool({
+      description: "Get one shopping list by id, with its items (wanted first, then purchased). Free, no credits.",
+      inputSchema: z.object({ id: z.string() }),
+      execute: ({ id }) => exec(() => getShoppingList(userId, id)),
     }),
   };
 

@@ -40,7 +40,7 @@ function ConnectStrip() {
       <button
         type="button"
         onClick={copy}
-        className="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-xl border border-white/10 px-3 py-2 text-xs text-slate-200 transition-colors hover:bg-white/10"
+        className="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-xl border border-white/10 px-3 py-2 text-xs text-slate-200 transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
       >
         {copied ? <Check className="h-3.5 w-3.5 text-green-400" /> : <Copy className="h-3.5 w-3.5" />}
         {copied ? "Copied" : "Copy"}
@@ -139,13 +139,13 @@ export function AgentHero() {
           <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/sign-up"
-              className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
             >
               Start free <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="/connect"
-              className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
             >
               Connect guide
             </Link>

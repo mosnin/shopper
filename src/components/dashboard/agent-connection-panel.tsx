@@ -73,15 +73,21 @@ export function AgentConnectionPanel({
               ? "Point any MCP client at this endpoint. Your agents share one wish list, lists, and memory."
               : "Create an API key, then point Claude Code, Cursor, or any MCP client here to start hunting."}
           </p>
+          {!connected && (
+            <p className="mt-1 text-xs text-muted-foreground/80">Takes about a minute.</p>
+          )}
         </div>
 
         {/* Actions */}
         <div className="flex shrink-0 flex-wrap gap-2">
           <Link
             href="/settings"
-            className="inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5"
+            className={cn(
+              "inline-flex items-center gap-1.5 rounded-full bg-primary font-semibold text-primary-foreground transition-all hover:-translate-y-0.5",
+              connected ? "px-4 py-2.5 text-sm" : "px-5 py-3 text-base shadow-[0_8px_24px_-6px_rgba(37,99,235,0.5)]",
+            )}
           >
-            <KeyRound className="h-4 w-4" />
+            <KeyRound className={connected ? "h-4 w-4" : "h-5 w-5"} />
             {connected ? "Manage keys" : "Create API key"}
           </Link>
           <Link

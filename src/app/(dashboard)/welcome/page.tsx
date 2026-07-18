@@ -13,7 +13,11 @@ import { WelcomeClient } from "./welcome-client";
 
 export const dynamic = "force-dynamic";
 
-export default async function WelcomePage() {
+export default async function WelcomePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ intent?: string | string[] }>;
+}) {
   const user = await getDbUser();
 
   // Redirect to sign-in if not authenticated.
@@ -27,13 +31,18 @@ export default async function WelcomePage() {
     redirect("/dashboard");
   }
 
+  // A shopping intent typed on the marketing site (?intent=...) rides along
+  // into the first hunt so the operator never has to retype it.
+  const { intent } = await searchParams;
+  const initialIntent = Array.isArray(intent) ? intent[0] : intent;
+
   return (
     <div className="relative min-h-screen overflow-hidden">
       {/* Brand backdrop, matching the marketing surfaces. */}
       <AsciiField className="pointer-events-none fixed inset-0 h-full w-full opacity-[0.10] dark:opacity-25" cell={14} speed={0.07} gradient />
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(37,99,235,0.12),transparent_55%)]" />
       <div className="relative z-10">
-        <WelcomeClient firstName={user.firstName ?? undefined} />
+        <WelcomeClient firstName={user.firstName ?? undefined} initialIntent={initialIntent} />
       </div>
     </div>
   );

@@ -351,7 +351,7 @@ export function CapabilitiesSection() {
                     onClick={() => select(i)}
                     aria-pressed={on}
                     className={
-                      "group relative shrink-0 rounded-2xl px-4 py-3 text-left transition-colors lg:shrink " +
+                      "group relative shrink-0 rounded-2xl px-4 py-3 text-left transition-colors lg:shrink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 " +
                       (on ? "bg-primary/10" : "hover:bg-muted/60 dark:hover:bg-white/[0.03]")
                     }
                   >

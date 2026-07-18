@@ -4,7 +4,7 @@
 // the SSE stream from /api/welcome, and the live table that fills row by row.
 // No decorative icons. Baby-blue + white brand. Calm typography.
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
@@ -29,7 +29,13 @@ const EXAMPLES = [
 // Main component
 // --------------------------------------------------------------------------
 
-export function WelcomeClient({ firstName }: { firstName?: string }) {
+export function WelcomeClient({
+  firstName,
+  initialIntent,
+}: {
+  firstName?: string;
+  initialIntent?: string;
+}) {
   const router = useRouter();
   const reduce = useReducedMotion();
 
@@ -40,6 +46,31 @@ export function WelcomeClient({ firstName }: { firstName?: string }) {
   const [summary, setSummary] = useState<{ total: number; enriched: number; hasNews: number } | null>(null);
   const [hasSamples, setHasSamples] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
+
+  // Prefill the first-hunt input with whatever the operator already typed on
+  // the marketing site, whether it arrived as ?intent= or was left behind in
+  // localStorage by the hero's live-hunt box. Never overwrite something the
+  // operator has already typed here.
+  useEffect(() => {
+    const fromLocalStorage = (() => {
+      try {
+        return window.localStorage.getItem("shopper_intent") ?? undefined;
+      } catch {
+        return undefined;
+      }
+    })();
+    const intent = initialIntent?.trim() || fromLocalStorage?.trim();
+    if (intent) {
+      setIcp((prev) => (prev ? prev : intent));
+      try {
+        window.localStorage.removeItem("shopper_intent");
+      } catch {
+        // Ignore - not critical if this fails.
+      }
+    }
+    // Only run once on mount.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleSubmit = useCallback(async () => {
     const query = icp.trim();

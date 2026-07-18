@@ -33,7 +33,7 @@ function domainOf(url: string): string {
 
 // Pull a plausible listing price from text. Skips obvious non-prices (years,
 // huge numbers) and returns the smallest sensible candidate.
-function parsePrice(text: string): number | null {
+export function parsePrice(text: string): number | null {
   const matches = text.match(/\$\s?\d{1,3}(?:,\d{3})*(?:\.\d{2})?|\$\s?\d{2,6}(?:\.\d{2})?/g);
   if (!matches) return null;
   const nums = matches
@@ -77,7 +77,7 @@ function isMarketplace(domain: string): boolean {
 // Keep the list clean and diverse: drop junk, require a real signal (a price or
 // a known marketplace), cap to two per source, rank marketplaces + priced
 // first, then cheapest, and take six.
-function refine(results: DemoResult[]): DemoResult[] {
+export function refine(results: DemoResult[]): DemoResult[] {
   const seen = new Map<string, number>();
   const kept = results.filter((r) => {
     if (!r.url || JUNK.test(r.url)) return false;
@@ -143,7 +143,7 @@ async function liveHunt(query: string): Promise<DemoResult[] | null> {
 }
 
 // Strip site-name tails and noise so titles read like listings.
-function cleanTitle(t: string): string {
+export function cleanTitle(t: string): string {
   return t
     .replace(/\s*[|\-\u2013\u2014]\s*(ebay|facebook marketplace|craigslist|mercari|etsy|stockx|goat|reverb|amazon\.com).*$/i, "")
     .replace(/\s+/g, " ")

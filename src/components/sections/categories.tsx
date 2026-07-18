@@ -64,7 +64,7 @@ export function CategoriesSection() {
             >
               <Link
                 href="/sign-up"
-                className="group relative block aspect-[4/3] overflow-hidden rounded-2xl border border-border/60 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10"
+                className="group relative block aspect-[4/3] overflow-hidden rounded-2xl border border-border/60 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
                 style={{ backgroundImage: `linear-gradient(135deg, ${c.from}, ${c.to})` }}
               >
                 {c.image && (
@@ -73,6 +73,7 @@ export function CategoriesSection() {
                     src={c.image}
                     alt=""
                     aria-hidden
+                    loading="lazy"
                     className="absolute inset-0 h-full w-full object-cover opacity-70 transition-transform duration-500 group-hover:scale-105"
                     draggable={false}
                   />

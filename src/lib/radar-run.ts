@@ -16,7 +16,7 @@ export async function runIntentMonitorOnce(monitor: {
   userId: string;
   query: string;
   autoAdd: boolean;
-}): Promise<{ found: number; added: number; runId: string; created: CreatedItem[] }> {
+}): Promise<{ found: number; added: number; itemsAdded: number; runId: string; created: CreatedItem[] }> {
   // Each run consumes an Exa search; debit before running. When the user is
   // out of credits, skip gracefully - the caller (cron or "Run now") logs the
   // OpError and the monitor simply doesn't fire this cycle.
@@ -37,14 +37,17 @@ export async function runIntentMonitorOnce(monitor: {
     }));
 
   let added = 0;
+  let itemsAdded = 0;
   let created: CreatedItem[] = [];
 
   // Auto-add extracts the real companies/people mentioned in the results (same
   // path as the manual "Add to CRM" button), deduped, rather than dumping the
-  // articles/publishers themselves as entities.
+  // articles/publishers themselves as entities. It also lands any result that
+  // looks like a real listing onto the wish list as an Item.
   if (monitor.autoAdd) {
     const result = await extractAndAddToCrm(monitor.userId, items);
     added = result.entitiesAdded + result.contactsAdded;
+    itemsAdded = result.itemsAdded;
     created = result.created;
   }
 
@@ -59,5 +62,5 @@ export async function runIntentMonitorOnce(monitor: {
     },
   });
 
-  return { found: items.length, added, runId: run.id, created };
+  return { found: items.length, added, itemsAdded, runId: run.id, created };
 }

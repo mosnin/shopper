@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { ConnectTabs } from "@/components/marketing/connect-tabs";
+import { ClientGuides } from "@/components/marketing/client-guides";
+import { StructuredData } from "@/components/marketing/structured-data";
 import { MCP_TOOL_COUNT } from "@/lib/mcp-catalog";
 import { ArrowRight, KeyRound, Plug, Radar, Wallet } from "lucide-react";
 
@@ -40,6 +42,7 @@ const facts = [
 export default function ConnectPage() {
   return (
     <>
+      <StructuredData />
       <Header />
       <main className="flex-1 pt-28 sm:pt-32">
         <section className="relative overflow-hidden pb-10">
@@ -103,6 +106,21 @@ export default function ConnectPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        <section className="pb-20">
+          <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-8 text-center">
+              <p className="text-xs uppercase tracking-[0.3em] text-primary">Set up your client</p>
+              <h2 className="font-brand mt-3 text-2xl tracking-tight text-foreground sm:text-3xl">
+                Pick your agent
+              </h2>
+              <p className="mt-3 text-sm text-muted-foreground">
+                Exact steps and a copyable config for each MCP client, against the live endpoint.
+              </p>
+            </div>
+            <ClientGuides />
           </div>
         </section>
       </main>
